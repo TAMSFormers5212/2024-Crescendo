@@ -2,7 +2,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 
-#include <rev/CANSparkBase.h>
+#include <rev/CANSparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <rev/SparkMaxPIDController.h>
 
@@ -18,9 +18,17 @@ using namespace rev;
 class SwerveModule : public frc2::SubsystemBase{
 
 public:
-    SwerveModule(int driveMotor, int turningMotor, int absEncoder, double offset);
+    SwerveModule(int driveMotor, int steerMotor, int absEncoder, double offset);
 
-    
+    void resetModule();
+    void resetDriveMotor();
+    void resetSteerMotor();
+    void resetDriveEncoder();
+    void resetSteerEncoder();
+    double getDrivePosition();
+    double getSteerPosition();
+    double getDriveVelocity();
+    double getAbsolutePosition(); 
 
 
     void Periodic() override;
@@ -29,14 +37,14 @@ private:
 
     double encoderOffset;
 
-    CANSparkBase m_driveMotor;
-    CANSparkBase m_steerMotor;
+    CANSparkMax m_driveMotor;
+    CANSparkMax m_steerMotor;
 
-    SparkRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
-    SparkRelativeEncoder m_steerEncoder = m_steerMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
+    SparkMaxRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
+    SparkMaxRelativeEncoder m_steerEncoder = m_steerMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
 
-    SparkPIDController m_driveController = m_driveMotor.GetPIDController();
-    SparkPIDController m_steerController = m_steerMotor.GetPIDController();
+    SparkMaxPIDController m_driveController = m_driveMotor.GetPIDController();
+    SparkMaxPIDController m_steerController = m_steerMotor.GetPIDController();
 
     frc::AnalogEncoder m_absoluteEncoder;
 
