@@ -4,7 +4,7 @@
 
 #include <rev/CANSparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
-#include <rev/SparkMaxPIDController.h>
+#include <rev/SparkPIDController.h>
 
 #include <frc/kinematics/SwerveModuleState.h>
 #include <frc/kinematics/SwerveModulePosition.h>
@@ -44,11 +44,11 @@ private:
     CANSparkMax m_driveMotor;
     CANSparkMax m_steerMotor;
 
-    SparkMaxRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
-    SparkMaxRelativeEncoder m_steerEncoder = m_steerMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
+    SparkRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
+    SparkRelativeEncoder m_steerEncoder = m_steerMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
 
-    SparkMaxPIDController m_driveController = m_driveMotor.GetPIDController();
-    SparkMaxPIDController m_steerController = m_steerMotor.GetPIDController();
+    SparkPIDController m_driveController = m_driveMotor.GetPIDController();
+    SparkPIDController m_steerController = m_steerMotor.GetPIDController();
 
     frc::AnalogEncoder m_absoluteEncoder;
 

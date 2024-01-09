@@ -44,7 +44,7 @@ void SwerveModule::resetDriveMotor(){
   m_driveController.SetD(kdD);
   m_driveController.SetFF(kdFF);
 
-  m_driveMotor.SetIdleMode(CANSparkMax::IdleMode::kBrake);
+  m_driveMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
   m_driveMotor.EnableVoltageCompensation(12.0);
   m_driveMotor.SetSmartCurrentLimit(25, 40);
 
@@ -67,11 +67,11 @@ void SwerveModule::resetSteerMotor(){
   m_steerController.SetPositionPIDWrappingMinInput(0); 
 
 
-  m_steerMotor.SetIdleMode(CANSparkMax::IdleMode::kBrake);
+  m_steerMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
   m_steerMotor.EnableVoltageCompensation(12.0);
   m_steerMotor.SetSmartCurrentLimit(20, 30);
 
-  m_steerEncoder.SetPositionConversionFactor(2*M_PI/ SwerveModuleConstants::steerRatio);
+  m_steerEncoder.SetPositionConversionFactor(2*pi/ SwerveModuleConstants::steerRatio);
   //tony: mmm kinda sus, the steer encoder returns 0-1, so that leads me to believe that the 
   //pid controller is working on 0-1 as well. this current one makes one wheel rotation, 2 pi 
   //rotations in the neo's encoder/controller. i think the abs encoder also works on 0-1, so 
@@ -84,7 +84,8 @@ void SwerveModule::resetDriveEncoder(){
 }
 
 double SwerveModule::getAbsolutePosition(){
-  return m_absoluteEncoder.GetAbsolutePosition() * 2 * pi; //remove 2pi if not radians
+  return m_absoluteEncoder.GetAbsolutePosition() * 2 * pi; // shouldn't need to add an offset value because 
+                                                  // position offset was set in constructor
 }
 
 double SwerveModule::getDrivePosition(){
@@ -97,11 +98,6 @@ double SwerveModule::getSteerPosition(){
 
 double SwerveModule::getDriveVelocity(){
   return m_driveEncoder.GetVelocity();
-}
-
-double SwerveModule::getAbsolutePosition(){
-  return m_absoluteEncoder.GetAbsolutePosition(); // shouldn't need to add an offset value because 
-                                                  // position offset was set in constructor
 }
 
 std::string SwerveModule::getName(int driveMotorID){
@@ -140,7 +136,7 @@ void SwerveModule::setState(const frc::SwerveModuleState state){
 
   frc::SmartDashboard::PutNumber("angle "+getName(m_driveMotor.GetDeviceId()), adjustedAngle);
 
-  m_steerController.SetReference((adjustedAngle), CANSparkMax::ControlType::kPosition);
+  m_steerController.SetReference((adjustedAngle), CANSparkBase::ControlType::kPosition);
 
   // m_driveController.SetReference(optimizedState.speed.value(), CANSparkMax::ControlType::kVelocity); // 2363 version
   m_driveMotor.Set(optimizedState.speed / maxSpeed);

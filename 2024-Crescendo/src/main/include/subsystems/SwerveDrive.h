@@ -10,6 +10,7 @@
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/SwerveModuleState.h>
+#include <frc/controller/PIDController.h>
 
 #include "SwerveModule.h"
 #include <AHRS.h>
@@ -24,7 +25,6 @@ public:
 
     frc::Pose2d AveragePose();
     frc::Pose2d OdometryPose();
-
     frc::Rotation2d getGyroHeading();
     void resetHeading();
     void resetOdometry(const frc::Pose2d pose);
@@ -43,6 +43,8 @@ private:
     frc::SwerveDriveKinematics<4> m_driveKinematics;
     frc::SwerveDriveOdometry<4> m_odometry;
     frc::SwerveDrivePoseEstimator<4> m_poseEstimator;
+
+    frc::PIDController thetaController; // closed loop control for heading
     
     AHRS m_gyro{frc::SPI::Port::kMXP};
 
