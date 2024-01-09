@@ -24,7 +24,9 @@ constexpr int kMXP = 2;
 
 } 
 
-
+namespace MathConstants {
+    constexpr double pi = 3.1415926535;
+}
 
 namespace OIConstants {//Controller buttons 
 

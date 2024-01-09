@@ -23,27 +23,17 @@ public:
     SwerveDrive();
 
     frc::Pose2d AveragePose();
-
     frc::Pose2d OdometryPose();
 
     frc::Rotation2d getGyroHeading();
-
     void resetHeading();
-
     void resetOdometry(const frc::Pose2d pose);
-
     void swerveDrive(double x, double y, double theta, bool fieldCentric);
-
     void brake();
-
     void tankDrive(double x, double y, double theta);
-
     void moveToAngle(double x, double y);
-
     void resetAbsoluteEncoders();
-
     void SyncAbsoluteEncoders();
-
     void Periodic() override; //update pose using gyro, vision, and odometry
 
 private:

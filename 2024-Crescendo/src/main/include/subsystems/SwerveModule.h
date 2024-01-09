@@ -28,7 +28,11 @@ public:
     double getDrivePosition();
     double getSteerPosition();
     double getDriveVelocity();
-    double getAbsolutePosition(); 
+    double getAbsolutePosition();
+    std::string getName(int driveMotor);
+    frc::SwerveModuleState getState();
+    frc::SwerveModulePosition getPosition();
+    void setState(const frc::SwerveModuleState state);
 
 
     void Periodic() override;
