@@ -67,22 +67,73 @@ void SwerveDrive::resetOdometry(const frc::Pose2d pose){
 }
 
 void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentric){
+    frc::ChassisSpeeds speeds = fieldCentric ? frc::ChassisSpeeds::FromFieldRelativeSpeeds(
+                                                x * SwerveModuleConstants::maxSpeed, 
+                                                y * SwerveModuleConstants::maxSpeed,
+                                                theta * SwerveModuleConstants::maxRotation,
+                                                units::degree_t{-m_gyro.GetYaw()}
+                                                ) 
+                                             :  frc::ChassisSpeeds{
+                                                x * SwerveModuleConstants::maxSpeed,
+                                                y * SwerveModuleConstants::maxSpeed, 
+                                                theta * SwerveModuleConstants::maxRotation
+                                             };
+    
+    auto states = m_driveKinematics.ToSwerveModuleStates(speeds);
 
+    // maybe desaturate wheel speeds here
+
+    for(size_t i = 0; i<states.size(); ++i){
+        m_modules[i].setState(states[i]);
+    }
 }
 
 void SwerveDrive::brake(){
-
+    swerveDrive(0, 0, 1, true);
 }
 
-void SwerveDrive::moveToAngle(double x, double y){
-
+void SwerveDrive::moveToAngle(double x, double y){ // basically crab drive
+    double temp = x;
+    x = -y;
+    y = temp;
+    double r = sqrt(pow(x,2)+pow(y,2));
+    double angle;
+    if(x==0&&y==0){
+      r= 0;
+      angle = 0;
+    }else{
+    if(x>0&&y>=0){
+       angle = atan(y/x)+M_PI/2;
+    }else if(x<=0&&y>0){
+      angle = atan(-x/y)+M_PI;
+    }else if(x<0&&y<=0){
+      angle = atan(-y/-x)+3*M_PI/2;
+    }else if(x>=0&&y<0){
+      angle = atan(-x/y);
+    }
+    }
+    frc::SmartDashboard::PutNumber("Magnitude", r);
+    frc::SmartDashboard::PutNumber("angle", angle);
+    frc::SmartDashboard::PutNumber("x", x);
+    frc::SmartDashboard::PutNumber("y", y);
+    for (auto& module : m_modules){
+        module.setState(frc::SwerveModuleState{meters_per_second_t(r), frc::Rotation2d(radian_t(angle))});
+    }
 }
 
-void SwerveDrive::tankDrive(double x, double y, double theta){
-
+void SwerveDrive::tankDrive(double x, double y){
+    //maybe implement differential drive
+    m_modules[0].setState(frc::SwerveModuleState{meters_per_second_t(x+y), frc::Rotation2d(radian_t(0))});//tl
+    m_modules[1].setState(frc::SwerveModuleState{meters_per_second_t(x-y), frc::Rotation2d(radian_t(0))});//tr
+    m_modules[2].setState(frc::SwerveModuleState{meters_per_second_t(x+y), frc::Rotation2d(radian_t(0))});//bl
+    m_modules[3].setState(frc::SwerveModuleState{meters_per_second_t(x-y), frc::Rotation2d(radian_t(0))});//br
 }
 
 void SwerveDrive::Periodic(){
+    m_odometry.Update(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), 
+                                         m_modules[2].getPosition(), m_modules[3].getPosition()});
+    m_poseEstimator.Update(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), 
+                                              m_modules[2].getPosition(), m_modules[3].getPosition()});
 
 }
 
