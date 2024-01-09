@@ -103,11 +103,11 @@ void SwerveDrive::moveToAngle(double x, double y){ // basically crab drive
       angle = 0;
     }else{
     if(x>0&&y>=0){
-       angle = atan(y/x)+M_PI/2;
+       angle = atan(y/x)+pi/2;
     }else if(x<=0&&y>0){
-      angle = atan(-x/y)+M_PI;
+      angle = atan(-x/y)+pi;
     }else if(x<0&&y<=0){
-      angle = atan(-y/-x)+3*M_PI/2;
+      angle = atan(-y/-x)+3*pi/2;
     }else if(x>=0&&y<0){
       angle = atan(-x/y);
     }

@@ -5,12 +5,58 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/Commands.h>
+#include <frc2/command/RunCommand.h>
+#include <frc2/command/InstantCommand.h>
+#include <frc2/command/StartEndCommand.h>
+
+#include <frc2/command/button/JoystickButton.h>
+#include <frc2/command/button/POVButton.h>
+#include <frc2/command/button/Trigger.h>
+
+#include <frc/smartdashboard/SmartDashboard.h>
+
+using namespace std;
+using namespace frc2;
+using namespace OIConstants;
 
 RobotContainer::RobotContainer() {
   ConfigureBindings();
+
+  m_drive.SetDefaultCommand(RunCommand(
+    [this] {
+      // double check these for genericHID
+        // Right stick up on xbox is negative, right stick down is postive.
+        // Right stick right on xbox is negative, right stick left is postive.
+        // Left stick right is positive, left stick left is negative.
+        double speedMultiplier = (1-m_driverController.GetRawAxis(Joystick::ThrottleSlider))*0.5;
+        double XAxis = m_driverController.GetRawAxis(Joystick::XAxis)*speedMultiplier;
+        double YAxis = m_driverController.GetRawAxis(Joystick::YAxis)*speedMultiplier;
+        double RotAxis = m_driverController.GetRawAxis(Joystick::RotAxis)*speedMultiplier;
+
+        if(m_driverController.GetRawButton(11)){
+          m_drive.moveToAngle(XAxis, YAxis);
+        }else if(m_driverController.GetRawButton(12)){
+          m_drive.moveToAngle(0, 0.3);
+        }
+
+
+    },
+    {&m_drive}
+  ));
 }
 
-void RobotContainer::ConfigureBindings() {}
+void RobotContainer::ConfigureBindings() {
+
+  JoystickButton(&m_driverController, Joystick::Trigger).OnTrue(
+    InstantCommand(
+      [this]{
+        m_drive.resetAbsoluteEncoders();
+      }, {&m_drive}
+    )
+  );
+
+
+}
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   return frc2::cmd::Print("No autonomous command configured");

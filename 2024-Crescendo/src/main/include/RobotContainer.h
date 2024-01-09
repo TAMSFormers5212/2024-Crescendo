@@ -5,6 +5,13 @@
 #pragma once
 
 #include <frc2/command/CommandPtr.h>
+#include <frc/GenericHID.h>
+#include <frc2/command/Command.h>
+
+#include "Constants.h"
+#include "subsystems/SwerveDrive.h" 
+
+using namespace OIConstants;
 
 class RobotContainer {
  public:
@@ -13,5 +20,11 @@ class RobotContainer {
   frc2::CommandPtr GetAutonomousCommand();
 
  private:
+  frc::GenericHID m_driverController{kDriverControllerPort};
+  frc::GenericHID m_operatorController{kOperatorControllerPort};
+
+  SwerveDrive m_drive;
+
+
   void ConfigureBindings();
 };
