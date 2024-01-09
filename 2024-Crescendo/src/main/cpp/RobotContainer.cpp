@@ -47,13 +47,13 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() {
 
-  JoystickButton(&m_driverController, Joystick::Trigger).OnTrue(
-    InstantCommand(
-      [this]{
-        m_drive.resetAbsoluteEncoders();
-      }, {&m_drive}
-    )
-  );
+  // JoystickButton(&m_driverController, Joystick::Trigger).OnTrue(
+  //   InstantCommand(
+  //     [this]{
+  //       m_drive.resetAbsoluteEncoders();
+  //     }, {&m_drive}
+  //   )
+  // );
 
 
 }
