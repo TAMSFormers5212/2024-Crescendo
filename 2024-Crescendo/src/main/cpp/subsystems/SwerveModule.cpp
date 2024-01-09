@@ -83,6 +83,10 @@ void SwerveModule::resetDriveEncoder(){
   m_driveEncoder.SetPosition(0.0);
 }
 
+void SwerveModule::resetSteerEncoder(){
+  m_steerEncoder.SetPosition(getAbsolutePosition());
+}
+
 double SwerveModule::getAbsolutePosition(){
   return m_absoluteEncoder.GetAbsolutePosition() * 2 * pi; // shouldn't need to add an offset value because 
                                                   // position offset was set in constructor
@@ -117,7 +121,7 @@ std::string SwerveModule::getName(int driveMotorID){
 void SwerveModule::setState(const frc::SwerveModuleState state){ 
   frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getSteerPosition()));
 
-  frc::Rotation2d curAngle = units::radian_t(getAbsolutePosition());
+  // frc::Rotation2d curAngle = units::radian_t(getAbsolutePosition());
 
   //idk i took this from 2363. heres what they said: 
   // Since we use relative encoder of steer motor, it is a field (doesn't wrap
@@ -140,4 +144,8 @@ void SwerveModule::setState(const frc::SwerveModuleState state){
 
   // m_driveController.SetReference(optimizedState.speed.value(), CANSparkMax::ControlType::kVelocity); // 2363 version
   m_driveMotor.Set(optimizedState.speed / maxSpeed);
+}
+
+void SwerveModule::Periodic(){
+
 }

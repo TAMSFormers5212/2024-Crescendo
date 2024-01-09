@@ -69,3 +69,32 @@ void SwerveDrive::resetOdometry(const frc::Pose2d pose){
 void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentric){
 
 }
+
+void SwerveDrive::brake(){
+
+}
+
+void SwerveDrive::moveToAngle(double x, double y){
+
+}
+
+void SwerveDrive::tankDrive(double x, double y, double theta){
+
+}
+
+void SwerveDrive::Periodic(){
+
+}
+
+void SwerveDrive::resetAbsoluteEncoders(){
+    for(auto& module : m_modules){
+      module.resetDriveEncoder();
+      module.resetSteerEncoder();
+    }
+}
+
+void SwerveDrive::SyncAbsoluteEncoders(){
+    for(auto& module : m_modules){
+      module.resetSteerEncoder();
+    }
+  }
