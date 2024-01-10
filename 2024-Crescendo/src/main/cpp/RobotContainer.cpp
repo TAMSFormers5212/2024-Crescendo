@@ -51,11 +51,31 @@ void RobotContainer::ConfigureBindings() {
   
   joystickTrigger.OnTrue((
     InstantCommand(
-      [this] () {
+      [this](){
         return m_drive.resetAbsoluteEncoders();
       }
-    )).ToPtr()
-  );
+    )
+  ).ToPtr());
+
+  JoystickButton joystickThree{&m_driverController, Joystick::ButtonThree};
+
+  joystickThree.OnTrue((
+    InstantCommand(
+      [this](){
+        return m_drive.resetHeading();
+      }
+    )
+  ).ToPtr());
+
+  JoystickButton joystickFour{&m_driverController, Joystick::ButtonFour};
+
+  joystickFour.OnTrue((
+    InstantCommand(
+      [this](){
+        return m_drive.resetOdometry(m_drive.AveragePose());
+      }
+    )
+  ).ToPtr());
 
 
 }

@@ -43,6 +43,7 @@ namespace OIConstants {//Controller buttons
         //Buttons
         constexpr int Trigger = 1; 
         constexpr int ButtonThree = 3;
+        constexpr int ButtonFour = 4;
 
         constexpr double deadband = 0.3;
     }
