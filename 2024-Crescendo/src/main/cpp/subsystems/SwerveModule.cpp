@@ -140,7 +140,7 @@ void SwerveModule::setState(const frc::SwerveModuleState state){
   //
   // however, they didn't use "setPIDpositionwrapping," so maybe i can just do that instead
   double adjustedAngle = optimizedState.angle.Radians().value();
-  double adjustedPosition = optimizedState.angle.Degrees().value()/360; // turns it into a circle fraction
+  // double adjustedPosition = optimizedState.angle.Degrees().value()/360; // turns it into a circle fraction
 
   frc::SmartDashboard::PutNumber("angle "+getName(m_driveMotor.GetDeviceId()), adjustedAngle);
 
