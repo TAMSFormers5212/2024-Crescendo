@@ -34,18 +34,15 @@ SwerveDrive::SwerveDrive()
   std::cout << "Swerve subsystem initalized correctly" << std::endl;
 }
 
-frc::Pose2d SwerveDrive::AveragePose()
-{
+frc::Pose2d SwerveDrive::AveragePose(){
   return m_poseEstimator.GetEstimatedPosition();
 }
 
-frc::Pose2d SwerveDrive::OdometryPose()
-{
+frc::Pose2d SwerveDrive::OdometryPose(){
   return m_odometry.GetPose();
 } // odometry pose
 
-frc::Rotation2d SwerveDrive::getGyroHeading()
-{ // i have no f*cking clue how this works
+frc::Rotation2d SwerveDrive::getGyroHeading(){ // i have no f*cking clue how this works
   double newAngle = -m_gyro.GetYaw();
   double delta = std::fmod(std::fmod((newAngle - lastAngle + 180), 360) + 360, 360) - 180; // NOLINT
   lastAngle = newAngle;
@@ -53,19 +50,16 @@ frc::Rotation2d SwerveDrive::getGyroHeading()
   return heading;
 }
 
-void SwerveDrive::resetHeading()
-{
+void SwerveDrive::resetHeading(){
   m_gyro.Reset();
 }
 
-void SwerveDrive::resetOdometry(const frc::Pose2d pose)
-{
+void SwerveDrive::resetOdometry(const frc::Pose2d pose){
   m_odometry.ResetPosition(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, pose);
   m_poseEstimator.ResetPosition(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, pose);
 }
 
-void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentric)
-{
+void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentric){
   frc::ChassisSpeeds speeds = fieldCentric ? frc::ChassisSpeeds::FromFieldRelativeSpeeds(
                                                  x * SwerveModuleConstants::maxSpeed,
                                                  y * SwerveModuleConstants::maxSpeed,
@@ -86,13 +80,11 @@ void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentri
   }
 }
 
-void SwerveDrive::brake()
-{
+void SwerveDrive::brake(){
   swerveDrive(0, 0, 1, true);
 }
 
-void SwerveDrive::moveToAngle(double x, double y)
-{ // basically crab drive
+void SwerveDrive::moveToAngle(double x, double y){ // basically crab drive
   double temp = x;
   x = -y;
   y = temp;
@@ -132,8 +124,7 @@ void SwerveDrive::moveToAngle(double x, double y)
   }
 }
 
-void SwerveDrive::tankDrive(double x, double y)
-{
+void SwerveDrive::tankDrive(double x, double y){
   // implement differential drive later
   m_modules[0].setState(frc::SwerveModuleState{meters_per_second_t(x + y), frc::Rotation2d(radian_t(0))}); // tl
   m_modules[1].setState(frc::SwerveModuleState{meters_per_second_t(x - y), frc::Rotation2d(radian_t(0))}); // tr
@@ -141,16 +132,14 @@ void SwerveDrive::tankDrive(double x, double y)
   m_modules[3].setState(frc::SwerveModuleState{meters_per_second_t(x - y), frc::Rotation2d(radian_t(0))}); // br
 }
 
-void SwerveDrive::Periodic()
-{
+void SwerveDrive::Periodic(){
   m_odometry.Update(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(),
                                        m_modules[2].getPosition(), m_modules[3].getPosition()});
   m_poseEstimator.Update(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(),
                                             m_modules[2].getPosition(), m_modules[3].getPosition()});
 }
 
-void SwerveDrive::resetAbsoluteEncoders()
-{
+void SwerveDrive::resetAbsoluteEncoders(){
   for (auto &module : m_modules)
   {
     module.resetDriveEncoder();
@@ -158,8 +147,7 @@ void SwerveDrive::resetAbsoluteEncoders()
   }
 }
 
-void SwerveDrive::SyncAbsoluteEncoders()
-{
+void SwerveDrive::SyncAbsoluteEncoders(){
   for (auto &module : m_modules)
   {
     module.resetSteerEncoder();
