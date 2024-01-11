@@ -29,7 +29,7 @@ SwerveDrive::SwerveDrive()
                     frc::Pose2d()
     },
     thetaController(0, 0, 0)
-    {
+  {
     m_gyro.Calibrate();
     //m_gyro.ZeroYaw();
     heading = frc::Rotation2d(degree_t{-m_gyro.GetYaw()});
@@ -122,7 +122,7 @@ void SwerveDrive::moveToAngle(double x, double y){ // basically crab drive
 }
 
 void SwerveDrive::tankDrive(double x, double y){
-    //maybe implement differential drive
+    //implement differential drive later
     m_modules[0].setState(frc::SwerveModuleState{meters_per_second_t(x+y), frc::Rotation2d(radian_t(0))});//tl
     m_modules[1].setState(frc::SwerveModuleState{meters_per_second_t(x-y), frc::Rotation2d(radian_t(0))});//tr
     m_modules[2].setState(frc::SwerveModuleState{meters_per_second_t(x+y), frc::Rotation2d(radian_t(0))});//bl

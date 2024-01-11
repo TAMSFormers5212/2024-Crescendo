@@ -63,8 +63,8 @@ void SwerveModule::resetSteerMotor(){
   m_steerController.SetD(ktD);
   m_steerController.SetFF(ktFF);
   m_steerController.SetPositionPIDWrappingEnabled(true);
-  m_steerController.SetPositionPIDWrappingMaxInput(2*pi); // use 2pi if radians, 1 if 0-1
-  m_steerController.SetPositionPIDWrappingMinInput(0); 
+  m_steerController.SetPositionPIDWrappingMaxInput(2*pi); // use pi if radians, 1 if 0-1
+  m_steerController.SetPositionPIDWrappingMinInput(0); // idk if 0-2pi or -pi - pi 
 
 
   m_steerMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
@@ -88,6 +88,7 @@ void SwerveModule::resetSteerEncoder(){
 }
 
 double SwerveModule::getAbsolutePosition(){
+  // return m_absoluteEncoder.GetAbsolutePosition(); // use this if 0-1 
   return m_absoluteEncoder.GetAbsolutePosition() * 2 * pi; // shouldn't need to add an offset value because 
                                                   // position offset was set in constructor
 }
@@ -134,9 +135,12 @@ void SwerveModule::setState(const frc::SwerveModuleState state){
   //                             2 * M_PI,
   //                         2 * M_PI) -
   //               M_PI;   // NOLINT  
-  // they didn't use "setPIDpositionwrapping" 
+  //
   // double adjustedAngle = delta + curAngle.Radians().value();
+  //
+  // however, they didn't use "setPIDpositionwrapping," so maybe i can just do that instead
   double adjustedAngle = optimizedState.angle.Radians().value();
+  double adjustedPosition = optimizedState.angle.Degrees().value()/360; // turns it into a circle fraction
 
   frc::SmartDashboard::PutNumber("angle "+getName(m_driveMotor.GetDeviceId()), adjustedAngle);
 

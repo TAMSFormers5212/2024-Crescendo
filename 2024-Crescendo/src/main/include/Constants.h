@@ -92,6 +92,23 @@ namespace SwerveModuleConstants {//per swerve module
     constexpr units::inch_t wheelCircumfrence = 12.57_in;
     constexpr units::inch_t centerDistance = 10.5_in;
 
+    constexpr double khP = 0.0; // Heading PID
+    constexpr double khI = 0.0;
+    constexpr double khD = 0.0;
+    constexpr double khFF = 0.00000;
+
+    constexpr double kxP = 0.0; // X PID
+    constexpr double kxI = 0.0;
+    constexpr double kxD = 0.0;
+    constexpr double kxFF = 0.00000;
+
+    constexpr double kyP = 0.0; // Y PID
+    constexpr double kyI = 0.0;
+    constexpr double kyD = 0.0;
+    constexpr double kyFF = 0.00000;
+
+    //possible heaving, x, and y PID for auto/pathplanning
+
     constexpr double kRampTimeSeconds = 0.1; // slew rate limiter (delay on acceleration)
 
     namespace drivebase{
@@ -224,7 +241,10 @@ namespace ArmConstants{
                                                               3.0952, // mid cube
                                                               -126.996, // high cone 
                                                               -69};// high cube
-        
+        // tony: if/when we do have position constants next year, please just add an absolute encoder 
+        // it would make everything much better
+
+
         constexpr int stow = 0;
         constexpr int groundpickup = 1;
         constexpr int singlestation = 2;

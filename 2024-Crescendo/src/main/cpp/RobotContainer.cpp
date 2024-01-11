@@ -75,7 +75,7 @@ void RobotContainer::ConfigureBindings() {
         return m_drive.resetOdometry(m_drive.AveragePose());
       }
     )
-  ).ToPtr());
+  ).ToPtr());  
 
 
 }
