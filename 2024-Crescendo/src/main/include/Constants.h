@@ -24,7 +24,9 @@ constexpr int kMXP = 2;
 
 } 
 
-
+namespace MathConstants {
+    constexpr double pi = 3.1415926535;
+}
 
 namespace OIConstants {//Controller buttons 
 
@@ -41,6 +43,7 @@ namespace OIConstants {//Controller buttons
         //Buttons
         constexpr int Trigger = 1; 
         constexpr int ButtonThree = 3;
+        constexpr int ButtonFour = 4;
 
         constexpr double deadband = 0.3;
     }
@@ -89,6 +92,23 @@ namespace SwerveModuleConstants {//per swerve module
     constexpr units::inch_t wheelCircumfrence = 12.57_in;
     constexpr units::inch_t centerDistance = 10.5_in;
 
+    constexpr double khP = 0.0; // Heading PID
+    constexpr double khI = 0.0;
+    constexpr double khD = 0.0;
+    constexpr double khFF = 0.00000;
+
+    constexpr double kxP = 0.0; // X PID
+    constexpr double kxI = 0.0;
+    constexpr double kxD = 0.0;
+    constexpr double kxFF = 0.00000;
+
+    constexpr double kyP = 0.0; // Y PID
+    constexpr double kyI = 0.0;
+    constexpr double kyD = 0.0;
+    constexpr double kyFF = 0.00000;
+
+    //possible heaving, x, and y PID for auto/pathplanning
+
     constexpr double kRampTimeSeconds = 0.1; // slew rate limiter (delay on acceleration)
 
     namespace drivebase{
@@ -100,7 +120,7 @@ namespace SwerveModuleConstants {//per swerve module
     
     namespace topleft{
         constexpr int driveMotor = 9; //CAN ID
-        constexpr int turningMotor = 2; //CAN ID
+        constexpr int steerMotor = 2; //CAN ID
         constexpr int absencoder = 3; //analogin Port
 
         constexpr double offset =  0;
@@ -109,7 +129,7 @@ namespace SwerveModuleConstants {//per swerve module
     }
     namespace topright{
         constexpr int driveMotor = 5; //CAN ID
-        constexpr int turningMotor = 6; //CAN ID
+        constexpr int steerMotor = 6; //CAN ID
         constexpr int absencoder = 0; //analogin Port
 
         constexpr double offset = -0.2;//5.04/(2*M_PI);//0.534055-0.828717-0.1;//(149.056526933-120.869343735-5)/360;
@@ -117,7 +137,7 @@ namespace SwerveModuleConstants {//per swerve module
     }
     namespace bottomleft{
         constexpr int driveMotor = 4; //CAN ID
-        constexpr int turningMotor = 3; //CAN ID
+        constexpr int steerMotor = 3; //CAN ID
         constexpr int absencoder = 2; //analogin Port
 
         constexpr double offset = 0;//(0.38+M_PI)/(2*M_PI);//0.6101363-0.58127+0.1;// (343.800190846-229.081278318-15)/360;
@@ -125,7 +145,7 @@ namespace SwerveModuleConstants {//per swerve module
     }
     namespace bottomright{          
         constexpr int driveMotor = 7; //CAN ID
-        constexpr int turningMotor = 8; //CAN ID
+        constexpr int steerMotor = 8; //CAN ID
         constexpr int absencoder = 1; //analogin Port
 
         constexpr double offset = 0.2;//0.311/(2*M_PI);
@@ -221,7 +241,10 @@ namespace ArmConstants{
                                                               3.0952, // mid cube
                                                               -126.996, // high cone 
                                                               -69};// high cube
-        
+        // tony: if/when we do have position constants next year, please just add an absolute encoder 
+        // it would make everything much better
+
+
         constexpr int stow = 0;
         constexpr int groundpickup = 1;
         constexpr int singlestation = 2;
