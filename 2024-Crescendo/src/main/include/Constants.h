@@ -33,6 +33,7 @@ namespace OIConstants {//Controller buttons
     constexpr int kDriverControllerPort = 0;
     constexpr int kOperatorControllerPort = 1;
 
+// need to check these constants, previous code used xbox controller, now its hid controller
     //flight joystick controller
     namespace Joystick{
         //Axis
