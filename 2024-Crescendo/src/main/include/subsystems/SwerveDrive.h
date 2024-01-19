@@ -21,6 +21,9 @@ using namespace std;
 class SwerveDrive : public frc2::SubsystemBase{
 
 public:
+
+    AHRS m_gyro{frc::SPI::Port::kMXP};
+
     SwerveDrive();
 
     frc::Pose2d AveragePose();
@@ -47,7 +50,6 @@ private:
     frc::PIDController thetaController; // closed loop control for heading
     // may be something we want to implement if we notice the drive slowly twisting as it drives
     
-    AHRS m_gyro{frc::SPI::Port::kMXP};
 
     frc::Rotation2d heading;
 
