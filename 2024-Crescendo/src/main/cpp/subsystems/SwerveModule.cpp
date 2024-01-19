@@ -89,6 +89,7 @@ void SwerveModule::resetSteerEncoder(){
 
 double SwerveModule::getAbsolutePosition(){
   // return m_absoluteEncoder.GetAbsolutePosition(); // use this if 0-1 
+  frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId())+" abs", m_absoluteEncoder.GetAbsolutePosition());
   return m_absoluteEncoder.GetAbsolutePosition() * 2 * pi; // shouldn't need to add an offset value because 
                                                   // position offset was set in constructor
 }
@@ -120,7 +121,7 @@ std::string SwerveModule::getName(int driveMotorID){
 }
 
 void SwerveModule::setState(const frc::SwerveModuleState state){ 
-  frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getSteerPosition()));
+  frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getAbsolutePosition()));
 
   // frc::Rotation2d curAngle = units::radian_t(getAbsolutePosition());
 

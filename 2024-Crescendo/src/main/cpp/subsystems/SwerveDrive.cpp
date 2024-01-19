@@ -122,6 +122,9 @@ void SwerveDrive::moveToAngle(double x, double y){ // basically crab drive
   {
     module.setState(frc::SwerveModuleState{meters_per_second_t(r), frc::Rotation2d(radian_t(angle))});
   }
+    // frc::SmartDashboard::PutNumber("x", x);
+    // frc::SmartDashboard::PutNumber("y", y);
+    // frc::SmartDashboard::PutNumber("")
 }
 
 void SwerveDrive::tankDrive(double x, double y){
@@ -137,6 +140,9 @@ void SwerveDrive::Periodic(){
                                        m_modules[2].getPosition(), m_modules[3].getPosition()});
   m_poseEstimator.Update(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(),
                                             m_modules[2].getPosition(), m_modules[3].getPosition()});
+
+
+
 }
 
 void SwerveDrive::resetAbsoluteEncoders(){

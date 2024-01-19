@@ -33,6 +33,8 @@ public:
     void resetOdometry(const frc::Pose2d pose);
     void swerveDrive(double x, double y, double theta, bool fieldCentric);
     void brake();
+
+    
     void tankDrive(double x, double y);
     void moveToAngle(double x, double y);
     void resetAbsoluteEncoders();
