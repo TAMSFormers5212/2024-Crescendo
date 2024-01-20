@@ -89,7 +89,7 @@ void SwerveDrive::moveToAngle(double x, double y){ // basically crab drive
   x = -y;
   y = temp;
   double r = sqrt(pow(x, 2) + pow(y, 2));
-  double angle;
+  double angle = 0.0;
   if (x == 0 && y == 0)
   {
     r = 0;
@@ -114,14 +114,17 @@ void SwerveDrive::moveToAngle(double x, double y){ // basically crab drive
       angle = atan(-x / y);
     }
   }
-  frc::SmartDashboard::PutNumber("Magnitude", r);
+  // frc::SmartDashboard::PutNumber("Magnitude", r);
   frc::SmartDashboard::PutNumber("angle", angle);
-  frc::SmartDashboard::PutNumber("x", x);
-  frc::SmartDashboard::PutNumber("y", y);
+  // frc::SmartDashboard::PutNumber("x", x);
+  // frc::SmartDashboard::PutNumber("y", y);
   for (auto &module : m_modules)
   {
     module.setState(frc::SwerveModuleState{meters_per_second_t(r), frc::Rotation2d(radian_t(angle))});
   }
+    // frc::SmartDashboard::PutNumber("x", x);
+    // frc::SmartDashboard::PutNumber("y", y);
+    // frc::SmartDashboard::PutNumber("")
 }
 
 void SwerveDrive::tankDrive(double x, double y){
@@ -137,6 +140,9 @@ void SwerveDrive::Periodic(){
                                        m_modules[2].getPosition(), m_modules[3].getPosition()});
   m_poseEstimator.Update(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(),
                                             m_modules[2].getPosition(), m_modules[3].getPosition()});
+
+
+
 }
 
 void SwerveDrive::resetAbsoluteEncoders(){

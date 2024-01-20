@@ -19,7 +19,6 @@ SwerveModule::SwerveModule(int driveMotor, int steerMotor, int absEncoder, doubl
       resetModule();
       //tony: im not quite sure of the behavior of this function, but it sounds like it just offsets the 
       //value returned by get absolute position
-
       cout<<"Swerve Module "<<getName(driveMotor)<<" initialized correctly"<<endl;
     }
 
@@ -89,6 +88,7 @@ void SwerveModule::resetSteerEncoder(){
 
 double SwerveModule::getAbsolutePosition(){
   // return m_absoluteEncoder.GetAbsolutePosition(); // use this if 0-1 
+  frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId())+" abs", m_absoluteEncoder.GetAbsolutePosition());
   return m_absoluteEncoder.GetAbsolutePosition() * 2 * pi; // shouldn't need to add an offset value because 
                                                   // position offset was set in constructor
 }
@@ -106,6 +106,7 @@ double SwerveModule::getDriveVelocity(){
 }
 
 std::string SwerveModule::getName(int driveMotorID){
+  // return this->m_moduleName;
   if(driveMotorID == topleft::driveMotor){
     return "top left";
   }else if(driveMotorID == topright::driveMotor){
@@ -120,7 +121,7 @@ std::string SwerveModule::getName(int driveMotorID){
 }
 
 void SwerveModule::setState(const frc::SwerveModuleState state){ 
-  frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getSteerPosition()));
+  frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getAbsolutePosition()));
 
   // frc::Rotation2d curAngle = units::radian_t(getAbsolutePosition());
 
@@ -135,15 +136,15 @@ void SwerveModule::setState(const frc::SwerveModuleState state){
   //                             2 * M_PI,
   //                         2 * M_PI) -
   //               M_PI;   // NOLINT  
-  //
+  
   // double adjustedAngle = delta + curAngle.Radians().value();
   //
   // however, they didn't use "setPIDpositionwrapping," so maybe i can just do that instead
   double adjustedAngle = optimizedState.angle.Radians().value();
   // double adjustedPosition = optimizedState.angle.Degrees().value()/360; // turns it into a circle fraction
-
-  frc::SmartDashboard::PutNumber("angle "+getName(m_driveMotor.GetDeviceId()), adjustedAngle);
-
+  
+  frc::SmartDashboard::PutNumber("O "+getName(m_driveMotor.GetDeviceId()), adjustedAngle);
+  frc::SmartDashboard::PutNumber("angle"+getName(m_driveMotor.GetDeviceId()), getSteerPosition());
   m_steerController.SetReference((adjustedAngle), CANSparkBase::ControlType::kPosition);
 
   // m_driveController.SetReference(optimizedState.speed.value(), CANSparkMax::ControlType::kVelocity); // 2363 version
@@ -151,5 +152,4 @@ void SwerveModule::setState(const frc::SwerveModuleState state){
 }
 
 void SwerveModule::Periodic(){
-
 }
