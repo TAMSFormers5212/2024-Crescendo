@@ -38,9 +38,9 @@ RobotContainer::RobotContainer() {
         }else if(m_driverController.GetRawButton(12)){
           m_drive.moveToAngle(0, 0.3);
         }
-        frc::SmartDashboard::PutNumber("x axis", XAxis);
-        frc::SmartDashboard::PutNumber("y axis", YAxis);
-        frc::SmartDashboard::PutNumber("theta", RotAxis);
+        // frc::SmartDashboard::PutNumber("x axis", XAxis);
+        // frc::SmartDashboard::PutNumber("y axis", YAxis);
+        // frc::SmartDashboard::PutNumber("theta", RotAxis);
 
     },
     {&m_drive}

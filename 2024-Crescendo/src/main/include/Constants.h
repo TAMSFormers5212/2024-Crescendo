@@ -124,7 +124,7 @@ namespace SwerveModuleConstants {//per swerve module
         constexpr int steerMotor = 2; //CAN ID
         constexpr int absencoder = 3; //analogin Port
 
-        constexpr double offset = -0.462;
+        constexpr double offset = -0.235;
 //2.2009 
 
     }
@@ -133,7 +133,7 @@ namespace SwerveModuleConstants {//per swerve module
         constexpr int steerMotor = 6; //CAN ID
         constexpr int absencoder = 0; //analogin Port
 
-        constexpr double offset = -0.492;//5.04/(2*M_PI);//0.534055-0.828717-0.1;//(149.056526933-120.869343735-5)/360;
+        constexpr double offset = 0.177;//5.04/(2*M_PI);//0.534055-0.828717-0.1;//(149.056526933-120.869343735-5)/360;
         // 4.07
     }
     namespace bottomleft{
@@ -141,7 +141,7 @@ namespace SwerveModuleConstants {//per swerve module
         constexpr int steerMotor = 3; //CAN ID
         constexpr int absencoder = 2; //analogin Port
 
-        constexpr double offset = 0;//(0.38+M_PI)/(2*M_PI);//0.6101363-0.58127+0.1;// (343.800190846-229.081278318-15)/360;
+        constexpr double offset = 0.810;//(0.38+M_PI)/(2*M_PI);//0.6101363-0.58127+0.1;// (343.800190846-229.081278318-15)/360;
         //7.48
     }
     namespace bottomright{          
@@ -149,7 +149,7 @@ namespace SwerveModuleConstants {//per swerve module
         constexpr int steerMotor = 8; //CAN ID
         constexpr int absencoder = 1; //analogin Port
 
-        constexpr double offset = 0;//0.311/(2*M_PI);
+        constexpr double offset = 0.839;//0.311/(2*M_PI);
         //2.253189
     }
 
