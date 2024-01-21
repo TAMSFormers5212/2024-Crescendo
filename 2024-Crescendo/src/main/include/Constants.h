@@ -26,6 +26,7 @@ constexpr int kMXP = 2;
 
 namespace MathConstants {
     constexpr double pi = 3.1415926535;
+    constexpr double pi2 = 6.283185307;
 }
 
 namespace OIConstants {//Controller buttons 
@@ -157,102 +158,49 @@ namespace SwerveModuleConstants {//per swerve module
 
 namespace ArmConstants{
 
-    namespace shoulderConstants{
-        // constexpr int armMotorLeft = 12;
-        constexpr int armMotorRight = 12;
+    constexpr int leftMotor = 10;
+    constexpr int rightMotor = 11;
 
-        // constexpr double encoderOffset;
+    constexpr int encoder = 2; // depends on what encoder 
+    constexpr int limitSwitch = 1;
+    
+    constexpr double kaP = 0.0;
+    constexpr double kaI = 0.0;
+    constexpr double kaD = 0.0;
+    constexpr double kaFF = 0.0;
 
-        constexpr double kP = 0.6; // PID
-        constexpr double kI = 0.0;
-        constexpr double kD = 0.1;
-        constexpr double kFF = 0.00;
-        // constexpr double maxAcel = 500;
-        // constexpr double maxVelo = 1000;
-        // constexpr double minVelo = -1000;
-        // max free speed = 5500 rpm
-        // gear ratio = 560? unsure 5x7x4x() 
-        // i forgot - Tony
-        constexpr double maxSpeed = 0.6; 
-        constexpr double minSpeed = -0.6;
+    constexpr int armRatio = 100; //idk just a filler
+    constexpr int maxAccel = 1000;
+    constexpr int maxVelo = 5000;
+    constexpr int minVelo = 5000;
+}
 
-        constexpr int limitSwtich = 6;
+namespace PoseConstants{
+    namespace stow{
+        int intakeRPM = 0;
+        int shooterRPM = 0;
+        double armPose = 0;
+        double elevatorPose = 0;
     }
 
-    namespace elbowConstants{
-        constexpr int elbowMotor = 11;
-
-        // constexpr double encoderOffset;
-
-        constexpr double kP = 0.1; // PID
-        constexpr double kI = 0.0;
-        constexpr double kD = 0.0;
-        constexpr double kFF = 0.0;
-        // constexpr double maxVelo = 1000;
-        // constexpr double minVelo = -1000;
-        // constexpr double maxAcel = 1000;
-
-        constexpr double maxSpeed = 0.9;
-        constexpr double minSpeed = -0.6;
-        constexpr int limitSwtich = 7;
+    namespace groundIntake{
+        int intakeRPM = 1000;
+        int shooterRPM = 0;
+        double armPose = 0; 
+        double elevatorPose = 0;
     }
 
-    namespace grabberConstants{
-        constexpr int grabberMotor = 10;
-        
-        constexpr double kP = 0.0;
-        constexpr double kI = 0.0;
-        constexpr double kD = 0.0;
-        constexpr double kFF = 0.0;
-        //775pro: max free rpm - 18000, probable max rpm - 12000
-        //wheel circumfrence: 12.57 inches, gear ratio - unknown
-        //idk what gears are in the two planetaries - Tony
-        constexpr double maxSpeed = 1.0;
-        constexpr double minSpeed = -1.0;
+    namespace amp{
+        int intakeRPM = 0;
+        int shooterRPM = 100;
+        double armPose = 0;
+        double elevatorPose = 0;
     }
 
-    namespace poseConstants{
-        /*
-        1. stow
-        2. ground cone
-        3. ground cube
-        4. single station
-        5. double station
-        6. mid cone align
-        7. mid cone score
-        8. mid cube
-        9. high cone align
-        10. high cone score
-        11. high cube
-        */
-        constexpr std::array<double, 8> elbowPositions = {0.0, // stow
-                                                           -78.6689224243164, // ground pickup
-                                                           0.0, // single station
-                                                           -174.8501, // double station
-                                                           -107.572, // mid cone 
-                                                           -42.8091, // mid cube
-                                                           -172.447, // high cone 
-                                                           -87};// high cube
-
-        constexpr std::array<double, 8> shoulderPositions = {0.0, // stow
-                                                              18.0332124, // ground pickup
-                                                              0.0, // single station
-                                                              -101.0025, // double station
-                                                              -75.738, // mid cone 
-                                                              3.0952, // mid cube
-                                                              -126.996, // high cone 
-                                                              -69};// high cube
-        // tony: if/when we do have position constants next year, please just add an absolute encoder 
-        // it would make everything much better
-
-
-        constexpr int stow = 0;
-        constexpr int groundpickup = 1;
-        constexpr int singlestation = 2;
-        constexpr int doublestation = 3;
-        constexpr int midcone = 4;
-        constexpr int midcube =5;
-        constexpr int highcone = 6;
-        constexpr int highcube = 7;
+    namespace trap{
+        int intakeRPM = 0;
+        int shooterRPM = 0;
+        double armPose = 0;
+        double elevatorPose = 0;
     }
 }

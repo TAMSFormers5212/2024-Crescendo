@@ -1,5 +1,6 @@
 #include "subsystems/SwerveModule.h"
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/smartdashboard/Mechanism2d.h>
 #include <cmath>
 #include <iostream>
 
@@ -23,11 +24,11 @@ SwerveModule::SwerveModule(int driveMotor, int steerMotor, int absEncoder, doubl
     }
 
 frc::SwerveModuleState SwerveModule::getState(){
-  return {units::meters_per_second_t{m_driveEncoder.GetVelocity()}, units::radian_t{getAbsolutePosition()}};
+  return {units::meters_per_second_t{m_driveEncoder.GetVelocity()}, units::radian_t{getSteerPosition()}};
 }
 
 frc::SwerveModulePosition SwerveModule::getPosition(){
-  return {units::meter_t{m_driveEncoder.GetPosition()}, units::radian_t{getAbsolutePosition()}};
+  return {units::meter_t{m_driveEncoder.GetPosition()}, units::radian_t{getSteerPosition()}};
 }
 
 void SwerveModule::resetModule(){
@@ -55,27 +56,27 @@ void SwerveModule::resetDriveMotor(){
 
 void SwerveModule::resetSteerMotor(){
   m_steerMotor.RestoreFactoryDefaults();
-  resetSteerEncoder();
   
   m_steerController.SetP(ktP);
   m_steerController.SetI(ktI);
   m_steerController.SetD(ktD);
   m_steerController.SetFF(ktFF);
   m_steerController.SetPositionPIDWrappingEnabled(true);
-  m_steerController.SetPositionPIDWrappingMaxInput(2*pi); // use pi if radians, 1 if 0-1
-  m_steerController.SetPositionPIDWrappingMinInput(0); // idk if 0-2pi or -pi - pi 
+  m_steerController.SetPositionPIDWrappingMaxInput(1); // use 0-pi2 if radians, 0-1 if 0-1
+  m_steerController.SetPositionPIDWrappingMinInput(0); 
 
 
   m_steerMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
   m_steerMotor.EnableVoltageCompensation(12.0);
   m_steerMotor.SetSmartCurrentLimit(20, 30);
 
-  m_steerEncoder.SetPositionConversionFactor(2*pi/ SwerveModuleConstants::steerRatio);
+  m_steerEncoder.SetPositionConversionFactor(1/ SwerveModuleConstants::steerRatio);
   //tony: mmm kinda sus, the steer encoder returns 0-1, so that leads me to believe that the 
   //pid controller is working on 0-1 as well. this current one makes one wheel rotation, 2 pi 
   //rotations in the neo's encoder/controller. i think the abs encoder also works on 0-1, so 
   //what if we just kept everything at 0-1?
 
+  resetSteerEncoder();
 }
 
 void SwerveModule::resetDriveEncoder(){
@@ -84,11 +85,14 @@ void SwerveModule::resetDriveEncoder(){
 
 void SwerveModule::resetSteerEncoder(){
   m_steerEncoder.SetPosition(getAbsolutePosition());
+  // m_steerController.
 }
 
 double SwerveModule::getAbsolutePosition(){
-  // return m_absoluteEncoder.GetAbsolutePosition(); // use this if 0-1 
+  //print the absolute encoder reading
   frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId())+" abs", m_absoluteEncoder.GetAbsolutePosition());
+  //this is the absolute encoder reading minus the position offset
+  frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId())+" o abs", getAbsolutePosition()-m_absoluteEncoder.GetPositionOffset());
   return m_absoluteEncoder.GetAbsolutePosition() * 2 * pi; // shouldn't need to add an offset value because 
                                                   // position offset was set in constructor
 }
@@ -98,7 +102,7 @@ double SwerveModule::getDrivePosition(){
 }
 
 double SwerveModule::getSteerPosition(){
-  return m_steerEncoder.GetPosition();
+  return m_steerEncoder.GetPosition()*pi2;
 }
 
 double SwerveModule::getDriveVelocity(){
@@ -121,7 +125,7 @@ std::string SwerveModule::getName(int driveMotorID){
 }
 
 void SwerveModule::setState(const frc::SwerveModuleState state){ 
-  frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getAbsolutePosition()));
+  frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getSteerPosition()));
 
   // frc::Rotation2d curAngle = units::radian_t(getAbsolutePosition());
 
@@ -133,18 +137,22 @@ void SwerveModule::setState(const frc::SwerveModuleState state){
   // double delta = std::fmod(std::fmod((optimizedState.angle.Radians().value() -
   //                                   curAngle.Radians().value() + M_PI),
   //                                   2 * M_PI) +
-  //                             2 * M_PI,
+  //                             2 * M_PI,4
   //                         2 * M_PI) -
   //               M_PI;   // NOLINT  
   
   // double adjustedAngle = delta + curAngle.Radians().value();
   //
-  // however, they didn't use "setPIDpositionwrapping," so maybe i can just do that instead
-  double adjustedAngle = optimizedState.angle.Radians().value();
+  // However, I used setPositionPIDWrappingEnabled(), so I don't think this is needed
+
+  double adjustedAngle = optimizedState.angle.Radians().value()/(pi2);
+  // adjustedAngle = optimizedState.angle.Degrees().value()/360;
   // double adjustedPosition = optimizedState.angle.Degrees().value()/360; // turns it into a circle fraction
   
+  // angle we want to go to
   frc::SmartDashboard::PutNumber("O "+getName(m_driveMotor.GetDeviceId()), adjustedAngle);
-  frc::SmartDashboard::PutNumber("angle"+getName(m_driveMotor.GetDeviceId()), getSteerPosition());
+  // current angle based on the neo encoder
+  frc::SmartDashboard::PutNumber("angle "+getName(m_driveMotor.GetDeviceId()), getSteerPosition());
   m_steerController.SetReference((adjustedAngle), CANSparkBase::ControlType::kPosition);
 
   // m_driveController.SetReference(optimizedState.speed.value(), CANSparkMax::ControlType::kVelocity); // 2363 version
@@ -152,4 +160,5 @@ void SwerveModule::setState(const frc::SwerveModuleState state){
 }
 
 void SwerveModule::Periodic(){
+
 }

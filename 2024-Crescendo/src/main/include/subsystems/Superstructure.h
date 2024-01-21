@@ -4,12 +4,14 @@
 #include <frc2/command/SubsystemBase.h>
 
 #include <frc/controller/PIDController.h>
+#include <frc/controller/ProfiledPIDController.h>
+
 #include <frc/AnalogEncoder.h>
-// #include <frc/controller/
 
 #include <rev/CANSparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <rev/SparkPIDController.h>
+// #include <rev/ThroughBoreEncoder.h>
 
 // clean up include list once subclasses are finished
 
@@ -17,11 +19,15 @@
 
 using namespace std;
 
-class superstructure : public frc2::SubsystemBase{
+class Superstructure : public frc2::SubsystemBase{
 
 public:
 
+    Superstructure(); // elevator, telescope, arm, intake, shooter
 
+
+
+    void Periodic() override;
 
 private: 
 
@@ -39,6 +45,10 @@ private:
 
 //shooter
 //2 motors
+
+// ^ maybe combining intake and shooter into one mechanism may make the handoff easier
+//inter
+//3 motors
 
 // ^ need to either use pdh or reduce motor count
 // pdp only has 16 slots, assuming 2 motors for both elevator systems, it comes out to 17 motors
