@@ -29,15 +29,16 @@ RobotContainer::RobotContainer() {
         // Right stick right on xbox is negative, right stick left is postive.
         // Left stick right is positive, left stick left is negative.
         double speedMultiplier = (1-m_driverController.GetRawAxis(Joystick::ThrottleSlider))*0.5;
-        double XAxis = m_driverController.GetRawAxis(Joystick::XAxis)*speedMultiplier;
+        double XAxis = -m_driverController.GetRawAxis(Joystick::XAxis)*speedMultiplier;
         double YAxis = m_driverController.GetRawAxis(Joystick::YAxis)*speedMultiplier;
-        double RotAxis = m_driverController.GetRawAxis(Joystick::RotAxis)*speedMultiplier;
+        double RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis)*speedMultiplier;
 
         if(m_driverController.GetRawButton(11)){
           m_drive.moveToAngle(XAxis, YAxis);
         }else if(m_driverController.GetRawButton(12)){
           m_drive.moveToAngle(0, 0.3);
         }
+        m_drive.swerveDrive(XAxis, YAxis, RotAxis, false);
         // frc::SmartDashboard::PutNumber("x axis", XAxis);
         // frc::SmartDashboard::PutNumber("y axis", YAxis);
         // frc::SmartDashboard::PutNumber("theta", RotAxis);
