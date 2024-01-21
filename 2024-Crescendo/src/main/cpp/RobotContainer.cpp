@@ -41,7 +41,10 @@ RobotContainer::RobotContainer() {
         // frc::SmartDashboard::PutNumber("x axis", XAxis);
         // frc::SmartDashboard::PutNumber("y axis", YAxis);
         // frc::SmartDashboard::PutNumber("theta", RotAxis);
-
+        if(m_driverController.GetRawButtonPressed(9)){
+          m_drive.toggleOffset();
+        }
+        frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
     },
     {&m_drive}
   ));

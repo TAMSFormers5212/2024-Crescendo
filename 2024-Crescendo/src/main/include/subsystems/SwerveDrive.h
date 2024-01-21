@@ -33,7 +33,9 @@ public:
     void resetOdometry(const frc::Pose2d pose);
     void swerveDrive(double x, double y, double theta, bool fieldCentric);
     void brake();
-
+    void toggleOffset(bool offset);
+    bool getOffsetToggle();
+    void toggleOffset();
     
     void tankDrive(double x, double y);
     void moveToAngle(double x, double y);
@@ -52,6 +54,7 @@ private:
     frc::PIDController thetaController; // closed loop control for heading
     // may be something we want to implement if we notice the drive slowly twisting as it drives
     
+    bool offsetToggle = true;
 
     frc::Rotation2d heading;
 

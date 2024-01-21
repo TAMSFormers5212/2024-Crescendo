@@ -33,6 +33,7 @@ public:
     frc::SwerveModuleState getState();
     frc::SwerveModulePosition getPosition();
     void setState(const frc::SwerveModuleState state);
+    void togglePositionOffset(bool toggleOffset);
 
 
     void Periodic() override;

@@ -159,3 +159,21 @@ void SwerveDrive::SyncAbsoluteEncoders(){
     module.resetSteerEncoder();
   }
 }
+
+bool SwerveDrive::getOffsetToggle(){
+  return offsetToggle;
+}
+
+void SwerveDrive::toggleOffset(){
+  if(offsetToggle){
+    offsetToggle = false;
+    for(auto &module : m_modules){
+      module.togglePositionOffset(offsetToggle);
+    }
+  }else{
+    offsetToggle = true;
+    for(auto &module : m_modules){
+      module.togglePositionOffset(offsetToggle);
+    }
+  }
+}
