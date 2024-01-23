@@ -31,28 +31,21 @@ public:
 
 private: 
 
-//elevator/telescope (climb)
-//1-2 motors
-
-//elevator/telescope (truss)
-//1-2 motors
+//winch
+//2 motors total (1 motor per winch)
 
 //arm
-//2 motors?
+//2 motors
 
 //intake
 //1 motor
 
 //shooter
 //2 motors
-
-// ^ maybe combining intake and shooter into one mechanism may make the handoff easier
+// ^ maybe combining intake and shooter into one mechanism may make the handoff easier (3 motors)
 //inter
-//3 motors
 
-// ^ need to either use pdh or reduce motor count
-// pdp only has 16 slots, assuming 2 motors for both elevator systems, it comes out to 17 motors
-// pdh IS in stock rn, 240$ + ~150-200$ in breakers (we could keep using old breakers)
+//2+2+1+2+8 = 15
 
 };
 
