@@ -47,7 +47,7 @@ namespace OIConstants {//Controller buttons
         constexpr int ButtonThree = 3;
         constexpr int ButtonFour = 4;
 
-        constexpr double deadband = 0.3;
+        constexpr double deadband = 0.15;
     }
 
     namespace Controller{//console controller

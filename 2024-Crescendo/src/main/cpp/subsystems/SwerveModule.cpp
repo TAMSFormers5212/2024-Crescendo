@@ -48,8 +48,8 @@ void SwerveModule::resetDriveMotor(){
   m_driveMotor.EnableVoltageCompensation(12.0);
   m_driveMotor.SetSmartCurrentLimit(25, 40);
 
-  m_driveEncoder.SetPositionConversionFactor((SwerveModuleConstants::wheelCircumfrence/SwerveModuleConstants::driveRatio).value());
-  m_driveEncoder.SetVelocityConversionFactor((SwerveModuleConstants::wheelCircumfrence/ SwerveModuleConstants::driveRatio / 60_s).value());
+  m_driveEncoder.SetPositionConversionFactor((SwerveModuleConstants::wheelCircumfrence/(SwerveModuleConstants::driveRatio)).value());
+  m_driveEncoder.SetVelocityConversionFactor((SwerveModuleConstants::wheelCircumfrence/SwerveModuleConstants::driveRatio / 60_s).value());
     
   resetDriveEncoder();
 }
@@ -149,6 +149,7 @@ void SwerveModule::setState(const frc::SwerveModuleState state){
 }
 
 void SwerveModule::Periodic(){
+  frc::SmartDashboard::PutNumber("velocity "+getName(m_driveMotor.GetDeviceId()), abs(getDriveVelocity()/12));
   // current angle based on the neo encoder
   frc::SmartDashboard::PutNumber("angle "+getName(m_driveMotor.GetDeviceId()), getSteerPosition());
   //print the absolute encoder reading

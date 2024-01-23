@@ -32,7 +32,22 @@ RobotContainer::RobotContainer() {
         double XAxis = -m_driverController.GetRawAxis(Joystick::XAxis)*speedMultiplier;
         double YAxis = m_driverController.GetRawAxis(Joystick::YAxis)*speedMultiplier;
         double RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis)*speedMultiplier;
-
+        frc::SmartDashboard::PutNumber("x",XAxis);
+        if (abs(XAxis)<Joystick::deadband){
+          
+          XAxis = 0;
+          
+        }
+        frc::SmartDashboard::PutNumber("y",YAxis);
+        if (abs(YAxis)<Joystick::deadband){
+          
+          YAxis=0;
+        }
+        frc::SmartDashboard::PutNumber("rot",RotAxis);
+        if (abs(RotAxis)<(Joystick::deadband/2)){
+          
+          RotAxis=0;
+        }
         if(m_driverController.GetRawButton(11)){
           m_drive.moveToAngle(XAxis, YAxis);
         }else if(m_driverController.GetRawButton(12)){
@@ -40,7 +55,7 @@ RobotContainer::RobotContainer() {
         }
         m_drive.swerveDrive(XAxis, YAxis, RotAxis, false);
         // frc::SmartDashboard::PutNumber("x axis", XAxis);
-        // frc::SmartDashboard::PutNumber("y axis", YAxis);
+        frc::SmartDashboard::PutNumber("speed", speedMultiplier*100);
         // frc::SmartDashboard::PutNumber("theta", RotAxis);
         if(m_driverController.GetRawButtonPressed(9)){
           m_drive.toggleOffset();
