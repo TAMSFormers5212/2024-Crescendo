@@ -14,6 +14,10 @@
 #include <frc2/command/button/Trigger.h>
 
 #include <frc/smartdashboard/SmartDashboard.h>
+#include "networktables/NetworkTable.h"
+#include "networktables/NetworkTableInstance.h"
+#include "networktables/NetworkTableEntry.h"
+#include "networktables/NetworkTableValue.h"
 
 using namespace std;
 using namespace frc2;
@@ -53,7 +57,18 @@ RobotContainer::RobotContainer() {
         }else if(m_driverController.GetRawButton(12)){
           m_drive.moveToAngle(0, 0.3);
         }
+        std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+        
+        if (m_driverController.GetRawButton(7)){
+            double targetOffsetAngle_Horizontal = table->GetNumber("tx",0.0);
+            double heading_error = targetOffsetAngle_Horizontal;
+            RotAxis += heading_error * SwerveModuleConstants::kvP*speedMultiplier;
+        }
+        // else {
         m_drive.swerveDrive(XAxis, YAxis, RotAxis, false);
+        // }
+
+        
         // frc::SmartDashboard::PutNumber("x axis", XAxis);
         frc::SmartDashboard::PutNumber("speed", speedMultiplier*100);
         // frc::SmartDashboard::PutNumber("theta", RotAxis);
