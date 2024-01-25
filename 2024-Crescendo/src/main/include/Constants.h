@@ -9,6 +9,7 @@
 #include <units/angular_velocity.h>
 #include <units/math.h>
 #include <units/velocity.h>
+#include <units/base.h>
 #include <string>
 #include <vector>
 #include <array>
@@ -160,17 +161,39 @@ namespace ArmConstants{
     constexpr int rightMotor = 11;
 
     constexpr int encoder = 2; // depends on what encoder 
-    constexpr int limitSwitch = 1;
+    // constexpr int limitSwitch = 1;
+
+    constexpr int armRatio = 96; //1:6 sprocket, 1:16 maxplanetary
     
     constexpr double kaP = 0.0;
     constexpr double kaI = 0.0;
     constexpr double kaD = 0.0;
     constexpr double kaFF = 0.0;
+    constexpr double kaIz = 0.0;
 
-    constexpr int armRatio = 100; //idk just a filler
-    constexpr int maxAccel = 1000;
-    constexpr int maxVelo = 5000;
-    constexpr int minVelo = 5000;
+    constexpr int kMaxOutput = 1;
+    constexpr int kMinOutput = -1;
+    constexpr double maxAccel = 10;
+    constexpr double maxVelo = 20;
+    constexpr double allowedError = 0.0;
+
+    constexpr double kaS = 0.0;
+    constexpr double kaG = 0.0;
+    constexpr double kaV = 0.0;
+    constexpr double kaA = 0.0;
+}
+
+namespace ShooterConstants{
+    constexpr int topMotor = 12;
+    constexpr int bottomMotor = 13;
+    constexpr double pulleyRatio = 30.0/18.0;
+
+    constexpr double ksP = 0.0; // shooter uses a velocity PID
+    constexpr double ksI = 0.0;
+    constexpr double ksD = 0.0;
+    constexpr double ksFF = 0.0;
+
+    constexpr double maxRpm = 5700;
 }
 
 namespace PoseConstants{
@@ -178,27 +201,23 @@ namespace PoseConstants{
         constexpr int intakeRPM = 0;
         constexpr int shooterRPM = 0;
         constexpr double armPose = 0;
-        constexpr double elevatorPose = 0;
     }
 
     namespace groundIntake{
         constexpr int intakeRPM = 1000;
         constexpr int shooterRPM = 0;
         constexpr double armPose = 0; 
-        constexpr double elevatorPose = 0;
     }
 
     namespace amp{
         constexpr int intakeRPM = 0;
         constexpr int shooterRPM = 100;
         constexpr double armPose = 0;
-        constexpr double elevatorPose = 0;
     }
 
     namespace trap{
-        constexpr int intakeRPM = 0;
+        constexpr int intakeRPM = 1000;
         constexpr int shooterRPM = 0;
         constexpr double armPose = 0;
-        constexpr double elevatorPose = 0;
     }
 }

@@ -16,6 +16,10 @@
 // clean up include list once subclasses are finished
 
 #include <Constants.h>
+#include "Arm.h"
+#include "Intake.h"
+#include "Shooter.h"
+#include "Winch.h"
 
 using namespace std;
 
@@ -23,9 +27,23 @@ class Superstructure : public frc2::SubsystemBase{
 
 public:
 
-    Superstructure(); // elevator, telescope, arm, intake, shooter
+    Superstructure(Arm arm, Intake intake, Shooter shooter); // arm, intake, shooter, winch
 
+    //set positions and state control
+    void setToIntake();
+    void intakeNote();
+    void indexNote();
+    void aimShooter();
+    void speakerShot();
+    void ampShot();
+    void raiseToClimb();
+    void climb();
 
+    //utility control
+    void setIntake(double speed);
+    void setShooter(double speed);
+    void setArm(double position);
+    void setWinch(double position);
 
     void Periodic() override;
 
@@ -33,21 +51,22 @@ private:
 
 //winch
 //2 motors total (1 motor per winch)
-
+    Winch leftWinch;
+    Winch rightWinch;
 //arm
 //2 motors
+    Arm arm;
 
 //intake
 //1 motor
+    Intake intake;
 
 //shooter
 //2 motors
-// ^ maybe combining intake and shooter into one mechanism may make the handoff easier (3 motors)
-//inter
+    Shooter shooter;
 
 //2+2+1+2+8 = 15
+// 1 for powerering coprocessor?
 
 };
-
-// superstructure design is not completed yet, but we can make some simple outlines for the probable mechanisms of the superstructure. 
 

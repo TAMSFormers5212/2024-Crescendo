@@ -24,30 +24,20 @@ RobotContainer::RobotContainer() {
 
   m_drive.SetDefaultCommand(RunCommand(
     [this] {
-      // double check these for genericHID
-        // Right stick up on xbox is negative, right stick down is postive.
-        // Right stick right on xbox is negative, right stick left is postive.
-        // Left stick right is positive, left stick left is negative.
+
         double speedMultiplier = (1-m_driverController.GetRawAxis(Joystick::ThrottleSlider))*0.5;
         double XAxis = -m_driverController.GetRawAxis(Joystick::XAxis)*speedMultiplier;
         double YAxis = m_driverController.GetRawAxis(Joystick::YAxis)*speedMultiplier;
         double RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis)*speedMultiplier;
+
+        if (abs(XAxis)<Joystick::deadband){ XAxis = 0;}
+        if (abs(YAxis)<Joystick::deadband){ YAxis=0;}
+        if (abs(RotAxis)<(Joystick::deadband/2)){ RotAxis=0;}
+        
         frc::SmartDashboard::PutNumber("x",XAxis);
-        if (abs(XAxis)<Joystick::deadband){
-          
-          XAxis = 0;
-          
-        }
         frc::SmartDashboard::PutNumber("y",YAxis);
-        if (abs(YAxis)<Joystick::deadband){
-          
-          YAxis=0;
-        }
         frc::SmartDashboard::PutNumber("rot",RotAxis);
-        if (abs(RotAxis)<(Joystick::deadband/2)){
-          
-          RotAxis=0;
-        }
+
         if(m_driverController.GetRawButton(11)){
           m_drive.moveToAngle(XAxis, YAxis);
         }else if(m_driverController.GetRawButton(12)){
