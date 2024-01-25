@@ -62,7 +62,7 @@ void SwerveModule::resetSteerMotor(){
   m_steerController.SetD(ktD);
   m_steerController.SetFF(ktFF);
   m_steerController.SetPositionPIDWrappingEnabled(true);
-  m_steerController.SetPositionPIDWrappingMaxInput(pi2); // use 0-pi2 if radians, 0-1 if 0-1
+  m_steerController.SetPositionPIDWrappingMaxInput(pi2); 
   m_steerController.SetPositionPIDWrappingMinInput(0); 
 
 
@@ -71,10 +71,6 @@ void SwerveModule::resetSteerMotor(){
   m_steerMotor.SetSmartCurrentLimit(20, 30);
 
   m_steerEncoder.SetPositionConversionFactor(pi2/ SwerveModuleConstants::steerRatio);
-  //tony: mmm kinda sus, the steer encoder returns 0-1, so that leads me to believe that the 
-  //pid controller is working on 0-1 as well. this current one makes one wheel rotation, 2 pi 
-  //rotations in the neo's encoder/controller. i think the abs encoder also works on 0-1, so 
-  //what if we just kept everything at 0-1?
 
   resetSteerEncoder();
 }

@@ -81,7 +81,7 @@ void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentri
 }
 
 void SwerveDrive::brake(){
-  swerveDrive(0, 0, 1, true);
+  swerveDrive(0, 0, 0.05, false);
 }
 
 void SwerveDrive::moveToAngle(double x, double y){ // basically crab drive

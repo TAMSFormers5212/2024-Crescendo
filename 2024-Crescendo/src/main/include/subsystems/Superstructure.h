@@ -16,6 +16,10 @@
 // clean up include list once subclasses are finished
 
 #include <Constants.h>
+#include "Arm.h"
+#include "Intake.h"
+#include "Shooter.h"
+#include "Winch.h"
 
 using namespace std;
 
@@ -23,38 +27,46 @@ class Superstructure : public frc2::SubsystemBase{
 
 public:
 
-    Superstructure(); // elevator, telescope, arm, intake, shooter
+    Superstructure(Arm arm, Intake intake, Shooter shooter); // arm, intake, shooter, winch
 
+    //set positions and state control
+    void setToIntake();
+    void intakeNote();
+    void indexNote();
+    void aimShooter();
+    void speakerShot();
+    void ampShot();
+    void raiseToClimb();
+    void climb();
 
+    //utility control
+    void setIntake(double speed);
+    void setShooter(double speed);
+    void setArm(double position);
+    void setWinch(double position);
 
     void Periodic() override;
 
 private: 
 
-//elevator/telescope (climb)
-//1-2 motors
-
-//elevator/telescope (truss)
-//1-2 motors
-
+//winch
+//2 motors total (1 motor per winch)
+    Winch leftWinch;
+    Winch rightWinch;
 //arm
-//2 motors?
+//2 motors
+    Arm arm;
 
 //intake
 //1 motor
+    Intake intake;
 
 //shooter
 //2 motors
+    Shooter shooter;
 
-// ^ maybe combining intake and shooter into one mechanism may make the handoff easier
-//inter
-//3 motors
-
-// ^ need to either use pdh or reduce motor count
-// pdp only has 16 slots, assuming 2 motors for both elevator systems, it comes out to 17 motors
-// pdh IS in stock rn, 240$ + ~150-200$ in breakers (we could keep using old breakers)
+//2+2+1+2+8 = 15
+// 1 for powerering coprocessor?
 
 };
-
-// superstructure design is not completed yet, but we can make some simple outlines for the probable mechanisms of the superstructure. 
 
