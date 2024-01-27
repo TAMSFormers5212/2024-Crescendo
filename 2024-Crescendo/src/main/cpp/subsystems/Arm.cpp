@@ -60,7 +60,7 @@ void Arm::resetMotors(){
 
     m_rightEncoder.SetPositionConversionFactor(1.0/armRatio);
 
-    m_rightMotor.Follow(m_rightMotor, true);
+    m_rightMotor.Follow(m_leftMotor, true);
     resetEncoder();
 }
 

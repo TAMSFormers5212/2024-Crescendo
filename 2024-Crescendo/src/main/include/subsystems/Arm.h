@@ -43,8 +43,8 @@ private:
     SparkRelativeEncoder m_leftEncoder = m_leftMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
     SparkRelativeEncoder m_rightEncoder = m_rightMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
 
-    SparkPIDController m_leftController = m_leftMotor.GetPIDController();
-    SparkPIDController m_rightController = m_rightMotor.GetPIDController();
+    SparkPIDController m_leftController = m_leftMotor.GetPIDController(); // leader
+    SparkPIDController m_rightController = m_rightMotor.GetPIDController(); // follower
 
 
 //failed attempt at using ProfiledPIDController. i'll just try smartmotion instead

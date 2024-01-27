@@ -91,7 +91,7 @@ namespace SwerveModuleConstants {//per swerve module
     constexpr auto maxRotation = 2.0_rad_per_s;
     constexpr double driveRatio = 8.14; //SDS Mk4 L1
     constexpr double steerRatio = 12.8; //SDS Mk4 L1
-    constexpr units::inch_t wheelDiameter = 4_in;
+    constexpr units::inch_t wheelDiameter = 4_in; // likely different based on tread wear
     constexpr units::inch_t wheelCircumfrence = 12.57_in;
     constexpr units::inch_t centerDistance = 10.5_in;
 
@@ -117,7 +117,6 @@ namespace SwerveModuleConstants {//per swerve module
     namespace drivebase{
         constexpr units::meter_t WheelBase = 0.5207_m; // for kinematics
         constexpr units::meter_t TrackWidth = 0.5207_m; 
-        //tony 1/7 : wait isn't the frame a square? wheelbase and trackwidth should be the same wtf!
     }
     
     
@@ -126,8 +125,7 @@ namespace SwerveModuleConstants {//per swerve module
         constexpr int steerMotor = 2; //CAN ID
         constexpr int absencoder = 3; //analogin Port
 
-        constexpr double offset = 0.508-0.25;//1-0.258;//-0.235;
-//2.2009 
+        constexpr double offset = 0.508-0.25;
 
     }
     namespace topright{
@@ -135,22 +133,21 @@ namespace SwerveModuleConstants {//per swerve module
         constexpr int steerMotor = 6; //CAN ID
         constexpr int absencoder = 0; //analogin Port
 
-        constexpr double offset = 0.170-0.25+1;//-0.146;
+        constexpr double offset = 0.170-0.25+1;
     }
     namespace bottomleft{
         constexpr int driveMotor = 4; //CAN ID
         constexpr int steerMotor = 3; //CAN ID
         constexpr int absencoder = 2; //analogin Port
 
-        constexpr double offset = 0.322-0.25;//1-0.744;//0.810;//(0.38+M_PI)/(2*M_PI);//0.6101363-0.58127+0.1;// (343.800190846-229.081278318-15)/360;
-        //7.48
+        constexpr double offset = 0.322-0.25;
     }
     namespace bottomright{          
         constexpr int driveMotor = 7; //CAN ID
         constexpr int steerMotor = 8; //CAN ID
         constexpr int absencoder = 1; //analogin Port
 
-        constexpr double offset = 0.834+0.25-1;//1.247;
+        constexpr double offset = 0.834+0.25-1;
     }
 
 }
@@ -160,10 +157,10 @@ namespace ArmConstants{
     constexpr int leftMotor = 10;
     constexpr int rightMotor = 11;
 
-    constexpr int encoder = 2; // depends on what encoder 
+    constexpr int encoder = 2; // depends on what encoder. planning for a rev through bore 
     // constexpr int limitSwitch = 1;
 
-    constexpr int armRatio = 96; //1:6 sprocket, 1:16 maxplanetary
+    constexpr int armRatio = 96; // 16:1 maxplanetary * 6:1 sprocket
     
     constexpr double kaP = 0.0;
     constexpr double kaI = 0.0;
@@ -187,13 +184,20 @@ namespace ShooterConstants{
     constexpr int topMotor = 12;
     constexpr int bottomMotor = 13;
     constexpr double pulleyRatio = 30.0/18.0;
+    constexpr units::inch_t wheelDiameter = 4_in; // may change based on rpm
 
     constexpr double ksP = 0.0; // shooter uses a velocity PID
     constexpr double ksI = 0.0;
     constexpr double ksD = 0.0;
     constexpr double ksFF = 0.0;
 
-    constexpr double maxRpm = 5700;
+    constexpr units::revolutions_per_minute_t maxNeoRpm = 5700_rpm;
+    constexpr units::feet_per_second_t maxExitVelocity = 90_fps;
+
+}
+
+namespace IntakeConstants{
+    
 }
 
 namespace PoseConstants{

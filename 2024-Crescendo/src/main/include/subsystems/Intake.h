@@ -23,7 +23,7 @@ using namespace rev;
 class Intake : public frc2::SubsystemBase{
 
 public:
-    Intake(int topMotor, int bottomMotor);
+    Intake(int motor, int sensor);
 
     void intakeNote(); // intake until note collected
     void indexNote(); // move note to indexer spot
@@ -34,6 +34,7 @@ public:
     double getSpeed();
     double getPiecePosition();
 
+    void Periodic() override;
 
 private:
 
