@@ -25,6 +25,8 @@ class Intake : public frc2::SubsystemBase{
 public:
     Intake(int motor, int sensor);
 
+    void resetMotor();
+
     void intakeNote(); // intake until note collected
     void indexNote(); // move note to indexer spot
     void shootNote(); // give note to shooter 
@@ -33,6 +35,7 @@ public:
     void setSpeed(double speed);
     double getSpeed();
     double getPiecePosition();
+    double getOutputCurrent();
 
     void Periodic() override;
 
@@ -49,7 +52,8 @@ private:
     //sensor
     //beambreak? distance sensor? color sensor?
 
-    int state;
+    // int state = 0;
+    bool holdingNote = false;
 
 
 };

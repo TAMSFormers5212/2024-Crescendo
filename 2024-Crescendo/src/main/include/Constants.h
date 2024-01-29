@@ -202,7 +202,7 @@ namespace ShooterConstants{
 }
 
 namespace IntakeConstants{
-    
+    constexpr double intakeRatio = 2.0;
 }
 
 namespace PoseConstants{
