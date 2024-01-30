@@ -24,10 +24,10 @@ public:
 
     void resetMotor();
 
-    void climb(double speed); // pull down
+    void climb(double speed); // move winch based on speed
     void spring(); // act like a spring/slightly tension to prevent slack from bulding up
     void extend(double speed); // let go
-    void hold(); // set speed to 0
+    void hold(); // set speed to 0, hold in place
 
     double getOutputCurrent();
     double getAppliedOutput();

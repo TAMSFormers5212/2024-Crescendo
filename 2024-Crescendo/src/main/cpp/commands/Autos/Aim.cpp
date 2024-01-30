@@ -1,10 +1,16 @@
+// #include "commands/Aim.h"
 
+// Aim::Aim(SwerveDrive* drive, Arm* arm, double x, double y, double z)
+// {
+//     m_drive = drive;
+//     m_arm = arm;
+//     // Shooter::calculateAngle(z, x, y);
+//     AddRequirements(drive);
+//     AddRequirements(arm);
+// }
 
+// void Aim::Initialize(){
+//     // m_drive
+// }
 
-
-//take in data from current arm position, distance by pose estimator and distance by vision
-//calculate the nessecary arm/shooter angle and shooter rpm
-//aim/rotate the robot using vision, pose, and heading
-
-
-
+// void Aim::End(bool interrupted){}

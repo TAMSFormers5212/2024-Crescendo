@@ -227,7 +227,7 @@ namespace IntakeConstants{
 namespace WinchConstants{
     constexpr double winchRatio = 60;
     constexpr units::inch_t winchDiameter = 0.5_in;
-    constexpr double heightToTravel = 2*12+3; // distance from chain to winch, aka max winchable distance
+    constexpr units::inch_t heightToTravel = 27_in; // distance from chain to winch, aka max winchable distance
 
     constexpr double kwP = 0.0;
     constexpr double kwI = 0.0;
@@ -239,7 +239,7 @@ namespace WinchConstants{
 namespace PoseConstants{
     namespace stow{
         constexpr int intakeRPM = 0;
-        constexpr int shooterRPM = 0;
+        constexpr int shooterRPM = 0; 
         constexpr double armPose = 0;
     }
 
@@ -256,8 +256,14 @@ namespace PoseConstants{
     }
 
     namespace trap{
-        constexpr int intakeRPM = 1000;
+        constexpr int intakeRPM = -1000;
         constexpr int shooterRPM = 0;
+        constexpr double armPose = 0;
+    }
+
+    namespace aim{
+        constexpr int intakeRPM = 0;
+        constexpr int shooterRPM = 3000;
         constexpr double armPose = 0;
     }
 }

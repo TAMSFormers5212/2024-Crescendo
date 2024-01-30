@@ -27,8 +27,8 @@ public:
 
     void resetMotors();
 
-    double calculateSpeed(double distance, double x, double y); // calculate the needed speed based on current speed
-    double calculateAngle(double distance, double x, double y); // angle to feed to arm
+    static double calculateSpeed(double distance, double x, double y); // calculate the needed speed based on current speed
+    static double calculateAngle(double distance, double x, double y); // angle to feed to arm
 
     void setSpeed(double speed);
     double getSpeed();

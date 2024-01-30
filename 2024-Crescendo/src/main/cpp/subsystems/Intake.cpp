@@ -96,6 +96,6 @@ void Intake::setState(int state){
     this->state = state;
 }
 
-void Periodic(){
+void Intake::Periodic(){
 
 }

@@ -45,8 +45,6 @@ private:
 
     CANSparkMax m_intakeMotor; 
 
-    // these may be modified if we don't use the design where the left and right sides can have 
-    // different speeds to create spin. A high enough speed/rpm and it won't matter
     SparkRelativeEncoder m_encoder = m_intakeMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
 
     SparkPIDController m_intakeController = m_intakeMotor.GetPIDController();
