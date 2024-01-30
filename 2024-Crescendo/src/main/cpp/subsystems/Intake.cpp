@@ -40,11 +40,11 @@ void Intake::resetMotor(){
 
 void Intake::intakeNote(){ // intake until note collected
     if(!holdingNote){
-        m_intakeMotor.Set(0.5);
-        if(m_intakeMotor.GetOutputCurrent()>10){
+        m_intakeMotor.Set(1.0);
+        if(m_intakeMotor.GetOutputCurrent()>loadedCurrent){
             indexNote();
             holdingNote = true;
-            // state = 1;
+            state = held;
         }
     }else if(holdingNote){
         indexNote();
@@ -54,21 +54,23 @@ void Intake::indexNote(){ // move note to indexer spot
     if(holdingNote){
         // state = 1;
         //move the note to the beambreak
+        state = indexed;
     }
 }
 void Intake::shootNote(){ // give note to shooter 
     if(holdingNote){
         m_intakeMotor.Set(1);
-        if(m_intakeMotor.GetOutputCurrent()<5){
+        if(m_intakeMotor.GetOutputCurrent()<freeCurrent){
             holdingNote = false;
-            // state = 0;
+            state = IntakeConstants::empty;
         }
     }
 }
 void Intake::reverseIntake(){ // in case of 2 notes and need to eject
-    m_intakeMotor.Set(-0.5);
-    if(m_intakeMotor.GetOutputCurrent()<5){
+    m_intakeMotor.Set(-0.35);
+    if(m_intakeMotor.GetOutputCurrent()<freeCurrent){
         holdingNote = false;
+        IntakeConstants::empty;
     }
 }
 
@@ -78,14 +80,21 @@ void Intake::setSpeed(double speed){
 double Intake::getSpeed(){
     return m_encoder.GetVelocity();
 }
-double Intake::getPiecePosition(){
-    
+bool Intake::getNote(){
+    return holdingNote;
 }
 
 double Intake::getOutputCurrent(){
     return m_intakeMotor.GetOutputCurrent();
 }
 
+int Intake::getState(){
+    return state;
+}
+
+void Intake::setState(int state){
+    this->state = state;
+}
 
 void Periodic(){
 

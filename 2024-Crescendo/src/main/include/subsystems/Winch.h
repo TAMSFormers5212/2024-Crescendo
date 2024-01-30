@@ -20,9 +20,22 @@ using namespace frc;
 
 class Winch : public frc2::SubsystemBase{
 public:
-    Winch();
+    Winch(int motor);
 
-    void climb();
+    void resetMotor();
+
+    void climb(double speed); // pull down
+    void spring(); // act like a spring/slightly tension to prevent slack from bulding up
+    void extend(double speed); // let go
+    void hold(); // set speed to 0
+
+    double getOutputCurrent();
+    double getAppliedOutput();
+
+    void setWinchPosition(double position); // position in linear distance from ground
+
+
+    void Periodic() override;
 
 private:
     CANSparkMax m_winchMotor; 

@@ -34,8 +34,10 @@ public:
 
     void setSpeed(double speed);
     double getSpeed();
-    double getPiecePosition();
+    bool getNote();
     double getOutputCurrent();
+    int getState();
+    void setState(int state);
 
     void Periodic() override;
 
@@ -52,8 +54,9 @@ private:
     //sensor
     //beambreak? distance sensor? color sensor?
 
-    // int state = 0;
+    int state = IntakeConstants::empty;
     bool holdingNote = false;
+
 
 
 };

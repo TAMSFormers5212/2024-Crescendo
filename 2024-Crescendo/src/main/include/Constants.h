@@ -28,6 +28,9 @@ constexpr int kMXP = 2;
 namespace MathConstants {
     constexpr double pi = 3.1415926535;
     constexpr double pi2 = 6.283185307;
+
+    constexpr double gMeters = 9.81;
+    constexpr double gFeet = 32.1741;
 }
 
 
@@ -48,6 +51,14 @@ namespace OIConstants {//Controller buttons
         constexpr int Trigger = 1; 
         constexpr int ButtonThree = 3;
         constexpr int ButtonFour = 4;
+        constexpr int ButtonFive = 5;
+        constexpr int ButtonSix = 6;
+        constexpr int ButtonSeven = 7;
+        constexpr int ButtonEight = 8;
+        constexpr int ButtonNine = 9;
+        constexpr int ButtonTen = 10;
+        constexpr int ButtonEleven = 11;
+        constexpr int ButtonTwelve = 12;
 
         constexpr double deadband = 0.15; 
     }
@@ -203,6 +214,26 @@ namespace ShooterConstants{
 
 namespace IntakeConstants{
     constexpr double intakeRatio = 2.0;
+
+    constexpr double loadedCurrent = 10.0; // current when note is held
+    constexpr double freeCurrent = 5.0; // current when no note is held
+    //random guess numbers, experiement in order to prevent burning out the neo550
+    
+    constexpr int empty = 0;
+    constexpr int held = 1;
+    constexpr int indexed = 2;
+}
+
+namespace WinchConstants{
+    constexpr double winchRatio = 60;
+    constexpr units::inch_t winchDiameter = 0.5_in;
+    constexpr double heightToTravel = 2*12+3; // distance from chain to winch, aka max winchable distance
+
+    constexpr double kwP = 0.0;
+    constexpr double kwI = 0.0;
+    constexpr double kwD = 0.0;
+    constexpr double kwFF = 0.0;
+    constexpr double kwIz = 0.0;
 }
 
 namespace PoseConstants{
