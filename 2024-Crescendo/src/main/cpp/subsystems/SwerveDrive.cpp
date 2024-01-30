@@ -69,10 +69,17 @@ void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentri
                                                  x * SwerveModuleConstants::maxSpeed,
                                                  y * SwerveModuleConstants::maxSpeed,
                                                  theta * SwerveModuleConstants::maxRotation};
+  speeds = speeds.Discretize(speeds.vx, speeds.vy, speeds.omega, units::second_t(0.02)); // second order kinematics?!?! nani
+
+  auto saturatedStates = m_driveKinematics.ToSwerveModuleStates(speeds);
+  
+  // // maybe desaturate wheel speeds here
+  m_driveKinematics.DesaturateWheelSpeeds(&saturatedStates, maxSpeed);
+  // 1. figure out the max speed modules can go
+  // 2. figure out the max speed the modules are actually going 
 
   auto states = m_driveKinematics.ToSwerveModuleStates(speeds);
 
-  // maybe desaturate wheel speeds here
 
   for (size_t i = 0; i < states.size(); ++i)
   {

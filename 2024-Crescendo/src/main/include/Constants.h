@@ -47,13 +47,16 @@ namespace OIConstants {//Controller buttons
         constexpr int YAxis = 1; 
         constexpr int RotAxis = 2; 
         constexpr int ThrottleSlider = 3;
+        constexpr int miniXAxis = 5; // mini axis only returns -1, 0, or 1
+        constexpr int miniYAxis = 6;
         //Buttons
         constexpr int Trigger = 1; 
-        constexpr int ButtonThree = 3;
+        constexpr int ButtonTwo = 2; // side thumb button
+        constexpr int ButtonThree = 3; // 3-6 on top
         constexpr int ButtonFour = 4;
         constexpr int ButtonFive = 5;
         constexpr int ButtonSix = 6;
-        constexpr int ButtonSeven = 7;
+        constexpr int ButtonSeven = 7; // 7-12 on bottom
         constexpr int ButtonEight = 8;
         constexpr int ButtonNine = 9;
         constexpr int ButtonTen = 10;
@@ -99,12 +102,12 @@ namespace SwerveModuleConstants {//per swerve module
     constexpr double kdD = 0.0;
     constexpr double kdFF = 0.00;
 
-    constexpr auto maxSpeed = 4.0_mps; // arbitrary values for now
-    constexpr auto maxRotation = 2.0_rad_per_s;
+    constexpr auto maxSpeed = 3.81_mps; // max free speed of SDS mk4 L1
+    constexpr auto maxRotation = 2.0_rad_per_s; // figure this out later
     constexpr double driveRatio = 8.14; //SDS Mk4 L1
     constexpr double steerRatio = 12.8; //SDS Mk4 L1
     constexpr units::inch_t wheelDiameter = 4_in; // likely different based on tread wear
-    constexpr units::inch_t wheelCircumfrence = 12.57_in;
+    constexpr units::inch_t wheelCircumfrence = units::inch_t{wheelDiameter.value()*MathConstants::pi}; // recalculate based on wheel diameter 
     constexpr units::inch_t centerDistance = 10.5_in;
 
     constexpr double khP = 0.0; // Heading PID
@@ -132,7 +135,8 @@ namespace SwerveModuleConstants {//per swerve module
 
     namespace drivebase{
         constexpr units::meter_t WheelBase = 0.5207_m; // for kinematics
-        constexpr units::meter_t TrackWidth = 0.5207_m; 
+        constexpr units::meter_t TrackWidth = 0.5207_m; // aka 20.5 inches
+        // 27x27 inch chassis from 2023, will update once 2024 chassis is assembed, but its just +1 inch 
     }
     
     
