@@ -29,6 +29,8 @@ public:
 
     Superstructure(Arm arm, Intake intake, Shooter shooter); // arm, intake, shooter, winch
 
+    void resetSuperstructure();
+
     //set positions and state control
     void setToIntake();
     void intakeNote();
@@ -43,7 +45,10 @@ public:
     void setIntake(double speed);
     void setShooter(double speed);
     void setArm(double position);
-    void setWinch(double position);
+    void setLeftWinchPosition(double position);
+    void setRightWinchPosition(double position);
+    void setLeftWinchSpeed(double speed);
+    void setRightWinchSpeed(double speed);
 
     void Periodic() override;
 
@@ -67,6 +72,8 @@ private:
 
 //2+2+1+2+8 = 15
 // 1 for powerering coprocessor?
+
+    // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
 };
 

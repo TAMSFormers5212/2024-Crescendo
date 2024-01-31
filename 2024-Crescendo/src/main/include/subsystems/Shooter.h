@@ -25,12 +25,15 @@ class Shooter : public frc2::SubsystemBase{
 public:
     Shooter(int topMotor, int bottomMotor);
 
-    double calculateSpeed(double distance, double x, double y); // calculate the needed speed based on current speed
-    double calculateAngle(double distance, double x, double y); // angle to feed to arm
+    void resetMotors();
+
+    static double calculateSpeed(double distance, double x, double y); // calculate the needed speed based on current speed
+    static double calculateAngle(double distance, double x, double y); // angle to feed to arm
 
     void setSpeed(double speed);
     double getSpeed();
 
+    void Periodic() override;
 
 private:
 

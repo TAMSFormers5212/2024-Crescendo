@@ -8,6 +8,7 @@
 #include <frc2/command/RunCommand.h>
 #include <frc2/command/InstantCommand.h>
 #include <frc2/command/StartEndCommand.h>
+#include <frc2/command/SequentialCommandGroup.h>
 
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/POVButton.h>
@@ -127,6 +128,16 @@ void RobotContainer::ConfigureBindings() {
       }
     )
   ).ToPtr());  
+
+  JoystickButton joystickFive(&m_driverController, 5);
+
+  // joystickFive.OnTrue((
+  //   SequentialCommandGroup(
+  //     [this](){
+  //        //aim and then shoot 
+  //     }
+  //   )
+  // ).ToPtr());
 
 
 }

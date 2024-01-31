@@ -32,6 +32,7 @@ void Arm::resetMotors(){
     m_leftController.SetSmartMotionMaxVelocity(maxVelo);
     m_leftController.SetSmartMotionMinOutputVelocity(0);
     m_leftController.SetSmartMotionAllowedClosedLoopError(allowedError);
+    // m_leftController.
 
     m_leftMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
     m_leftMotor.EnableVoltageCompensation(12.0);
@@ -60,7 +61,7 @@ void Arm::resetMotors(){
 
     m_rightEncoder.SetPositionConversionFactor(1.0/armRatio);
 
-    m_rightMotor.Follow(m_rightMotor, true);
+    m_rightMotor.Follow(m_leftMotor, true);
     resetEncoder();
 }
 
