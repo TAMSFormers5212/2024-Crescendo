@@ -47,12 +47,16 @@ frc::Rotation2d SwerveDrive::getGyroHeading(){ // i have no f*cking clue how thi
   double delta = std::fmod(std::fmod((newAngle - lastAngle + 180), 360) + 360, 360) - 180; // NOLINT
   lastAngle = newAngle;
   heading = heading + frc::Rotation2d(degree_t{delta * 1.02466666667});
+  frc::SmartDashboard::PutNumber("gyro angle", fmod(m_gyro.GetAngle(),360));
+
   return heading;
 }
 
 void SwerveDrive::resetHeading(){
   m_gyro.Reset();
+  
 }
+
 
 void SwerveDrive::resetOdometry(const frc::Pose2d pose){
   m_odometry.ResetPosition(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, pose);
