@@ -20,6 +20,7 @@ using namespace frc;
 
 class Winch : public frc2::SubsystemBase{
 public:
+    Winch();
     Winch(int motor);
 
     void resetMotor();
@@ -31,6 +32,7 @@ public:
 
     double getOutputCurrent();
     double getAppliedOutput();
+    double getMotorTemp();
 
     void setWinchPosition(double position); // position in linear distance from ground
 

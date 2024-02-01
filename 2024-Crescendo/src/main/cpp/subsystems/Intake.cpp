@@ -1,6 +1,8 @@
 #include "subsystems/Intake.h"
-#include <frc/smartdashboard/SmartDashboard.h>
+
 #include <frc/smartdashboard/Mechanism2d.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+
 #include <cmath>
 #include <iostream>
 
@@ -9,16 +11,14 @@ using namespace rev;
 using namespace std;
 using namespace MathConstants;
 
-
 Intake::Intake(int motor, int sensor)
-    :   m_intakeMotor(motor, CANSparkLowLevel::MotorType::kBrushless)  
-{
+    : m_intakeMotor(motor, CANSparkLowLevel::MotorType::kBrushless) {
     resetMotor();
 }
 
-void Intake::resetMotor(){
+void Intake::resetMotor() {
     m_intakeMotor.RestoreFactoryDefaults();
-  
+
     // m_intakeController.SetP(kiP);
     // m_intakeController.SetI(kaI);
     // m_intakeController.SetD(kaD);
@@ -35,67 +35,53 @@ void Intake::resetMotor(){
     m_intakeMotor.EnableVoltageCompensation(12.0);
     m_intakeMotor.SetSmartCurrentLimit(20, 25);
 
-    m_encoder.SetPositionConversionFactor(1.0/intakeRatio);
+    m_encoder.SetPositionConversionFactor(1.0 / intakeRatio);
 }
 
-void Intake::intakeNote(){ // intake until note collected
-    if(!holdingNote){
+void Intake::intakeNote() {  // intake until note collected
+    if (!holdingNote) {
         m_intakeMotor.Set(1.0);
-        if(m_intakeMotor.GetOutputCurrent()>loadedCurrent){
+        if (m_intakeMotor.GetOutputCurrent() > loadedCurrent) {
             indexNote();
             holdingNote = true;
             state = held;
         }
-    }else if(holdingNote){
+    } else if (holdingNote) {
         indexNote();
     }
 }
-void Intake::indexNote(){ // move note to indexer spot
-    if(holdingNote){
+void Intake::indexNote() {  // move note to indexer spot
+    if (holdingNote) {
         // state = 1;
-        //move the note to the beambreak
+        // move the note to the beambreak
         state = indexed;
     }
 }
-void Intake::shootNote(){ // give note to shooter 
-    if(holdingNote){
+void Intake::shootNote() {  // give note to shooter
+    if (holdingNote) {
         m_intakeMotor.Set(1);
-        if(m_intakeMotor.GetOutputCurrent()<freeCurrent){
+        if (m_intakeMotor.GetOutputCurrent() < freeCurrent) {
             holdingNote = false;
             state = IntakeConstants::empty;
         }
     }
 }
-void Intake::reverseIntake(){ // in case of 2 notes and need to eject
+void Intake::reverseIntake() {  // in case of 2 notes and need to eject
     m_intakeMotor.Set(-0.35);
-    if(m_intakeMotor.GetOutputCurrent()<freeCurrent){
+    if (m_intakeMotor.GetOutputCurrent() < freeCurrent) {
         holdingNote = false;
         IntakeConstants::empty;
     }
 }
 
-void Intake::setSpeed(double speed){
-    m_intakeMotor.Set(speed);
-}
-double Intake::getSpeed(){
-    return m_encoder.GetVelocity();
-}
-bool Intake::getNote(){
-    return holdingNote;
-}
+void Intake::setSpeed(double speed) { m_intakeMotor.Set(speed); }
+double Intake::getSpeed() { return m_encoder.GetVelocity(); }
+bool Intake::getNote() { return holdingNote; }
 
-double Intake::getOutputCurrent(){
-    return m_intakeMotor.GetOutputCurrent();
-}
+double Intake::getOutputCurrent() { return m_intakeMotor.GetOutputCurrent(); }
 
-int Intake::getState(){
-    return state;
-}
+int Intake::getState() { return state; }
 
-void Intake::setState(int state){
-    this->state = state;
-}
+void Intake::setState(int state) { this->state = state; }
 
-void Intake::Periodic(){
-
-}
+void Intake::Periodic() {}

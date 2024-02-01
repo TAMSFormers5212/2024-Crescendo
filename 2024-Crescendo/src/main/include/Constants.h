@@ -17,11 +17,16 @@
 namespace PortConstants {
 
 
-//LEDS?
-//vision or other accessories
+    //LEDS?
+    //vision or other accessories
 
-constexpr int kMXP = 2;
+    constexpr int kMXP = 2; // mxp port
 
+    //digital io 
+    constexpr int beamBreakIO = 0; // digital io pins
+
+
+    //analog in - the only ones we're using are the swerve encoders and those are in SwerveConstants
 
 } 
 
@@ -125,10 +130,6 @@ namespace SwerveModuleConstants {//per swerve module
     constexpr double kyD = 0.0;
     constexpr double kyFF = 0.00000;
 
-    constexpr double kvP = 0.05;
-    constexpr double kvI = 0.01;
-    constexpr double kvD = 0.0001;
-    constexpr double kvFF = 0.0;
     //possible heaving, x, and y PID for auto/pathplanning
 
     constexpr double kRampTimeSeconds = 0.1; // slew rate limiter (delay on acceleration)
@@ -180,6 +181,8 @@ namespace ArmConstants{
     constexpr int encoder = 2; // depends on what encoder. planning for a rev through bore 
     // constexpr int limitSwitch = 1;
 
+    constexpr double encoderOffset = 0;
+
     constexpr int armRatio = 96; // 16:1 maxplanetary * 6:1 sprocket
     
     constexpr double kaP = 0.0;
@@ -217,6 +220,8 @@ namespace ShooterConstants{
 }
 
 namespace IntakeConstants{
+    constexpr int motor = 1;
+
     constexpr double intakeRatio = 2.0;
 
     constexpr double loadedCurrent = 10.0; // current when note is held
@@ -229,6 +234,10 @@ namespace IntakeConstants{
 }
 
 namespace WinchConstants{
+    constexpr int leftWinchMotor = 13;
+    constexpr int rightWinchMotor = 14;
+
+
     constexpr double winchRatio = 60;
     constexpr units::inch_t winchDiameter = 0.5_in;
     constexpr units::inch_t heightToTravel = 27_in; // distance from chain to winch, aka max winchable distance
@@ -271,3 +280,47 @@ namespace PoseConstants{
         constexpr double armPose = 0;
     }
 }
+
+namespace VisionConstants{
+
+    //vision pid constants
+    constexpr double kvP = 0.05;
+    constexpr double kvI = 0.01;
+    constexpr double kvD = 0.0001;
+    constexpr double kvFF = 0.0;
+
+    constexpr units::inch_t limelightHeight = 8.5_in;
+
+    constexpr double limelightAngleback = 5;//degrees tilted back
+    constexpr double limelightAngleAboveHorizontal= 95;
+    constexpr double cameraAngleAboveHorizontal = 50;
+    
+    constexpr double TagHeight = 8;// height of the tags
+    constexpr double TagCenterHeight = 4; // center of the tag from the middle
+
+    // tags are measured from the carpet to the bottom of the tag
+    constexpr double speakerTagHeight = 4*12+3+7.0/8; // height in inches
+    constexpr double sourceTagHeight = 4*12+1.0/8;
+    constexpr double ampTagHeight = 4 * 12 + 1.0 / 8;
+    constexpr double stageTagHeight = 4*12-0.5;
+
+    // 0. speaker center, 1. speaker side, 2. amp, 3. stage amp, 4. stage source, 5. stage center, 6. source close, 7. source far
+    // constexpr std::array<int, 8> redTags = {4, 3, 5, 12, 11, 13, 10, 9};
+    // constexpr std::array<int, 8> blueTags = {7, 8, 6, 15, 16, 14, 1, 2};
+    constexpr int redSpeakerCenter = 4;
+    constexpr int redSpeakerSide = 3;
+    constexpr int redAmp = 5;
+    constexpr int redStageAmp = 12;
+    constexpr int redStageSource = 11;
+    constexpr int redStageCenter = 13;
+    constexpr int redSourceClose = 10;
+    constexpr int redSourceFar = 9;
+    constexpr int blueSpeakerCenter = 7;
+    constexpr int blueSpeakerSide = 8;
+    constexpr int blueAmp = 6;
+    constexpr int blueStageAmp = 15;
+    constexpr int blueStageSource = 16;
+    constexpr int blueStageCenter = 14;
+    constexpr int blueSourceClose = 1;
+    constexpr int blueSourceFar = 2;
+} 

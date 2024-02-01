@@ -1,79 +1,80 @@
-// #pragma once
+#pragma once
 
-// #include <frc2/command/CommandPtr.h>
-// #include <frc2/command/SubsystemBase.h>
+#include <frc2/command/CommandPtr.h>
+#include <frc2/command/SubsystemBase.h>
 
-// #include <frc/controller/PIDController.h>
-// #include <frc/controller/ProfiledPIDController.h>
+#include <frc/controller/PIDController.h>
+#include <frc/controller/ProfiledPIDController.h>
 
-// #include <frc/AnalogEncoder.h>
+#include <frc/AnalogEncoder.h>
 
-// #include <rev/CANSparkMax.h>
-// #include <rev/SparkRelativeEncoder.h>
-// #include <rev/SparkPIDController.h>
-// // #include <rev/ThroughBoreEncoder.h>
+#include <rev/CANSparkMax.h>
+#include <rev/SparkRelativeEncoder.h>
+#include <rev/SparkPIDController.h>
+// #include <rev/ThroughBoreEncoder.h>
 
-// // clean up include list once subclasses are finished
+// clean up include list once subclasses are finished
 
-// #include <Constants.h>
-// #include "Arm.h"
-// #include "Intake.h"
-// #include "Shooter.h"
-// #include "Winch.h"
+#include <Constants.h>
+#include "Arm.h"
+#include "Intake.h"
+#include "Shooter.h"
+#include "Winch.h"
 
-// using namespace std;
+using namespace std;
 
-// class Superstructure : public frc2::SubsystemBase{
+class Superstructure : public frc2::SubsystemBase{
 
-// public:
+public:
 
-//     Superstructure(Arm arm, Intake intake, Shooter shooter); // arm, intake, shooter, winch
+    // Superstructure(Arm arm, Intake intake, Shooter shooter, Winch leftWinch, Winch rightWinch); // arm, intake, shooter, winch
+    Superstructure();
 
-//     void resetSuperstructure();
+    void resetSuperstructure();
 
-//     //set positions and state control
-//     void setToIntake();
-//     void intakeNote();
-//     void indexNote();
-//     void aimShooter();
-//     void speakerShot();
-//     void ampShot();
-//     void raiseToClimb();
-//     void climb();
+    //set positions and state control
+    void setToIntake();
+    void intakeNote();
+    void indexNote();
+    void aimShooter();
+    void speakerShot();
+    void ampShot();
+    void raiseToClimb();
+    void climb();
 
-//     //utility control
-//     void setIntake(double speed);
-//     void setShooter(double speed);
-//     void setArm(double position);
-//     void setLeftWinchPosition(double position);
-//     void setRightWinchPosition(double position);
-//     void setLeftWinchSpeed(double speed);
-//     void setRightWinchSpeed(double speed);
+    //utility control
+    void setIntake(double speed);
+    void setShooter(double speed);
+    void setArm(double position);
+    void setLeftWinchPosition(double position);
+    void setRightWinchPosition(double position);
+    void setLeftWinchSpeed(double speed);
+    void setRightWinchSpeed(double speed);
 
-//     void Periodic() override;
+    void Periodic() override;
 
-// private: 
+private: 
 
-// //winch
-// //2 motors total (1 motor per winch)
-//     Winch leftWinch;
-//     Winch rightWinch;
-// //arm
-// //2 motors
-//     Arm arm;
+//winch
+//2 motors total (1 motor per winch)
+    Winch m_leftWinch;
+    Winch m_rightWinch;
+//arm
+//2 motors
+    Arm m_arm;
 
-// //intake
-// //1 motor
-//     Intake intake;
+//intake
+//1 motor
+    Intake m_intake;
 
-// //shooter
-// //2 motors
-//     Shooter shooter;
+//shooter
+//2 motors
+    Shooter m_shooter;
 
-// //2+2+1+2+8 = 15
-// // 1 for powerering coprocessor?
+//2+2+1+2+8 = 15
+// 1 for powerering coprocessor?
 
-//     // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+    // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
-// };
+};
 
