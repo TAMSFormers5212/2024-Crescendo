@@ -23,7 +23,6 @@ class SwerveDrive : public frc2::SubsystemBase{
 public:
 
     AHRS m_gyro{frc::SPI::Port::kMXP};
-
     SwerveDrive();
 
     frc::Pose2d AveragePose();

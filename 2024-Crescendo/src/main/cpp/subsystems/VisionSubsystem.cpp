@@ -6,7 +6,12 @@
 #include "networktables/NetworkTableValue.h"
 #include <span>
 
-VisionSubsystem::VisionSubsystem() {
+VisionSubsystem::VisionSubsystem()
+    : output(),
+      distError(),
+      pid(kvP, kvI, kvD)
+      {
+  
   // Implementation of subsystem constructor goes here.
 }
 
@@ -24,13 +29,52 @@ bool VisionSubsystem::VisionCondition() {
 void VisionSubsystem::Periodic() {
   // Implementation of subsystem periodic method goes here.
   std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-  double targetOffsetAngle_Horizontal = table->GetNumber("tx",0.0);
-  double targetOffsetAngle_Vertical = table->GetNumber("ty",0.0);
-  double targetArea = table->GetNumber("ta",0.0);
-  double targetSkew = table->GetNumber("ts",0.0);
-  frc::SmartDashboard::PutNumber("xcam", targetOffsetAngle_Horizontal);
-  frc::SmartDashboard::PutNumber("ycam", targetOffsetAngle_Vertical);
+    frc::PIDController pid(kvP, kvI, kvD);
+            double targetOffsetAngle_Vertical = table->GetNumber("ty", 0.0);
 
+            double limelightMountAngleDegrees = 5;
+
+            double limelightLensHeightInches = 8.5;
+            
+            double goalHeightInches = 12; 
+
+            double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
+            double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
+
+            //calculate distance
+            double distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches)/tan(angleToGoalRadians);
+            float KpDistance = -0.1f;  // Proportional control constant for distance
+            float desired_distance = 10;
+            float distance_error = abs(desired_distance-distanceFromLimelightToGoalInches)*KpDistance;
+            setDistanceError(distance_error);
+             
+            frc::SmartDashboard::PutNumber("up angle", targetOffsetAngle_Vertical);
+            frc::SmartDashboard::PutNumber("distance", distanceFromLimelightToGoalInches);
+            double targetOffsetAngle_Horizontal = table->GetNumber("tx",0.0);
+            double heading_error = targetOffsetAngle_Horizontal;
+            // pid.SetSetpoint(0);
+            frc::SmartDashboard::PutNumber("heading", heading_error);
+            double output = pid.Calculate(heading_error, 0); 
+            frc::SmartDashboard::PutNumber("pid", output);   
+            setOutput(output);
+            
+            // pid.Calculate();
+
+}
+
+void VisionSubsystem::setOutput(double op){
+  output = op;
+}
+double VisionSubsystem::getOutput(){
+  return output;
+}
+
+void VisionSubsystem::setDistanceError(double dist_error){
+  distError = dist_error;
+}
+
+double VisionSubsystem::getDistanceError(){
+  return distError;
 }
 
 void VisionSubsystem::SimulationPeriodic() {

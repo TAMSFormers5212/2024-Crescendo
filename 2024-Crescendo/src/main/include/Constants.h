@@ -125,10 +125,10 @@ namespace SwerveModuleConstants {//per swerve module
     constexpr double kyD = 0.0;
     constexpr double kyFF = 0.00000;
 
-    constexpr float kvP = 0.05f;
-    constexpr float kvI = 0.01f;
-    constexpr float kvD = 0.0001f;
-    constexpr float kvFF = 0.0f;
+    constexpr double kvP = 0.05;
+    constexpr double kvI = 0.01;
+    constexpr double kvD = 0.0001;
+    constexpr double kvFF = 0.0;
     //possible heaving, x, and y PID for auto/pathplanning
 
     constexpr double kRampTimeSeconds = 0.1; // slew rate limiter (delay on acceleration)
