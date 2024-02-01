@@ -270,8 +270,8 @@
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/pid",
-              "_title": "pid",
+              "_source0": "network_table:///SmartDashboard/top left o abs",
+              "_title": "top left o abs",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -401,6 +401,45 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/gyro angle",
               "_title": "gyro angle",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "9,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/distance",
+              "_title": "distance",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/up angle",
+              "_title": "up angle",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "1,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/pid",
+              "_title": "pid",
               "_glyph": 148,
               "_showGlyph": false
             }

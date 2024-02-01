@@ -21,6 +21,7 @@
 #include "networktables/NetworkTableValue.h"
 #include <frc/controller/PIDController.h>
 
+#include <math.h>
 using namespace std;
 using namespace frc2;
 using namespace OIConstants;
@@ -42,10 +43,10 @@ RobotContainer::RobotContainer() {
   m_drive.SetDefaultCommand(RunCommand(
     [this] {
 
-        double speedMultiplier = (1-m_driverController.GetRawAxis(Joystick::ThrottleSlider))*0.5;
-        double XAxis = -m_driverController.GetRawAxis(Joystick::XAxis)*speedMultiplier;
-        double YAxis = m_driverController.GetRawAxis(Joystick::YAxis)*speedMultiplier;
-        double RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis)*speedMultiplier*4;
+        speedMultiplier = (1-m_driverController.GetRawAxis(Joystick::ThrottleSlider))*0.5;
+        XAxis = -m_driverController.GetRawAxis(Joystick::XAxis)*speedMultiplier;
+        YAxis = m_driverController.GetRawAxis(Joystick::YAxis)*speedMultiplier;
+        RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis)*speedMultiplier*4;
 
         frc::SmartDashboard::PutNumber("speed", speedMultiplier*100);
         int rotDeadband = Joystick::deadband;
@@ -63,24 +64,26 @@ RobotContainer::RobotContainer() {
           m_drive.moveToAngle(0, 0.3);
         }
         std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-            frc::PIDController pid(kvP, kvI, kvD);
-            
-            double targetOffsetAngle_Horizontal = table->GetNumber("tx",0.0);
-            double heading_error = targetOffsetAngle_Horizontal;
-            // pid.SetSetpoint(0);
-            frc::SmartDashboard::PutNumber("heading", heading_error);
-            double output = pid.Calculate(heading_error, 0);   
-            // pid.Calculate();
+   
+          
         if (m_driverController.GetRawButton(7)){
             
             
-            RotAxis += output * speedMultiplier;
+            RotAxis += m_vision.getOutput() * speedMultiplier;
         }
+        if (m_driverController.GetRawButton(8)){
+          if (m_vision.getDistanceError()>0&& m_vision.getDistanceError()<25){
+            YAxis += m_vision.getDistanceError()*speedMultiplier;
+          }
+            
+            
+          }
         if (m_driverController.GetRawButton(6)){
           m_drive.tankDrive(XAxis,YAxis);
         }
-        frc::SmartDashboard::PutNumber("pid", output);  
+        
         // else {
+
         m_drive.swerveDrive(XAxis, YAxis, RotAxis, true);
         // }
 
@@ -94,6 +97,12 @@ RobotContainer::RobotContainer() {
         frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
     },
     {&m_drive}
+  ));
+  m_vision.SetDefaultCommand(RunCommand(
+    [this] {
+      
+    }, 
+    {&m_vision}
   ));
 }
 

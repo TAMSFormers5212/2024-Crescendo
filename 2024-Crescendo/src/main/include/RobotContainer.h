@@ -10,13 +10,16 @@
 
 #include "Constants.h"
 #include "subsystems/SwerveDrive.h" 
-
+#include "subsystems/VisionSubsystem.h"
 using namespace OIConstants;
 
 class RobotContainer {
  public:
   RobotContainer();
-
+    double RotAxis;
+    double speedMultiplier;
+    double XAxis;
+    double YAxis;
   frc2::CommandPtr GetAutonomousCommand();
 
  private:
@@ -24,7 +27,7 @@ class RobotContainer {
   // frc::GenericHID m_operatorController{kOperatorControllerPort};
 
   SwerveDrive m_drive;
-
+  VisionSubsystem m_vision;
 
   void ConfigureBindings();
 };
