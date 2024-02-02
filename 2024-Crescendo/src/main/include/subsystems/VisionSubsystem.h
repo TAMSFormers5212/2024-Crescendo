@@ -39,6 +39,7 @@ class VisionSubsystem : public frc2::SubsystemBase {
 
    private:
     std::shared_ptr<nt::NetworkTable> table;
+    std::vector<double, std::allocator<double>> table2;
     frc::PIDController pid;
     double output;
     double distError;

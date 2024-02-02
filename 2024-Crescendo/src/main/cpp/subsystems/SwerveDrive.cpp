@@ -58,7 +58,7 @@ frc::Rotation2d SwerveDrive::getGyroHeading() {  // i have no f*cking clue how t
     double delta = std::fmod(std::fmod((newAngle - lastAngle + 180), 360) + 360, 360) - 180;  // NOLINT
     lastAngle = newAngle;
     heading = heading + frc::Rotation2d(degree_t{delta * 1.02466666667});
-    frc::SmartDashboard::PutNumber("gyro angle", fmod(m_gyro.GetAngle(), 360));
+    //frc::SmartDashboard::PutNumber("gyro angle", fmod(m_gyro.GetAngle(), 360));
 
     return heading;
 }

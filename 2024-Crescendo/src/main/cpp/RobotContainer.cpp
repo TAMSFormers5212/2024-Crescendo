@@ -78,10 +78,10 @@ RobotContainer::RobotContainer() {
                 RotAxis += m_vision.getOutput() * speedMultiplier;
             }
             if (m_driverController.GetRawButton(8)) {
-                if (m_vision.getDistanceError() > 0 &&
-                    m_vision.getDistanceError() < 25) {
+                //if (m_vision.getDistanceError() > 0 &&
+                    //m_vision.getDistanceError() < 25) {
                     YAxis += m_vision.getDistanceError() * speedMultiplier;
-                }
+                //}
             }
             if (m_driverController.GetRawButton(6)) {
                 m_drive.tankDrive(XAxis, YAxis);
