@@ -12,6 +12,7 @@
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableInstance.h"
 #include "networktables/NetworkTableValue.h"
+#include <cameraserver/CameraServer.h>
 
 using namespace SwerveModuleConstants;
 
@@ -35,12 +36,20 @@ class VisionSubsystem : public frc2::SubsystemBase {
 
     void setDistanceError(double dist_error);
     double getDistanceError();
+
+    void setLedOn(int ledsOn);
+    int getLedOn();
     void SimulationPeriodic() override;
+    
 
    private:
+    cs::UsbCamera usbCam = frc::CameraServer::StartAutomaticCapture();
+    cs::CvSink m_cvSink = frc::CameraServer::GetVideo();
+    cs::CvSource m_outputStream = frc::CameraServer::PutVideo("front", 640, 480);
     std::shared_ptr<nt::NetworkTable> table;
     std::vector<double, std::allocator<double>> table2;
     frc::PIDController pid;
     double output;
     double distError;
+    int ledOn;
 };

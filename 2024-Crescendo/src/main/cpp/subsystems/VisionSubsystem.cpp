@@ -11,7 +11,11 @@
 using namespace VisionConstants;
 using namespace MathConstants;
 
-VisionSubsystem::VisionSubsystem() : output(), distError(), pid(kvP, kvI, kvD) {
+VisionSubsystem::VisionSubsystem() 
+: output(0), distError(0), pid(kvP, kvI, kvD), ledOn(1)
+ {
+  usbCam.SetResolution(640, 480);
+  
 }
 
 frc2::CommandPtr VisionSubsystem::VisionMethodCommand() {
@@ -25,6 +29,8 @@ bool VisionSubsystem::VisionCondition() {
 void VisionSubsystem::Periodic() {
     table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
     table2 = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("tid", std::vector<double>(6));
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", ledOn);
+
     // frc::PIDController pid(kvP, kvI, kvD); dont need to recreate pid every
     // periodic cycle
     double targetOffsetAngle_Vertical = table->GetNumber("ty", 0.0);
@@ -49,7 +55,7 @@ void VisionSubsystem::Periodic() {
     double angleToGoalRadians = angleToGoalDegrees * (pi / 180.0);
 
     // calculate distance
-    double distanceFromLimelightToGoalInches = (VisionConstants::speakerTagHeight - VisionConstants::limelightHeight.value()) / tan(angleToGoalRadians);
+    double distanceFromLimelightToGoalInches = (VisionConstants::ampTagHeight - VisionConstants::limelightHeight.value()) / tan(angleToGoalRadians);
     float KpDistance = -0.1f;  // Proportional control constant for distance 
     float desired_distance = 64;
     float distance_error = abs(desired_distance - distanceFromLimelightToGoalInches) * KpDistance;
@@ -72,6 +78,10 @@ void VisionSubsystem::Periodic() {
 void VisionSubsystem::setOutput(double op) { output = op; }
 
 double VisionSubsystem::getOutput() { return output; }
+
+void VisionSubsystem::setLedOn(int ledsOn) {ledOn = ledsOn;}
+int VisionSubsystem::getLedOn(){return ledOn;}
+
 
 void VisionSubsystem::setDistanceError(double dist_error) {
     distError = dist_error;

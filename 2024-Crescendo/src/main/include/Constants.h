@@ -289,10 +289,10 @@ namespace VisionConstants{
     constexpr double kvD = 0.0001;
     constexpr double kvFF = 0.0;
 
-    constexpr units::inch_t limelightHeight = 6_in;
+    constexpr units::inch_t limelightHeight = 7_in;//14 on cart, 7 off
 
     constexpr double limelightAngleback = 60;//degrees tilted back
-    constexpr double limelightAngleAboveHorizontal= 30.0;
+    constexpr double limelightAngleAboveHorizontal= 39.0;
     
     constexpr double TagHeight = 8;// height of the tags
     constexpr double TagCenterHeight = 4; // center of the tag from the middle
