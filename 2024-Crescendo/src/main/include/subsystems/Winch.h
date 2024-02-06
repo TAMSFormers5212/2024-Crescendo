@@ -3,8 +3,8 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/DutyCycleEncoder.h>
 #include <frc/controller/PIDController.h>
-#include <frc/controller/ProfiledPIDController.h>
-#include <frc/controller/ArmFeedForward.h>
+// #include <frc/controller/ProfiledPIDController.h>
+// #include <frc/controller/ArmFeedForward.h>
 #include <frc/trajectory/TrapezoidProfile.h>
 
 #include <rev/CANSparkMax.h>
@@ -35,6 +35,7 @@ public:
     double getMotorTemp();
 
     void setWinchPosition(double position); // position in linear distance from ground
+    void setWinchSpeed(double speed);
 
 
     void Periodic() override;

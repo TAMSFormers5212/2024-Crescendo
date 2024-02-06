@@ -7,9 +7,13 @@
 #include <units/length.h>
 #include <units/angle.h>
 #include <units/angular_velocity.h>
+#include <units/angular_acceleration.h>
+#include <units/acceleration.h>
 #include <units/math.h>
 #include <units/velocity.h>
-#include <units/base.h>
+#include <units/length.h>
+#include <units/time.h>
+// #include <units/base.h>
 #include <string>
 #include <vector>
 #include <array>
@@ -23,10 +27,9 @@ namespace PortConstants {
     constexpr int kMXP = 2; // mxp port
 
     //digital io 
-    constexpr int beamBreakIO = 0; // digital io pins
 
 
-    //analog in - the only ones we're using are the swerve encoders and those are in SwerveConstants
+    //analog in - the only ones we're using rn are the swerve encoders and those are in SwerveConstants
 
 } 
 
@@ -183,18 +186,21 @@ namespace ArmConstants{
 
     constexpr double encoderOffset = 0;
 
-    constexpr int armRatio = 96; // 16:1 maxplanetary * 6:1 sprocket
+    constexpr double sprocketRatio = 5.5;
+    constexpr int planetaryRatio = 20;
+    constexpr int armRatio = 110; // 20:1 maxplanetary * 66:12 sprocket
     
     constexpr double kaP = 0.0;
     constexpr double kaI = 0.0;
     constexpr double kaD = 0.0;
     constexpr double kaFF = 0.0;
     constexpr double kaIz = 0.0;
+    constexpr units::second_t kaT = 20_ms;
 
     constexpr int kMaxOutput = 1;
     constexpr int kMinOutput = -1;
-    constexpr double maxAccel = 10;
-    constexpr double maxVelo = 20;
+    constexpr units::meters_per_second_squared_t maxAccel = 10.0_mps_sq;
+    constexpr units::meters_per_second_t maxVelo = 20.0_mps;
     constexpr double allowedError = 0.0;
 
     constexpr double kaS = 0.0;
@@ -215,12 +221,15 @@ namespace ShooterConstants{
     constexpr double ksFF = 0.0;
 
     constexpr units::revolutions_per_minute_t maxNeoRpm = 5700_rpm;
+    constexpr units::revolutions_per_minute_t maxWheelRpm = 9000_rpm;//replace this value with whatever max andymark says
     constexpr units::feet_per_second_t maxExitVelocity = 90_fps;
 
 }
 
 namespace IntakeConstants{
     constexpr int motor = 1;
+
+    constexpr int beamBreakIO = 0;  // digital io pins
 
     constexpr double intakeRatio = 2.0;
 
@@ -250,44 +259,59 @@ namespace WinchConstants{
 }
 
 namespace PoseConstants{
-    namespace stow{
-        constexpr int intakeRPM = 0;
-        constexpr int shooterRPM = 0; 
-        constexpr double armPose = 0;
-    }
+    //normal setpoints
 
-    namespace groundIntake{
-        constexpr int intakeRPM = 1000;
-        constexpr int shooterRPM = 0;
-        constexpr double armPose = 0; 
-    }
+    //Amp
+    constexpr double armAmp = 0;
 
-    namespace amp{
-        constexpr int intakeRPM = 0;
-        constexpr int shooterRPM = 100;
-        constexpr double armPose = 0;
-    }
+    //Climb
+    constexpr double armClimb = 0;
+    constexpr double intakeTrapSpeed = 0;
 
-    namespace trap{
-        constexpr int intakeRPM = -1000;
-        constexpr int shooterRPM = 0;
-        constexpr double armPose = 0;
-    }
+    //lookup table design
+    //proven setpoints and just interpolate inbetween those values
 
-    namespace aim{
-        constexpr int intakeRPM = 0;
-        constexpr int shooterRPM = 3000;
-        constexpr double armPose = 0;
-    }
+    //distance: 3ft
+    constexpr units::inch_t distance3 = 36_in;
+    constexpr double shooterRPM3 = 0;
+    constexpr double armAngle3 = 0;
+    
+    //distance: 5ft
+    constexpr units::inch_t distance5 = 60_in;
+    constexpr double shooterRPM5 = 0;
+    constexpr double armAngle5 = 0;
+
+    //distance: 7ft
+    constexpr units::inch_t distance7 = 84_in;
+    constexpr double shooterRPM7 = 0;
+    constexpr double armAngle7 = 0;
+
+    // distance: 9ft
+    constexpr units::inch_t distance9 = 108_in;
+    constexpr double shooterRPM9 = 0;
+    constexpr double armAngle9 = 0;
+
+    // distance: 11ft
+    constexpr units::inch_t distance11 = 132_in;
+    constexpr double shooterRPM11 = 0;
+    constexpr double armAngle11 = 0;
+
+    // distance: 13ft
+    constexpr units::inch_t distance13 = 156_in;
+    constexpr double shooterRPM13 = 0;
+    constexpr double armAngle13 = 0;
+    //max distance of vision for now
 }
 
 namespace VisionConstants{
 
-    //vision pid constants
+    //vision pid constants for aiming
     constexpr double kvP = 0.05;
     constexpr double kvI = 0.01;
     constexpr double kvD = 0.0001;
     constexpr double kvFF = 0.0;
+
+    //vision pid constants for translating
 
     constexpr units::inch_t limelightHeight = 7_in;//14 on cart, 7 off
 

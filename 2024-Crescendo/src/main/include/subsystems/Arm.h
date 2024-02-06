@@ -4,8 +4,9 @@
 #include <frc/DutyCycleEncoder.h>
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ProfiledPIDController.h>
-#include <frc/controller/ArmFeedForward.h>
+// #include <frc/controller/ArmFeedForward.h>
 #include <frc/trajectory/TrapezoidProfile.h>
+
 
 #include <rev/CANSparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
@@ -49,11 +50,13 @@ private:
 
 //failed attempt at using ProfiledPIDController. i'll just try smartmotion instead
     // units::velocity::feet_per_second maxVelocity{maxVelo};
+    // TrapezoidProfile<units::meters> profile{
+    //     TrapezoidProfile<units::meters>::Constraints{maxVelo, maxAccel}
+    // };
 
-    // TrapezoidProfile m_armConstraints{maxVelo, maxAccel};
-    //  TrapezoidProfile::Cons
-    //   {maxVelo, maxAccel};
-    // ProfiledPIDController m_armController = new ProfiledPIDController(kaP, kaI, kaD, m_armConstraints, units::second_t(20_ms));
+    // TrapezoidProfile<units::degree_t>::State m_goal;
+    // TrapezoidProfile<units::degree_t>::State m_setpoint;
+
     // ArmFeedforward m_armFF = new ArmFeedforward(units::volt_t{kaS}, units::volt_t{kaG}, units::unit_t< kv_unit > kaV, units::unit_t< ka_unit > kaA);
 
 

@@ -32,6 +32,10 @@ public:
 
     void setSpeed(double speed);
     double getSpeed();
+    void setTopSpeed(double speed);
+    double getTopSpeed();
+    void setBottomSpeed(double speed);
+    double getBottomSpeed();
 
     void Periodic() override;
 
@@ -40,8 +44,6 @@ private:
     CANSparkMax m_topMotor; 
     CANSparkMax m_bottomMotor;
 
-    // these may be modified if we don't use the design where the left and right sides can have 
-    // different speeds to create spin. A high enough speed/rpm and it won't matter
     SparkRelativeEncoder m_topEncoder = m_topMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
     SparkRelativeEncoder m_bottomEncoder = m_bottomMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
 

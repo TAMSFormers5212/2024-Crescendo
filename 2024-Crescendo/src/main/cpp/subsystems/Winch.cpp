@@ -56,7 +56,11 @@ double Winch::getAppliedOutput() { return m_winchMotor.GetAppliedOutput(); }
 double Winch::getMotorTemp() { return m_winchMotor.GetMotorTemperature(); }
 
 void Winch::setWinchPosition(double position) {  // position in linear distance from ground
-    m_winchController.SetReference(heightToTravel.value(), CANSparkLowLevel::ControlType::kPosition);
+    m_winchController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);
+}
+
+void Winch::setWinchSpeed(double speed) {  // speed of climb
+    m_winchController.SetReference(speed, CANSparkLowLevel::ControlType::kVelocity);
 }
 
 void Winch::Periodic() {}

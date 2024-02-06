@@ -43,12 +43,13 @@ class VisionSubsystem : public frc2::SubsystemBase {
     
 
    private:
-    cs::UsbCamera usbCam = frc::CameraServer::StartAutomaticCapture();
+    cs::UsbCamera usbCam = frc::CameraServer::StartAutomaticCapture(); //usb back camera
     cs::CvSink m_cvSink = frc::CameraServer::GetVideo();
     cs::CvSource m_outputStream = frc::CameraServer::PutVideo("front", 640, 480);
+
     std::shared_ptr<nt::NetworkTable> table;
     std::vector<double, std::allocator<double>> table2;
-    frc::PIDController pid;
+    frc::PIDController pid; // alignment pid
     double output;
     double distError;
     int ledOn;

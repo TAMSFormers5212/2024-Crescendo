@@ -20,6 +20,7 @@
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableInstance.h"
 #include "networktables/NetworkTableValue.h"
+
 using namespace std;
 using namespace frc2;
 using namespace OIConstants;
@@ -51,14 +52,14 @@ RobotContainer::RobotContainer() {
             RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis) * speedMultiplier * 4;
 
             frc::SmartDashboard::PutNumber("speed", speedMultiplier * 100);
-            int rotDeadband = Joystick::deadband;
-            if (abs(XAxis) < rotDeadband) {
+            // int rotDeadband = Joystick::deadband;
+            if (abs(XAxis) < Joystick::deadband) {
                 XAxis = 0;
             }
-            if (abs(YAxis) < rotDeadband) {
+            if (abs(YAxis) < Joystick::deadband) {
                 YAxis = 0;
             }
-            if (abs(RotAxis) < (rotDeadband)) {
+            if (abs(RotAxis) < Joystick::deadband) {
                 RotAxis = 0;
             }
 
@@ -71,8 +72,7 @@ RobotContainer::RobotContainer() {
             } else if (m_driverController.GetRawButton(12)) {
                 m_drive.moveToAngle(0, 0.3);
             }
-            std::shared_ptr<nt::NetworkTable> table =
-                nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+            // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
             if (m_driverController.GetRawButton(7)) {
                 RotAxis += m_vision.getOutput() * speedMultiplier;
@@ -87,31 +87,24 @@ RobotContainer::RobotContainer() {
                 m_drive.tankDrive(XAxis, YAxis);
             }
 
-            // else {
 
             m_drive.swerveDrive(XAxis, YAxis, RotAxis, true);
-            // }
 
-            // frc::SmartDashboard::PutNumber("x axis", XAxis);
-
-            // frc::SmartDashboard::PutNumber("theta", RotAxis);
-
-            //Led toggle
-            if (m_driverController.GetRawButtonPressed(9)) {
-                if (m_vision.getLedOn() == 3){
-                    m_vision.setLedOn(1);
-                }
-                else if(m_vision.getLedOn()==1){
-                    m_vision.setLedOn(3);
-                }
-                //m_drive.toggleOffset();
-            }
-            //frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
         },
         {&m_drive}));
     m_vision.SetDefaultCommand(RunCommand(
         [this] {
 
+            // Led toggle
+            if (m_driverController.GetRawButtonPressed(9)) {
+                if (m_vision.getLedOn() == 3) {
+                    m_vision.setLedOn(1);
+                } else if (m_vision.getLedOn() == 1) {
+                    m_vision.setLedOn(3);
+                }
+                // m_drive.toggleOffset();
+            }
+            // frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
         },
         {&m_vision}));
 }

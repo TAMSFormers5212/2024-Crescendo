@@ -29,8 +29,8 @@ void Arm::resetMotors() {
     m_leftController.SetIZone(kaIz);
     m_leftController.SetOutputRange(kMinOutput, kMaxOutput);
 
-    m_leftController.SetSmartMotionMaxAccel(maxAccel);
-    m_leftController.SetSmartMotionMaxVelocity(maxVelo);
+    m_leftController.SetSmartMotionMaxAccel(maxAccel.value());
+    m_leftController.SetSmartMotionMaxVelocity(maxVelo.value());
     m_leftController.SetSmartMotionMinOutputVelocity(0);
     m_leftController.SetSmartMotionAllowedClosedLoopError(allowedError);
     // m_leftController.
@@ -50,8 +50,8 @@ void Arm::resetMotors() {
     m_rightController.SetIZone(kaIz);
     m_rightController.SetOutputRange(kMinOutput, kMaxOutput);
 
-    m_rightController.SetSmartMotionMaxAccel(maxAccel);
-    m_rightController.SetSmartMotionMaxVelocity(maxVelo);
+    m_rightController.SetSmartMotionMaxAccel(maxAccel.value());
+    m_rightController.SetSmartMotionMaxVelocity(maxVelo.value());
     m_rightController.SetSmartMotionMinOutputVelocity(0);
     m_rightController.SetSmartMotionAllowedClosedLoopError(allowedError);
 
@@ -78,12 +78,19 @@ double Arm::getPosition() {
 double Arm::getRawPosition() { return m_absoluteEncoder.GetAbsolutePosition(); }
 
 void Arm::setPosition(double pose) {
-    m_rightController.SetReference(pose,
-                                   CANSparkLowLevel::ControlType::kSmartMotion);
+    //smart motion implementation
+    // m_rightController.SetReference(pose,
+    //                                CANSparkLowLevel::ControlType::kSmartMotion);
 
-    frc::SmartDashboard::PutNumber("arm ", getPosition());
-    frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
-    frc::SmartDashboard::PutNumber("right output ", m_rightMotor.GetAppliedOutput());
+    // m_goal = {units::meter_t(pose), units::meters_per_second_t(0)};
+    // frc::SmartDashboard::PutNumber("arm ", getPosition());
+    // frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
+    // frc::SmartDashboard::PutNumber("right output ", m_rightMotor.GetAppliedOutput());
 }
 
-void Arm::Periodic() {}
+void Arm::Periodic() {
+    //trapezoid profile implementation
+    // m_setpoint = profile.Calculate(kaT, m_setpoint, m_goal);
+
+    // m_rightController.SetReference(m_setpoint.position.value(), CANSparkLowLevel::ControlType::kPosition);
+}

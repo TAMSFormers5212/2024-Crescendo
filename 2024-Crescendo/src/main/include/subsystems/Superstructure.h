@@ -14,7 +14,7 @@
 // #include <rev/ThroughBoreEncoder.h>
 
 // clean up include list once subclasses are finished
-
+#include <vector>
 #include <Constants.h>
 #include "Arm.h"
 #include "Intake.h"
@@ -22,6 +22,7 @@
 #include "Winch.h"
 
 using namespace std;
+using namespace PoseConstants;
 
 class Superstructure : public frc2::SubsystemBase{
 
@@ -36,7 +37,8 @@ public:
     void setToIntake();
     void intakeNote();
     void indexNote();
-    void aimShooter();
+    void aimShooter(double armPosition, double shooterRpm);
+    void aimShooter(double distance);
     void speakerShot();
     void ampShot();
     void raiseToClimb();
@@ -71,10 +73,9 @@ private:
 //2 motors
     Shooter m_shooter;
 
-//2+2+1+2+8 = 15
-// 1 for powerering coprocessor?
-
     // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-
+    vector<units::inch_t> distances = {distance3, distance5, distance7, distance9, distance11, distance13};
+    vector<double> angles = {armAngle3, armAngle5, armAngle7, armAngle9, armAngle11, armAngle13};
+    vector<double> speeds = {shooterRPM3, shooterRPM5, shooterRPM7, shooterRPM9, shooterRPM11, shooterRPM13};
 };
 
