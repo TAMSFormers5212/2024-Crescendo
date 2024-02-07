@@ -14,6 +14,7 @@
 #include <units/length.h>
 #include <units/time.h>
 // #include <units/base.h>
+#include <numbers>
 #include <string>
 #include <vector>
 #include <array>

@@ -82,7 +82,10 @@ void Arm::setPosition(double pose) {
     // m_rightController.SetReference(pose,
     //                                CANSparkLowLevel::ControlType::kSmartMotion);
 
-    // m_goal = {units::meter_t(pose), units::meters_per_second_t(0)};
+    // TrapezoidProfile<units::meters>::State m_goal = {units::meter_t(pose), units::meters_per_second_t(0)};
+    // m_goalDistance = units::meter_t(pose);
+    // m_goalSpeed = units::meters_per_second_t(0);
+
     // frc::SmartDashboard::PutNumber("arm ", getPosition());
     // frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
     // frc::SmartDashboard::PutNumber("right output ", m_rightMotor.GetAppliedOutput());
@@ -90,7 +93,7 @@ void Arm::setPosition(double pose) {
 
 void Arm::Periodic() {
     //trapezoid profile implementation
-    // m_setpoint = profile.Calculate(kaT, m_setpoint, m_goal);
+    TrapezoidProfile<units::meters>::State m_setpoint = profile.Calculate(kaT, {m_setpointDistance, m_setpointSpeed}, {m_goalDistance, m_goalSpeed});
 
-    // m_rightController.SetReference(m_setpoint.position.value(), CANSparkLowLevel::ControlType::kPosition);
+    m_rightController.SetReference(m_setpoint.position.value(), CANSparkLowLevel::ControlType::kPosition);
 }

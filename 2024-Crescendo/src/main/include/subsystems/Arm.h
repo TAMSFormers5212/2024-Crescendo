@@ -4,8 +4,10 @@
 #include <frc/DutyCycleEncoder.h>
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ProfiledPIDController.h>
-// #include <frc/controller/ArmFeedForward.h>
+#include <frc/controller/ArmFeedForward.h>
+#include <frc/controller/SimpleMotorFeedforward.h>
 #include <frc/trajectory/TrapezoidProfile.h>
+#include <units/voltage.h>
 
 
 #include <rev/CANSparkMax.h>
@@ -48,16 +50,17 @@ private:
     SparkPIDController m_rightController = m_rightMotor.GetPIDController(); // follower
 
 
-//failed attempt at using ProfiledPIDController. i'll just try smartmotion instead
-    // units::velocity::feet_per_second maxVelocity{maxVelo};
-    // TrapezoidProfile<units::meters> profile{
-    //     TrapezoidProfile<units::meters>::Constraints{maxVelo, maxAccel}
-    // };
+    TrapezoidProfile<units::meters> profile{{maxVelo, maxAccel}};
 
-    // TrapezoidProfile<units::degree_t>::State m_goal;
+    // TrapezoidProfile<units::degree_t>::State m_goal{0_m, 0_mps}; // dont try this it doesn't buid
+    units::meter_t m_goalDistance = 0_m;
+    units::meters_per_second_t m_goalSpeed = 0_mps;
     // TrapezoidProfile<units::degree_t>::State m_setpoint;
+    units::meter_t m_setpointDistance = 0_m;
+    units::meters_per_second_t m_setpointSpeed = 0_mps;
 
-    // ArmFeedforward m_armFF = new ArmFeedforward(units::volt_t{kaS}, units::volt_t{kaG}, units::unit_t< kv_unit > kaV, units::unit_t< ka_unit > kaA);
+    //someone else will have to tune this. i've never done it before
+    // ArmFeedforward m_armFF = ArmFeedforward(units::volt_t{kaS}, units::volt_t{kaG}, units::unit_t< ArmFeedforward::kv_unit >{kaV}, units::unit_t< ArmFeedforward::kv_unit >{kaA});
 
 
     DutyCycleEncoder m_absoluteEncoder;
