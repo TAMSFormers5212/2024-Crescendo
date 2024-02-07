@@ -57,9 +57,15 @@ void VisionSubsystem::Periodic() {
     // calculate distance
     double distanceFromLimelightToGoalInches = (VisionConstants::ampTagHeight - VisionConstants::limelightHeight.value()) / tan(angleToGoalRadians);
     float KpDistance = -0.1f;  // Proportional control constant for distance 
-    float desired_distance = 64;
+    float desired_distance = 35;
     float distance_error = abs(desired_distance - distanceFromLimelightToGoalInches) * KpDistance;
-    setDistanceError(distance_error);
+    if (targetOffsetAngle_Vertical == 0){
+      setDistanceError(0);
+    }
+    else{
+      setDistanceError(distance_error);
+    }
+    
 
     frc::SmartDashboard::PutNumber("up angle", targetOffsetAngle_Vertical);
     frc::SmartDashboard::PutNumber("distance", distanceFromLimelightToGoalInches);
@@ -70,7 +76,10 @@ void VisionSubsystem::Periodic() {
     frc::SmartDashboard::PutNumber("heading", heading_error);
     double output = pid.Calculate(heading_error, 0);
     frc::SmartDashboard::PutNumber("pid", output);
-    setOutput(output);
+    if (targetOffsetAngle_Horizontal != 0){
+      setOutput(output);
+    }
+    
 
     // pid.Calculate();
 }
