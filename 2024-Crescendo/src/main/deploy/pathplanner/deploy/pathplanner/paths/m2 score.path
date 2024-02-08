@@ -73,7 +73,7 @@
   "folder": null,
   "previewStartingState": {
     "rotation": -150.09,
-    "velocity": 0
+    "velocity": 3.0
   },
   "useDefaultConstraints": true
 }
