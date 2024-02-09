@@ -21,10 +21,17 @@ class RobotContainer {
     double XAxis;
     double YAxis;
   frc2::CommandPtr GetAutonomousCommand();
+  frc2::CommandPtr getAutonomousCommand();
 
  private:
   frc::GenericHID m_driverController{kDriverControllerPort};
   // frc::GenericHID m_operatorController{kOperatorControllerPort};
+
+  // std::unique_ptr<frc2::Command> exampleAuto;
+  // std::unique_ptr<frc2::Command> pathfindToPickup;
+  // std::unique_ptr<frc2::Command> pathfindToScore;
+  // std::unique_ptr<frc2::Command> onTheFly;
+  // std::unique_ptr<frc2::Command> followOnTheFly;
 
   SwerveDrive m_drive;
   VisionSubsystem m_vision;

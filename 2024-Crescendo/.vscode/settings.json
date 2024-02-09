@@ -108,5 +108,6 @@
     "ios": "cpp",
     "locale": "cpp",
     "charconv": "cpp"
-}
+},
+"C_Cpp.errorSquiggles": "enabled"
 }

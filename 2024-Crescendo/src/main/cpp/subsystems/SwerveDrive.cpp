@@ -2,12 +2,20 @@
 
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <pathplanner/lib/auto/AutoBuilder.h>
+#include <pathplanner/lib/util/HolonomicPathFollowerConfig.h>
+#include <pathplanner/lib/util/PIDConstants.h>
+#include <pathplanner/lib/util/ReplanningConfig.h>
+#include <frc/geometry/Pose2d.h>
+#include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/DriverStation.h>
 
 #include <iostream>
 
 using namespace SwerveModuleConstants;
 using namespace MathConstants;
 using namespace units;
+using namespace pathplanner;
 
 SwerveDrive::SwerveDrive()
     : m_modules{{SwerveModule(topleft::driveMotor, topleft::steerMotor,
@@ -42,6 +50,31 @@ SwerveDrive::SwerveDrive()
     heading = frc::Rotation2d(degree_t{-m_gyro.GetYaw()});
     lastAngle = -m_gyro.GetYaw();
     // resetOdometry(m_poseEstimator.GetEstimatedPosition());
+    AutoBuilder::configureHolonomic(
+        [this](){ return OdometryPose(); }, // Robot pose supplier
+        [this](frc::Pose2d pose){ resetOdometry(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
+        [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+        [this](frc::ChassisSpeeds speeds){ swerveDrive(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
+        HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
+            PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
+            PIDConstants(5.0, 0.0, 0.0), // Rotation PID constants
+            4.5_mps, // Max module speed, in m/s
+            0.4_m, // Drive base radius in meters. Distance from robot center to furthest module.
+            ReplanningConfig() // Default path replanning config. See the API for the options here
+        ),
+        []() {
+            // Boolean supplier that controls when the path will be mirrored for the red alliance
+            // This will flip the path being followed to the red side of the field.
+            // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+
+            auto alliance = frc::DriverStation::GetAlliance();
+            if (alliance) {
+                return alliance.value() == frc::DriverStation::Alliance::kRed;
+            }
+            return false;
+        },
+        this // Reference to this subsystem to set requirements
+    );
     std::cout << "Swerve subsystem initalized correctly" << std::endl;
 }
 
@@ -97,11 +130,34 @@ void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentri
         m_modules[i].setState(states[i]);
     }
 }
+void SwerveDrive::swerveDrive(frc::ChassisSpeeds speeds) {  // swerve drive
+    
+    //speeds = speeds.Discretize(speeds.vx, speeds.vy, speeds.omega, units::second_t(0.02));  // second order kinematics?!?! nani
 
+    auto saturatedStates = m_driveKinematics.ToSwerveModuleStates(speeds);
+
+    // // maybe desaturate wheel speeds here
+    m_driveKinematics.DesaturateWheelSpeeds(&saturatedStates, maxSpeed);
+    // 1. figure out the max speed modules can go
+    // 2. figure out the max speed the modules are actually going
+
+    auto states = m_driveKinematics.ToSwerveModuleStates(speeds);
+
+    for (size_t i = 0; i < states.size(); ++i) {
+        m_modules[i].setState(states[i]);
+    }
+}
 void SwerveDrive::brake() {  // sets wheels to o position
     swerveDrive(0, 0, 0.05, false);
 }
-
+frc::ChassisSpeeds SwerveDrive::getRobotRelativeSpeeds() {
+    frc::ChassisSpeeds speeds = frc::ChassisSpeeds{
+                                                   0.1 * SwerveModuleConstants::maxSpeed,
+                                                   0.1 * SwerveModuleConstants::maxSpeed,
+                                                   0.1 * SwerveModuleConstants::maxRotation};
+    speeds = speeds.Discretize(speeds.vx, speeds.vy, speeds.omega, units::second_t(0.02));  // second order kinematics?!?! nani
+    return speeds;
+}
 void SwerveDrive::moveToAngle(double x, double y) {  // basically crab drive, points all wheels in the same direction
     double temp = x;
     x = -y;

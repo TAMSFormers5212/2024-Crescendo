@@ -10,6 +10,13 @@
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/SwerveModuleState.h>
+#include <pathplanner/lib/auto/AutoBuilder.h>
+#include <pathplanner/lib/util/HolonomicPathFollowerConfig.h>
+#include <pathplanner/lib/util/PIDConstants.h>
+#include <pathplanner/lib/util/ReplanningConfig.h>
+#include <frc/geometry/Pose2d.h>
+#include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/DriverStation.h>
 #include <frc/controller/PIDController.h>
 
 #include "SwerveModule.h"
@@ -17,6 +24,7 @@
 
 using namespace SwerveModuleConstants;
 using namespace std;
+
 
 class SwerveDrive : public frc2::SubsystemBase{
 
@@ -28,9 +36,11 @@ public:
     frc::Pose2d AveragePose();
     frc::Pose2d OdometryPose();
     frc::Rotation2d getGyroHeading();
+    frc::ChassisSpeeds getRobotRelativeSpeeds();
     void resetHeading();
     void resetOdometry(const frc::Pose2d pose);
     void swerveDrive(double x, double y, double theta, bool fieldCentric);
+    void swerveDrive(frc::ChassisSpeeds speed);
     void brake();
     void toggleOffset(bool offset);
     bool getOffsetToggle();

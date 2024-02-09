@@ -20,6 +20,14 @@
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableInstance.h"
 #include "networktables/NetworkTableValue.h"
+#include <pathplanner/lib/commands/PathPlannerAuto.h>
+#include <pathplanner/lib/auto/AutoBuilder.h>
+#include <pathplanner/lib/path/PathPlannerPath.h>
+#include <pathplanner/lib/auto/NamedCommands.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc2/command/Commands.h>
+
+using namespace pathplanner;
 
 using namespace std;
 using namespace frc2;
@@ -41,7 +49,7 @@ RobotContainer::RobotContainer() {
     //     subsystem true // Should the path be automatically mirrored depending
     //     on alliance color. Optional, defaults to true
     // }
-
+    NamedCommands::registerCommand("marker1", frc2::cmd::Print("passed marker 1"));
     ConfigureBindings();
 
     m_drive.SetDefaultCommand(RunCommand(
@@ -111,6 +119,8 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureBindings() {
+    // exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
+    // frc::SmartDashboard::PutData("Example Auto", exampleAuto.get());
     JoystickButton joystickTrigger{&m_driverController, Joystick::Trigger};
 
     joystickTrigger.OnTrue((InstantCommand([this]() { return m_drive.resetAbsoluteEncoders(); })).ToPtr());
@@ -136,4 +146,8 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     return frc2::cmd::Print("No autonomous command configured");
+}
+
+frc2::CommandPtr RobotContainer::getAutonomousCommand(){
+    return PathPlannerAuto("Top pos 3 note auto preload + a1+ m1").ToPtr();
 }
