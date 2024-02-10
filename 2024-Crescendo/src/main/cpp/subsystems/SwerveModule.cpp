@@ -53,6 +53,7 @@ void SwerveModule::resetDriveMotor() {  // sets pid, current limit, and encoder
     m_driveEncoder.SetPositionConversionFactor((SwerveModuleConstants::wheelCircumfrence / (SwerveModuleConstants::driveRatio)).value());
     m_driveEncoder.SetVelocityConversionFactor((SwerveModuleConstants::wheelCircumfrence / SwerveModuleConstants::driveRatio / 60_s).value());
 
+    
     resetDriveEncoder();
 }
 
@@ -146,6 +147,10 @@ void SwerveModule::setState(
     // m_driveController.SetReference(optimizedState.speed.value(),
     // CANSparkMax::ControlType::kVelocity); // 2363 version
     m_driveMotor.Set(optimizedState.speed / maxSpeed);
+    //m_driveController.SetReference(optimizedState.speed.value(), CANSparkMax::ControlType::kVelocity);
+    if (getName(m_driveMotor.GetDeviceId()) == "top left"){ // put the motor encoder velocity 
+    std::cout << getName(m_driveMotor.GetDeviceId()) << " " <<optimizedState.speed.value() << " " << m_driveMotor.GetAppliedOutput() << " " << m_driveMotor.GetOutputCurrent() << " " << m_driveEncoder.GetVelocity() << endl;
+    }
 }
 
 void SwerveModule::Periodic() {

@@ -58,8 +58,8 @@ SwerveDrive::SwerveDrive()
         HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
             PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
             PIDConstants(5.0, 0.0, 0.0), // Rotation PID constants
-            4.5_mps, // Max module speed, in m/s
-            0.4_m, // Drive base radius in meters. Distance from robot center to furthest module.
+            SwerveModuleConstants::maxSpeed/4, // Max module speed, in m/s
+            SwerveModuleConstants::drivebase::WheelBase, // Drive base radius in meters. Distance from robot center to furthest module.
             ReplanningConfig() // Default path replanning config. See the API for the options here
         ),
         []() {
@@ -140,9 +140,9 @@ void SwerveDrive::swerveDrive(frc::ChassisSpeeds speeds) {  // swerve drive
     m_driveKinematics.DesaturateWheelSpeeds(&saturatedStates, maxSpeed);
     // 1. figure out the max speed modules can go
     // 2. figure out the max speed the modules are actually going
-
+    speeds = speeds.Discretize(speeds.vx, speeds.vy, speeds.omega, units::second_t(0.02));  // second order kinematics?!?! 
     auto states = m_driveKinematics.ToSwerveModuleStates(speeds);
-
+    
     for (size_t i = 0; i < states.size(); ++i) {
         m_modules[i].setState(states[i]);
     }
@@ -155,7 +155,7 @@ frc::ChassisSpeeds SwerveDrive::getRobotRelativeSpeeds() {
                                                    0.1 * SwerveModuleConstants::maxSpeed,
                                                    0.1 * SwerveModuleConstants::maxSpeed,
                                                    0.1 * SwerveModuleConstants::maxRotation};
-    speeds = speeds.Discretize(speeds.vx, speeds.vy, speeds.omega, units::second_t(0.02));  // second order kinematics?!?! nani
+    // speeds = speeds.Discretize(speeds.vx, speeds.vy, speeds.omega, units::second_t(0.02));  // second order kinematics?!?! nani
     return speeds;
 }
 void SwerveDrive::moveToAngle(double x, double y) {  // basically crab drive, points all wheels in the same direction

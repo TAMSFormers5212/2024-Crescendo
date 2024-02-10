@@ -49,7 +49,7 @@ RobotContainer::RobotContainer() {
     //     subsystem true // Should the path be automatically mirrored depending
     //     on alliance color. Optional, defaults to true
     // }
-    NamedCommands::registerCommand("marker1", frc2::cmd::Print("passed marker 1"));
+    NamedCommands::registerCommand("drive", frc2::cmd::Print("passed marker 1"));
     ConfigureBindings();
 
     m_drive.SetDefaultCommand(RunCommand(
@@ -149,5 +149,6 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
 }
 
 frc2::CommandPtr RobotContainer::getAutonomousCommand(){
-    return PathPlannerAuto("Top pos 3 note auto preload + a1+ m1").ToPtr();
+    auto path = PathPlannerPath::fromPathFile("Test Path");
+    return AutoBuilder::followPath(path);//PathPlannerAuto("Top pos 3 note auto preload + a1+ m1").ToPtr();
 }
