@@ -38,8 +38,10 @@ namespace MathConstants {
     constexpr double pi = 3.1415926535;
     constexpr double pi2 = 6.283185307;
 
-    constexpr double gMeters = 9.81;
-    constexpr double gFeet = 32.1741;
+    constexpr double gravityMeters = 9.81;
+    constexpr double gravityFeet = 32.1741;
+
+    constexpr double InchToCM = 2.54;
 }
 
 
@@ -111,13 +113,16 @@ namespace SwerveModuleConstants {//per swerve module
     constexpr double kdD = 0.0;
     constexpr double kdFF = 0.00;
 
-    constexpr auto maxSpeed = 3.81_mps; // max free speed of SDS mk4 L1
+    constexpr auto maxSpeed = 3.81_mps; // max free speed of SDS mk4 L1 withs neos
     constexpr auto maxRotation = 2.0_rad_per_s; // figure this out later
     constexpr double driveRatio = 8.14; //SDS Mk4 L1
     constexpr double steerRatio = 12.8; //SDS Mk4 L1
+
+    // written this way to adjust wheel radius/diameter more easily
     constexpr units::inch_t wheelDiameter = 4_in; // likely different based on tread wear
     constexpr units::inch_t wheelCircumfrence = units::inch_t{wheelDiameter.value()*MathConstants::pi}; // recalculate based on wheel diameter 
     constexpr units::inch_t centerDistance = 10.5_in;
+    constexpr units::meter_t wheelCircumfrenceMeters = units::meter_t{wheelCircumfrence};//0.31918581_m;
 
     constexpr double khP = 0.0; // Heading PID
     constexpr double khI = 0.0;
@@ -311,6 +316,8 @@ namespace VisionConstants{
     constexpr double kvI = 0.01;
     constexpr double kvD = 0.0001;
     constexpr double kvFF = 0.0;
+
+    constexpr double stableSpeed = 1.0; // random value for now
 
     //vision pid constants for translating
 

@@ -34,6 +34,7 @@ public:
     SwerveDrive();
 
     frc::Pose2d AveragePose();
+    frc::Pose2d AveragePose(frc::Pose2d visionPose);
     frc::Pose2d OdometryPose();
     frc::Rotation2d getGyroHeading();
     frc::ChassisSpeeds getRobotRelativeSpeeds();

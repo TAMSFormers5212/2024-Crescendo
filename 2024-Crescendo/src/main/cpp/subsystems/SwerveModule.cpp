@@ -50,9 +50,9 @@ void SwerveModule::resetDriveMotor() {  // sets pid, current limit, and encoder
     m_driveMotor.EnableVoltageCompensation(12.0);
     m_driveMotor.SetSmartCurrentLimit(25, 40);
 
-    m_driveEncoder.SetPositionConversionFactor((SwerveModuleConstants::wheelCircumfrence / (SwerveModuleConstants::driveRatio)).value());
-    m_driveEncoder.SetVelocityConversionFactor((SwerveModuleConstants::wheelCircumfrence / SwerveModuleConstants::driveRatio / 60_s).value());
-
+    m_driveEncoder.SetPositionConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / (SwerveModuleConstants::driveRatio)).value());
+    m_driveEncoder.SetVelocityConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / SwerveModuleConstants::driveRatio / 60_s).value());
+    //currently in inches per second
     
     resetDriveEncoder();
 }
@@ -86,8 +86,7 @@ void SwerveModule::resetSteerEncoder() {  // sets relative steer encoder to abso
     // m_steerController.
 }
 
-double
-SwerveModule::getAbsolutePosition() {                                                                // returns the absolute encoder position
+double SwerveModule::getAbsolutePosition() {                                                                // returns the absolute encoder position
     return (m_absoluteEncoder.GetAbsolutePosition() - m_absoluteEncoder.GetPositionOffset()) * pi2;  // shouldn't need to add an offset value because position offset was set in constructor
 }
 
@@ -119,8 +118,7 @@ std::string SwerveModule::getName(
     }
 }
 
-void SwerveModule::setState(
-    const frc::SwerveModuleState state) {  // sets the module to given state
+void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the module to given state
     frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getSteerPosition()));
 
     frc::Rotation2d curAngle = units::radian_t(getAbsolutePosition());
@@ -149,7 +147,7 @@ void SwerveModule::setState(
     m_driveMotor.Set(optimizedState.speed / maxSpeed);
     //m_driveController.SetReference(optimizedState.speed.value(), CANSparkMax::ControlType::kVelocity);
     if (getName(m_driveMotor.GetDeviceId()) == "top left"){ // put the motor encoder velocity 
-    std::cout << getName(m_driveMotor.GetDeviceId()) << " " <<optimizedState.speed.value() << " " << m_driveMotor.GetAppliedOutput() << " " << m_driveMotor.GetOutputCurrent() << " " << m_driveEncoder.GetVelocity() << endl;
+        std::cout << getName(m_driveMotor.GetDeviceId()) << " " <<optimizedState.speed.value() << " " << m_driveMotor.GetAppliedOutput() << " " << m_driveMotor.GetOutputCurrent() << " " << m_driveEncoder.GetVelocity() << endl;
     }
 }
 

@@ -50,6 +50,7 @@ SwerveDrive::SwerveDrive()
     heading = frc::Rotation2d(degree_t{-m_gyro.GetYaw()});
     lastAngle = -m_gyro.GetYaw();
     // resetOdometry(m_poseEstimator.GetEstimatedPosition());
+
     AutoBuilder::configureHolonomic(
         [this](){ return OdometryPose(); }, // Robot pose supplier
         [this](frc::Pose2d pose){ resetOdometry(pose); }, // Method to reset odometry (will be called if your auto has a starting pose)
@@ -79,6 +80,12 @@ SwerveDrive::SwerveDrive()
 }
 
 frc::Pose2d SwerveDrive::AveragePose() {  // returns the pose estimator position
+// m_poseEstimator.AddVisionMeasurement();
+    return m_poseEstimator.GetEstimatedPosition();
+}
+
+frc::Pose2d SwerveDrive::AveragePose(frc::Pose2d visionPose) {  // returns the pose estimator position with vision correction
+    m_poseEstimator.AddVisionMeasurement(visionPose, frc::Timer::GetFPGATimestamp());
     return m_poseEstimator.GetEstimatedPosition();
 }
 
@@ -130,6 +137,7 @@ void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentri
         m_modules[i].setState(states[i]);
     }
 }
+
 void SwerveDrive::swerveDrive(frc::ChassisSpeeds speeds) {  // swerve drive
     
     //speeds = speeds.Discretize(speeds.vx, speeds.vy, speeds.omega, units::second_t(0.02));  // second order kinematics?!?! nani
@@ -147,17 +155,15 @@ void SwerveDrive::swerveDrive(frc::ChassisSpeeds speeds) {  // swerve drive
         m_modules[i].setState(states[i]);
     }
 }
+
 void SwerveDrive::brake() {  // sets wheels to o position
     swerveDrive(0, 0, 0.05, false);
 }
+
 frc::ChassisSpeeds SwerveDrive::getRobotRelativeSpeeds() {
-    frc::ChassisSpeeds speeds = frc::ChassisSpeeds{
-                                                   0.1 * SwerveModuleConstants::maxSpeed,
-                                                   0.1 * SwerveModuleConstants::maxSpeed,
-                                                   0.1 * SwerveModuleConstants::maxRotation};
-    // speeds = speeds.Discretize(speeds.vx, speeds.vy, speeds.omega, units::second_t(0.02));  // second order kinematics?!?! nani
-    return speeds;
+    return m_driveKinematics.ToChassisSpeeds({m_modules[0].getState(), m_modules[1].getState(), m_modules[2].getState(), m_modules[3].getState()});
 }
+
 void SwerveDrive::moveToAngle(double x, double y) {  // basically crab drive, points all wheels in the same direction
     double temp = x;
     x = -y;
@@ -202,6 +208,9 @@ void SwerveDrive::tankDrive(double x, double y) {                               
 void SwerveDrive::Periodic() {
     m_odometry.Update(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()});
     m_poseEstimator.Update(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()});
+    // if(sqrt(getRobotRelativeSpeeds().vx.value()*getRobotRelativeSpeeds().vx.value()+getRobotRelativeSpeeds().vy.value()*getRobotRelativeSpeeds().vy.value())<=VisionConstants::stableSpeed){
+    //     //if robot is moving slow enough, add vision pose to estimator
+    // }
 }
 
 void SwerveDrive::resetAbsoluteEncoders() {  // resets drive and steer encoders
