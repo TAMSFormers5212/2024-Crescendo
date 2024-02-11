@@ -146,7 +146,7 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
     // CANSparkMax::ControlType::kVelocity); // 2363 version
     m_driveMotor.Set(optimizedState.speed / maxSpeed);
     //m_driveController.SetReference(optimizedState.speed.value(), CANSparkMax::ControlType::kVelocity);
-    if (getName(m_driveMotor.GetDeviceId()) == "top left"){ // put the motor encoder velocity 
+    if (getName(m_driveMotor.GetDeviceId()) == "top left"){ // put the motor encoder velocity           
         std::cout << getName(m_driveMotor.GetDeviceId()) << " " <<optimizedState.speed.value() << " " << m_driveMotor.GetAppliedOutput() << " " << m_driveMotor.GetOutputCurrent() << " " << m_driveEncoder.GetVelocity() << endl;
     }
 }
