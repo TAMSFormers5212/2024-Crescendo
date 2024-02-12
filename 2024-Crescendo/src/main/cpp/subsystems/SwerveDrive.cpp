@@ -57,8 +57,8 @@ SwerveDrive::SwerveDrive()
         [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
         [this](frc::ChassisSpeeds speeds){ swerveDrive(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
         HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-            PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
-            PIDConstants(5.0, 0.0, 0.0), // Rotation PID constants
+            PIDConstants(1.0, 0.0, 0.0), // Translation PID constants
+            PIDConstants(1.0, 0.0, 0.0), // Rotation PID constants
             SwerveModuleConstants::maxSpeed/4, // Max module speed, in m/s
             SwerveModuleConstants::drivebase::WheelBase, // Drive base radius in meters. Distance from robot center to furthest module.
             ReplanningConfig() // Default path replanning config. See the API for the options here
@@ -148,7 +148,8 @@ void SwerveDrive::swerveDrive(frc::ChassisSpeeds speeds) {  // swerve drive
     m_driveKinematics.DesaturateWheelSpeeds(&saturatedStates, maxSpeed);
     // 1. figure out the max speed modules can go
     // 2. figure out the max speed the modules are actually going
-    speeds = speeds.Discretize(speeds.vx, speeds.vy, speeds.omega, units::second_t(0.02));  // second order kinematics?!?! 
+    speeds = speeds.Discretize(speeds.vx , speeds.vy, speeds.omega, units::second_t(0.02));
+      // second order kinematics?!?!            
     auto states = m_driveKinematics.ToSwerveModuleStates(speeds);
     
     for (size_t i = 0; i < states.size(); ++i) {
@@ -211,7 +212,8 @@ void SwerveDrive::Periodic() {
     // if(sqrt(getRobotRelativeSpeeds().vx.value()*getRobotRelativeSpeeds().vx.value()+getRobotRelativeSpeeds().vy.value()*getRobotRelativeSpeeds().vy.value())<=VisionConstants::stableSpeed){
     //     //if robot is moving slow enough, add vision pose to estimator
     // }
-}
+    frc::SmartDashboard::PutNumber("Gyro", m_gyro.GetAngle());
+}   
 
 void SwerveDrive::resetAbsoluteEncoders() {  // resets drive and steer encoders
     for (auto &module : m_modules) {
