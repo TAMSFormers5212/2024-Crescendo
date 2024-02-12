@@ -51,9 +51,17 @@ void Intake::intakeNote() {  // intake until note collected
     }
 }
 void Intake::indexNote() {  // move note to indexer spot
-    if (holdingNote) {
+    if (holdingNote||state==held) {
         // state = 1;
-        // move the note to the beambreak
+        // move the note to the beambreak if not already indexed
+        // if (state != indexed) {
+        //     if (beambreak == false) {
+        //         m_intakeMotor.Set(0.1);
+        //     } else {
+        //         m_intakeMotor.Set(-0.1);
+        //         state = indexed;
+        //     }
+        // }
         state = indexed;
     }
 }
@@ -75,7 +83,9 @@ void Intake::reverseIntake() {  // in case of 2 notes and need to eject
 }
 
 void Intake::setSpeed(double speed) { m_intakeMotor.Set(speed); }
+
 double Intake::getSpeed() { return m_encoder.GetVelocity(); }
+
 bool Intake::getNote() { return holdingNote; }
 
 double Intake::getOutputCurrent() { return m_intakeMotor.GetOutputCurrent(); }
@@ -84,4 +94,6 @@ int Intake::getState() { return state; }
 
 void Intake::setState(int state) { this->state = state; }
 
-void Intake::Periodic() {}
+void Intake::Periodic() {
+    frc::SmartDashboard::PutBoolean("holding note", holdingNote);
+}

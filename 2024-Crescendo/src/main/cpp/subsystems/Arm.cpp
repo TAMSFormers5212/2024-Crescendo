@@ -66,25 +66,31 @@ void Arm::resetMotors() {
     resetEncoder();
 }
 
-void Arm::resetEncoder() {
+void Arm::resetEncoder() { // sets neo encoders to absolute encoder position
     m_leftEncoder.SetPosition(getPosition());
     m_rightEncoder.SetPosition(getPosition());
 }
 
-double Arm::getPosition() {
-    return m_absoluteEncoder.GetAbsolutePosition() - m_absoluteEncoder.GetPositionOffset();
+double Arm::getPosition() { // returns the absolute encoder position with offset
+    return m_absoluteEncoder.GetAbsolutePosition();
 }
 
-double Arm::getRawPosition() { return m_absoluteEncoder.GetAbsolutePosition(); }
+double Arm::getVelocity(){ // returns left motor's velocity
+    return m_leftEncoder.GetVelocity();
+}
 
-void Arm::setPosition(double pose) {
+double Arm::getRawPosition() { // returns the absolute encoder position without offset
+    return m_absoluteEncoder.GetAbsolutePosition() - m_absoluteEncoder.GetPositionOffset(); 
+}
+
+void Arm::setPosition(double pose) { // sets the goal pose to given parameter
     //smart motion implementation
     // m_rightController.SetReference(pose,
     //                                CANSparkLowLevel::ControlType::kSmartMotion);
-
+    
     // TrapezoidProfile<units::meters>::State m_goal = {units::meter_t(pose), units::meters_per_second_t(0)};
-    // m_goalDistance = units::meter_t(pose);
-    // m_goalSpeed = units::meters_per_second_t(0);
+    m_goalDistance = units::meter_t(pose);
+    // m_goalSpeed = units::meters_per_second_t(0); // this should be zero because we don't want the arm to move 
 
     // frc::SmartDashboard::PutNumber("arm ", getPosition());
     // frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
@@ -92,8 +98,13 @@ void Arm::setPosition(double pose) {
 }
 
 void Arm::Periodic() {
+    // frc 4481 found that profiling yieled jittering when close to goal/small distance to cover, maybe switch to normal pid when close to goal
+
     //trapezoid profile implementation
-    TrapezoidProfile<units::meters>::State m_setpoint = profile.Calculate(kaT, {m_setpointDistance, m_setpointSpeed}, {m_goalDistance, m_goalSpeed});
+    m_setpointDistance = units::meter_t(getPosition());
+    m_setpointSpeed = units::meters_per_second_t(getVelocity()); // make sure unit conversion is done correctly
+    m_setpoint = m_profile.Calculate(kaT, {m_setpointDistance, m_setpointSpeed}, {m_goalDistance, m_goalSpeed});
+    // currently pretty inefficiently made but we'll see if it works
 
     m_rightController.SetReference(m_setpoint.position.value(), CANSparkLowLevel::ControlType::kPosition);
 }

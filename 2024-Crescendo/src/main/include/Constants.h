@@ -207,7 +207,14 @@ namespace ArmConstants{
     constexpr int kMinOutput = -1;
     constexpr units::meters_per_second_squared_t maxAccel = 10.0_mps_sq;
     constexpr units::meters_per_second_t maxVelo = 20.0_mps;
-    constexpr double allowedError = 0.0;
+    constexpr units::degrees_per_second_t maxRotatioV = 90_deg_per_s;
+    constexpr units::degrees_per_second_squared_t maxRotationA = 90_deg_per_s_sq;
+    constexpr double allowedError = 0.0; 
+    constexpr double stableDistance = 0;
+    
+    
+    constexpr double minPosition = 0; // soft limits
+    constexpr double maxPosition = 1;
 
     constexpr double kaS = 0.0;
     constexpr double kaG = 0.0;

@@ -31,8 +31,10 @@ class VisionSubsystem : public frc2::SubsystemBase {
     double getX(); // horizontal axis position
     double getY(); // vertical axis position
     double getZ(); // distance axis position
-
-    // double 
+    
+    //implement these eventually
+    // int getTagID();
+    // frc::Pose2d getVisionPose();
 
     void setDistanceError(double dist_error);
     double getDistanceError();

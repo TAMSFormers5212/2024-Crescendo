@@ -63,9 +63,10 @@ double Shooter::calculateAngle(double distance, double x, double y) {  // angle 
     return 0;
 }
 
-void Shooter::setSpeed(double speed){
+void Shooter::setSpeed(double speed){ // velocity PID control
     m_topController.SetReference(speed, CANSparkMaxLowLevel::ControlType::kVelocity);
 }
+
 double Shooter::getSpeed(){
     return m_topEncoder.GetVelocity();
 }

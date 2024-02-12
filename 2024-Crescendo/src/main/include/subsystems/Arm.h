@@ -32,6 +32,7 @@ public:
 
     void setPosition(double armPose);
     double getPosition();
+    double getVelocity();
     void resetMotors();
     void resetEncoder();
     double getRawPosition();
@@ -50,14 +51,15 @@ private:
     SparkPIDController m_rightController = m_rightMotor.GetPIDController(); // follower
 
 
-    TrapezoidProfile<units::meters> profile{{maxVelo, maxAccel}};
+    // TrapezoidProfile<units::meters> profile{{maxVelo, maxAccel}};
+    TrapezoidProfile<units::degrees> m_profile{{maxRotatioV, maxRotationA}};
 
-    // TrapezoidProfile<units::degree_t>::State m_goal{0_m, 0_mps}; // dont try this it doesn't buid
-    units::meter_t m_goalDistance = 0_m;
-    units::meters_per_second_t m_goalSpeed = 0_mps;
+    units::degree_t m_goalDistance = 0_deg;
+    units::degrees_per_second_t m_goalSpeed = 0_deg_per_s;
     // TrapezoidProfile<units::degree_t>::State m_setpoint;
-    units::meter_t m_setpointDistance = 0_m;
-    units::meters_per_second_t m_setpointSpeed = 0_mps;
+    units::degree_t m_setpointDistance = 0_deg;
+    units::degrees_per_second_t m_setpointSpeed = 0_deg_per_s;
+    TrapezoidProfile<units::degrees>::State m_setpoint = {m_setpointDistance, m_setpointSpeed};
 
     //someone else will have to tune this. i've never done it before
     // ArmFeedforward m_armFF = ArmFeedforward(units::volt_t{kaS}, units::volt_t{kaG}, units::unit_t< ArmFeedforward::kv_unit >{kaV}, units::unit_t< ArmFeedforward::kv_unit >{kaA});

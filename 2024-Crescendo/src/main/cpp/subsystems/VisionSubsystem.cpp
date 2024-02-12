@@ -58,7 +58,8 @@ void VisionSubsystem::Periodic() {
     double distanceFromLimelightToGoalInches = (VisionConstants::ampTagHeight - VisionConstants::limelightHeight.value()) / tan(angleToGoalRadians);
     float KpDistance = -0.1f;  // Proportional control constant for distance 
     float desired_distance = 35;
-    float distance_error = abs(desired_distance - distanceFromLimelightToGoalInches) * KpDistance;
+    float distance_error = abs(desired_distance - distanceFromLimelightToGoalInches) * KpDistance; 
+    // reason the swerve drive doesn't stop moving when trying to align to a certain distance from tag. taking the absolute value of it ensures that it will always be positive meaning the robot wont ever think to change directions
     if (targetOffsetAngle_Vertical == 0){
       setDistanceError(0);
     }
