@@ -20,6 +20,7 @@
 #include "Intake.h"
 #include "Shooter.h"
 #include "Winch.h"
+#include "VisionSubsystem.h"
 
 using namespace std;
 using namespace PoseConstants;
@@ -72,6 +73,8 @@ private:
 //shooter
 //2 motors
     Shooter m_shooter;
+
+    VisionSubsystem m_limelight;
 
     // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
     vector<units::inch_t> distances = {distance3, distance5, distance7, distance9, distance11, distance13};

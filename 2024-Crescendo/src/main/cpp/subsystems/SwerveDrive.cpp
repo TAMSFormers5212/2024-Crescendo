@@ -165,6 +165,11 @@ frc::ChassisSpeeds SwerveDrive::getRobotRelativeSpeeds() {
     return m_driveKinematics.ToChassisSpeeds({m_modules[0].getState(), m_modules[1].getState(), m_modules[2].getState(), m_modules[3].getState()});
 }
 
+frc::ChassisSpeeds SwerveDrive::getFieldRelativeSpeeds(){
+    // taken from yagsl getfieldvelocity() function
+    return frc::ChassisSpeeds::FromFieldRelativeSpeeds(m_driveKinematics.ToChassisSpeeds({m_modules[0].getState(), m_modules[1].getState(), m_modules[2].getState(), m_modules[3].getState()}), getGyroHeading());
+}
+
 void SwerveDrive::moveToAngle(double x, double y) {  // basically crab drive, points all wheels in the same direction ROBOT CENTRIC
     double temp = x;
     x = -y;

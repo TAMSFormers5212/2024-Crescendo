@@ -11,6 +11,8 @@
 #include "Constants.h"
 #include "subsystems/SwerveDrive.h" 
 #include "subsystems/VisionSubsystem.h"
+#include "subsystems/Arm.h"
+
 using namespace OIConstants;
 
 class RobotContainer {
@@ -25,7 +27,7 @@ class RobotContainer {
 
  private:
   frc::GenericHID m_driverController{kDriverControllerPort};
-  // frc::GenericHID m_operatorController{kOperatorControllerPort};
+  frc::GenericHID m_operatorController{kOperatorControllerPort};
 
   // std::unique_ptr<frc2::Command> exampleAuto;
   // std::unique_ptr<frc2::Command> pathfindToPickup;
@@ -35,6 +37,7 @@ class RobotContainer {
 
   SwerveDrive m_drive;
   VisionSubsystem m_vision;
+  Arm m_arm{ArmConstants::leftMotor, ArmConstants::rightMotor, ArmConstants::encoder, ArmConstants::encoderOffset};
 
   void ConfigureBindings();
 };

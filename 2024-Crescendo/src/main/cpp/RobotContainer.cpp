@@ -100,7 +100,9 @@ RobotContainer::RobotContainer() {
             m_drive.swerveDrive(XAxis, YAxis, RotAxis, true);
 
         },
-        {&m_drive}));
+        {&m_drive}
+    ));
+
     m_vision.SetDefaultCommand(RunCommand(
         [this] {
 
@@ -115,7 +117,19 @@ RobotContainer::RobotContainer() {
             }
             // frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
         },
-        {&m_vision}));
+        {&m_vision}
+    ));
+
+    m_arm.SetDefaultCommand(RunCommand(
+        [this] {
+            if (m_operatorController.GetRawButton(Controller::A)) {
+                m_arm.setPosition(m_arm.getPosition() + 0.01);
+            }else if(m_operatorController.GetRawButton(Controller::B)){
+                m_arm.setPosition(m_arm.getPosition()-0.01);
+            }
+        },
+        {&m_arm}
+    ));
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -142,6 +156,11 @@ void RobotContainer::ConfigureBindings() {
     //     }
     //   )
     // ).ToPtr());
+
+    // JoystickButton ControllerA(&m_operatorController, Controller::A);
+    
+    // Joystick
+
 }
 
 // frc2::CommandPtr RobotContainer::GetAutonomousCommand() {

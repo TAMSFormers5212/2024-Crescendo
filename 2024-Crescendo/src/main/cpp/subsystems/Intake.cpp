@@ -41,7 +41,8 @@ void Intake::resetMotor() {
 void Intake::intakeNote() {  // intake until note collected
     if (!holdingNote) {
         m_intakeMotor.Set(1.0);
-        if (m_intakeMotor.GetOutputCurrent() > loadedCurrent) {
+        // cout<<m_intakeMotor.GetOutputCurrent()<<endl;
+        if (m_intakeMotor.GetOutputCurrent() > loadedCurrent) { // monitor current to find loaded current
             indexNote();
             holdingNote = true;
             state = held;
@@ -50,7 +51,7 @@ void Intake::intakeNote() {  // intake until note collected
         indexNote();
     }
 }
-void Intake::indexNote() {  // move note to indexer spot
+void Intake::indexNote() {  // move note to indexer spot (kinda useless without sensor)
     if (holdingNote||state==held) {
         // state = 1;
         // move the note to the beambreak if not already indexed

@@ -102,3 +102,15 @@ double VisionSubsystem::getDistanceError() { return distError; }
 void VisionSubsystem::SimulationPeriodic() {
     // Implementation of subsystem simulation periodic method goes here.
 }
+
+double VisionSubsystem::getX(){
+    return table->GetNumber("tx", 0.0);
+}
+
+double VisionSubsystem::getY() {
+    return table->GetNumber("ty", 0.0);
+}
+
+double VisionSubsystem::getZ() {
+    return table->GetNumber("tz", 0.0);
+}

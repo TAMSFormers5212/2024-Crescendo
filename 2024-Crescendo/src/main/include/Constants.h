@@ -276,6 +276,8 @@ namespace PoseConstants{
 
     //Amp
     constexpr double armAmp = 0;
+    constexpr double ampAngle = 0;
+    constexpr double ampSpeed = 0;
 
     //Climb
     constexpr double armClimb = 0;
@@ -283,6 +285,11 @@ namespace PoseConstants{
 
     //lookup table design
     //proven setpoints and just interpolate inbetween those values
+
+    //distance: 0ft
+    constexpr units::inch_t distance0 = 36_in;
+    constexpr double shooterRPM0 = 0;
+    constexpr double armAngle0 = 0;
 
     //distance: 3ft
     constexpr units::inch_t distance3 = 36_in;
