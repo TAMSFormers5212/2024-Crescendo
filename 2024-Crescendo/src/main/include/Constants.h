@@ -283,44 +283,6 @@ namespace PoseConstants{
     constexpr double armClimb = 0;
     constexpr double intakeTrapSpeed = 0;
 
-    //lookup table design
-    //proven setpoints and just interpolate inbetween those values
-
-    //distance: 0ft
-    constexpr units::inch_t distance0 = 36_in;
-    constexpr double shooterRPM0 = 0;
-    constexpr double armAngle0 = 0;
-
-    //distance: 3ft
-    constexpr units::inch_t distance3 = 36_in;
-    constexpr double shooterRPM3 = 0;
-    constexpr double armAngle3 = 0;
-    
-    //distance: 5ft
-    constexpr units::inch_t distance5 = 60_in;
-    constexpr double shooterRPM5 = 0;
-    constexpr double armAngle5 = 0;
-
-    //distance: 7ft
-    constexpr units::inch_t distance7 = 84_in;
-    constexpr double shooterRPM7 = 0;
-    constexpr double armAngle7 = 0;
-
-    // distance: 9ft
-    constexpr units::inch_t distance9 = 108_in;
-    constexpr double shooterRPM9 = 0;
-    constexpr double armAngle9 = 0;
-
-    // distance: 11ft
-    constexpr units::inch_t distance11 = 132_in;
-    constexpr double shooterRPM11 = 0;
-    constexpr double armAngle11 = 0;
-
-    // distance: 13ft
-    constexpr units::inch_t distance13 = 156_in;
-    constexpr double shooterRPM13 = 0;
-    constexpr double armAngle13 = 0;
-    //max distance of vision for now
 }
 
 namespace VisionConstants{

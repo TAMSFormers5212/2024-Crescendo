@@ -79,7 +79,7 @@ double Arm::getVelocity(){ // returns left motor's velocity
     return m_leftEncoder.GetVelocity();
 }
 
-double Arm::getRawPosition() { // returns the absolute encoder position without offset
+double Arm::getRawPosition() { // returns the absolute encoder position minus offset
     return m_absoluteEncoder.GetAbsolutePosition() - m_absoluteEncoder.GetPositionOffset(); 
 }
 
@@ -92,9 +92,7 @@ void Arm::setPosition(double pose) { // sets the goal pose to given parameter
     // m_goalDistance = units::meter_t(pose);
     // m_goalSpeed = units::meters_per_second_t(0); // this should be zero because we don't want the arm to move 
 
-    // frc::SmartDashboard::PutNumber("arm ", getPosition());
-    // frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
-    // frc::SmartDashboard::PutNumber("right output ", m_rightMotor.GetAppliedOutput());
+
     m_leftController.SetReference(pose, CANSparkLowLevel::ControlType::kPosition);
 }
 
@@ -108,4 +106,8 @@ void Arm::Periodic() {
     // currently pretty inefficiently made but we'll see if it works
 
     // m_rightController.SetReference(m_setpoint.position.value(), CANSparkLowLevel::ControlType::kPosition);
+
+    frc::SmartDashboard::PutNumber("arm ", getPosition());
+    frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
+    frc::SmartDashboard::PutNumber("right output ", m_rightMotor.GetAppliedOutput());
 }

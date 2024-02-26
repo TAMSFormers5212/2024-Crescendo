@@ -122,11 +122,10 @@ RobotContainer::RobotContainer() {
 
     m_arm.SetDefaultCommand(RunCommand(
         [this] {
-            if (m_operatorController.GetRawButton(Controller::A)) {
-                m_arm.setPosition(m_arm.getPosition() + 0.01);
-            }else if(m_operatorController.GetRawButton(Controller::B)){
-                m_arm.setPosition(m_arm.getPosition()-0.01);
+            if(m_operatorController.GetRawButton(Controller::A)){
+                m_arm.setPosition(m_arm.getPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
             }
+            // if(m_operatorController.getrawb)
         },
         {&m_arm}
     ));
@@ -157,7 +156,14 @@ void RobotContainer::ConfigureBindings() {
     //   )
     // ).ToPtr());
 
-    // JoystickButton ControllerA(&m_operatorController, Controller::A);
+    JoystickButton controllerLeftTrigger(&m_operatorController, Controller::leftTrigger);
+
+    JoystickButton controllerB(&m_operatorController, Controller::B);
+    
+    controllerB.OnTrue((InstantCommand([this] {return m_arm.setPosition(0);})).ToPtr());
+    
+
+    // controllerLeftTrigger.OnTrue((InstantCommand([this] { return m_intake.})))
     
     // Joystick
 

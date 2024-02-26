@@ -38,12 +38,15 @@ public:
     void setToIntake();
     void intakeNote();
     void indexNote();
-    void aimShooter(double armPosition, double shooterRpm);
-    void aimShooter(double distance);
+    double calculateSpeed(double distance, double x, double y);  // calculate the needed speed based on current speed
+    double calculateAngle(double distance, double x, double y);  // angle to feed to arm
+    void aim(double distance, double x, double y);
+    void aim(double angle, double speed);
     void speakerShot();
     void ampShot();
     void raiseToClimb();
     void climb();
+    void climb(double roll);
 
     //utility control
     void setIntake(double speed);
@@ -62,6 +65,8 @@ private:
 //2 motors total (1 motor per winch)
     Winch m_leftWinch;
     Winch m_rightWinch;
+    PIDController rollPID;
+
 //arm
 //2 motors
     Arm m_arm;
@@ -77,8 +82,8 @@ private:
     VisionSubsystem m_limelight;
 
     // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-    vector<units::inch_t> distances = {distance3, distance5, distance7, distance9, distance11, distance13};
-    vector<double> angles = {armAngle3, armAngle5, armAngle7, armAngle9, armAngle11, armAngle13};
-    vector<double> speeds = {shooterRPM3, shooterRPM5, shooterRPM7, shooterRPM9, shooterRPM11, shooterRPM13};
+    vector<units::inch_t> distances = {12_in, 24_in, 36_in, 48_in, 60_in, 72_in, 84_in, 96_in, 108_in};
+    vector<double> angles = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    vector<double> speeds = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 };
 
