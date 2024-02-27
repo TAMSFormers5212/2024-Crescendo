@@ -57,12 +57,21 @@ public:
     void setLeftWinchSpeed(double speed);
     void setRightWinchSpeed(double speed);
 
+    //infomation about superstructure status
+    double getArmPosition();
+    double getLeftWinchPosition();
+    double getRightWinchPosition();
+    double getTopShooterSpeed();
+    double getBottomShooterSpeed();
+    double getShooterSpeed();
+
     void Periodic() override;
 
-private: 
+    VisionSubsystem m_vision;
 
-//winch
-//2 motors total (1 motor per winch)
+   private:
+    // winch
+    // 2 motors total (1 motor per winch)
     Winch m_leftWinch;
     Winch m_rightWinch;
     PIDController rollPID;
@@ -79,7 +88,6 @@ private:
 //2 motors
     Shooter m_shooter;
 
-    VisionSubsystem m_limelight;
 
     // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
     vector<units::inch_t> distances = {12_in, 24_in, 36_in, 48_in, 60_in, 72_in, 84_in, 96_in, 108_in};

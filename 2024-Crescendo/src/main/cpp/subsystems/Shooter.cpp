@@ -51,9 +51,16 @@ void Shooter::setSpeed(double speed){ // velocity PID control
 }
 
 double Shooter::getSpeed(){
-    return m_topEncoder.GetVelocity();
+    return (m_topEncoder.GetVelocity()+m_bottomEncoder.GetVelocity())/2.0;
 }
 
+double Shooter::getBottomSpeed(){
+    return m_bottomEncoder.GetVelocity();
+}
+
+double Shooter::getTopSpeed(){
+    return m_topEncoder.GetVelocity();
+}
 void Shooter::Periodic(){
 
 }

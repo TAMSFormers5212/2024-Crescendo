@@ -88,9 +88,9 @@ RobotContainer::RobotContainer() {
             if (m_driverController.GetRawButton(8)) {
                 //if (m_vision.getDistanceError() > 0 &&
                     //m_vision.getDistanceError() < 25) {
-                     RotAxis += m_vision.getOutput() * speedMultiplier;
-                    YAxis += m_vision.getDistanceError() * speedMultiplier;
-                //}
+                     RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
+                     YAxis += m_superstructure.m_vision.getDistanceError() * speedMultiplier;
+                     //}
             }
             if (m_driverController.GetRawButton(6)) {
                 m_drive.tankDrive(XAxis, YAxis);
@@ -103,31 +103,34 @@ RobotContainer::RobotContainer() {
         {&m_drive}
     ));
 
-    m_vision.SetDefaultCommand(RunCommand(
+    m_superstructure.m_vision.SetDefaultCommand(RunCommand(
         [this] {
 
             // Led toggle
             if (m_driverController.GetRawButtonPressed(9)) {
-                if (m_vision.getLedOn() == 3) {
-                    m_vision.setLedOn(1);
-                } else if (m_vision.getLedOn() == 1) {
-                    m_vision.setLedOn(3);
+                if (m_superstructure.m_vision.getLedOn() == 3) {
+                    m_superstructure.m_vision.setLedOn(1);
+                } else if (m_superstructure.m_vision.getLedOn() == 1) {
+                    m_superstructure.m_vision.setLedOn(3);
                 }
                 // m_drive.toggleOffset();
             }
             // frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
         },
-        {&m_vision}
-    ));
+        {&m_superstructure.m_vision}));
 
-    m_arm.SetDefaultCommand(RunCommand(
+    m_superstructure.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::A)){
-                m_arm.setPosition(m_arm.getPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
+                m_superstructure.setArm(m_superstructure.getArmPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
             }
             // if(m_operatorController.getrawb)
+
+            //some prespin up code or something maybe
+            //like have the driver hold the shoot button, and show a boolean on the driverstation
+            //then, if the calcs are good, the operator can press a button to shoot it
         },
-        {&m_arm}
+        {&m_superstructure}
     ));
 }
 
@@ -135,35 +138,37 @@ void RobotContainer::ConfigureBindings() {
     // exampleAuto = PathPlannerAuto("Example Auto").ToPtr().Unwrap();
     // frc::SmartDashboard::PutData("Example Auto", exampleAuto.get());
     JoystickButton joystickTrigger{&m_driverController, Joystick::Trigger};
-
-    joystickTrigger.OnTrue((InstantCommand([this]() { return m_drive.resetAbsoluteEncoders(); })).ToPtr());
-
     JoystickButton joystickThree{&m_driverController, Joystick::ButtonThree};
-
-    joystickThree.OnTrue((InstantCommand([this]() { return m_drive.resetHeading(); })).ToPtr());
-
     JoystickButton joystickFour{&m_driverController, Joystick::ButtonFour};
+    JoystickButton joystickFive(&m_driverController, Joystick::ButtonFive);
+    JoystickButton joystickSix(&m_driverController, Joystick::ButtonSix);
+    JoystickButton joystickSeven(&m_driverController, Joystick::ButtonSeven);
+    JoystickButton joystickEight(&m_driverController, Joystick::ButtonEight);
+    JoystickButton joystickNine(&m_driverController, Joystick::ButtonNine);
+    JoystickButton joystickTen(&m_driverController, Joystick::ButtonTen);
+    JoystickButton joystickEleven(&m_driverController, Joystick::ButtonEleven);
 
+    joystickTrigger.OnTrue((InstantCommand([this]() { /*shoot*/ })).ToPtr());
+    joystickThree.OnTrue((InstantCommand([this]() { return m_drive.resetHeading(); })).ToPtr());
     joystickFour.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry(m_drive.AveragePose()); })).ToPtr());
-
-    JoystickButton joystickFive(&m_driverController, 5);
-
-    // joystickFive.OnTrue((
-    //   SequentialCommandGroup(
-    //     [this](){
-    //        //aim and then shoot
-    //     }
-    //   )
-    // ).ToPtr());
+    joystickFive.OnTrue((InstantCommand([this] { return m_drive.resetAbsoluteEncoders(); })).ToPtr());
 
     JoystickButton controllerLeftTrigger(&m_operatorController, Controller::leftTrigger);
-
+    JoystickButton controllerRightTrigger(&m_operatorController, Controller::rightTrigger);
+    JoystickButton controllerLeftBumper(&m_operatorController, Controller::leftBumper);
+    JoystickButton controllerRightBumper(&m_operatorController, Controller::rightBumper);
+    JoystickButton controllerA(&m_operatorController, Controller::A);
     JoystickButton controllerB(&m_operatorController, Controller::B);
-    
-    controllerB.OnTrue((InstantCommand([this] {return m_arm.setPosition(0);})).ToPtr());
-    
+    JoystickButton controllerX(&m_operatorController, Controller::X);
+    JoystickButton controllerY(&m_operatorController, Controller::Y);
+    // JoystickButton controllerLeft(&m_operatorController, Controller::);
+    POVButton controllerLeft(&m_operatorController, Controller::left); // will have to check later
+    POVButton controllerRight(&m_operatorController, Controller::right);
+    POVButton controllerDown(&m_operatorController, Controller::down);
+    POVButton controllerUp(&m_operatorController, Controller::up);
 
-    // controllerLeftTrigger.OnTrue((InstantCommand([this] { return m_intake.})))
+    controllerB.OnTrue((InstantCommand([this] { return m_superstructure.setArm(0); })).ToPtr());
+    controllerLeftTrigger.OnTrue((InstantCommand([this] { return m_superstructure.intakeNote();})).ToPtr());
     
     // Joystick
 

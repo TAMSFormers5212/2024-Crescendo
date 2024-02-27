@@ -11,7 +11,7 @@
 #include "Constants.h"
 #include "subsystems/SwerveDrive.h" 
 #include "subsystems/VisionSubsystem.h"
-#include "subsystems/Arm.h"
+#include "subsystems/Superstructure.h"
 
 using namespace OIConstants;
 
@@ -36,8 +36,7 @@ class RobotContainer {
   // std::unique_ptr<frc2::Command> followOnTheFly;
 
   SwerveDrive m_drive;
-  VisionSubsystem m_vision;
-  Arm m_arm{ArmConstants::leftMotor, ArmConstants::rightMotor, ArmConstants::encoder, ArmConstants::encoderOffset};
-
+//   VisionSubsystem m_vision;
+  Superstructure m_superstructure;
   void ConfigureBindings();
 };

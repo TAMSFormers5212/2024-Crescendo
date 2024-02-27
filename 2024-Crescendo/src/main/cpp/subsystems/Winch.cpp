@@ -54,6 +54,7 @@ void Winch::hold() {  // set speed to 0
 double Winch::getOutputCurrent() { return m_winchMotor.GetOutputCurrent(); }
 double Winch::getAppliedOutput() { return m_winchMotor.GetAppliedOutput(); }
 double Winch::getMotorTemp() { return m_winchMotor.GetMotorTemperature(); }
+double Winch::getPosition() { return m_encoder.GetPosition(); }
 
 void Winch::setWinchPosition(double position) {  // position in linear distance from ground
     m_winchController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);

@@ -33,6 +33,7 @@ public:
     double getOutputCurrent();
     double getAppliedOutput();
     double getMotorTemp();
+    double getPosition();
 
     void setWinchPosition(double position); // position in linear distance from ground
     void setWinchSpeed(double speed);
