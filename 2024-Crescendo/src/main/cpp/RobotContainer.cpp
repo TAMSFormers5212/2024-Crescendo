@@ -106,14 +106,14 @@ RobotContainer::RobotContainer() {
 
             // Led toggle
             if (m_driverController.GetRawButtonPressed(9)) {
-                if (m_vision.getLedOn() == 3) {
-                    m_vision.setLedOn(1);
-                } else if (m_vision.getLedOn() == 1) {
-                    m_vision.setLedOn(3);
-                }
-                // m_drive.toggleOffset();
+                // if (m_vision.getLedOn() == 3) {
+                //     m_vision.setLedOn(1);
+                // } else if (m_vision.getLedOn() == 1) {
+                //     m_vision.setLedOn(3);
+                // }
+                m_drive.toggleOffset();
             }
-            // frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
+            frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
         },
         {&m_vision}));
 }
