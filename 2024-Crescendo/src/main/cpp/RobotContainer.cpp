@@ -115,7 +115,7 @@ RobotContainer::RobotContainer() {
                 }
                 // m_drive.toggleOffset();
             }
-            // frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
+            frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
         },
         {&m_superstructure.m_vision}));
 

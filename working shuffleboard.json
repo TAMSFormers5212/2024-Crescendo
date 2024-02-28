@@ -441,6 +441,21 @@
               "_glyph": 148,
               "_showGlyph": false
             }
+          },
+          "7,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/toggle offset",
+              "_title": "toggle offset",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
@@ -460,8 +475,8 @@
     }
   ],
   "windowGeometry": {
-    "x": -7.199999809265137,
-    "y": -7.199999809265137,
+    "x": -11.0,
+    "y": 200.0,
     "width": 1550.4000244140625,
     "height": 878.4000244140625
   }
