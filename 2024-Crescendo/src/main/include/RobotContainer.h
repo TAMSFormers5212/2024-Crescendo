@@ -12,6 +12,7 @@
 #include "subsystems/SwerveDrive.h" 
 #include "subsystems/VisionSubsystem.h"
 #include "subsystems/Arm.h"
+#include "subsystems/Winch.h"
 
 using namespace OIConstants;
 
@@ -38,6 +39,7 @@ class RobotContainer {
   SwerveDrive m_drive;
   VisionSubsystem m_vision;
   Arm m_arm{ArmConstants::leftMotor, ArmConstants::rightMotor, ArmConstants::encoder, ArmConstants::encoderOffset};
+  Winch m_winch{WinchConstants::rightWinchMotor};
 
   void ConfigureBindings();
 };

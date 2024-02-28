@@ -5,7 +5,7 @@ using namespace PoseConstants;
 Superstructure::Superstructure() 
 : m_arm(ArmConstants::leftMotor, ArmConstants::rightMotor, ArmConstants::encoder, ArmConstants::encoderOffset),
     m_intake(IntakeConstants::motor, IntakeConstants::beamBreakIO),
-    m_shooter(ShooterConstants::topMotor, ShooterConstants::bottomMotor),
+    m_shooter(ShooterConstants::leftMotor, ShooterConstants::rightMotor),
     m_leftWinch(WinchConstants::leftWinchMotor),
     m_rightWinch(WinchConstants::rightWinchMotor),
     m_limelight(),

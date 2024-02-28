@@ -184,7 +184,7 @@ namespace SwerveModuleConstants {//per swerve module
 
 namespace ArmConstants{
 
-    constexpr int leftMotor = 10;
+    constexpr int leftMotor = 12;
     constexpr int rightMotor = 11;
 
     constexpr int encoder = 2; // depends on what encoder. planning for a rev through bore 
@@ -223,8 +223,8 @@ namespace ArmConstants{
 }
 
 namespace ShooterConstants{
-    constexpr int topMotor = 12;
-    constexpr int bottomMotor = 13;
+    constexpr int leftMotor = 15;
+    constexpr int rightMotor = 14;
     constexpr double pulleyRatio = 30.0/18.0;
     constexpr units::inch_t wheelDiameter = 4_in; // may change based on rpm
 
@@ -240,7 +240,7 @@ namespace ShooterConstants{
 }
 
 namespace IntakeConstants{
-    constexpr int motor = 1;
+    constexpr int motor = 13;
 
     constexpr int beamBreakIO = 0;  // digital io pins
 
@@ -256,8 +256,8 @@ namespace IntakeConstants{
 }
 
 namespace WinchConstants{
-    constexpr int leftWinchMotor = 13;
-    constexpr int rightWinchMotor = 14;
+    constexpr int leftWinchMotor = 1;
+    constexpr int rightWinchMotor = 10;
 
 
     constexpr double winchRatio = 60;

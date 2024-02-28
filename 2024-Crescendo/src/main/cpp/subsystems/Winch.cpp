@@ -59,6 +59,9 @@ void Winch::setWinchPosition(double position) {  // position in linear distance 
     m_winchController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);
 }
 
+double Winch::getWinchPosition() {
+    return m_encoder.GetPosition();
+}
 void Winch::setWinchSpeed(double speed) {  // speed of climb
     m_winchController.SetReference(speed, CANSparkLowLevel::ControlType::kVelocity);
 }

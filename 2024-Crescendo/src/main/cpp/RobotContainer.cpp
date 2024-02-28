@@ -129,6 +129,16 @@ RobotContainer::RobotContainer() {
         },
         {&m_arm}
     ));
+
+    m_winch.SetDefaultCommand(RunCommand(
+        [this] {
+            if(m_operatorController.GetRawButton(Controller::X)){
+                m_winch.setWinchPosition(m_winch.getWinchPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
+            }
+            // if(m_operatorController.getrawb)
+        },
+        {&m_winch}
+    ));
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -158,8 +168,9 @@ void RobotContainer::ConfigureBindings() {
 
     JoystickButton controllerLeftTrigger(&m_operatorController, Controller::leftTrigger);
 
+    JoystickButton controllerRightTrigger(&m_operatorController, Controller::rightTrigger);
     JoystickButton controllerB(&m_operatorController, Controller::B);
-    
+    controllerRightTrigger.OnTrue((InstantCommand([this] {return m_winch.setWinchPosition(0.0);})).ToPtr());
     controllerB.OnTrue((InstantCommand([this] {return m_arm.setPosition(0);})).ToPtr());
     
 

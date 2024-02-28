@@ -106,7 +106,7 @@ void Arm::Periodic() {
     // currently pretty inefficiently made but we'll see if it works
 
     // m_rightController.SetReference(m_setpoint.position.value(), CANSparkLowLevel::ControlType::kPosition);
-
+    
     frc::SmartDashboard::PutNumber("arm ", getPosition());
     frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
     frc::SmartDashboard::PutNumber("right output ", m_rightMotor.GetAppliedOutput());
