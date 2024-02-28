@@ -96,6 +96,11 @@ namespace OIConstants {//Controller buttons
         constexpr int Menu = 8;
         constexpr int LPress = 9;
         constexpr int RPress = 10;
+        //POV buttons (the d-pad)
+        constexpr int left = 0; // not actual numbers, just filler rn
+        constexpr int down = 1;
+        constexpr int right = 2;
+        constexpr int up = 3;
     }
 
 

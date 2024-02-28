@@ -8,7 +8,7 @@ Superstructure::Superstructure()
     m_shooter(ShooterConstants::leftMotor, ShooterConstants::rightMotor),
     m_leftWinch(WinchConstants::leftWinchMotor),
     m_rightWinch(WinchConstants::rightWinchMotor),
-    m_limelight(),
+    m_vision(),
     rollPID(0,0,0)
 {  
     resetSuperstructure();
@@ -30,7 +30,7 @@ void Superstructure::setToIntake(){
 void Superstructure::intakeNote(){
     m_intake.intakeNote();
 }
-void Superstructure::indexNote(){
+void Superstructure::indexNote(){ // indexes note
     m_intake.indexNote();
 }
 
@@ -40,7 +40,7 @@ double Superstructure::calculateSpeed(double distance, double x, double y) {  //
     }
     for (int i = 1; i < distances.size();i++){
         if(distance<distances.at(i).value()){
-            return speeds.at(i-1) + ((speeds.at(i)-speeds.at(i-1))/(distances.at(i)-distances.at(i-1)))*(distance-distances.at(i-1).value());
+            return speeds.at(i-1) + ((speeds.at(i)-speeds.at(i-1))/(distances.at(i)-distances.at(i-1)).value())*(distance-distances.at(i-1).value());
         }
     }
     return speeds.at(speeds.size()-1);
@@ -51,70 +51,89 @@ double Superstructure::calculateAngle(double distance, double x, double y) {  //
     }
     for (int i = 1; i < distances.size(); i++) {
         if (distance < distances.at(i).value()) {
-            return angles.at(i - 1) + ((angles.at(i) - angles.at(i - 1)) / (distances.at(i) - distances.at(i - 1))) * (distance - distances.at(i - 1).value());
+            return angles.at(i - 1) + ((angles.at(i) - angles.at(i - 1)) / (distances.at(i) - distances.at(i - 1)).value()) * (distance - distances.at(i - 1).value());
         }
     }
     return speeds.at(speeds.size() - 1);
 }
 
-void Superstructure::aim(double angle, double speed){
+void Superstructure::aim(double angle, double speed){ // simple aiming with preset angle and speed 
     m_arm.setPosition(angle);
     m_shooter.setSpeed(speed);
 }
-void Superstructure::aim(double distance, double x, double y) {
+void Superstructure::aim(double distance, double x, double y) { // raises arm and spins up shooter to calcuated values based on distance, x, y
     m_arm.setPosition(calculateAngle(distance, x, y));
     m_shooter.setSpeed(calculateSpeed(distance, x, y));
 }
-void Superstructure::speakerShot(){
-    double angle = calculateAngle(m_limelight.getZ(), m_limelight.getX(), m_limelight.getY());
-    double speed = calculateSpeed(m_limelight.getZ(), m_limelight.getX(), m_limelight.getY());
+void Superstructure::speakerShot(){ // speaker shot based on limelight tag position
+    double angle = calculateAngle(m_vision.getZ(), m_vision.getX(), m_vision.getY());
+    double speed = calculateSpeed(m_vision.getZ(), m_vision.getX(), m_vision.getY());
     aim(angle, speed);
     if(m_shooter.getSpeed()>speed*0.95&&m_shooter.getSpeed()<speed*1.05){
         m_intake.shootNote();
     }
 }
-void Superstructure::ampShot(){
+void Superstructure::ampShot(){ // raises arm to amp position, if in position shoots note
     m_arm.setPosition(armAmp); 
     if(m_arm.getPosition()>armAmp*0.95&&m_arm.getPosition()<1.05*armAmp){
         m_shooter.setSpeed(ampSpeed);
     }
 }
-void Superstructure::raiseToClimb(){
+void Superstructure::raiseToClimb(){ // raises arm to climbing position
     m_arm.setPosition(armClimb);
 }
 
-void Superstructure::climb(){
+void Superstructure::climb(){ // simple climb, just goes straight up to height to travel
     m_leftWinch.setWinchPosition(WinchConstants::heightToTravel.value());
     m_rightWinch.setWinchPosition(WinchConstants::heightToTravel.value());
 }
-void Superstructure::climb(double roll) {
+void Superstructure::climb(double roll) { // attempts climb with gyro to balance both sides
     rollPID.SetSetpoint(0.0);
     m_leftWinch.setWinchPosition(WinchConstants::heightToTravel.value()+rollPID.Calculate(roll));
     m_rightWinch.setWinchPosition(WinchConstants::heightToTravel.value()-rollPID.Calculate(roll)); // flip directions if wrong
 }
 
 // utility control
-void Superstructure::setIntake(double speed){
+void Superstructure::setIntake(double speed){ // sets intake to speed
     m_intake.setSpeed(speed);
 }
-void Superstructure::setShooter(double speed){
+void Superstructure::setShooter(double speed){ // sets both shooter wheels to speed
     m_shooter.setSpeed(speed);
 }
-void Superstructure::setArm(double position){
+void Superstructure::setArm(double position){ // sets arm to position
     m_arm.setPosition(position);
 }
-void Superstructure::setLeftWinchPosition(double position){
+void Superstructure::setLeftWinchPosition(double position){ // sets left winch to position
     m_leftWinch.setWinchPosition(position);
 }
-void Superstructure::setRightWinchPosition(double position){
+void Superstructure::setRightWinchPosition(double position){ // sets right winch to position
     m_rightWinch.setWinchPosition(position);
 }
-void Superstructure::setLeftWinchSpeed(double speed){
+void Superstructure::setLeftWinchSpeed(double speed){ // sets left winch to speed
     m_leftWinch.setWinchSpeed(speed);
 }
-void Superstructure::setRightWinchSpeed(double speed){
+void Superstructure::setRightWinchSpeed(double speed){ // sets right winch to speed
     m_rightWinch.setWinchSpeed(speed);
 }
 
 void Superstructure::Periodic() {
+}
+
+double Superstructure::getArmPosition(){
+    return m_arm.getPosition();
+}
+double Superstructure::getLeftWinchPosition(){
+    return m_leftWinch.getPosition();
+}
+double Superstructure::getRightWinchPosition(){
+    return m_rightWinch.getPosition();
+}
+double Superstructure::getleftShooterSpeed(){
+    return m_shooter.getleftSpeed();
+}
+double Superstructure::getrightShooterSpeed(){
+    return m_shooter.getrightSpeed();
+}
+double Superstructure::getShooterSpeed(){
+    return m_shooter.getSpeed();
 }

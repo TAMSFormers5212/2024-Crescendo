@@ -23,29 +23,29 @@ using namespace rev;
 class Shooter : public frc2::SubsystemBase{
 
 public:
-    Shooter(int topMotor, int bottomMotor);
+    Shooter(int leftMotor, int rightMotor);
 
     void resetMotors();
 
     void setSpeed(double speed);
     double getSpeed();
-    void setTopSpeed(double speed);
-    double getTopSpeed();
-    void setBottomSpeed(double speed);
-    double getBottomSpeed();
+    void setleftSpeed(double speed);
+    double getleftSpeed();
+    void setrightSpeed(double speed);
+    double getrightSpeed();
 
     void Periodic() override;
 
 private:
 
-    CANSparkMax m_topMotor; 
-    CANSparkMax m_bottomMotor;
+    CANSparkMax m_leftMotor; 
+    CANSparkMax m_rightMotor;
 
-    SparkRelativeEncoder m_topEncoder = m_topMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
-    SparkRelativeEncoder m_bottomEncoder = m_bottomMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
+    SparkRelativeEncoder m_leftEncoder = m_leftMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
+    SparkRelativeEncoder m_rightEncoder = m_rightMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
 
-    SparkPIDController m_topController = m_topMotor.GetPIDController();
-    SparkPIDController m_bottomController = m_bottomMotor.GetPIDController();
+    SparkPIDController m_leftController = m_leftMotor.GetPIDController();
+    SparkPIDController m_rightController = m_rightMotor.GetPIDController();
 
     double m_goalSpeed = 0;
 };
