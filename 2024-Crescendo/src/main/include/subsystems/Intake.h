@@ -43,7 +43,7 @@ public:
 
 private:
 
-    CANSparkMax m_intakeMotor; 
+    CANSparkMax m_intakeMotor; // may need to switch to 775 if neo550 is not fixed in time
 
     SparkRelativeEncoder m_encoder = m_intakeMotor.GetEncoder(SparkRelativeEncoder::Type::kHallSensor, 42);
 

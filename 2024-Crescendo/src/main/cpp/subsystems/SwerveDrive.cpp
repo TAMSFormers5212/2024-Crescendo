@@ -117,7 +117,7 @@ void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentri
                                                    x * SwerveModuleConstants::maxSpeed,
                                                    y * SwerveModuleConstants::maxSpeed,
                                                    theta * SwerveModuleConstants::maxRotation,
-                                                   units::degree_t{-m_gyro.GetYaw()})
+                                                   units::degree_t{-m_gyro.GetYaw()}) // kinda funny that this doesn't use the getgyro method made earlier
                                              : frc::ChassisSpeeds{
                                                    x * SwerveModuleConstants::maxSpeed,
                                                    y * SwerveModuleConstants::maxSpeed,
@@ -165,7 +165,12 @@ frc::ChassisSpeeds SwerveDrive::getRobotRelativeSpeeds() {
     return m_driveKinematics.ToChassisSpeeds({m_modules[0].getState(), m_modules[1].getState(), m_modules[2].getState(), m_modules[3].getState()});
 }
 
-void SwerveDrive::moveToAngle(double x, double y) {  // basically crab drive, points all wheels in the same direction
+frc::ChassisSpeeds SwerveDrive::getFieldRelativeSpeeds(){
+    // taken from yagsl getfieldvelocity() function
+    return frc::ChassisSpeeds::FromFieldRelativeSpeeds(m_driveKinematics.ToChassisSpeeds({m_modules[0].getState(), m_modules[1].getState(), m_modules[2].getState(), m_modules[3].getState()}), getGyroHeading());
+}
+
+void SwerveDrive::moveToAngle(double x, double y) {  // basically crab drive, points all wheels in the same direction ROBOT CENTRIC
     double temp = x;
     x = -y;
     y = temp;

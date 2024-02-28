@@ -58,7 +58,8 @@ void VisionSubsystem::Periodic() {
     double distanceFromLimelightToGoalInches = (VisionConstants::ampTagHeight - VisionConstants::limelightHeight.value()) / tan(angleToGoalRadians);
     float KpDistance = -0.1f;  // Proportional control constant for distance 
     float desired_distance = 35;
-    float distance_error = abs(desired_distance - distanceFromLimelightToGoalInches) * KpDistance;
+    float distance_error = abs(desired_distance - distanceFromLimelightToGoalInches) * KpDistance; 
+    // reason the swerve drive doesn't stop moving when trying to align to a certain distance from tag. taking the absolute value of it ensures that it will always be positive meaning the robot wont ever think to change directions
     if (targetOffsetAngle_Vertical == 0){
       setDistanceError(0);
     }
@@ -100,4 +101,16 @@ double VisionSubsystem::getDistanceError() { return distError; }
 
 void VisionSubsystem::SimulationPeriodic() {
     // Implementation of subsystem simulation periodic method goes here.
+}
+
+double VisionSubsystem::getX(){
+    return table->GetNumber("tx", 0.0);
+}
+
+double VisionSubsystem::getY() {
+    return table->GetNumber("ty", 0.0);
+}
+
+double VisionSubsystem::getZ() {
+    return table->GetNumber("tz", 0.0);
 }

@@ -38,6 +38,7 @@ public:
     frc::Pose2d OdometryPose();
     frc::Rotation2d getGyroHeading();
     frc::ChassisSpeeds getRobotRelativeSpeeds();
+    frc::ChassisSpeeds getFieldRelativeSpeeds();
     void resetHeading();
     void resetOdometry(const frc::Pose2d pose);
     void swerveDrive(double x, double y, double theta, bool fieldCentric);

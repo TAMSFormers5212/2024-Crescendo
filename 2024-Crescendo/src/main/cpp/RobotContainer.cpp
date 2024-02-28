@@ -100,7 +100,9 @@ RobotContainer::RobotContainer() {
             m_drive.swerveDrive(XAxis, YAxis, RotAxis, true);
 
         },
-        {&m_drive}));
+        {&m_drive}
+    ));
+
     m_vision.SetDefaultCommand(RunCommand(
         [this] {
 
@@ -115,7 +117,18 @@ RobotContainer::RobotContainer() {
             }
             frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
         },
-        {&m_vision}));
+        {&m_vision}
+    ));
+
+    m_arm.SetDefaultCommand(RunCommand(
+        [this] {
+            if(m_operatorController.GetRawButton(Controller::A)){
+                m_arm.setPosition(m_arm.getPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
+            }
+            // if(m_operatorController.getrawb)
+        },
+        {&m_arm}
+    ));
 }
 
 void RobotContainer::ConfigureBindings() {
@@ -142,6 +155,18 @@ void RobotContainer::ConfigureBindings() {
     //     }
     //   )
     // ).ToPtr());
+
+    JoystickButton controllerLeftTrigger(&m_operatorController, Controller::leftTrigger);
+
+    JoystickButton controllerB(&m_operatorController, Controller::B);
+    
+    controllerB.OnTrue((InstantCommand([this] {return m_arm.setPosition(0);})).ToPtr());
+    
+
+    // controllerLeftTrigger.OnTrue((InstantCommand([this] { return m_intake.})))
+    
+    // Joystick
+
 }
 
 // frc2::CommandPtr RobotContainer::GetAutonomousCommand() {

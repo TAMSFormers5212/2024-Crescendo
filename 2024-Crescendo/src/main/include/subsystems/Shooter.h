@@ -27,9 +27,6 @@ public:
 
     void resetMotors();
 
-    static double calculateSpeed(double distance, double x, double y); // calculate the needed speed based on current speed
-    static double calculateAngle(double distance, double x, double y); // angle to feed to arm
-
     void setSpeed(double speed);
     double getSpeed();
     void setTopSpeed(double speed);
@@ -49,5 +46,7 @@ private:
 
     SparkPIDController m_topController = m_topMotor.GetPIDController();
     SparkPIDController m_bottomController = m_bottomMotor.GetPIDController();
+
+    double m_goalSpeed = 0;
 };
 

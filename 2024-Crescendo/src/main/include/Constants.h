@@ -207,7 +207,14 @@ namespace ArmConstants{
     constexpr int kMinOutput = -1;
     constexpr units::meters_per_second_squared_t maxAccel = 10.0_mps_sq;
     constexpr units::meters_per_second_t maxVelo = 20.0_mps;
-    constexpr double allowedError = 0.0;
+    constexpr units::degrees_per_second_t maxRotatioV = 90_deg_per_s;
+    constexpr units::degrees_per_second_squared_t maxRotationA = 90_deg_per_s_sq;
+    constexpr double allowedError = 0.0; 
+    constexpr double stableDistance = 0;
+    
+    
+    constexpr double minPosition = 0; // soft limits
+    constexpr double maxPosition = 1;
 
     constexpr double kaS = 0.0;
     constexpr double kaG = 0.0;
@@ -269,44 +276,13 @@ namespace PoseConstants{
 
     //Amp
     constexpr double armAmp = 0;
+    constexpr double ampAngle = 0;
+    constexpr double ampSpeed = 0;
 
     //Climb
     constexpr double armClimb = 0;
     constexpr double intakeTrapSpeed = 0;
 
-    //lookup table design
-    //proven setpoints and just interpolate inbetween those values
-
-    //distance: 3ft
-    constexpr units::inch_t distance3 = 36_in;
-    constexpr double shooterRPM3 = 0;
-    constexpr double armAngle3 = 0;
-    
-    //distance: 5ft
-    constexpr units::inch_t distance5 = 60_in;
-    constexpr double shooterRPM5 = 0;
-    constexpr double armAngle5 = 0;
-
-    //distance: 7ft
-    constexpr units::inch_t distance7 = 84_in;
-    constexpr double shooterRPM7 = 0;
-    constexpr double armAngle7 = 0;
-
-    // distance: 9ft
-    constexpr units::inch_t distance9 = 108_in;
-    constexpr double shooterRPM9 = 0;
-    constexpr double armAngle9 = 0;
-
-    // distance: 11ft
-    constexpr units::inch_t distance11 = 132_in;
-    constexpr double shooterRPM11 = 0;
-    constexpr double armAngle11 = 0;
-
-    // distance: 13ft
-    constexpr units::inch_t distance13 = 156_in;
-    constexpr double shooterRPM13 = 0;
-    constexpr double armAngle13 = 0;
-    //max distance of vision for now
 }
 
 namespace VisionConstants{
