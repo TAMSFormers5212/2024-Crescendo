@@ -41,7 +41,8 @@ void Intake::resetMotor() {
 void Intake::intakeNote() {  // intake until note collected
     if (!holdingNote) {
         m_intakeMotor.Set(1.0);
-        // cout<<m_intakeMotor.GetOutputCurrent()<<endl;
+        
+        cout<<m_intakeMotor.GetOutputCurrent()<<endl;
         if (m_intakeMotor.GetOutputCurrent() > loadedCurrent) { // monitor current to find loaded current
             indexNote();
             holdingNote = true;
@@ -75,7 +76,7 @@ void Intake::shootNote() {  // give note to shooter
         }
     }
 }
-void Intake::reverseIntake() {  // in case of 2 notes and need to eject
+void Intake::reverseIntake() {  // in case of 2 notes and need to eject 
     m_intakeMotor.Set(-0.35);
     if (m_intakeMotor.GetOutputCurrent() < freeCurrent) {
         holdingNote = false;

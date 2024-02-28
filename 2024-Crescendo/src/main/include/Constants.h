@@ -221,7 +221,7 @@ namespace ArmConstants{
     constexpr double minPosition = 0; // soft limits
     constexpr double maxPosition = 1;
 
-    constexpr double kaS = 0.0;
+    constexpr double kaS = 0.1  ;
     constexpr double kaG = 0.0;
     constexpr double kaV = 0.0;
     constexpr double kaA = 0.0;
@@ -233,7 +233,7 @@ namespace ShooterConstants{
     constexpr double pulleyRatio = 30.0/18.0;
     constexpr units::inch_t wheelDiameter = 4_in; // may change based on rpm
 
-    constexpr double ksP = 0.0; // shooter uses a velocity PID
+    constexpr double ksP = 0.1; // shooter uses a velocity PID
     constexpr double ksI = 0.0;
     constexpr double ksD = 0.0;
     constexpr double ksFF = 0.0;
@@ -269,7 +269,7 @@ namespace WinchConstants{
     constexpr units::inch_t winchDiameter = 0.5_in;
     constexpr units::inch_t heightToTravel = 27_in; // distance from chain to winch, aka max winchable distance
 
-    constexpr double kwP = 0.0;
+    constexpr double kwP = 0.1;
     constexpr double kwI = 0.0;
     constexpr double kwD = 0.0;
     constexpr double kwFF = 0.0;

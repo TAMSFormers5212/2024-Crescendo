@@ -27,6 +27,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/Commands.h>
 
+#include <iostream>
 using namespace pathplanner;
 
 using namespace std;
@@ -124,6 +125,9 @@ RobotContainer::RobotContainer() {
             if(m_operatorController.GetRawButton(Controller::A)){
                 m_superstructure.setArm(m_superstructure.getArmPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
             }
+            if (m_operatorController.GetRawButton(Controller::Y)){
+                m_superstructure.m_intake.intakeNote();
+            }
             // if(m_operatorController.getrawb)
 
             //some prespin up code or something maybe
@@ -135,8 +139,9 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_rightWinch.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::X)){
-                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
-            }
+                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()+0.2);
+            }   
+         //   cout << m_superstructure.m_rightWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
         },
         {&m_superstructure.m_rightWinch}
@@ -177,8 +182,8 @@ void RobotContainer::ConfigureBindings() {
     POVButton controllerUp(&m_operatorController, Controller::up);
 
     controllerB.OnTrue((InstantCommand([this] { return m_superstructure.setArm(0); })).ToPtr());
-    controllerLeftTrigger.OnTrue((InstantCommand([this] { return m_superstructure.intakeNote();})).ToPtr());
-    
+    //controllerY.OnTrue((InstantCommand([this] { return m_superstructure.intakeNote();})).ToPtr());
+    // controllerRightBumper.WhileHeld((InstantCommand([this] {return m_superstructure.m_rightWinch.setWinchSpeed(0.4);})).ToPtr());
     // Joystick
 
 }
