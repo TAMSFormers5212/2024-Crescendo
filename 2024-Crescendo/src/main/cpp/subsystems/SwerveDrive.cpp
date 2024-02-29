@@ -192,8 +192,8 @@ void SwerveDrive::moveToAngle(double x, double y) {  // basically crab drive, po
     }
     // frc::SmartDashboard::PutNumber("Magnitude", r);
     frc::SmartDashboard::PutNumber("angle", angle);
-    // frc::SmartDashboard::PutNumber("x", x);
-    // frc::SmartDashboard::PutNumber("y", y);
+    frc::SmartDashboard::PutNumber("xm", x);
+    frc::SmartDashboard::PutNumber("ym", y);
     for (auto &module : m_modules) {
         module.setState(frc::SwerveModuleState{meters_per_second_t(r), frc::Rotation2d(radian_t(angle))});
     }
