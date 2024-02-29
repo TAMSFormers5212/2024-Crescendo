@@ -137,6 +137,14 @@ RobotContainer::RobotContainer() {
         },
         {&m_superstructure}
     )); 
+    m_superstructure.m_arm.SetDefaultCommand(RunCommand(
+        [this] {
+            if(m_operatorController.GetRawButton(Controller::B)){
+                m_superstructure.m_arm.setPosition(0);
+            }
+        },
+        {&m_superstructure.m_arm}
+    ));
     m_superstructure.m_shooter.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0){

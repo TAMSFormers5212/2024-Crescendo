@@ -57,6 +57,13 @@
                   "_title": "top left o abs",
                   "_glyph": 148,
                   "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/top leftoff",
+                  "_title": "top leftoff",
+                  "_glyph": 148,
+                  "_showGlyph": false
                 }
               ]
             }
@@ -98,6 +105,13 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/top right o abs",
                   "_title": "top right o abs",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/top rightoff",
+                  "_title": "top rightoff",
                   "_glyph": 148,
                   "_showGlyph": false
                 }
@@ -143,6 +157,13 @@
                   "_title": "bottom left o abs",
                   "_glyph": 148,
                   "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/bottom leftoff",
+                  "_title": "bottom leftoff",
+                  "_glyph": 148,
+                  "_showGlyph": false
                 }
               ]
             }
@@ -184,6 +205,13 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/bottom right o abs",
                   "_title": "bottom right o abs",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/bottom rightoff",
+                  "_title": "bottom rightoff",
                   "_glyph": 148,
                   "_showGlyph": false
                 }
@@ -459,45 +487,6 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "1,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/arm ",
-              "_title": "arm ",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "7,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/left output ",
-              "_title": "left output ",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "9,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/right output ",
-              "_title": "right output ",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
           "4,0": {
             "size": [
               1,
@@ -512,22 +501,22 @@
               "_children": [
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/angle",
-                  "_title": "angle",
+                  "_source0": "network_table:///SmartDashboard/arm ",
+                  "_title": "arm ",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/xm",
-                  "_title": "xm",
+                  "_source0": "network_table:///SmartDashboard/left output ",
+                  "_title": "left output ",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/ym",
-                  "_title": "ym",
+                  "_source0": "network_table:///SmartDashboard/right output ",
+                  "_title": "right output ",
                   "_glyph": 148,
                   "_showGlyph": false
                 }
@@ -552,8 +541,8 @@
     }
   ],
   "windowGeometry": {
-    "x": -8.0,
-    "y": -8.0,
+    "x": -6.400000095367432,
+    "y": -6.400000095367432,
     "width": 1548.800048828125,
     "height": 876.7999877929688
   }
