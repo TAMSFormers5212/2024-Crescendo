@@ -149,7 +149,18 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_rightWinch.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::X)){
-                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()+0.2);
+                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()+1);
+            }   
+         //   cout << m_superstructure.m_rightWinch.getWinchPosition() << endl;
+            // if(m_operatorController.getrawb)
+        },
+        {&m_superstructure.m_rightWinch}
+    ));
+
+    m_superstructure.m_leftWinch.SetDefaultCommand(RunCommand(
+        [this] {
+            if(m_operatorController.GetRawButton(Controller::X)){
+                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()-1);
             }   
          //   cout << m_superstructure.m_rightWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
