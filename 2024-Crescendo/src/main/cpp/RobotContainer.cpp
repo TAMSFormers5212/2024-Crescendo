@@ -136,7 +136,16 @@ RobotContainer::RobotContainer() {
             //then, if the calcs are good, the operator can press a button to shoot it
         },
         {&m_superstructure}
+    )); 
+    m_superstructure.m_shooter.SetDefaultCommand(RunCommand(
+        [this] {
+            if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0){
+                m_superstructure.m_shooter.setSpeed(10*m_operatorController.GetRawAxis(Controller::rightTrigger));
+            }
+        },
+        {&m_superstructure.m_shooter}
     ));
+
     m_superstructure.m_rightWinch.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::X)){
@@ -183,6 +192,9 @@ void RobotContainer::ConfigureBindings() {
     POVButton controllerUp(&m_operatorController, Controller::up);
 
     controllerB.OnTrue((InstantCommand([this] { return m_superstructure.setArm(0); })).ToPtr());
+    controllerRightBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.shootNote(); })).ToPtr());
+    controllerLeftBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.intakeNote(); })).ToPtr());
+    controllerRightBumper.OnFalse((InstantCommand([this] {return m_superstructure.m_intake.setSpeed(0); })).ToPtr());
     //controllerY.OnTrue((InstantCommand([this] { return m_superstructure.intakeNote();})).ToPtr());
     // controllerRightBumper.WhileHeld((InstantCommand([this] {return m_superstructure.m_rightWinch.setWinchSpeed(0.4);})).ToPtr());
     // Joystick
