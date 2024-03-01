@@ -27,6 +27,7 @@ public:
 
     void resetMotors();
 
+    void setPercent(double speed);
     void setSpeed(double speed);
     double getSpeed();
     void setleftSpeed(double speed);

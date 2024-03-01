@@ -123,12 +123,7 @@ RobotContainer::RobotContainer() {
 
     m_superstructure.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_operatorController.GetRawButton(Controller::A)){
-                m_superstructure.setArm(m_superstructure.getArmPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
-            }
-            if (m_operatorController.GetRawButton(Controller::Y)){
-                m_superstructure.m_intake.intakeNote();
-            }
+            
             // if(m_operatorController.getrawb)
 
             //some prespin up code or something maybe
@@ -140,6 +135,9 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_arm.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::B)){
+                m_superstructure.setArm(m_superstructure.getArmPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
+            }
+            if(m_operatorController.GetRawButton(Controller::Y)){
                 m_superstructure.m_arm.setPosition(0);
             }
         },
@@ -147,19 +145,38 @@ RobotContainer::RobotContainer() {
     ));
     m_superstructure.m_shooter.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0){
-                m_superstructure.m_shooter.setSpeed(10*m_operatorController.GetRawAxis(Controller::rightTrigger));
+            if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
+                m_superstructure.m_shooter.setPercent(m_operatorController.GetRawAxis(Controller::rightTrigger)*100);
             }
         },
-        {&m_superstructure.m_shooter}
+        {&m_superstructure.m_shooter}   
+    ));
+    m_superstructure.m_intake.SetDefaultCommand(RunCommand(
+        [this] {
+            if(m_operatorController.GetRawButton(Controller::rightBumper)){
+                m_superstructure.m_intake.intakeNote();
+            }
+            if(m_operatorController.GetRawButton(Controller::leftBumper)){
+                m_superstructure.m_intake.shootNote();
+            }
+        },
+        {&m_superstructure.m_intake}
     ));
 
     m_superstructure.m_rightWinch.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::X)){
                 m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()+1);
-            }   
-         //   cout << m_superstructure.m_rightWinch.getWinchPosition() << endl;
+            } else{
+                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition());
+
+            }
+            if (m_operatorController.GetRawButton(Controller::A)){
+                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()-0.5);
+            } else{
+                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition());
+            }
+           cout << m_superstructure.m_rightWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
         },
         {&m_superstructure.m_rightWinch}
@@ -170,7 +187,10 @@ RobotContainer::RobotContainer() {
             if(m_operatorController.GetRawButton(Controller::X)){
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()-1);
             }   
-         //   cout << m_superstructure.m_rightWinch.getWinchPosition() << endl;
+            if (m_operatorController.GetRawButton(Controller::A)){
+                m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()+0.5);
+            }
+            cout << m_superstructure.m_leftWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
         },
         {&m_superstructure.m_leftWinch}
@@ -211,9 +231,9 @@ void RobotContainer::ConfigureBindings() {
     POVButton controllerUp(&m_operatorController, Controller::up);
 
     //controllerB.OnTrue((InstantCommand([this] { return m_superstructure.setArm(0); })).ToPtr());
-    controllerRightBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.shootNote(); })).ToPtr());
-    controllerLeftBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.intakeNote(); })).ToPtr());
-    controllerRightBumper.OnFalse((InstantCommand([this] {return m_superstructure.m_intake.setSpeed(0); })).ToPtr());
+    //controllerRightBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.shootNote(); })).ToPtr());
+    //controllerLeftBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.intakeNote(); })).ToPtr());
+    //controllerRightBumper.OnFalse((InstantCommand([this] {return m_superstructure.m_intake.setSpeed(0); })).ToPtr());
     //controllerY.OnTrue((InstantCommand([this] { return m_superstructure.intakeNote();})).ToPtr());
     // controllerRightBumper.WhileHeld((InstantCommand([this] {return m_superstructure.m_rightWinch.setWinchSpeed(0.4);})).ToPtr());
     // Joystick
