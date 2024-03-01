@@ -41,6 +41,7 @@ void Arm::resetMotors() {
 
     m_leftEncoder.SetPositionConversionFactor(1.0 / armRatio);
     // m_leftEncoder.SetVelocityConversionFactor((1.0/armRatio)/60);
+    m_leftMotor.SetSoftLimit(CANSparkBase::SoftLimitDirection::kReverse, -0.1);
 
     m_rightMotor.RestoreFactoryDefaults();
 
@@ -62,6 +63,7 @@ void Arm::resetMotors() {
     m_rightMotor.SetInverted(true);
 
     m_rightEncoder.SetPositionConversionFactor(1.0 / armRatio);
+    m_rightMotor.SetSoftLimit(CANSparkBase::SoftLimitDirection::kReverse, -0.1);
 
     m_rightMotor.Follow(m_leftMotor, true);
     resetEncoder();
