@@ -53,13 +53,6 @@
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/top left o abs",
-                  "_title": "top left o abs",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/top leftoff",
                   "_title": "top leftoff",
                   "_glyph": 148,
@@ -510,6 +503,13 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/left output ",
                   "_title": "left output ",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/armRaw ",
+                  "_title": "armRaw ",
                   "_glyph": 148,
                   "_showGlyph": false
                 },

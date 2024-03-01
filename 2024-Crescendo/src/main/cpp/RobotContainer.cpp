@@ -100,7 +100,7 @@ RobotContainer::RobotContainer() {
 
             m_drive.swerveDrive(XAxis, YAxis, RotAxis, true);
 
-        },
+        },  
         {&m_drive}
     ));
 
@@ -168,12 +168,12 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_leftWinch.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::X)){
-                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()-1);
+                m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()-1);
             }   
          //   cout << m_superstructure.m_rightWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
         },
-        {&m_superstructure.m_rightWinch}
+        {&m_superstructure.m_leftWinch}
     ));
 }
 
@@ -210,7 +210,7 @@ void RobotContainer::ConfigureBindings() {
     POVButton controllerDown(&m_operatorController, Controller::down);
     POVButton controllerUp(&m_operatorController, Controller::up);
 
-    controllerB.OnTrue((InstantCommand([this] { return m_superstructure.setArm(0); })).ToPtr());
+    //controllerB.OnTrue((InstantCommand([this] { return m_superstructure.setArm(0); })).ToPtr());
     controllerRightBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.shootNote(); })).ToPtr());
     controllerLeftBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.intakeNote(); })).ToPtr());
     controllerRightBumper.OnFalse((InstantCommand([this] {return m_superstructure.m_intake.setSpeed(0); })).ToPtr());
