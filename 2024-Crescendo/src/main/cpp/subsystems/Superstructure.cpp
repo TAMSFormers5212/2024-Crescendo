@@ -8,7 +8,7 @@ Superstructure::Superstructure()
     m_shooter(ShooterConstants::leftMotor, ShooterConstants::rightMotor),
     m_leftWinch(WinchConstants::leftWinchMotor),
     m_rightWinch(WinchConstants::rightWinchMotor),
-    m_vision(),
+    // m_vision(),
     rollPID(0,0,0)
 {  
     resetSuperstructure();
@@ -66,8 +66,8 @@ void Superstructure::aim(double distance, double x, double y) { // raises arm an
     m_shooter.setSpeed(calculateSpeed(distance, x, y));
 }
 void Superstructure::speakerShot(){ // speaker shot based on limelight tag position
-    double angle = calculateAngle(m_vision.getZ(), m_vision.getX(), m_vision.getY());
-    double speed = calculateSpeed(m_vision.getZ(), m_vision.getX(), m_vision.getY());
+    double angle = 0;//calculateAngle(m_vision.getZ(), m_vision.getX(), m_vision.getY());
+    double speed = 0;//calculateSpeed(m_vision.getZ(), m_vision.getX(), m_vision.getY());
     aim(angle, speed);
     if(m_shooter.getSpeed()>speed*0.95&&m_shooter.getSpeed()<speed*1.05){
         m_intake.shootNote();

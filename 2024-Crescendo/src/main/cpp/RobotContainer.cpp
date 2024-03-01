@@ -86,13 +86,13 @@ RobotContainer::RobotContainer() {
             // if (m_driverController.GetRawButton(7)) {
                
             // }
-            if (m_driverController.GetRawButton(8)) {
-                //if (m_vision.getDistanceError() > 0 &&
-                    //m_vision.getDistanceError() < 25) {
-                     RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
-                     YAxis += m_superstructure.m_vision.getDistanceError() * speedMultiplier;
-                     //}
-            }
+            // if (m_driverController.GetRawButton(8)) {
+            //     //if (m_vision.getDistanceError() > 0 &&
+            //         //m_vision.getDistanceError() < 25) {
+            //          RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
+            //          YAxis += m_superstructure.m_vision.getDistanceError() * speedMultiplier;
+            //          //}
+            // }
             if (m_driverController.GetRawButton(6)) {
                 m_drive.tankDrive(XAxis, YAxis);
             }
@@ -104,22 +104,22 @@ RobotContainer::RobotContainer() {
         {&m_drive}
     ));
 
-    m_superstructure.m_vision.SetDefaultCommand(RunCommand(
-        [this] {
+    // m_superstructure.m_vision.SetDefaultCommand(RunCommand(
+    //     [this] {
 
-            // Led toggle
-            if (m_driverController.GetRawButtonPressed(9)) {
-                // if (m_vision.getLedOn() == 3) {
-                //     m_vision.setLedOn(1);
-                // } else if (m_vision.getLedOn() == 1) {
-                //     m_vision.setLedOn(3);
-                // }
-                m_drive.toggleOffset();
-            }
+    //         // Led toggle
+    //         if (m_driverController.GetRawButtonPressed(9)) {
+    //             // if (m_vision.getLedOn() == 3) {
+    //             //     m_vision.setLedOn(1);
+    //             // } else if (m_vision.getLedOn() == 1) {
+    //             //     m_vision.setLedOn(3);
+    //             // }
+    //             m_drive.toggleOffset();
+    //         }
             
-            frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
-        },
-        {&m_superstructure.m_vision}));
+    //         frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
+    //     },
+    //     {&m_superstructure.m_vision}));
 
     m_superstructure.SetDefaultCommand(RunCommand(
         [this] {
@@ -176,7 +176,7 @@ RobotContainer::RobotContainer() {
             } else{
                 m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition());
             }
-           cout << m_superstructure.m_rightWinch.getWinchPosition() << endl;
+           cout << "left winch" << m_superstructure.m_rightWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
         },
         {&m_superstructure.m_rightWinch}
@@ -186,11 +186,15 @@ RobotContainer::RobotContainer() {
         [this] {
             if(m_operatorController.GetRawButton(Controller::X)){
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()-1);
-            }   
+            } else{
+                m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition());
+            }
             if (m_operatorController.GetRawButton(Controller::A)){
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()+0.5);
+            }else{
+                m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition());
             }
-            cout << m_superstructure.m_leftWinch.getWinchPosition() << endl;
+            cout << "right winch"<< m_superstructure.m_leftWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
         },
         {&m_superstructure.m_leftWinch}

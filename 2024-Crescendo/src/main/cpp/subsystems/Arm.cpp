@@ -13,8 +13,8 @@ using namespace MathConstants;
 
 Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
     : m_leftMotor(leftMotor, CANSparkLowLevel::MotorType::kBrushless),
-      m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless),
-      m_absoluteEncoder(encoder) {
+      m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless)
+      {
     m_absoluteEncoder.SetPositionOffset(encoderOffset);
     resetMotors();
 }
@@ -40,6 +40,7 @@ void Arm::resetMotors() {
     m_leftMotor.SetSmartCurrentLimit(20, 40);
 
     m_leftEncoder.SetPositionConversionFactor(1.0 / armRatio);
+    // m_leftEncoder.SetVelocityConversionFactor((1.0/armRatio)/60);
 
     m_rightMotor.RestoreFactoryDefaults();
 
@@ -111,4 +112,7 @@ void Arm::Periodic() {
     frc::SmartDashboard::PutNumber("armRaw ", getRawPosition());
     frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
     frc::SmartDashboard::PutNumber("right output ", m_rightMotor.GetAppliedOutput());
+    frc::SmartDashboard::PutNumber("left position ", m_leftEncoder.GetPosition());
+    frc::SmartDashboard::PutNumber("right position ", m_rightEncoder.GetPosition());
+    frc::SmartDashboard::PutBoolean("arm encoder", m_absoluteEncoder.IsConnected());
 }

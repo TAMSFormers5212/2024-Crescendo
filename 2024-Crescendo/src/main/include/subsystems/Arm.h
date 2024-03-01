@@ -65,7 +65,7 @@ private:
     // ArmFeedforward m_armFF = ArmFeedforward(units::volt_t{kaS}, units::volt_t{kaG}, units::unit_t< ArmFeedforward::kv_unit >{kaV}, units::unit_t< ArmFeedforward::kv_unit >{kaA});
 
 
-    DutyCycleEncoder m_absoluteEncoder;
+    DutyCycleEncoder m_absoluteEncoder{encoder};
 
     double position = 0.0;
 

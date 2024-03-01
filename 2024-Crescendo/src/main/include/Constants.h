@@ -149,9 +149,10 @@ namespace SwerveModuleConstants {//per swerve module
     constexpr double kRampTimeSeconds = 0.1; // slew rate limiter (delay on acceleration)
 
     namespace drivebase{
-        constexpr units::meter_t WheelBase = 0.5207_m; // for kinematics
-        constexpr units::meter_t TrackWidth = 0.5207_m; // aka 20.5 inches
+        constexpr units::meter_t WheelBase = 0.5451_m; // for kinematics
+        constexpr units::meter_t TrackWidth = 0.5451_m; // aka 21.5 inches
         // 27x27 inch chassis from 2023, will update once 2024 chassis is assembed, but its just +1 inch 
+        // now updated to 28x28 2024 chassis
     }
     
     
