@@ -8,16 +8,10 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "subsystems/SwerveDrive.h"
-#include "subsystems/Arm.h"
-#include "subsystems/Shooter.h"
-#include "networktables/NetworkTable.h"
-#include "networktables/NetworkTableInstance.h"
-#include "networktables/NetworkTableEntry.h"
-#include "networktables/NetworkTableValue.h"
 
-class Aim : public frc2::CommandHelper<frc2::CommandBase, Aim> {
+class Drive : public frc2::CommandHelper<frc2::Command, Drive> {
 public:
-    explicit Aim(SwerveDrive* drive, Arm* arm, double x, double y, double z);
+    explicit Drive(SwerveDrive* drive, double x, double y, double z, bool blue);
 
     void Initialize() override;
 
@@ -25,7 +19,8 @@ public:
 
 private:
     SwerveDrive* m_drive;
-    Arm* m_arm;
-    double m_heading;
-    double m_armPose;
+    bool blueAlliance;
+    double x = 0;
+    double y = 0.5;
+    double z = 0;
 };

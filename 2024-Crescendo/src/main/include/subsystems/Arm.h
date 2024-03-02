@@ -36,8 +36,12 @@ public:
     void resetMotors();
     void resetEncoder();
     double getRawPosition();
+    double getRelativePosition();
+    void set(double value);
 
     void Periodic() override;
+
+    double initalPosition =0;
 
 private:
 

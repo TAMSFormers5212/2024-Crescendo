@@ -31,6 +31,7 @@ public:
     void indexNote(); // move note to indexer spot
     void shootNote(); // give note to shooter 
     void reverseIntake(); // in case of 2 notes and need to eject
+    void stopIntake();
 
     void setSpeed(double speed);
     double getSpeed();

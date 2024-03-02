@@ -15,8 +15,10 @@ Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
     : m_leftMotor(leftMotor, CANSparkLowLevel::MotorType::kBrushless),
       m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless)
       {
-    m_absoluteEncoder.SetPositionOffset(encoderOffset);
     resetMotors();
+    m_absoluteEncoder.SetPositionOffset(encoderOffset);
+    initalPosition = getPosition();
+    cout<<"arm abs "<<getPosition()<<" right pos "<<m_rightEncoder.GetPosition()<<" inital pos "<<initalPosition<<endl;
 }
 
 void Arm::resetMotors() {
@@ -37,10 +39,11 @@ void Arm::resetMotors() {
 
     m_leftMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
     m_leftMotor.EnableVoltageCompensation(12.0);
-    m_leftMotor.SetSmartCurrentLimit(20, 40);
+    m_leftMotor.SetSmartCurrentLimit( 40);
 
     m_leftEncoder.SetPositionConversionFactor(1.0 / armRatio);
     // m_leftEncoder.SetVelocityConversionFactor((1.0/armRatio)/60);
+    // m_leftEncoder.SetInverted(true);
 
     m_rightMotor.RestoreFactoryDefaults();
 
@@ -58,18 +61,27 @@ void Arm::resetMotors() {
 
     m_rightMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
     m_rightMotor.EnableVoltageCompensation(12.0);
-    m_rightMotor.SetSmartCurrentLimit(20, 40);
+    m_rightMotor.SetSmartCurrentLimit( 40);
     m_rightMotor.SetInverted(true);
 
     m_rightEncoder.SetPositionConversionFactor(1.0 / armRatio);
+    // m_rightEncoder.SetInverted(true);
 
     m_rightMotor.Follow(m_leftMotor, true);
+    m_leftEncoder.SetPosition(getPosition());
+    m_rightEncoder.SetPosition(getPosition());
+    m_leftMotor.EnableSoftLimit(CANSparkBase::SoftLimitDirection::kReverse, false);
+    m_rightMotor.EnableSoftLimit(CANSparkBase::SoftLimitDirection::kReverse, false);
+    m_leftMotor.EnableSoftLimit(CANSparkBase::SoftLimitDirection::kForward, false);
+    m_rightMotor.EnableSoftLimit(CANSparkBase::SoftLimitDirection::kForward, false);
     resetEncoder();
 }
 
 void Arm::resetEncoder() { // sets neo encoders to absolute encoder position
     m_leftEncoder.SetPosition(getPosition());
     m_rightEncoder.SetPosition(getPosition());
+    initalPosition = getRawPosition();
+
 }
 
 double Arm::getPosition() { // returns the absolute encoder position with offset
@@ -97,6 +109,15 @@ void Arm::setPosition(double pose) { // sets the goal pose to given parameter
     m_leftController.SetReference(pose, CANSparkLowLevel::ControlType::kPosition);
 }
 
+double Arm::getRelativePosition(){
+    return m_leftEncoder.GetPosition();
+}
+
+void Arm::set(double value){
+    m_leftMotor.Set(value);
+    m_rightMotor.Set(value);
+}
+
 void Arm::Periodic() {
     // frc 4481 found that profiling yieled jittering when close to goal/small distance to cover, maybe switch to normal pid when close to goal
 
@@ -115,4 +136,5 @@ void Arm::Periodic() {
     frc::SmartDashboard::PutNumber("left position ", m_leftEncoder.GetPosition());
     frc::SmartDashboard::PutNumber("right position ", m_rightEncoder.GetPosition());
     frc::SmartDashboard::PutBoolean("arm encoder", m_absoluteEncoder.IsConnected());
+    frc::SmartDashboard::PutNumber("inital position", initalPosition);
 }

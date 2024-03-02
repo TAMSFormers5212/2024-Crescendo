@@ -134,31 +134,49 @@ RobotContainer::RobotContainer() {
     )); 
     m_superstructure.m_arm.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_operatorController.GetRawButton(Controller::B)){
-                m_superstructure.setArm(m_superstructure.getArmPosition()+m_operatorController.GetRawAxis(Controller::leftYAxis)/100);
+            if(abs(m_operatorController.GetRawAxis(Controller::leftYAxis))>0.05){
+                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition() + m_operatorController.GetRawAxis(Controller::leftYAxis)-sin(m_superstructure.m_arm.getRelativePosition()*MathConstants::pi2)*0.1);
+                // m_superstructure.m_arm.set(m_operatorController.GetRawAxis(Controller::leftYAxis));
+            }else{
+            // if(m_operatorController.GetRawButton(Controller::B)){
+            //     // m_superstructure.setArm(0.73);
+            //     m_superstructure.m_arm.setPosition(0.73-m_superstructure.m_arm.initalPosition);
+            // }else if(m_operatorController.GetRawButton(Controller::Y)){
+            //    m_superstructure.m_arm.setPosition(0.55-m_superstructure.m_arm.initalPosition);
+            // }
+            // else{
+                // m_superstructure.m_arm. (0);
+                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
             }
-            if(m_operatorController.GetRawButton(Controller::Y)){
-                m_superstructure.m_arm.setPosition(0);
-            }
+            // if(m_operatorController.GetRawButton(Controller))
         },
         {&m_superstructure.m_arm}
     ));
     m_superstructure.m_shooter.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
-                m_superstructure.m_shooter.setPercent(m_operatorController.GetRawAxis(Controller::rightTrigger)*100);
+                m_superstructure.m_shooter.setPercent(m_operatorController.GetRawAxis(Controller::rightTrigger));
             }
+            else{
+                m_superstructure.m_shooter.setPercent(0);
+            }
+            //  frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
         },
         {&m_superstructure.m_shooter}   
     ));
     m_superstructure.m_intake.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::rightBumper)){
-                m_superstructure.m_intake.intakeNote();
-            }
+                m_superstructure.m_intake.setSpeed(0.4);
+            } 
             if(m_operatorController.GetRawButton(Controller::leftBumper)){
-                m_superstructure.m_intake.shootNote();
+                m_superstructure.m_intake.setSpeed(-0.4);
+            } 
+            if(!m_operatorController.GetRawButton(Controller::leftBumper)&&!m_operatorController.GetRawButton(Controller::rightBumper)){
+                m_superstructure.m_intake.stopIntake();
             }
+            // if(m_operatorController.GetR)
+            // m_operatorController.
         },
         {&m_superstructure.m_intake}
     ));
@@ -166,17 +184,13 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_rightWinch.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::X)){
-                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()+1);
-            } else{
-                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition());
-
-            }
-            if (m_operatorController.GetRawButton(Controller::A)){
-                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()-0.5);
+                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()+10);
+            } else if (m_operatorController.GetRawButton(Controller::A)){
+                m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()-10);
             } else{
                 m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition());
             }
-           cout << "left winch" << m_superstructure.m_rightWinch.getWinchPosition() << endl;
+        //    cout << "left winch" << m_superstructure.m_rightWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
         },
         {&m_superstructure.m_rightWinch}
@@ -185,16 +199,14 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_leftWinch.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::X)){
-                m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()-1);
-            } else{
-                m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition());
-            }
+                m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()-10);
+            } else
             if (m_operatorController.GetRawButton(Controller::A)){
-                m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()+0.5);
+                m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()+10);
             }else{
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition());
             }
-            cout << "right winch"<< m_superstructure.m_leftWinch.getWinchPosition() << endl;
+            // cout << "right winch"<< m_superstructure.m_leftWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
         },
         {&m_superstructure.m_leftWinch}
@@ -233,7 +245,7 @@ void RobotContainer::ConfigureBindings() {
     POVButton controllerRight(&m_operatorController, Controller::right);
     POVButton controllerDown(&m_operatorController, Controller::down);
     POVButton controllerUp(&m_operatorController, Controller::up);
-
+    
     //controllerB.OnTrue((InstantCommand([this] { return m_superstructure.setArm(0); })).ToPtr());
     //controllerRightBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.shootNote(); })).ToPtr());
     //controllerLeftBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.intakeNote(); })).ToPtr());

@@ -34,13 +34,14 @@ void Intake::resetMotor() {
     m_intakeMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
     m_intakeMotor.EnableVoltageCompensation(12.0);
     m_intakeMotor.SetSmartCurrentLimit(20, 25);
+    m_intakeMotor.SetInverted(true);
 
     m_encoder.SetPositionConversionFactor(1.0 / intakeRatio);
 }
 
 void Intake::intakeNote() {  // intake until note collected
     if (!holdingNote) {
-        m_intakeMotor.Set(1.0);
+        m_intakeMotor.Set(0.4);
         
         cout<<m_intakeMotor.GetOutputCurrent()<<endl;
         if (m_intakeMotor.GetOutputCurrent() > loadedCurrent) { // monitor current to find loaded current
@@ -69,7 +70,7 @@ void Intake::indexNote() {  // move note to indexer spot (kinda useless without 
 }
 void Intake::shootNote() {  // give note to shooter
     if (holdingNote) {
-        m_intakeMotor.Set(1);
+        m_intakeMotor.Set(-0.4);
         if (m_intakeMotor.GetOutputCurrent() < freeCurrent) {
             holdingNote = false;
             state = IntakeConstants::empty;
@@ -82,6 +83,10 @@ void Intake::reverseIntake() {  // in case of 2 notes and need to eject
         holdingNote = false;
         IntakeConstants::empty;
     }
+}
+void Intake::stopIntake() {  // in case of 2 notes and need to eject 
+    m_intakeMotor.Set(0);
+    
 }
 
 void Intake::setSpeed(double speed) { m_intakeMotor.Set(speed); }
@@ -98,4 +103,5 @@ void Intake::setState(int state) { this->state = state; }
 
 void Intake::Periodic() {
     frc::SmartDashboard::PutBoolean("holding note", holdingNote);
+    frc::SmartDashboard::PutNumber("intakeCurrent", m_intakeMotor.GetOutputCurrent());
 }

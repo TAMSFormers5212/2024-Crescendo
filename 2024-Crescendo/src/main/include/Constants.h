@@ -196,15 +196,15 @@ namespace ArmConstants{
     constexpr int encoder = 2; // depends on what encoder. planning for a rev through bore 
     // constexpr int limitSwitch = 1;
 
-    constexpr double encoderOffset = 0;
+    constexpr double encoderOffset = 0.0;
 
     constexpr double sprocketRatio = 5.5;
     constexpr int planetaryRatio = 20;
     constexpr int armRatio = 110; // 20:1 maxplanetary * 66:12 sprocket
     
-    constexpr double kaP = 0.1;
-    constexpr double kaI = 0.0;
-    constexpr double kaD = 0.0;
+    constexpr double kaP = 0.4;
+    constexpr double kaI = 0.00;
+    constexpr double kaD = 0.05;
     constexpr double kaFF = 0.0;
     constexpr double kaIz = 0.0;
     constexpr units::second_t kaT = 20_ms;
@@ -270,7 +270,7 @@ namespace WinchConstants{
     constexpr units::inch_t winchDiameter = 0.5_in;
     constexpr units::inch_t heightToTravel = 27_in; // distance from chain to winch, aka max winchable distance
 
-    constexpr double kwP = 0.1;
+    constexpr double kwP = 1;
     constexpr double kwI = 0.0;
     constexpr double kwD = 0.0;
     constexpr double kwFF = 0.0;
