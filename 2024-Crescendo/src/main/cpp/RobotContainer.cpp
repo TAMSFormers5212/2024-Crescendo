@@ -150,7 +150,7 @@ RobotContainer::RobotContainer() {
             else{
                 // m_superstructure.m_arm. (0);
                 // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
-                m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.01);
+                m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.02);
             }
             }
             // if(m_operatorController.GetRawButton(Controller))
