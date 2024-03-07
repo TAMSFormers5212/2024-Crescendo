@@ -1,0 +1,423 @@
+[
+  {
+    "name": "linuxathena",
+    "architecture": "arm-v7",
+    "operatingSystem": "linux",
+    "flavor": "default",
+    "buildType": "debug",
+    "cppPath": "C:\\Users\\Public\\wpilib\\2024\\roborio\\bin\\arm-frc2024-linux-gnueabi-g++.exe",
+    "cPath": "C:\\Users\\Public\\wpilib\\2024\\roborio\\bin\\arm-frc2024-linux-gnueabi-gcc.exe",
+    "msvc": false,
+    "gcc": true,
+    "systemCppMacros": [],
+    "systemCppArgs": [],
+    "systemCMacros": [],
+    "systemCArgs": [],
+    "allLibFiles": [
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7f2df1846618a1c7d98d9ce6cb1cb137\\transformed\\wpilibNewCommands-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\aada04dcf3789e15f38e0afc7fa8e99b\\transformed\\PathplannerLib-cpp-2024.2.4-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\b69fcc91d3d4fe9eed6a43b734485d4b\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\8ec997bb975582439a1f6e5271eb6bca\\transformed\\REVLib-driver-2024.2.3-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a07c198538312d443bbe16d35c247f23\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\93d01f7586893d3f677e2481855fd517\\transformed\\wpilibc-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\d8b5af090c38b96c9be387e1a08c5d14\\transformed\\ntcore-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\683cbc2307de7c5bb9baa97b36f66fdd\\transformed\\hal-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\26c567f3315cb1ba89ae9bc5975b828e\\transformed\\wpimath-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\13c52907a66c6160a675f676f23cb289\\transformed\\wpinet-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f881e63d6a80b54fa3c7e215caf49cb3\\transformed\\wpiutil-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e134af02f5436a101cadab2c4d5f257d\\transformed\\netcomm-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f74bb16aeacd11f6e7ef90faf8ea4402\\transformed\\chipobject-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7a085d700fd095773aa7d87ee8880a05\\transformed\\visa-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\50ddd754c35c74418bdeb614913a4525\\transformed\\cameraserver-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fdee804a3d196f6da988c01f5d28fee4\\transformed\\cscore-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fa82c85ae1a3c94a7a60386e643ee816\\transformed\\apriltag-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\4e93352ef8c3cc5ce15393cc9dfe96fa\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+      "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\1d4fcc421e0c64f75a2625a771fbb2f4\\transformed\\wpilibNewCommands-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a96bdfb69f1dac048e4183323e97d88f\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\cb23f278005fe4af346c9c441f8ac51c\\transformed\\wpilibc-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f4a79c2b58c5aee44c1a49317e9b7870\\transformed\\ntcore-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\2aa9d44bb5520cc73287cd605b48ec1c\\transformed\\hal-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e8b182e668e288f6a91b15136d247636\\transformed\\wpimath-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\cbacf43bcf60f3488a55154d3249330c\\transformed\\wpinet-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\97ff00a5e6496d64882cb3f8c9cc34a7\\transformed\\wpiutil-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\06ecd4d919488bdb95576752824b2aa3\\transformed\\cameraserver-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\eddafac7b2eee8013b428512d5cd7271\\transformed\\cscore-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\add05d48dce2aaafc70cba0d99905a8e\\transformed\\apriltag-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a3072c3138fa315c060d3a13944a17ff\\transformed\\opencv-cpp-4.8.0-2-sources\\"
+    ],
+    "allLibSources": [
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\1d4fcc421e0c64f75a2625a771fbb2f4\\transformed\\wpilibNewCommands-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a96bdfb69f1dac048e4183323e97d88f\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\cb23f278005fe4af346c9c441f8ac51c\\transformed\\wpilibc-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f4a79c2b58c5aee44c1a49317e9b7870\\transformed\\ntcore-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\2aa9d44bb5520cc73287cd605b48ec1c\\transformed\\hal-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e8b182e668e288f6a91b15136d247636\\transformed\\wpimath-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\cbacf43bcf60f3488a55154d3249330c\\transformed\\wpinet-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\97ff00a5e6496d64882cb3f8c9cc34a7\\transformed\\wpiutil-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\06ecd4d919488bdb95576752824b2aa3\\transformed\\cameraserver-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\eddafac7b2eee8013b428512d5cd7271\\transformed\\cscore-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\add05d48dce2aaafc70cba0d99905a8e\\transformed\\apriltag-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a3072c3138fa315c060d3a13944a17ff\\transformed\\opencv-cpp-4.8.0-2-sources\\"
+    ],
+    "allLibHeaders": [
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7f2df1846618a1c7d98d9ce6cb1cb137\\transformed\\wpilibNewCommands-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\aada04dcf3789e15f38e0afc7fa8e99b\\transformed\\PathplannerLib-cpp-2024.2.4-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\b69fcc91d3d4fe9eed6a43b734485d4b\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\8ec997bb975582439a1f6e5271eb6bca\\transformed\\REVLib-driver-2024.2.3-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a07c198538312d443bbe16d35c247f23\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\93d01f7586893d3f677e2481855fd517\\transformed\\wpilibc-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\d8b5af090c38b96c9be387e1a08c5d14\\transformed\\ntcore-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\683cbc2307de7c5bb9baa97b36f66fdd\\transformed\\hal-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\26c567f3315cb1ba89ae9bc5975b828e\\transformed\\wpimath-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\13c52907a66c6160a675f676f23cb289\\transformed\\wpinet-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f881e63d6a80b54fa3c7e215caf49cb3\\transformed\\wpiutil-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e134af02f5436a101cadab2c4d5f257d\\transformed\\netcomm-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f74bb16aeacd11f6e7ef90faf8ea4402\\transformed\\chipobject-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7a085d700fd095773aa7d87ee8880a05\\transformed\\visa-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\50ddd754c35c74418bdeb614913a4525\\transformed\\cameraserver-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fdee804a3d196f6da988c01f5d28fee4\\transformed\\cscore-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fa82c85ae1a3c94a7a60386e643ee816\\transformed\\apriltag-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\4e93352ef8c3cc5ce15393cc9dfe96fa\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+      "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+    ],
+    "binaries": [
+      {
+        "componentName": "frcUserProgram",
+        "sourceSets": [
+          {
+            "source": {
+              "srcDirs": [
+                "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "exportedHeaders": {
+              "srcDirs": [
+                "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+              ],
+              "includes": [],
+              "excludes": []
+            },
+            "cpp": true,
+            "args": [
+              "-Wall",
+              "-Wextra",
+              "-std=c++20",
+              "-Wformat=2",
+              "-pedantic",
+              "-Wno-psabi",
+              "-Wno-unused-parameter",
+              "-fPIC",
+              "-pthread",
+              "-Wno-error=deprecated-enum-enum-conversion",
+              "-Og",
+              "-g"
+            ],
+            "macros": []
+          }
+        ],
+        "libHeaders": [
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7f2df1846618a1c7d98d9ce6cb1cb137\\transformed\\wpilibNewCommands-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\aada04dcf3789e15f38e0afc7fa8e99b\\transformed\\PathplannerLib-cpp-2024.2.4-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\b69fcc91d3d4fe9eed6a43b734485d4b\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\8ec997bb975582439a1f6e5271eb6bca\\transformed\\REVLib-driver-2024.2.3-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a07c198538312d443bbe16d35c247f23\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\93d01f7586893d3f677e2481855fd517\\transformed\\wpilibc-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\d8b5af090c38b96c9be387e1a08c5d14\\transformed\\ntcore-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\683cbc2307de7c5bb9baa97b36f66fdd\\transformed\\hal-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\26c567f3315cb1ba89ae9bc5975b828e\\transformed\\wpimath-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\13c52907a66c6160a675f676f23cb289\\transformed\\wpinet-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f881e63d6a80b54fa3c7e215caf49cb3\\transformed\\wpiutil-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e134af02f5436a101cadab2c4d5f257d\\transformed\\netcomm-2024.2.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f74bb16aeacd11f6e7ef90faf8ea4402\\transformed\\chipobject-2024.2.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7a085d700fd095773aa7d87ee8880a05\\transformed\\visa-2024.2.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\50ddd754c35c74418bdeb614913a4525\\transformed\\cameraserver-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fdee804a3d196f6da988c01f5d28fee4\\transformed\\cscore-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fa82c85ae1a3c94a7a60386e643ee816\\transformed\\apriltag-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\4e93352ef8c3cc5ce15393cc9dfe96fa\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+          "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+        ],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "sourceBinaries": [
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++20",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-fPIC",
+          "-pthread",
+          "-Wno-error=deprecated-enum-enum-conversion",
+          "-Og",
+          "-g"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      },
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+          ],
+          "includes": [],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++20",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-fPIC",
+          "-pthread",
+          "-Wno-error=deprecated-enum-enum-conversion",
+          "-Og",
+          "-g"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "nameBinaryMap": {
+      "frcUserProgram": 0
+    }
+  },
+  {
+    "name": "linuxathena",
+    "architecture": "arm-v7",
+    "operatingSystem": "linux",
+    "flavor": "default",
+    "buildType": "release",
+    "cppPath": "C:\\Users\\Public\\wpilib\\2024\\roborio\\bin\\arm-frc2024-linux-gnueabi-g++.exe",
+    "cPath": "C:\\Users\\Public\\wpilib\\2024\\roborio\\bin\\arm-frc2024-linux-gnueabi-gcc.exe",
+    "msvc": false,
+    "gcc": true,
+    "systemCppMacros": [],
+    "systemCppArgs": [],
+    "systemCMacros": [],
+    "systemCArgs": [],
+    "allLibFiles": [
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7f2df1846618a1c7d98d9ce6cb1cb137\\transformed\\wpilibNewCommands-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\aada04dcf3789e15f38e0afc7fa8e99b\\transformed\\PathplannerLib-cpp-2024.2.4-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\b69fcc91d3d4fe9eed6a43b734485d4b\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\8ec997bb975582439a1f6e5271eb6bca\\transformed\\REVLib-driver-2024.2.3-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a07c198538312d443bbe16d35c247f23\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\93d01f7586893d3f677e2481855fd517\\transformed\\wpilibc-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\d8b5af090c38b96c9be387e1a08c5d14\\transformed\\ntcore-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\683cbc2307de7c5bb9baa97b36f66fdd\\transformed\\hal-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\26c567f3315cb1ba89ae9bc5975b828e\\transformed\\wpimath-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\13c52907a66c6160a675f676f23cb289\\transformed\\wpinet-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f881e63d6a80b54fa3c7e215caf49cb3\\transformed\\wpiutil-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e134af02f5436a101cadab2c4d5f257d\\transformed\\netcomm-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f74bb16aeacd11f6e7ef90faf8ea4402\\transformed\\chipobject-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7a085d700fd095773aa7d87ee8880a05\\transformed\\visa-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\50ddd754c35c74418bdeb614913a4525\\transformed\\cameraserver-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fdee804a3d196f6da988c01f5d28fee4\\transformed\\cscore-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fa82c85ae1a3c94a7a60386e643ee816\\transformed\\apriltag-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\4e93352ef8c3cc5ce15393cc9dfe96fa\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+      "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\1d4fcc421e0c64f75a2625a771fbb2f4\\transformed\\wpilibNewCommands-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a96bdfb69f1dac048e4183323e97d88f\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\cb23f278005fe4af346c9c441f8ac51c\\transformed\\wpilibc-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f4a79c2b58c5aee44c1a49317e9b7870\\transformed\\ntcore-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\2aa9d44bb5520cc73287cd605b48ec1c\\transformed\\hal-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e8b182e668e288f6a91b15136d247636\\transformed\\wpimath-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\cbacf43bcf60f3488a55154d3249330c\\transformed\\wpinet-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\97ff00a5e6496d64882cb3f8c9cc34a7\\transformed\\wpiutil-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\06ecd4d919488bdb95576752824b2aa3\\transformed\\cameraserver-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\eddafac7b2eee8013b428512d5cd7271\\transformed\\cscore-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\add05d48dce2aaafc70cba0d99905a8e\\transformed\\apriltag-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a3072c3138fa315c060d3a13944a17ff\\transformed\\opencv-cpp-4.8.0-2-sources\\"
+    ],
+    "allLibSources": [
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\1d4fcc421e0c64f75a2625a771fbb2f4\\transformed\\wpilibNewCommands-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a96bdfb69f1dac048e4183323e97d88f\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\cb23f278005fe4af346c9c441f8ac51c\\transformed\\wpilibc-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f4a79c2b58c5aee44c1a49317e9b7870\\transformed\\ntcore-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\2aa9d44bb5520cc73287cd605b48ec1c\\transformed\\hal-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e8b182e668e288f6a91b15136d247636\\transformed\\wpimath-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\cbacf43bcf60f3488a55154d3249330c\\transformed\\wpinet-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\97ff00a5e6496d64882cb3f8c9cc34a7\\transformed\\wpiutil-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\06ecd4d919488bdb95576752824b2aa3\\transformed\\cameraserver-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\eddafac7b2eee8013b428512d5cd7271\\transformed\\cscore-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\add05d48dce2aaafc70cba0d99905a8e\\transformed\\apriltag-cpp-2024.3.1-sources\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a3072c3138fa315c060d3a13944a17ff\\transformed\\opencv-cpp-4.8.0-2-sources\\"
+    ],
+    "allLibHeaders": [
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7f2df1846618a1c7d98d9ce6cb1cb137\\transformed\\wpilibNewCommands-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\aada04dcf3789e15f38e0afc7fa8e99b\\transformed\\PathplannerLib-cpp-2024.2.4-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\b69fcc91d3d4fe9eed6a43b734485d4b\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\8ec997bb975582439a1f6e5271eb6bca\\transformed\\REVLib-driver-2024.2.3-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a07c198538312d443bbe16d35c247f23\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\93d01f7586893d3f677e2481855fd517\\transformed\\wpilibc-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\d8b5af090c38b96c9be387e1a08c5d14\\transformed\\ntcore-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\683cbc2307de7c5bb9baa97b36f66fdd\\transformed\\hal-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\26c567f3315cb1ba89ae9bc5975b828e\\transformed\\wpimath-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\13c52907a66c6160a675f676f23cb289\\transformed\\wpinet-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f881e63d6a80b54fa3c7e215caf49cb3\\transformed\\wpiutil-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e134af02f5436a101cadab2c4d5f257d\\transformed\\netcomm-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f74bb16aeacd11f6e7ef90faf8ea4402\\transformed\\chipobject-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7a085d700fd095773aa7d87ee8880a05\\transformed\\visa-2024.2.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\50ddd754c35c74418bdeb614913a4525\\transformed\\cameraserver-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fdee804a3d196f6da988c01f5d28fee4\\transformed\\cscore-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fa82c85ae1a3c94a7a60386e643ee816\\transformed\\apriltag-cpp-2024.3.1-headers\\",
+      "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\4e93352ef8c3cc5ce15393cc9dfe96fa\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+      "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+    ],
+    "binaries": [
+      {
+        "componentName": "frcUserProgram",
+        "sourceSets": [
+          {
+            "source": {
+              "srcDirs": [
+                "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "exportedHeaders": {
+              "srcDirs": [
+                "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+              ],
+              "includes": [],
+              "excludes": []
+            },
+            "cpp": true,
+            "args": [
+              "-Wall",
+              "-Wextra",
+              "-std=c++20",
+              "-Wformat=2",
+              "-pedantic",
+              "-Wno-psabi",
+              "-Wno-unused-parameter",
+              "-fPIC",
+              "-pthread",
+              "-Wno-error=deprecated-enum-enum-conversion",
+              "-O2"
+            ],
+            "macros": []
+          }
+        ],
+        "libHeaders": [
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7f2df1846618a1c7d98d9ce6cb1cb137\\transformed\\wpilibNewCommands-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\aada04dcf3789e15f38e0afc7fa8e99b\\transformed\\PathplannerLib-cpp-2024.2.4-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\b69fcc91d3d4fe9eed6a43b734485d4b\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\8ec997bb975582439a1f6e5271eb6bca\\transformed\\REVLib-driver-2024.2.3-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\a07c198538312d443bbe16d35c247f23\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\93d01f7586893d3f677e2481855fd517\\transformed\\wpilibc-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\d8b5af090c38b96c9be387e1a08c5d14\\transformed\\ntcore-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\683cbc2307de7c5bb9baa97b36f66fdd\\transformed\\hal-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\26c567f3315cb1ba89ae9bc5975b828e\\transformed\\wpimath-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\13c52907a66c6160a675f676f23cb289\\transformed\\wpinet-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f881e63d6a80b54fa3c7e215caf49cb3\\transformed\\wpiutil-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\e134af02f5436a101cadab2c4d5f257d\\transformed\\netcomm-2024.2.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\f74bb16aeacd11f6e7ef90faf8ea4402\\transformed\\chipobject-2024.2.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\7a085d700fd095773aa7d87ee8880a05\\transformed\\visa-2024.2.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\50ddd754c35c74418bdeb614913a4525\\transformed\\cameraserver-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fdee804a3d196f6da988c01f5d28fee4\\transformed\\cscore-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\fa82c85ae1a3c94a7a60386e643ee816\\transformed\\apriltag-cpp-2024.3.1-headers\\",
+          "C:\\Users\\Samee\\.gradle\\caches\\transforms-3\\4e93352ef8c3cc5ce15393cc9dfe96fa\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+          "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+        ],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "sourceBinaries": [
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++20",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-fPIC",
+          "-pthread",
+          "-Wno-error=deprecated-enum-enum-conversion",
+          "-O2"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      },
+      {
+        "source": {
+          "srcDirs": [
+            "C:\\Users\\Samee\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+          ],
+          "includes": [],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++20",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-Wno-unused-parameter",
+          "-fPIC",
+          "-pthread",
+          "-Wno-error=deprecated-enum-enum-conversion",
+          "-O2"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "nameBinaryMap": {
+      "frcUserProgram": 0
+    }
+  }
+]

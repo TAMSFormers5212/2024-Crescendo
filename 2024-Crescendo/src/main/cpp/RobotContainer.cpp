@@ -26,8 +26,10 @@
 #include <pathplanner/lib/auto/NamedCommands.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/Commands.h>
+#include "commands/Auto.h"
 
 #include <iostream>
+#include <frc2/command/Command.h>
 using namespace pathplanner;
 
 using namespace std;
@@ -135,18 +137,21 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_arm.SetDefaultCommand(RunCommand(
         [this] {
             if(abs(m_operatorController.GetRawAxis(Controller::leftYAxis))>0.05){
-                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition() + m_operatorController.GetRawAxis(Controller::leftYAxis)-sin(m_superstructure.m_arm.getRelativePosition()*MathConstants::pi2)*0.1);
+                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition() + m_operatorController.GetRawAxis(Controller::leftYAxis));
                 // m_superstructure.m_arm.set(m_operatorController.GetRawAxis(Controller::leftYAxis));
             }else{
-            // if(m_operatorController.GetRawButton(Controller::B)){
-            //     // m_superstructure.setArm(0.73);
-            //     m_superstructure.m_arm.setPosition(0.73-m_superstructure.m_arm.initalPosition);
-            // }else if(m_operatorController.GetRawButton(Controller::Y)){
-            //    m_superstructure.m_arm.setPosition(0.55-m_superstructure.m_arm.initalPosition);
-            // }
-            // else{
+            if(m_operatorController.GetRawButton(Controller::B)){ // down
+                // m_superstructure.setArm(0.73);
+                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(-0.73+m_superstructure.m_arm.getRawPosition()));
+                // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
+            }else if(m_operatorController.GetRawButton(Controller::Y)){ // amp
+               m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(-0.50+m_superstructure.m_arm.getRawPosition()));
+            }
+            else{
                 // m_superstructure.m_arm. (0);
-                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
+                // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
+                m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.01);
+            }
             }
             // if(m_operatorController.GetRawButton(Controller))
         },
@@ -256,11 +261,13 @@ void RobotContainer::ConfigureBindings() {
 
 }
 
-// frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-//     return frc2::cmd::Print("No autonomous command configured");
-// }
-
-frc2::CommandPtr RobotContainer::getAutonomousCommand(){
-    auto path = PathPlannerPath::fromPathFile("Test Path");
-    return AutoBuilder::followPath(path);//PathPlannerAuto("Top pos 3 note auto preload + a1+ m1").ToPtr();
+frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
+    return Auto(&m_drive).ToPtr();
+    // return Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))).ToPtr();
+    // return frc2::cmd::Print("No autonomous command configured");
 }
+
+// frc2::CommandPtr RobotContainer::getAutonomousCommand(){
+//     auto path = PathPlannerPath::fromPathFile("Test Path");
+//     return AutoBuilder::followPath(path);//PathPlannerAuto("Top pos 3 note auto preload + a1+ m1").ToPtr();
+// }

@@ -24,7 +24,7 @@ class RobotContainer {
     double XAxis;
     double YAxis;
   frc2::CommandPtr GetAutonomousCommand();
-  frc2::CommandPtr getAutonomousCommand();
+  // frc2::CommandPtr getAutonomousCommand();
 
  private:
   frc::GenericHID m_driverController{kDriverControllerPort};

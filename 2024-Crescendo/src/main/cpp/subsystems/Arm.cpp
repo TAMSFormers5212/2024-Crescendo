@@ -105,7 +105,8 @@ void Arm::setPosition(double pose) { // sets the goal pose to given parameter
     // m_goalDistance = units::meter_t(pose);
     // m_goalSpeed = units::meters_per_second_t(0); // this should be zero because we don't want the arm to move 
 
-
+    // double ff = -sin((getPosition()-0.5)*MathConstants::pi2)*0.1;
+    // m_leftController.SetFF(ff);
     m_leftController.SetReference(pose, CANSparkLowLevel::ControlType::kPosition);
 }
 
@@ -116,6 +117,10 @@ double Arm::getRelativePosition(){
 void Arm::set(double value){
     m_leftMotor.Set(value);
     m_rightMotor.Set(value);
+}
+
+void Arm::setInitialPosition(){
+    initalPosition = getPosition();
 }
 
 void Arm::Periodic() {

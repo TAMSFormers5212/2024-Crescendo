@@ -10,16 +10,15 @@
 #include <subsystems/Intake.h>
 #include <subsystems/Arm.h>
 
-class Shoot : public frc2::CommandHelper<frc2::Command, Shoot> {
+class ReadyShooter : public frc2::CommandHelper<frc2::Command, ReadyShooter> {
 public:
-    explicit Shoot(Intake* wrist, Shooter* grabber, Arm* arm);
+    explicit ReadyShooter(Shooter* grabber);
 
     void Initialize() override;
-
+    // void Periodic() override;
     void End(bool interrupted) override;
 
 private:
     Shooter* m_shooter;
-    Intake* m_wrist;
-    Arm* m_arm;
+
 };

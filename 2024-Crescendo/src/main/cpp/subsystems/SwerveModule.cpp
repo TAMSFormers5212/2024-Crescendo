@@ -158,7 +158,7 @@ void SwerveModule::Periodic() {
     // print the absolute encoder reading
     frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition());
     // this is the absolute encoder reading minus the position offset
-    frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " o abs", m_absoluteEncoder.GetAbsolutePosition()-m_absoluteEncoder.GetPositionOffset());    
+    frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " o abs", getAbsolutePosition()/pi2);    
     frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + "off", m_absoluteEncoder.GetPositionOffset());
 }
 

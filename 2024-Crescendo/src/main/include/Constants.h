@@ -193,7 +193,7 @@ namespace ArmConstants{
     constexpr int leftMotor = 12;
     constexpr int rightMotor = 11;
 
-    constexpr int encoder = 0; // depends on what encoder. planning for a rev through bore 
+    constexpr int encoder = 2; // depends on what encoder. planning for a rev through bore 
     // constexpr int limitSwitch = 1;
 
     constexpr double encoderOffset = 0.0;

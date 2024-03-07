@@ -38,10 +38,12 @@ public:
     double getRawPosition();
     double getRelativePosition();
     void set(double value);
+    void setInitialPosition();
 
     void Periodic() override;
 
     double initalPosition =0;
+    
 
 private:
 

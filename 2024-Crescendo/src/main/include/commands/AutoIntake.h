@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <frc2/command/CommandBase.h>
@@ -9,17 +8,15 @@
 
 #include <subsystems/Intake.h>
 #include <subsystems/Arm.h>
-
-class Shoot : public frc2::CommandHelper<frc2::Command, Shoot> {
+class AutoIntake : public frc2::CommandHelper<frc2::Command, AutoIntake> {
 public:
-    explicit Shoot(Intake* wrist, Shooter* grabber, Arm* arm);
+    explicit AutoIntake(Intake* intake);
 
     void Initialize() override;
 
     void End(bool interrupted) override;
 
 private:
-    Shooter* m_shooter;
-    Intake* m_wrist;
-    Arm* m_arm;
+    
+    Intake* m_intake;
 };

@@ -45,14 +45,14 @@ void Shooter::resetMotors(){
 
 
 void Shooter::setPercent(double percent){
-    //percent pid control
+    //percent pid control 0 to 1
     m_leftMotor.Set(percent);
     m_rightMotor.Set(percent);
 
 }
 void Shooter::setSpeed(double speed){ // velocity PID control
     m_goalSpeed = speed;
-    m_leftController.SetReference(speed, CANSparkLowLevel::ControlType::kVelocity);
+    m_leftController.SetReference(speed, CANSparkMaxLowLevel::ControlType::kVelocity);
 }
 
 double Shooter::getSpeed(){

@@ -12,7 +12,7 @@ void Drive::Initialize() {
     if(blueAlliance){
         y*=-1;
     }
-    m_drive->swerveDrive(x, y, z, true);
+    m_drive->swerveDrive(x, y, z, false);
 }
 
 void Drive::End(bool interrupted) {}
