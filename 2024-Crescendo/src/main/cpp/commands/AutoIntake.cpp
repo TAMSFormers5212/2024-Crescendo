@@ -1,11 +1,6 @@
 
 #include "commands/AutoIntake.h"
 
-#include "Constants.h"
-#include <frc2/command/WaitCommand.h>
-#include <subsystems/Arm.h>
-#include <frc2/command/SequentialCommandGroup.h>
-
 AutoIntake::AutoIntake(Intake* intake) 
     : m_intake(intake) {
   

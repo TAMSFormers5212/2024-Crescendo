@@ -232,6 +232,8 @@ void RobotContainer::ConfigureBindings() {
     JoystickButton joystickTen(&m_driverController, Joystick::ButtonTen);
     JoystickButton joystickEleven(&m_driverController, Joystick::ButtonEleven);
 
+    // joystickTrigger.WhileTrue(RunCommand([this](){}).ToPtr());
+
     joystickTrigger.OnTrue((InstantCommand([this]() { /*shoot*/ })).ToPtr());
     joystickThree.OnTrue((InstantCommand([this]() { return m_drive.resetHeading(); })).ToPtr());
     joystickFour.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry(m_drive.AveragePose()); })).ToPtr());

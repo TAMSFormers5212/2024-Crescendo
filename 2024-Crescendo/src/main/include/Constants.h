@@ -13,6 +13,7 @@
 #include <units/velocity.h>
 #include <units/length.h>
 #include <units/time.h>
+#include <units/voltage.h>
 // #include <units/base.h>
 #include <numbers>
 #include <string>
@@ -196,7 +197,7 @@ namespace ArmConstants{
     constexpr int encoder = 2; // depends on what encoder. planning for a rev through bore 
     // constexpr int limitSwitch = 1;
 
-    constexpr double encoderOffset = 0.0;
+    constexpr double encoderOffset = 0.5;
 
     constexpr double sprocketRatio = 5.5;
     constexpr int planetaryRatio = 20;
@@ -211,21 +212,24 @@ namespace ArmConstants{
 
     constexpr int kMaxOutput = 1;
     constexpr int kMinOutput = -1;
-    constexpr units::meters_per_second_squared_t maxAccel = 10.0_mps_sq;
-    constexpr units::meters_per_second_t maxVelo = 20.0_mps;
-    constexpr units::degrees_per_second_t maxRotatioV = 90_deg_per_s;
-    constexpr units::degrees_per_second_squared_t maxRotationA = 90_deg_per_s_sq;
+    constexpr units::radians_per_second_squared_t maxAccel{1};
+    constexpr units::radians_per_second_t maxVelo{1};
     constexpr double allowedError = 0.0; 
     constexpr double stableDistance = 0;
     
     
     constexpr double minPosition = 0; // soft limits
     constexpr double maxPosition = 1;
-
-    constexpr double kaS = 0.1  ;
-    constexpr double kaG = 0.0;
-    constexpr double kaV = 0.0;
-    constexpr double kaA = 0.0;
+    
+    // currently just the estimates from recalc
+    constexpr units::volt_t kaS{0.0};
+    constexpr units::volt_t kaG{0.51};
+    constexpr units::volt_t vkaV{0.214};
+    constexpr units::radians_per_second_t akaV{1};
+    constexpr auto kaV = vkaV / akaV;
+    constexpr units::volt_t vkaA{0.03};
+    constexpr units::radians_per_second_squared_t akaA{1};
+    constexpr auto kaA = vkaA / akaA ; // not nessecary
 }
 
 namespace ShooterConstants{
@@ -287,7 +291,6 @@ namespace PoseConstants{
 
     //Climb
     constexpr double armClimb = 0;
-    constexpr double intakeTrapSpeed = 0;
 
 }
 
@@ -303,10 +306,11 @@ namespace VisionConstants{
 
     //vision pid constants for translating
 
-    constexpr units::inch_t limelightHeight = 7_in;//14 on cart, 7 off
+    constexpr units::inch_t limelightHeight = 16_in; // get a more precise number
+    constexpr units::inch_t limelightHorizontalOffset = 9_in; // just a guess
 
     constexpr double limelightAngleback = 60;//degrees tilted back
-    constexpr double limelightAngleAboveHorizontal= 39.0;
+    constexpr double limelightAngleAboveHorizontal= 39.0; // why this number?
     
     constexpr double TagHeight = 8;// height of the tags
     constexpr double TagCenterHeight = 4; // center of the tag from the middle

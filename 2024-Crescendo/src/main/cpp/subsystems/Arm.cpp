@@ -13,12 +13,13 @@ using namespace MathConstants;
 
 Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
     : m_leftMotor(leftMotor, CANSparkLowLevel::MotorType::kBrushless),
-      m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless)
+      m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless),
+      m_armFF(ArmConstants::kaS, ArmConstants::kaG, ArmConstants::kaV)
       {
     resetMotors();
     m_absoluteEncoder.SetPositionOffset(encoderOffset);
     initalPosition = getPosition();
-    cout<<"arm abs "<<getPosition()<<" right pos "<<m_rightEncoder.GetPosition()<<" inital pos "<<initalPosition<<endl;
+    // cout<<"arm abs "<<getPosition()<<" right pos "<<m_rightEncoder.GetPosition()<<" inital pos "<<initalPosition<<endl;
 }
 
 void Arm::resetMotors() {
@@ -64,7 +65,7 @@ void Arm::resetMotors() {
     m_rightMotor.SetSmartCurrentLimit( 40);
     m_rightMotor.SetInverted(true);
 
-    m_rightEncoder.SetPositionConversionFactor(1.0 / armRatio);
+    m_rightEncoder.SetPositionConversionFactor(pi2 / armRatio);
     // m_rightEncoder.SetInverted(true);
 
     m_rightMotor.Follow(m_leftMotor, true);
@@ -85,7 +86,7 @@ void Arm::resetEncoder() { // sets neo encoders to absolute encoder position
 }
 
 double Arm::getPosition() { // returns the absolute encoder position with offset
-    return m_absoluteEncoder.GetAbsolutePosition();
+    return m_absoluteEncoder.GetAbsolutePosition()*pi2;
 }
 
 double Arm::getVelocity(){ // returns left motor's velocity
@@ -93,21 +94,18 @@ double Arm::getVelocity(){ // returns left motor's velocity
 }
 
 double Arm::getRawPosition() { // returns the absolute encoder position minus offset
-    return m_absoluteEncoder.GetAbsolutePosition() - m_absoluteEncoder.GetPositionOffset(); 
+    return (m_absoluteEncoder.GetAbsolutePosition() - m_absoluteEncoder.GetPositionOffset())*pi2; 
 }
 
 void Arm::setPosition(double pose) { // sets the goal pose to given parameter
+    position = pose;
     //smart motion implementation
     // m_rightController.SetReference(pose,
     //                                CANSparkLowLevel::ControlType::kSmartMotion);
-    
-    // TrapezoidProfile<units::meters>::State m_goal = {units::meter_t(pose), units::meters_per_second_t(0)};
-    // m_goalDistance = units::meter_t(pose);
-    // m_goalSpeed = units::meters_per_second_t(0); // this should be zero because we don't want the arm to move 
 
     // double ff = -sin((getPosition()-0.5)*MathConstants::pi2)*0.1;
     // m_leftController.SetFF(ff);
-    m_leftController.SetReference(pose, CANSparkLowLevel::ControlType::kPosition);
+    // m_leftController.SetReference(pose, CANSparkLowLevel::ControlType::kPosition);
 }
 
 double Arm::getRelativePosition(){
@@ -127,12 +125,21 @@ void Arm::Periodic() {
     // frc 4481 found that profiling yieled jittering when close to goal/small distance to cover, maybe switch to normal pid when close to goal
 
     //trapezoid profile implementation
-    // m_setpointDistance = units::meter_t(getPosition());
-    // m_setpointSpeed = units::meters_per_second_t(getVelocity()); // make sure unit conversion is done correctly
-    // m_setpoint = m_profile.Calculate(kaT, {m_setpointDistance, m_setpointSpeed}, {m_goalDistance, m_goalSpeed});
+    // units::radian_t m_goal{position};
+    // units::radians_per_second_t zeroV{0};
+    // TrapezoidProfile<units::radian_t>::State m_goalState = {m_goal, zeroV};
+    // units::radian_t m_setpointDistance = units::radian_t(getPosition());
+    // units::radians_per_second_t m_setpointVelocity = units::radians_per_second_t(getVelocity()); // make sure unit conversion is done correctly
+    // TrapezoidProfile<units::radian_t>::State m_current = {m_setpointDistance, m_setpointVelocity};
+    // TrapezoidProfile<units::radian_t>::State m_setpoint = m_profile.Calculate(kaT, m_current, m_goalState);
     // currently pretty inefficiently made but we'll see if it works
 
     // m_rightController.SetReference(m_setpoint.position.value(), CANSparkLowLevel::ControlType::kPosition);
+
+    units::radian_t ffP{getPosition()};
+    units::radians_per_second_t ffV{getVelocity()};
+    units::radians_per_second_squared_t ffA(0);
+    m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition, 0, m_armFF.Calculate(ffP, ffV, ffA).value());
     
     frc::SmartDashboard::PutNumber("arm ", getPosition());
     frc::SmartDashboard::PutNumber("armRaw ", getRawPosition());

@@ -4,8 +4,8 @@
 #include <frc/DutyCycleEncoder.h>
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ProfiledPIDController.h>
-#include <frc/controller/ArmFeedForward.h>
 #include <frc/controller/SimpleMotorFeedforward.h>
+#include <frc/controller/ArmFeedForward.h>
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <units/voltage.h>
 
@@ -58,17 +58,14 @@ private:
 
 
     // TrapezoidProfile<units::meters> profile{{maxVelo, maxAccel}};
-    // TrapezoidProfile<units::degrees> m_profile{{maxRotatioV, maxRotationA}};
+    // TrapezoidProfile<units::radians> m_profile{{maxVelo, maxAccel}};
 
-    // units::degree_t m_goalDistance = 0_deg;
-    // units::degrees_per_second_t m_goalSpeed = 0_deg_per_s;
-    // // TrapezoidProfile<units::degree_t>::State m_setpoint;
-    // units::degree_t m_setpointDistance = 0_deg;
-    // units::degrees_per_second_t m_setpointSpeed = 0_deg_per_s;
-    // TrapezoidProfile<units::degrees>::State m_setpoint = {m_setpointDistance, m_setpointSpeed};
+    // units::radian_t m_setpointDistance {0};
+    // units::radians_per_second_t m_setpointSpeed {0};
+    // TrapezoidProfile<units::radians>::State m_setpoint = {m_setpointDistance, m_setpointSpeed};
 
     //someone else will have to tune this. i've never done it before
-    // ArmFeedforward m_armFF = ArmFeedforward(units::volt_t{kaS}, units::volt_t{kaG}, units::unit_t< ArmFeedforward::kv_unit >{kaV}, units::unit_t< ArmFeedforward::kv_unit >{kaA});
+    ArmFeedforward m_armFF ; // initalized in constructor
 
 
     DutyCycleEncoder m_absoluteEncoder{encoder};

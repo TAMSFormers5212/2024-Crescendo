@@ -1,11 +1,6 @@
 
 #include "commands/ReadyShooter.h"
 
-#include "Constants.h"
-#include <frc2/command/WaitCommand.h>
-#include <subsystems/Arm.h>
-#include <frc2/command/SequentialCommandGroup.h>
-
 ReadyShooter::ReadyShooter(Shooter* grabber) 
     : m_shooter(grabber) {
   
