@@ -197,7 +197,7 @@ namespace ArmConstants{
     constexpr int encoder = 2; // depends on what encoder. planning for a rev through bore 
     // constexpr int limitSwitch = 1;
 
-    constexpr double encoderOffset = 0.5;
+    constexpr double encoderOffset = 0;
 
     constexpr double sprocketRatio = 5.5;
     constexpr int planetaryRatio = 20;
