@@ -239,7 +239,7 @@ namespace ShooterConstants{
     constexpr units::inch_t wheelDiameter = 4_in; // may change based on rpm
 
     constexpr double ksP = 0.1; // shooter uses a velocity PID
-    constexpr double ksI = 0.0;
+    constexpr double ksI = 0.0; // since the shooter motors are completely separate, it may be useful to tune them separately
     constexpr double ksD = 0.0;
     constexpr double ksFF = 0.0;
 

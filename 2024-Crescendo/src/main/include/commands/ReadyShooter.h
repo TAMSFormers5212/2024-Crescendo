@@ -15,6 +15,7 @@ public:
     explicit ReadyShooter(Shooter* grabber);
 
     void Initialize() override;
+    // void Execute() override;
     // void Periodic() override;
     void End(bool interrupted) override;
 

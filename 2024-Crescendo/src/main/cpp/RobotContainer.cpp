@@ -247,11 +247,14 @@ void RobotContainer::ConfigureBindings() {
     JoystickButton controllerB(&m_operatorController, Controller::B);
     JoystickButton controllerX(&m_operatorController, Controller::X);
     JoystickButton controllerY(&m_operatorController, Controller::Y);
+    JoystickButton controllerMenu(&m_operatorController, Controller::Menu);
     // JoystickButton controllerLeft(&m_operatorController, Controller::);
     POVButton controllerLeft(&m_operatorController, Controller::left); // will have to check later
     POVButton controllerRight(&m_operatorController, Controller::right);
     POVButton controllerDown(&m_operatorController, Controller::down);
     POVButton controllerUp(&m_operatorController, Controller::up);
+
+    controllerMenu.OnTrue((InstantCommand([this]{ return m_superstructure.m_arm.resetEncoder(); })).ToPtr());
     
     //controllerB.OnTrue((InstantCommand([this] { return m_superstructure.setArm(0); })).ToPtr());
     //controllerRightBumper.OnTrue((InstantCommand([this] {return m_superstructure.m_intake.shootNote(); })).ToPtr());
