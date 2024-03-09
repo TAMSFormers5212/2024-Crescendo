@@ -135,8 +135,8 @@ void Arm::Periodic() {
 
     // m_rightController.SetReference(m_setpoint.position.value(), CANSparkLowLevel::ControlType::kPosition);
 
-    units::radian_t ffP{getPosition()};
-    units::radians_per_second_t ffV{getVelocity()};
+    units::radian_t ffP{position};
+    units::radians_per_second_t ffV{0};
     units::radians_per_second_squared_t ffA(0);
     // m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition, 0, m_armFF.Calculate(ffP, ffV, ffA).value());
     m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);
