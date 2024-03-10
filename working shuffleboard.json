@@ -443,6 +443,32 @@
               "_glyph": 148,
               "_showGlyph": false
             }
+          },
+          "8,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/feedforward",
+              "_title": "feedforward",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "9,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/armNoRotation ",
+              "_title": "armNoRotation ",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
       }
@@ -462,9 +488,9 @@
     }
   ],
   "windowGeometry": {
-    "x": -7.0,
-    "y": 0.0,
-    "width": 1104.0,
-    "height": 626.4000244140625
+    "x": -7.199999809265137,
+    "y": -7.199999809265137,
+    "width": 1550.4000244140625,
+    "height": 878.4000244140625
   }
 }
