@@ -64,13 +64,13 @@ RobotContainer::RobotContainer() {
 
             frc::SmartDashboard::PutNumber("speed", speedMultiplier * 100);
             // int rotDeadband = Joystick::deadband;
-            if (abs(XAxis) < Joystick::deadband) {
+            if (abs(XAxis) < (Joystick::deadband*speedMultiplier)) {
                 XAxis = 0;
             }
-            if (abs(YAxis) < Joystick::deadband) {
+            if (abs(YAxis) < (Joystick::deadband*speedMultiplier)) {
                 YAxis = 0;
             }
-            if (abs(RotAxis) < Joystick::deadband) {
+            if (abs(RotAxis) < (Joystick::deadband*speedMultiplier)) {
                 RotAxis = 0;
             }
 
@@ -149,8 +149,8 @@ RobotContainer::RobotContainer() {
             }
             else{
                 // m_superstructure.m_arm. (0);
-                // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
-                m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.02);
+                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
+                // m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.02);
             }
             }
             // if(m_operatorController.GetRawButton(Controller))
@@ -267,8 +267,8 @@ void RobotContainer::ConfigureBindings() {
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-    return Auto(&m_drive).ToPtr();
-    // return Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))).ToPtr();
+    // return Auto(&m_drive).ToPtr();
+    return Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))).ToPtr();
     // return frc2::cmd::Print("No autonomous command configured");
 }
 

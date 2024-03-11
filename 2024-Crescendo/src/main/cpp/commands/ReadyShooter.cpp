@@ -9,7 +9,7 @@ ReadyShooter::ReadyShooter(Shooter* grabber)
 }
 
 void ReadyShooter::Initialize() {
-    m_shooter->setPercent(0.7);
+    m_shooter->setPercent(0.6);
     // frc2::WaitCommand(4_s);
 
 }

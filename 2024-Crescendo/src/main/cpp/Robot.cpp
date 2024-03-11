@@ -6,7 +6,10 @@
 
 #include <frc2/command/CommandScheduler.h>
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+    cs::UsbCamera usbCam = frc::CameraServer::StartAutomaticCapture(); //usb back camera
+
+}
 
 void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
 
