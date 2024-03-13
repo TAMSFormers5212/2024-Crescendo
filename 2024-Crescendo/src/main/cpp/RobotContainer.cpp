@@ -142,10 +142,10 @@ RobotContainer::RobotContainer() {
             }else{
             if(m_operatorController.GetRawButton(Controller::B)){ // down
                 // m_superstructure.setArm(0.73);
-                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(-0.73+m_superstructure.m_arm.getRawPosition()));
+                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
                 // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
             }else if(m_operatorController.GetRawButton(Controller::Y)){ // amp
-               m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(-0.50+m_superstructure.m_arm.getRawPosition()));
+               m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(1.41-m_superstructure.m_arm.getRawPosition()));
             }
             else{
                 // m_superstructure.m_arm. (0);
@@ -153,6 +153,10 @@ RobotContainer::RobotContainer() {
                 // m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.02);
             }
             }
+            if (m_operatorController.GetPOV()==0){
+                m_superstructure.m_arm.resetEncoder();
+            }
+            frc::SmartDashboard::PutNumber("povButton", m_operatorController.GetPOV());
             // if(m_operatorController.GetRawButton(Controller))
         },
         {&m_superstructure.m_arm}
@@ -249,10 +253,10 @@ void RobotContainer::ConfigureBindings() {
     JoystickButton controllerY(&m_operatorController, Controller::Y);
     JoystickButton controllerMenu(&m_operatorController, Controller::Menu);
     // JoystickButton controllerLeft(&m_operatorController, Controller::);
-    POVButton controllerLeft(&m_operatorController, Controller::left); // will have to check later
-    POVButton controllerRight(&m_operatorController, Controller::right);
-    POVButton controllerDown(&m_operatorController, Controller::down);
-    POVButton controllerUp(&m_operatorController, Controller::up);
+    POVButton controllerLeft(&m_operatorController, Controller::leftAngle, Controller::left); // will have to check later
+    POVButton controllerRight(&m_operatorController, Controller::rightAngle, Controller::right);
+    POVButton controllerDown(&m_operatorController, Controller::downAngle, Controller::down);
+    POVButton controllerUp(&m_operatorController, Controller::upAngle, Controller::up);
 
     controllerMenu.OnTrue((InstantCommand([this]{ return m_superstructure.m_arm.resetEncoder(); })).ToPtr());
     

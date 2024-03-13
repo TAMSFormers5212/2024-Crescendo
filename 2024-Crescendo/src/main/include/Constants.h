@@ -98,6 +98,10 @@ namespace OIConstants {//Controller buttons
         constexpr int LPress = 9;
         constexpr int RPress = 10;
         //POV buttons (the d-pad)
+        constexpr int leftAngle = 270;
+        constexpr int downAngle = 180;
+        constexpr int rightAngle = 90;
+        constexpr int upAngle = 0;
         constexpr int left = 0; // not actual numbers, just filler rn
         constexpr int down = 1;
         constexpr int right = 2;
