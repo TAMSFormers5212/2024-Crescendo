@@ -51,9 +51,9 @@ Auto::Auto(SwerveDrive* drive, Arm* arm, Intake* intake, Shooter* shooter) {
                 frc2::WaitCommand(0.1_s)},
               
               frc2::ParallelRaceGroup{
-                Drive(drive, 0, 0.1, 0, true),
+                Drive(drive, 0, 0.05, 0, true),
                 frc2::WaitCommand(2_s)},
-             
+              Drive(drive,0,0,0,true),
               frc2::WaitCommand(1_s), 
                 
 

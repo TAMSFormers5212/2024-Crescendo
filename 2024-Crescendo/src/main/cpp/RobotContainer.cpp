@@ -145,7 +145,7 @@ RobotContainer::RobotContainer() {
                 m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
                 // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
             }else if(m_operatorController.GetRawButton(Controller::Y)){ // amp
-               m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(1.41-m_superstructure.m_arm.getRawPosition()));
+               m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(1.57-m_superstructure.m_arm.getRawPosition()));
             }
             else{
                 // m_superstructure.m_arm. (0);
