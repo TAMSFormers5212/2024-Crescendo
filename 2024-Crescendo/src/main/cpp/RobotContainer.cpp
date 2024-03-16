@@ -86,13 +86,13 @@ RobotContainer::RobotContainer() {
             std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
             if (m_driverController.GetRawButton(7)) {
-               
+               m_drive.toggleOffset();
             }
             if (m_driverController.GetRawButton(8)) {
                 // if (m_vision.getDistanceError() > 0 &&
                 //     m_vision.getDistanceError() < 25) {
                      RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
-                     YAxis += m_superstructure.m_vision.getDistanceError() * speedMultiplier;  
+                    //  YAxis += m_superstructure.m_vision.getDistanceError() * speedMultiplier;  
                     //  }
             }
             if (m_driverController.GetRawButton(6)) {
@@ -111,14 +111,14 @@ RobotContainer::RobotContainer() {
 
             // Led toggle
             if (m_driverController.GetRawButtonPressed(9)) {
-                // if (m_vision.getLedOn() == 3) {
-                //     m_vision.setLedOn(1);
-                // } else if (m_vision.getLedOn() == 1) {
-                //     m_vision.setLedOn(3);
-                // }
-                m_drive.toggleOffset();
+                if (m_superstructure.m_vision.getLedOn() == 3) {
+                    m_superstructure.m_vision.setLedOn(1);
+                } else if (m_vision.getLedOn() == 1) {
+                    m_superstructure.m_vision.setLedOn(3);
+                }
+                
             }
-            
+            frc::SmartDashboard::PutNumber("leds", m_superstructure.m_vision.getLedOn());
             frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
         },
         {&m_superstructure.m_vision}));

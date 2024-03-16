@@ -80,7 +80,7 @@ void VisionSubsystem::Periodic() {
     if (targetOffsetAngle_Horizontal != 0){
       setOutput(output);
     }
-    
+
 
     // pid.Calculate();
 }

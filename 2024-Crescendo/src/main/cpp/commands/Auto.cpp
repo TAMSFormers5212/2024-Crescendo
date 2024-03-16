@@ -50,15 +50,15 @@ Auto::Auto(SwerveDrive* drive, Arm* arm, Intake* intake, Shooter* shooter) {
                 StopShooter(shooter, intake),
                 frc2::WaitCommand(0.1_s)},
               
-              frc2::ParallelRaceGroup{
-                Drive(drive, 0, 0.01, 0, true),
-                frc2::WaitCommand(.01_s)},
-              frc2::ParallelRaceGroup{
-                Drive(drive,0,0,0,true),
-                frc2::WaitCommand(1_s), 
-              }
+              // frc2::ParallelRaceGroup{
+              //   Drive(drive, 0, 0.01, 0, true),
+              //   frc2::WaitCommand(.01_s)},
+              // frc2::ParallelRaceGroup{
+              //   Drive(drive,0,0,0,true),
+              //   frc2::WaitCommand(1_s), 
+              // }
               
-              
+              frc2::WaitCommand(0.1_s)
                 
 
             
