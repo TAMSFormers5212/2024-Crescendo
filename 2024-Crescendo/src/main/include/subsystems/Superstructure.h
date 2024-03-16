@@ -67,7 +67,7 @@ public:
 
     void Periodic() override;
 
-    // VisionSubsystem m_vision;    
+    VisionSubsystem m_vision;    
     Winch m_leftWinch;
     Winch m_rightWinch;
     PIDController rollPID;

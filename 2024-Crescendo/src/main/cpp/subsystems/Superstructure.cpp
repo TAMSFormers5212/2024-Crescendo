@@ -8,7 +8,7 @@ Superstructure::Superstructure()
     m_shooter(ShooterConstants::leftMotor, ShooterConstants::rightMotor),
     m_leftWinch(WinchConstants::leftWinchMotor),
     m_rightWinch(WinchConstants::rightWinchMotor),
-    // m_vision(),
+    m_vision(),
     rollPID(0,0,0)
 {  
     resetSuperstructure();

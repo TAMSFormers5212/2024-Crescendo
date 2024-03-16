@@ -83,18 +83,18 @@ RobotContainer::RobotContainer() {
             } else if (m_driverController.GetRawButton(12)) {
                 m_drive.moveToAngle(0, 0.3);
             }
-            // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+            std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
-            // if (m_driverController.GetRawButton(7)) {
+            if (m_driverController.GetRawButton(7)) {
                
-            // }
-            // if (m_driverController.GetRawButton(8)) {
-            //     //if (m_vision.getDistanceError() > 0 &&
-            //         //m_vision.getDistanceError() < 25) {
-            //          RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
-            //          YAxis += m_superstructure.m_vision.getDistanceError() * speedMultiplier;
-            //          //}
-            // }
+            }
+            if (m_driverController.GetRawButton(8)) {
+                // if (m_vision.getDistanceError() > 0 &&
+                //     m_vision.getDistanceError() < 25) {
+                     RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
+                     YAxis += m_superstructure.m_vision.getDistanceError() * speedMultiplier;  
+                    //  }
+            }
             if (m_driverController.GetRawButton(6)) {
                 m_drive.tankDrive(XAxis, YAxis);
             }
@@ -106,22 +106,22 @@ RobotContainer::RobotContainer() {
         {&m_drive}
     ));
 
-    // m_superstructure.m_vision.SetDefaultCommand(RunCommand(
-    //     [this] {
+    m_superstructure.m_vision.SetDefaultCommand(RunCommand(
+        [this] {
 
-    //         // Led toggle
-    //         if (m_driverController.GetRawButtonPressed(9)) {
-    //             // if (m_vision.getLedOn() == 3) {
-    //             //     m_vision.setLedOn(1);
-    //             // } else if (m_vision.getLedOn() == 1) {
-    //             //     m_vision.setLedOn(3);
-    //             // }
-    //             m_drive.toggleOffset();
-    //         }
+            // Led toggle
+            if (m_driverController.GetRawButtonPressed(9)) {
+                // if (m_vision.getLedOn() == 3) {
+                //     m_vision.setLedOn(1);
+                // } else if (m_vision.getLedOn() == 1) {
+                //     m_vision.setLedOn(3);
+                // }
+                m_drive.toggleOffset();
+            }
             
-    //         frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
-    //     },
-    //     {&m_superstructure.m_vision}));
+            frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
+        },
+        {&m_superstructure.m_vision}));
 
     m_superstructure.SetDefaultCommand(RunCommand(
         [this] {
@@ -145,7 +145,7 @@ RobotContainer::RobotContainer() {
                 m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
                 // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
             }else if(m_operatorController.GetRawButton(Controller::Y)){ // amp
-               m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(1.57-m_superstructure.m_arm.getRawPosition()));
+                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(1.57-m_superstructure.m_arm.getRawPosition()));
             }
             else{
                 // m_superstructure.m_arm. (0);

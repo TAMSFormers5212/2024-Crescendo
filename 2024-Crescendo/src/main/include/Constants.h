@@ -310,11 +310,11 @@ namespace VisionConstants{
 
     //vision pid constants for translating
 
-    constexpr units::inch_t limelightHeight = 16_in; // get a more precise number
-    constexpr units::inch_t limelightHorizontalOffset = 9_in; // just a guess
+    constexpr units::inch_t limelightHeight = 15_in; // get a more precise number
+    constexpr units::inch_t limelightHorizontalOffset = 8_in; // just a guess
 
-    constexpr double limelightAngleback = 60;//degrees tilted back
-    constexpr double limelightAngleAboveHorizontal= 39.0; // why this number?
+    constexpr double limelightAngleback = 30;//degrees tilted back
+    constexpr double limelightAngleAboveHorizontal= 60.0; // why this number?
     
     constexpr double TagHeight = 8;// height of the tags
     constexpr double TagCenterHeight = 4; // center of the tag from the middle

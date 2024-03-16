@@ -39,7 +39,7 @@ class RobotContainer {
   SwerveDrive m_drive;
 
 
-//   VisionSubsystem m_vision;
+  VisionSubsystem m_vision;
   Superstructure m_superstructure;
   void ConfigureBindings();
 };

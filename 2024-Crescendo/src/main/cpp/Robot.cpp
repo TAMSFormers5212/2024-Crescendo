@@ -8,7 +8,7 @@
 
 void Robot::RobotInit() {
     cs::UsbCamera usbCam = frc::CameraServer::StartAutomaticCapture(); //usb back camera
-
+    
 }
 
 void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
