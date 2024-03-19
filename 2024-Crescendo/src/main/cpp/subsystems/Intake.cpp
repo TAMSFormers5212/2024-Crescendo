@@ -102,6 +102,7 @@ int Intake::getState() { return state; }
 void Intake::setState(int state) { this->state = state; }
 
 void Intake::Periodic() {
-    frc::SmartDashboard::PutBoolean("holding note", holdingNote);
-    frc::SmartDashboard::PutNumber("intakeCurrent", m_intakeMotor.GetOutputCurrent());
+    //failed attempt to get holding note working:
+    // frc::SmartDashboard::PutBoolean("holding note", holdingNote);
+    // frc::SmartDashboard::PutNumber("intakeCurrent", m_intakeMotor.GetOutputCurrent());
 }

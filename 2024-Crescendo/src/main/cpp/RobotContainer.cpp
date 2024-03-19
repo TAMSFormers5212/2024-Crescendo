@@ -30,6 +30,8 @@
 
 #include <iostream>
 #include <frc2/command/Command.h>
+#include <frc2/command/ParallelRaceGroup.h>
+#include <frc2/command/ParallelCommandGroup.h>
 using namespace pathplanner;
 
 using namespace std;
@@ -74,9 +76,9 @@ RobotContainer::RobotContainer() {
                 RotAxis = 0;
             }
 
-            frc::SmartDashboard::PutNumber("x", XAxis);
-            frc::SmartDashboard::PutNumber("y", YAxis);
-            frc::SmartDashboard::PutNumber("rot", RotAxis);
+            //frc::SmartDashboard::PutNumber("x", XAxis);
+            //frc::SmartDashboard::PutNumber("y", YAxis);
+            //frc::SmartDashboard::PutNumber("rot", RotAxis);
 
             if (m_driverController.GetRawButton(11)) {
                 m_drive.moveToAngle(XAxis, YAxis);
@@ -139,24 +141,31 @@ RobotContainer::RobotContainer() {
             if(abs(m_operatorController.GetRawAxis(Controller::leftYAxis))>0.05){
                 m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition() + m_operatorController.GetRawAxis(Controller::leftYAxis));
                 // m_superstructure.m_arm.set(m_operatorController.GetRawAxis(Controller::leftYAxis));
-            }else{
-            if(m_operatorController.GetRawButton(Controller::B)){ // down
-                // m_superstructure.setArm(0.73);
-                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
-                // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
-            }else if(m_operatorController.GetRawButton(Controller::Y)){ // amp
-                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(1.57-m_superstructure.m_arm.getRawPosition()));
             }
             else{
-                // m_superstructure.m_arm. (0);
-                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
-                // m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.02);
+                if(m_operatorController.GetRawButton(Controller::B)){ // down
+                    // m_superstructure.setArm(0.73);
+                    m_superstructure.m_arm.setPosition(m_superstructure.m_arm.groundPreset());
+                    // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
+                    // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
+                }  
+                else if(m_operatorController.GetRawButton(Controller::Y)){ // amp
+                    m_superstructure.m_arm.setPosition(m_superstructure.m_arm.ampPreset());
+                    // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()+(1.57-m_superstructure.m_arm.getRawPosition()));
+                }
+                else if(m_operatorController.GetRawButton(Controller::A)){
+                    m_superstructure.m_arm.setPosition(m_superstructure.m_arm.speakerPreset());
+                }
+                else{
+                    // m_superstructure.m_arm. (0);
+                    m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
+                    // m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.02);
+                }
             }
-            }
-            if (m_operatorController.GetPOV()==0){
+            if (m_operatorController.GetPOV()==180){
                 m_superstructure.m_arm.resetEncoder();
             }
-            frc::SmartDashboard::PutNumber("povButton", m_operatorController.GetPOV());
+            // frc::SmartDashboard::PutNumber("povButton", m_operatorController.GetPOV());
             // if(m_operatorController.GetRawButton(Controller))
         },
         {&m_superstructure.m_arm}
@@ -192,9 +201,9 @@ RobotContainer::RobotContainer() {
 
     m_superstructure.m_rightWinch.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_operatorController.GetRawButton(Controller::X)){
+            if(m_operatorController.GetPOV()==0){
                 m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()+10);
-            } else if (m_operatorController.GetRawButton(Controller::A)){
+            } else if (m_operatorController.GetPOV()==90){
                 m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()-10);
             } else{
                 m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition());
@@ -207,10 +216,10 @@ RobotContainer::RobotContainer() {
 
     m_superstructure.m_leftWinch.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_operatorController.GetRawButton(Controller::X)){
+            if(m_operatorController.GetPOV()==0){
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()-10);
             } else
-            if (m_operatorController.GetRawButton(Controller::A)){
+            if (m_operatorController.GetPOV()==90){
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()+10);
             }else{
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition());
@@ -241,6 +250,7 @@ void RobotContainer::ConfigureBindings() {
     joystickTrigger.OnTrue((InstantCommand([this]() { /*shoot*/ })).ToPtr());
     joystickThree.OnTrue((InstantCommand([this]() { return m_drive.resetHeading(); })).ToPtr());
     joystickFour.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry(m_drive.AveragePose()); })).ToPtr());
+    joystickSix.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry({{0_m, 0_m}, 0_deg}); })).ToPtr());
     joystickFive.OnTrue((InstantCommand([this] { return m_drive.resetAbsoluteEncoders(); })).ToPtr());
 
     JoystickButton controllerLeftTrigger(&m_operatorController, Controller::leftTrigger);
@@ -272,8 +282,13 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // return Auto(&m_drive).ToPtr();
-    return Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))).ToPtr();
+    //return Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))).ToPtr();
     // return frc2::cmd::Print("No autonomous command configured");
+    m_drive.resetOdometry({{2_m, 7_m}, 90_deg});
+    
+    auto path = PathPlannerPath::fromPathFile("Test Path");
+    return AutoBuilder::followPath(path);
+    
 }
 
 // frc2::CommandPtr RobotContainer::getAutonomousCommand(){

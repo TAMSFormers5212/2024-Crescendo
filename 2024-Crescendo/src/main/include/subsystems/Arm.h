@@ -39,7 +39,9 @@ public:
     double getRelativePosition();
     void set(double value);
     void setInitialPosition();
-
+    double ampPreset();
+    double speakerPreset();
+    double groundPreset();
     void Periodic() override;
 
     double initalPosition =0;

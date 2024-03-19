@@ -22,8 +22,9 @@
 using namespace std;
 using namespace PoseConstants;
 
-Auto::Auto(SwerveDrive* drive, Arm* arm, Intake* intake, Shooter* shooter) {    
+Auto::Auto(SwerveDrive* drive, Arm* arm, Intake* intake, Shooter* shooter, frc2::CommandPtr pathPlannerAuton) {    
     AddCommands(
+      
         frc2::SequentialCommandGroup{
               frc2::ParallelRaceGroup{
                 

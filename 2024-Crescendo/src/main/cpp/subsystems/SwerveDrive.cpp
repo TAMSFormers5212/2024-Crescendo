@@ -57,7 +57,7 @@ SwerveDrive::SwerveDrive()
         [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
         [this](frc::ChassisSpeeds speeds){ swerveDrive(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
         HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-            PIDConstants(1.0, 0.0, 0.0), // Translation PID constants
+            PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
             PIDConstants(1.0, 0.0, 0.0), // Rotation PID constants
             SwerveModuleConstants::maxSpeed/4, // Max module speed, in m/s
             SwerveModuleConstants::drivebase::WheelBase, // Drive base radius in meters. Distance from robot center to furthest module.
@@ -82,6 +82,7 @@ SwerveDrive::SwerveDrive()
 frc::Pose2d SwerveDrive::AveragePose() {  // returns the pose estimator position
 // m_poseEstimator.AddVisionMeasurement();
     return m_poseEstimator.GetEstimatedPosition();
+    
 }
 
 frc::Pose2d SwerveDrive::AveragePose(frc::Pose2d visionPose) {  // returns the pose estimator position with vision correction
@@ -190,10 +191,11 @@ void SwerveDrive::moveToAngle(double x, double y) {  // basically crab drive, po
             angle = atan(-x / y);
         }
     }
+    //testing movetoangle function with these values:
     // frc::SmartDashboard::PutNumber("Magnitude", r);
-    frc::SmartDashboard::PutNumber("angle", angle);
-    frc::SmartDashboard::PutNumber("xm", x);
-    frc::SmartDashboard::PutNumber("ym", y);
+    // frc::SmartDashboard::PutNumber("angle", angle);
+    // frc::SmartDashboard::PutNumber("xm", x);
+    // frc::SmartDashboard::PutNumber("ym", y);
     for (auto &module : m_modules) {
         module.setState(frc::SwerveModuleState{meters_per_second_t(r), frc::Rotation2d(radian_t(angle))});
     }
@@ -217,6 +219,9 @@ void SwerveDrive::Periodic() {
     // if(sqrt(getRobotRelativeSpeeds().vx.value()*getRobotRelativeSpeeds().vx.value()+getRobotRelativeSpeeds().vy.value()*getRobotRelativeSpeeds().vy.value())<=VisionConstants::stableSpeed){
     //     //if robot is moving slow enough, add vision pose to estimator
     // }
+    frc::SmartDashboard::PutNumber("x", AveragePose().X().value());
+    frc::SmartDashboard::PutNumber("y", AveragePose().Y().value());
+    frc::SmartDashboard::PutNumber("rot", AveragePose().Rotation().Degrees().value());
     frc::SmartDashboard::PutNumber("Gyro", m_gyro.GetAngle());
 }   
 

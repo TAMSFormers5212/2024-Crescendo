@@ -50,8 +50,8 @@ void SwerveModule::resetDriveMotor() {  // sets pid, current limit, and encoder
     m_driveMotor.EnableVoltageCompensation(12.0);
     m_driveMotor.SetSmartCurrentLimit(25, 40);
 
-    m_driveEncoder.SetPositionConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / (SwerveModuleConstants::driveRatio)).value());
-    m_driveEncoder.SetVelocityConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / SwerveModuleConstants::driveRatio / 60_s).value());
+    m_driveEncoder.SetPositionConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / 1.0376 / (SwerveModuleConstants::driveRatio)).value());
+    m_driveEncoder.SetVelocityConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / 1.0376 / SwerveModuleConstants::driveRatio / 60_s).value());
     //currently in inches per second
     
     resetDriveEncoder();
@@ -158,8 +158,8 @@ void SwerveModule::Periodic() {
     // print the absolute encoder reading
     frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition());
     // this is the absolute encoder reading minus the position offset
-    frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " o abs", getAbsolutePosition()/pi2);    
-    frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + "off", m_absoluteEncoder.GetPositionOffset());
+    // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " o abs", getAbsolutePosition()/pi2);    
+    // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + "off", m_absoluteEncoder.GetPositionOffset());
 }
 
 void SwerveModule::togglePositionOffset(bool toggleOffset) {  // turns on or off the absolute encoder position offset (TESTING ONLY, DO NOT USE IN COMPETITION)
