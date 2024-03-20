@@ -32,6 +32,9 @@
 #include <frc2/command/Command.h>
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/ParallelCommandGroup.h>
+#include <commands/ArmLower.h>
+#include <frc2/command/WaitCommand.h>
+#include <commands/ReadyShooter.h>
 using namespace pathplanner;
 
 using namespace std;
@@ -167,6 +170,7 @@ RobotContainer::RobotContainer() {
             }
             // frc::SmartDashboard::PutNumber("povButton", m_operatorController.GetPOV());
             // if(m_operatorController.GetRawButton(Controller))
+            NamedCommands::registerCommand("Arm Lower", /*frc2::cmd::Print("Hello"));*//*frc2::ParallelRaceGroup{frc2::WaitCommand(4_s), */std::move(ArmLower(&m_superstructure.m_arm).ToPtr()));
         },
         {&m_superstructure.m_arm}
     ));
@@ -179,6 +183,7 @@ RobotContainer::RobotContainer() {
                 m_superstructure.m_shooter.setPercent(0);
             }
             //  frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
+            NamedCommands::registerCommand("Ready Shooter", ReadyShooter(&m_superstructure.m_shooter).ToPtr());
         },
         {&m_superstructure.m_shooter}   
     ));
@@ -284,9 +289,9 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // return Auto(&m_drive).ToPtr();
     //return Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))).ToPtr();
     // return frc2::cmd::Print("No autonomous command configured");
-    m_drive.resetOdometry({{2_m, 7_m}, 90_deg});
+    m_drive.resetOdometry({{1.96_m, 5.04_m}, 161.37_deg});
     
-    auto path = PathPlannerPath::fromPathFile("Test Path");
+    auto path = PathPlannerPath::fromPathFile("a3 score");
     return AutoBuilder::followPath(path);
     
 }

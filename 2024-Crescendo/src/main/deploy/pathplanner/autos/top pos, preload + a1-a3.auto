@@ -28,6 +28,12 @@
           "data": {
             "pathName": "a3 score"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ReadyShooter"
+          }
         }
       ]
     }

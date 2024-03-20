@@ -18,6 +18,7 @@ Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
       {
     resetMotors();
     m_absoluteEncoder.SetPositionOffset(encoderOffset);
+    // m_absoluteEncoder.SetVelocityConversionFactor();
     initalPosition = getPosition();
     // cout<<"arm abs "<<getPosition()<<" right pos "<<m_rightEncoder.GetPosition()<<" inital pos "<<initalPosition<<endl;
 }
@@ -43,7 +44,7 @@ void Arm::resetMotors() {
     m_leftMotor.SetSmartCurrentLimit( 40);
 
     m_leftEncoder.SetPositionConversionFactor(pi2 / armRatio);
-    // m_leftEncoder.SetVelocityConversionFactor((1.0/armRatio)/60);
+    // m_leftEncoder.SetVelocityConversionFactor((1/armRatio)/60);
     // m_leftEncoder.SetInverted(true);
 
     m_rightMotor.RestoreFactoryDefaults();
@@ -124,10 +125,10 @@ double Arm::ampPreset(){
     return getRelativePosition()+(1.57-getRawPosition());
 }
 double Arm::speakerPreset(){
-    return getRelativePosition()-(-0.20+getRawPosition());
+    return getRelativePosition()-(-0.25+getRawPosition());
 }
 double Arm::groundPreset(){
-    return getRelativePosition()-(-0.03+getRawPosition());
+    return getRelativePosition()-(-0+getRawPosition());
 
 }
 void Arm::Periodic() {

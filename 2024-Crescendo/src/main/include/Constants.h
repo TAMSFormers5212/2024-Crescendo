@@ -113,15 +113,15 @@ namespace OIConstants {//Controller buttons
 }
 
 namespace SwerveModuleConstants {//per swerve module
-    constexpr double ktP = 0.2; // Turning PID
+    constexpr double ktP = 0.8; // Turning PID
     constexpr double ktI = 0.0;
     constexpr double ktD = 0.0;
-    constexpr double ktFF = 0.00001;
+    constexpr double ktFF = 0.0;//0.00001;
     
-    constexpr double kdP = 0.2; // Driving Speed PID
+    constexpr double kdP = 0.1; // Driving Speed PID
     constexpr double kdI = 0.0;
     constexpr double kdD = 0.0;
-    constexpr double kdFF = 0.00;
+    constexpr double kdFF = 0.225;
 
     constexpr auto maxSpeed = 3.81_mps; // max free speed of SDS mk4 L1 withs neos
     constexpr auto maxRotation = 2.0_rad_per_s; // figure this out later
@@ -227,11 +227,11 @@ namespace ArmConstants{
     
     // currently just the estimates from recalc
     constexpr units::volt_t kaS{0.0};
-    constexpr units::volt_t kaG{0.51};
+    constexpr units::volt_t kaG{0.45};
     constexpr units::volt_t vkaV{0.214};
     constexpr units::radians_per_second_t akaV{1};
     constexpr auto kaV = vkaV / akaV;
-    constexpr units::volt_t vkaA{0.03};
+    constexpr units::volt_t vkaA{0.05};
     constexpr units::radians_per_second_squared_t akaA{1};
     constexpr auto kaA = vkaA / akaA ; // not nessecary
 }
@@ -310,11 +310,12 @@ namespace VisionConstants{
 
     //vision pid constants for translating
 
-    constexpr units::inch_t limelightHeight = 15_in; // get a more precise number
-    constexpr units::inch_t limelightHorizontalOffset = 8_in; // just a guess
+    constexpr units::inch_t limelightHeight = 15.5_in; // get a more precise number
+    constexpr units::inch_t limelightHorizontalOffset = 9.5_in; // just a guess
 
-    constexpr double limelightAngleback = 30;//degrees tilted back
-    constexpr double limelightAngleAboveHorizontal= 60.0; // why this number?
+    constexpr double limelightAngleback = 51;//degrees tilted back
+    constexpr double limelightAngleAboveHorizontal= 39; // why this number?
+    //constexpr double limelightToCenter = 9.75_in;
     
     constexpr double TagHeight = 8;// height of the tags
     constexpr double TagCenterHeight = 4; // center of the tag from the middle
