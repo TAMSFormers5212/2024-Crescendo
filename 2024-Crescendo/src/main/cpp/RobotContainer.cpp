@@ -35,6 +35,9 @@
 #include <commands/ArmLower.h>
 #include <frc2/command/WaitCommand.h>
 #include <commands/ReadyShooter.h>
+#include <commands/AutoIntake.h>
+#include <commands/StopShooter.h>
+#include <commands/DeIntake.h>
 using namespace pathplanner;
 
 using namespace std;
@@ -57,7 +60,14 @@ RobotContainer::RobotContainer() {
     //     subsystem true // Should the path be automatically mirrored depending
     //     on alliance color. Optional, defaults to true
     // }
-    NamedCommands::registerCommand("drive", frc2::cmd::Print("passed marker 1"));
+    NamedCommands::registerCommand("Arm Lower", /*frc2::cmd::Print("Hello"));*//*frc2::ParallelRaceGroup{frc2::WaitCommand(4_s), */std::move(ArmLower(&m_superstructure.m_arm).ToPtr()));
+    NamedCommands::registerCommand("Test Command", frc2::cmd::Print("passed marker 1"));
+    NamedCommands::registerCommand("Ready Shooter", ReadyShooter(&m_superstructure.m_shooter).ToPtr());
+    NamedCommands::registerCommand("Auto Intake", AutoIntake(&m_superstructure.m_intake).ToPtr());
+    NamedCommands::registerCommand("Stop Shooter", StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake).ToPtr());
+    NamedCommands::registerCommand("De Intake", DeIntake(&m_superstructure.m_intake).ToPtr());
+    
+
     ConfigureBindings();
 
     m_drive.SetDefaultCommand(RunCommand(
@@ -170,11 +180,11 @@ RobotContainer::RobotContainer() {
             }
             // frc::SmartDashboard::PutNumber("povButton", m_operatorController.GetPOV());
             // if(m_operatorController.GetRawButton(Controller))
-            NamedCommands::registerCommand("Arm Lower", /*frc2::cmd::Print("Hello"));*//*frc2::ParallelRaceGroup{frc2::WaitCommand(4_s), */std::move(ArmLower(&m_superstructure.m_arm).ToPtr()));
+            
         },
         {&m_superstructure.m_arm}
     ));
-    m_superstructure.m_shooter.SetDefaultCommand(RunCommand(
+    m_superstructure.m_shooter.SetDefaultCommand(RunCommand(    
         [this] {
             if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
                 m_superstructure.m_shooter.setPercent(m_operatorController.GetRawAxis(Controller::rightTrigger));
@@ -183,7 +193,7 @@ RobotContainer::RobotContainer() {
                 m_superstructure.m_shooter.setPercent(0);
             }
             //  frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
-            NamedCommands::registerCommand("Ready Shooter", ReadyShooter(&m_superstructure.m_shooter).ToPtr());
+            
         },
         {&m_superstructure.m_shooter}   
     ));
@@ -291,7 +301,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // return frc2::cmd::Print("No autonomous command configured");
     m_drive.resetOdometry({{1.96_m, 5.04_m}, 161.37_deg});
     
-    auto path = PathPlannerPath::fromPathFile("a3 score");
+    auto path = PathPlannerPath::fromPathFile("preload+a1 score");
     return AutoBuilder::followPath(path);
     
 }
