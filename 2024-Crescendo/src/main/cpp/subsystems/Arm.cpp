@@ -122,13 +122,14 @@ void Arm::setInitialPosition(){
 }
 
 double Arm::ampPreset(){
-    return getRelativePosition()+(1.57-getRawPosition());
+    return getRelativePosition()+(1.60-getRawPosition());
 }
 double Arm::speakerPreset(){
     return getRelativePosition()-(-0.25+getRawPosition());
 }
 double Arm::groundPreset(){
-    return getRelativePosition()-(-0+getRawPosition());
+    //used to be a negative
+    return getRelativePosition()-(0.02+getRawPosition());
 
 }
 void Arm::Periodic() {

@@ -38,6 +38,9 @@
 #include <commands/AutoIntake.h>
 #include <commands/StopShooter.h>
 #include <commands/DeIntake.h>
+#include <commands/StopDrive.h>
+#include <commands/ArmGround.h>
+#include <frc/smartdashboard/SendableChooser.h>
 using namespace pathplanner;
 
 using namespace std;
@@ -66,7 +69,9 @@ RobotContainer::RobotContainer() {
     NamedCommands::registerCommand("Auto Intake", AutoIntake(&m_superstructure.m_intake).ToPtr());
     NamedCommands::registerCommand("Stop Shooter", StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake).ToPtr());
     NamedCommands::registerCommand("De Intake", DeIntake(&m_superstructure.m_intake).ToPtr());
-    
+    NamedCommands::registerCommand("Stop Drive", StopDrive(&m_drive).ToPtr());
+    NamedCommands::registerCommand("Arm Ground", ArmGround(&m_superstructure.m_arm).ToPtr());
+    //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto
 
     ConfigureBindings();
 
@@ -75,7 +80,7 @@ RobotContainer::RobotContainer() {
             speedMultiplier = (1 - m_driverController.GetRawAxis(Joystick::ThrottleSlider)) * 0.5;
             XAxis = -m_driverController.GetRawAxis(Joystick::XAxis) * speedMultiplier;
             YAxis = m_driverController.GetRawAxis(Joystick::YAxis) * speedMultiplier;
-            RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis) * speedMultiplier * 4;
+            RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis) * speedMultiplier*2;
 
             frc::SmartDashboard::PutNumber("speed", speedMultiplier * 100);
             // int rotDeadband = Joystick::deadband;
@@ -175,9 +180,9 @@ RobotContainer::RobotContainer() {
                     // m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.02);
                 }
             }
-            if (m_operatorController.GetPOV()==180){
-                m_superstructure.m_arm.resetEncoder();
-            }
+            // if (m_operatorController.GetPOV()==180){
+            //     m_superstructure.m_arm.resetEncoder();
+            // }
             // frc::SmartDashboard::PutNumber("povButton", m_operatorController.GetPOV());
             // if(m_operatorController.GetRawButton(Controller))
             
@@ -216,25 +221,28 @@ RobotContainer::RobotContainer() {
 
     m_superstructure.m_rightWinch.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_operatorController.GetPOV()==0){
+            if((m_operatorController.GetPOV()>270|| m_operatorController.GetPOV()<90) && m_operatorController.GetPOV() >= 0){
+                
                 m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()+10);
-            } else if (m_operatorController.GetPOV()==90){
+                
+            } else if (m_operatorController.GetPOV()>180&&m_operatorController.GetPOV()<360){
                 m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition()-10);
             } else{
                 m_superstructure.m_rightWinch.setWinchPosition(m_superstructure.m_rightWinch.getWinchPosition());
             }
         //    cout << "left winch" << m_superstructure.m_rightWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
+        frc::SmartDashboard::PutNumber("povButton", m_operatorController.GetPOV());
         },
         {&m_superstructure.m_rightWinch}
     ));
 
     m_superstructure.m_leftWinch.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_operatorController.GetPOV()==0){
+            if(m_operatorController.GetPOV()>0&&m_operatorController.GetPOV()<180){
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()-10);
             } else
-            if (m_operatorController.GetPOV()==90){
+            if (m_operatorController.GetPOV()>90&&m_operatorController.GetPOV()<270){
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition()+10);
             }else{
                 m_superstructure.m_leftWinch.setWinchPosition(m_superstructure.m_leftWinch.getWinchPosition());
@@ -297,13 +305,31 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // return Auto(&m_drive).ToPtr();
-    //return Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))).ToPtr();
+    // return Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))).ToPtr();
     // return frc2::cmd::Print("No autonomous command configured");
-    m_drive.resetOdometry({{1.96_m, 5.04_m}, 161.37_deg});
+    //m_drive.resetOdometry({{2_m, 7_m}, 90_deg});
+    m_drive.resetOdometry({{1.37_m, 5.61_m}, 90_deg});
     
-    auto path = PathPlannerPath::fromPathFile("preload+a1 score");
-    return AutoBuilder::followPath(path);
+    // auto path = PathPlannerPath::fromPathFile("Test Path");
+    // auto twoNote = PathPlannerPath::fromPathFile("2 Note Auton");
+    // auto pathGroup = PathPlannerAuto::getPathGroupFromAutoFile("Test Auto");
+
+    auto testAuto = PathPlannerAuto("2 Note Auton").ToPtr();
+    return testAuto;
+     
+    // return frc2::SequentialCommandGroup {
+    //     *AutoBuilder::followPath(pathGroup.at(0)).Unwrap()
+    // }.ToPtr();
+    //return AutoBuilder::followPath(pathGroup.at(0));
     
+    //2 NOTE AUTONE
+
+    // return frc2::SequentialCommandGroup {
+    //     Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))),
+    //     *AutoBuilder::followPath(twoNote).Unwrap()
+    // }.ToPtr();
+    // auto path = PathPlannerPath::fromPathFile("Auton Note 2");
+    // return AutoBuilder::followPath(path);
 }
 
 // frc2::CommandPtr RobotContainer::getAutonomousCommand(){

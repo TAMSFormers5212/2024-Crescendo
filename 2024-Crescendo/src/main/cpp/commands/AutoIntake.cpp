@@ -8,6 +8,6 @@ AutoIntake::AutoIntake(Intake* intake)
 }
 
 void AutoIntake::Initialize() {
-    m_intake->setSpeed(0.4);
+    m_intake->setSpeed(0.5);
 }
 void AutoIntake::End(bool interrupted) {}
