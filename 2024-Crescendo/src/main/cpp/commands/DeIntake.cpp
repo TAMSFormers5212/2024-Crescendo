@@ -7,6 +7,6 @@ DeIntake::DeIntake(Intake* intake)
 }
 
 void DeIntake::Initialize() {
-    m_intake->setSpeed(-0.05);
+    m_intake->setSpeed(-0.04);
 }
 void DeIntake::End(bool interrupted) {}
