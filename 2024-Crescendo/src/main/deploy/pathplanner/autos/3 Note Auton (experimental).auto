@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 80.0,
-      "y": 2
+      "x": 1.3725738150477713,
+      "y": 5.609490705429342
     },
-    "rotation": 0
+    "rotation": 90.0
   },
   "command": {
     "type": "sequential",
@@ -14,13 +14,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Bottom Stationary Shoot"
+            "pathName": "Stationary Shoot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Mobility for Preload"
+            "pathName": "Auton Note 2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Top Note Auton"
           }
         }
       ]

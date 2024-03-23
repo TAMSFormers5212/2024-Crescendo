@@ -83,14 +83,14 @@ RobotContainer::RobotContainer() {
             RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis) * speedMultiplier*2;
 
             frc::SmartDashboard::PutNumber("speed", speedMultiplier * 100);
-            // int rotDeadband = Joystick::deadband;
+            double rotDeadband = Joystick::deadband*2;
             if (abs(XAxis) < (Joystick::deadband*speedMultiplier)) {
                 XAxis = 0;
             }
             if (abs(YAxis) < (Joystick::deadband*speedMultiplier)) {
                 YAxis = 0;
             }
-            if (abs(RotAxis) < (Joystick::deadband*speedMultiplier)) {
+            if (abs(RotAxis) < (rotDeadband*speedMultiplier)) {
                 RotAxis = 0;
             }
 
@@ -205,7 +205,7 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_intake.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::rightBumper)){
-                m_superstructure.m_intake.setSpeed(0.4);
+                m_superstructure.m_intake.setSpeed(0.5);
             } 
             if(m_operatorController.GetRawButton(Controller::leftBumper)){
                 m_superstructure.m_intake.setSpeed(-0.4);
@@ -309,14 +309,14 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // return frc2::cmd::Print("No autonomous command configured");
     //m_drive.resetOdometry({{2_m, 7_m}, 90_deg});
     // m_drive.resetOdometry({{1.37_m, 5.61_m}, 90_deg});
-    m_drive.resetOdometry({{1.37_m, 5.57_m}, 90_deg});
+    m_drive.resetOdometry({{0.75_m, 4.24_m}, 34.08_deg});
     
     // auto path = PathPlannerPath::fromPathFile("Test Path");
     // auto twoNote = PathPlannerPath::fromPathFile("2 Note Auton");
     // auto pathGroup = PathPlannerAuto::getPathGroupFromAutoFile("Test Auto");
 
-    // auto testAuto = PathPlannerAuto("2 Note Auton").ToPtr();
-    // return testAuto;
+    auto testAuto = PathPlannerAuto("Preload+Mobility Auton").ToPtr();
+    return testAuto;
      
     // return frc2::SequentialCommandGroup {
     //     *AutoBuilder::followPath(pathGroup.at(0)).Unwrap()
@@ -329,11 +329,11 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     //     Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))),
     //     *AutoBuilder::followPath(twoNote).Unwrap()
     // }.ToPtr();
-    if(shouldFlip()){
+    // if(shouldFlip()){
         
-    }
-    auto path = PathPlannerPath::fromPathFile("Auton Note 2");
-    return AutoBuilder::followPath(path);
+    // }
+    // auto path = PathPlannerPath::fromPathFile("Auton Note 2");
+    // return AutoBuilder::followPath(path);
 }
 
 // frc2::CommandPtr RobotContainer::getAutonomousCommand(){

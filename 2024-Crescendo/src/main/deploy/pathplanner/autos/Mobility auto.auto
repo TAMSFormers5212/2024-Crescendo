@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 80.0,
-      "y": 2
+      "x": 1.266585492812242,
+      "y": 1.8222429269970641
     },
-    "rotation": 0
+    "rotation": 41.633539336570145
   },
   "command": {
     "type": "sequential",
@@ -14,13 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Bottom Stationary Shoot"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Mobility for Preload"
+            "pathName": "Basic Mobility"
           }
         }
       ]

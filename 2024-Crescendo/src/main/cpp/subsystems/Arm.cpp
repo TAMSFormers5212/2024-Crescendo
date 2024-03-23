@@ -125,7 +125,7 @@ double Arm::ampPreset(){
     return getRelativePosition()+(1.60-getRawPosition());
 }
 double Arm::speakerPreset(){
-    return getRelativePosition()-(-0.25+getRawPosition());
+    return getRelativePosition()-(-0.27+getRawPosition());
 }
 double Arm::groundPreset(){
     //used to be a negative
