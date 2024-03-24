@@ -108,6 +108,23 @@
             {
               "type": "named",
               "data": {
+                "name": "Reverse Shooter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 1.0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
                 "name": "Stop Shooter"
               }
             }

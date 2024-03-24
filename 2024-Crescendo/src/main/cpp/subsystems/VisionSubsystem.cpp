@@ -74,7 +74,7 @@ void VisionSubsystem::Periodic() {
     frc::SmartDashboard::PutNumber("actualdistance", distanceFromCenterToGoalInches);
     frc::SmartDashboard::PutNumber("id", id);
     double targetOffsetAngle_Horizontal = table->GetNumber("tx", 0.0);
-    double heading_error = targetOffsetAngle_Horizontal-asin(VisionConstants::limelightHorizontalOffset.value()/distanceFromLimelightToGoalInches);
+    double heading_error = targetOffsetAngle_Horizontal+VisionConstants::subWooferAngleOffset;//asin(VisionConstants::limelightHorizontalOffset.value()/distanceFromLimelightToGoalInches);
     // pid.SetSetpoint(0);
     frc::SmartDashboard::PutNumber("heading", heading_error);
     double output = pid.Calculate(heading_error, 0);

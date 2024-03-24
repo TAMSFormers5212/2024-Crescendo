@@ -41,6 +41,7 @@
 #include <commands/StopDrive.h>
 #include <commands/ArmGround.h>
 #include <frc/smartdashboard/SendableChooser.h>
+#include <commands/ReverseShooter.h>
 using namespace pathplanner;
 
 using namespace std;
@@ -65,6 +66,7 @@ RobotContainer::RobotContainer() {
     // }
     NamedCommands::registerCommand("Arm Lower", /*frc2::cmd::Print("Hello"));*//*frc2::ParallelRaceGroup{frc2::WaitCommand(4_s), */std::move(ArmLower(&m_superstructure.m_arm).ToPtr()));
     NamedCommands::registerCommand("Test Command", frc2::cmd::Print("passed marker 1"));
+    NamedCommands::registerCommand("Reverse Shooter", ReverseShooter(&m_superstructure.m_shooter).ToPtr());
     NamedCommands::registerCommand("Ready Shooter", ReadyShooter(&m_superstructure.m_shooter).ToPtr());
     NamedCommands::registerCommand("Auto Intake", AutoIntake(&m_superstructure.m_intake).ToPtr());
     NamedCommands::registerCommand("Stop Shooter", StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake).ToPtr());
@@ -309,8 +311,9 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // return frc2::cmd::Print("No autonomous command configured");
     //m_drive.resetOdometry({{2_m, 7_m}, 90_deg});
     // m_drive.resetOdometry({{1.37_m, 5.61_m}, 90_deg});
-    m_drive.resetOdometry({{0.75_m, 4.24_m}, 34.08_deg});
-    
+    // m_drive.resetOdometry({{0.75_m, 6.79_m}, 151.09_deg});
+    m_drive.resetOdometry({{15.75_m, 4.24_m}, -34.08_deg});
+
     // auto path = PathPlannerPath::fromPathFile("Test Path");
     // auto twoNote = PathPlannerPath::fromPathFile("2 Note Auton");
     // auto pathGroup = PathPlannerAuto::getPathGroupFromAutoFile("Test Auto");
@@ -332,7 +335,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // if(shouldFlip()){
         
     // }
-    // auto path = PathPlannerPath::fromPathFile("Auton Note 2");
+    // auto path = PathPlannerPath::fromPathFile("Stationary Shoot");
     // return AutoBuilder::followPath(path);
 }
 

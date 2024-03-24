@@ -122,7 +122,7 @@ void Arm::setInitialPosition(){
 }
 
 double Arm::ampPreset(){
-    return getRelativePosition()+(1.60-getRawPosition());
+    return getRelativePosition()+(1.62  -getRawPosition());
 }
 double Arm::speakerPreset(){
     return getRelativePosition()-(-0.27+getRawPosition());

@@ -317,6 +317,8 @@ namespace VisionConstants{
     constexpr double limelightAngleAboveHorizontal= 39; // why this number?
     //constexpr double limelightToCenter = 9.75_in;
     
+    constexpr double subWooferAngleOffset = 14.8;
+
     constexpr double TagHeight = 8;// height of the tags
     constexpr double TagCenterHeight = 4; // center of the tag from the middle
 
