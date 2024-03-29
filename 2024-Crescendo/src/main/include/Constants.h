@@ -301,23 +301,22 @@ namespace PoseConstants{
 namespace VisionConstants{
 
     //vision pid constants for aiming
-    constexpr double kvP = 0.05;
+    constexpr double kvP = 0.1;
     constexpr double kvI = 0.01;
-    constexpr double kvD = 0.0001;
+    constexpr double kvD = 0.01;
     constexpr double kvFF = 0.0;
 
     constexpr double stableSpeed = 1.0; // random value for now
 
     //vision pid constants for translating
 
-    constexpr units::inch_t limelightHeight = 15.5_in; // get a more precise number
-    constexpr units::inch_t limelightHorizontalOffset = 9.5_in; // just a guess
+    constexpr units::inch_t limelightHeight = 16.5_in; // get a more precise number
 
-    constexpr double limelightAngleback = 51;//degrees tilted back
-    constexpr double limelightAngleAboveHorizontal= 39; // why this number?
+    constexpr double limelightAngleback = 54;//degrees tilted back
+    constexpr double limelightAngleAboveHorizontal= 36; // why this number?
     //constexpr double limelightToCenter = 9.75_in;
-    
-    constexpr double subWooferAngleOffset = 14.8;
+    constexpr units::inch_t limelightToFrame = 1.5_in;
+    // constexpr double subWooferAngleOffset = 14.8;
 
     constexpr double TagHeight = 8;// height of the tags
     constexpr double TagCenterHeight = 4; // center of the tag from the middle

@@ -56,10 +56,10 @@ void VisionSubsystem::Periodic() {
 
     // calculate distance
     double distanceFromLimelightToGoalInches = (VisionConstants::speakerTagHeight - VisionConstants::limelightHeight.value()) / tan(angleToGoalRadians);
-    double distanceFromCenterToGoalInches=sqrt(pow(distanceFromLimelightToGoalInches,2)-pow(VisionConstants::limelightHorizontalOffset.value(),2));
+    // double distanceFromCenterToGoalInches=sqrt(pow(distanceFromLimelightToGoalInches,2)-pow(VisionConstants::limelightHorizontalOffset.value(),2));
     float KpDistance = -0.1f;  // Proportional control constant for distance 
     float desired_distance = 50;
-    float distance_error = abs(desired_distance - distanceFromCenterToGoalInches) * KpDistance; 
+    float distance_error = abs(desired_distance-distanceFromLimelightToGoalInches) * KpDistance; 
     // reason the swerve drive doesn't stop moving when trying to align to a certain distance from tag. taking the absolute value of it ensures that it will always be positive meaning the robot wont ever think to change directions
     if (targetOffsetAngle_Vertical == 0){
       setDistanceError(0);
@@ -71,10 +71,10 @@ void VisionSubsystem::Periodic() {
 
     frc::SmartDashboard::PutNumber("up angle", targetOffsetAngle_Vertical);
     frc::SmartDashboard::PutNumber("distance", distanceFromLimelightToGoalInches);
-    frc::SmartDashboard::PutNumber("actualdistance", distanceFromCenterToGoalInches);
+    // frc::SmartDashboard::PutNumber("actualdistance", distanceFromCenterToGoalInches);
     frc::SmartDashboard::PutNumber("id", id);
     double targetOffsetAngle_Horizontal = table->GetNumber("tx", 0.0);
-    double heading_error = targetOffsetAngle_Horizontal+VisionConstants::subWooferAngleOffset;//asin(VisionConstants::limelightHorizontalOffset.value()/distanceFromLimelightToGoalInches);
+    double heading_error = targetOffsetAngle_Horizontal;//+VisionConstants::subWooferAngleOffset;//asin(VisionConstants::limelightHorizontalOffset.value()/distanceFromLimelightToGoalInches);
     // pid.SetSetpoint(0);
     frc::SmartDashboard::PutNumber("heading", heading_error);
     double output = pid.Calculate(heading_error, 0);
