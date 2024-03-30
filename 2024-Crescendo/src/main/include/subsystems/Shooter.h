@@ -16,6 +16,7 @@
 // clean up include list once subclasses are finished
 
 #include <Constants.h>
+#include <frc/controller/SimpleMotorFeedforward.h>
 
 using namespace std;
 using namespace rev;
@@ -47,6 +48,8 @@ private:
 
     SparkPIDController m_leftController = m_leftMotor.GetPIDController();
     SparkPIDController m_rightController = m_rightMotor.GetPIDController();
+
+    frc::SimpleMotorFeedforward<units::meters> m_shooterFF(const double, const double, const double);
 
     double m_goalSpeed = 0;
 };

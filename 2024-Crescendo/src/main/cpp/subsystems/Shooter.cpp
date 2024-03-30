@@ -4,7 +4,8 @@ using namespace PoseConstants;
 
 Shooter::Shooter(int leftMotor, int rightMotor)
 : m_leftMotor(leftMotor, CANSparkLowLevel::MotorType::kBrushless),
-    m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless)
+    m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless),
+    m_shooterFF(ShooterConstants::ksS, ShooterConstants::ksV, ShooterConstants::ksA)
 {
     resetMotors();
 }
