@@ -5,6 +5,7 @@
 
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ProfiledPIDController.h>
+#include <frc/controller/SimpleMotorFeedforward.h>
 
 #include <frc/AnalogEncoder.h>
 
@@ -19,6 +20,8 @@
 
 using namespace std;
 using namespace rev;
+using namespace frc;
+using namespace ShooterConstants;
 
 class Shooter : public frc2::SubsystemBase{
 
@@ -48,6 +51,9 @@ private:
     SparkPIDController m_leftController = m_leftMotor.GetPIDController();
     SparkPIDController m_rightController = m_rightMotor.GetPIDController();
 
-    double m_goalSpeed = 0;
+    SimpleMotorFeedforward<units::meter_t> m_leftFF;
+    SimpleMotorFeedforward<units::meter_t> m_rightFF;
+
+    units::meters_per_second_t m_goalSpeed{0};
 };
 

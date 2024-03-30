@@ -197,7 +197,7 @@ RobotContainer::RobotContainer() {
                 m_superstructure.m_shooter.setPercent(m_operatorController.GetRawAxis(Controller::rightTrigger));
             }
             else{
-                m_superstructure.m_shooter.setPercent(0);
+                m_superstructure.m_shooter.setPercent(0.001); //temp, just to figure out KsS
             }
             //  frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
             

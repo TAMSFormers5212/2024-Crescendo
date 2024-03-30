@@ -233,7 +233,7 @@ namespace ArmConstants{
     constexpr auto kaV = vkaV / akaV;
     constexpr units::volt_t vkaA{0.05};
     constexpr units::radians_per_second_squared_t akaA{1};
-    constexpr auto kaA = vkaA / akaA ; // not nessecary
+    constexpr auto kaA = vkaA / akaV ; // not nessecary
 }
 
 namespace ShooterConstants{
@@ -250,6 +250,21 @@ namespace ShooterConstants{
     constexpr units::revolutions_per_minute_t maxNeoRpm = 5700_rpm;
     constexpr units::revolutions_per_minute_t maxWheelRpm = 9000_rpm;//replace this value with whatever max andymark says
     constexpr units::feet_per_second_t maxExitVelocity = 90_fps;
+
+    constexpr units::volt_t KlsS{0.001}; // friction term`
+    constexpr units::volt_t vKlsV{0.01}; // velocity term
+    constexpr units::meters_per_second_t aKlsV{1};
+    constexpr auto KlsV = vKlsV / aKlsV;
+
+    constexpr units::volt_t KrsS{0.001}; // friction term
+    constexpr units::volt_t vKrsV{0.01}; // velocity term
+    constexpr units::meters_per_second_t aKrsV{1};
+    constexpr auto KrsV = vKrsV / aKrsV;
+
+
+    constexpr units::volt_t vKsA{0.01};
+    constexpr units::meters_per_second_squared_t aKsA{1};
+    constexpr auto KsA = vKsA / aKsA;
 
 }
 

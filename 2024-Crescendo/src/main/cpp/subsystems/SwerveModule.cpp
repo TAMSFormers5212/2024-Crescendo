@@ -48,7 +48,7 @@ void SwerveModule::resetDriveMotor() {  // sets pid, current limit, and encoder
 
     m_driveMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
     m_driveMotor.EnableVoltageCompensation(12.0);
-    m_driveMotor.SetSmartCurrentLimit(30, 60);
+    m_driveMotor.SetSmartCurrentLimit(40, 60);
 
     m_driveEncoder.SetPositionConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / 1.0376 / (SwerveModuleConstants::driveRatio)).value());
     m_driveEncoder.SetVelocityConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / 1.0376 / SwerveModuleConstants::driveRatio / 60_s).value());

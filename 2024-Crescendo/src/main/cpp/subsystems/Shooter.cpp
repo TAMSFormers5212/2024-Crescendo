@@ -1,10 +1,13 @@
 #include "subsystems/Shooter.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 using namespace ShooterConstants;
 using namespace PoseConstants;
 
 Shooter::Shooter(int leftMotor, int rightMotor)
 : m_leftMotor(leftMotor, CANSparkLowLevel::MotorType::kBrushless),
-    m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless)
+    m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless),
+    m_leftFF{KlsS, KlsV, KsA},
+    m_rightFF{KrsS, KrsV, KsA}
 {
     resetMotors();
 }
@@ -51,9 +54,7 @@ void Shooter::setPercent(double percent){
 
 }
 void Shooter::setSpeed(double speed){ // velocity PID control
-    m_goalSpeed = speed;
-    m_leftController.SetReference(speed, CANSparkMaxLowLevel::ControlType::kVelocity);
-    m_rightController.SetReference(speed, CANSparkLowLevel::ControlType::kVelocity);
+    // m_goalSpeed = units::meters_per_second_t{speed};
 }
 
 double Shooter::getSpeed(){
@@ -68,5 +69,8 @@ double Shooter::getleftSpeed(){
     return m_leftEncoder.GetVelocity();
 }
 void Shooter::Periodic(){
-    
+    m_leftController.SetReference(m_goalSpeed.value(), CANSparkMaxLowLevel::ControlType::kVelocity, 0, m_leftFF.Calculate(m_goalSpeed).value());
+    m_rightController.SetReference(m_goalSpeed.value(), CANSparkLowLevel::ControlType::kVelocity, 0, m_rightFF.Calculate(m_goalSpeed).value());
+    frc::SmartDashboard::PutNumber("l speed", getleftSpeed());
+    frc::SmartDashboard::PutNumber("r speed", getrightSpeed());
 }
