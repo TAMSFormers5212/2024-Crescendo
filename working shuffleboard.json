@@ -14,7 +14,7 @@
           "0,0": {
             "size": [
               1,
-              3
+              2
             ],
             "content": {
               "_type": "Subsystem Layout",
@@ -46,136 +46,8 @@
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/top left o abs",
-                  "_title": "top left o abs",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/top leftoff",
-                  "_title": "top leftoff",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/velocity top left",
                   "_title": "velocity top left",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
-          "1,0": {
-            "size": [
-              1,
-              3
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Top Right",
-              "_glyph": 149,
-              "_showGlyph": false,
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/angle top right",
-                  "_title": "angle top right",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/O top right",
-                  "_title": "O top right",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/top right abs",
-                  "_title": "top right abs",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/top right o abs",
-                  "_title": "top right o abs",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/top rightoff",
-                  "_title": "top rightoff",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/velocity top right",
-                  "_title": "velocity top right",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
-          "2,0": {
-            "size": [
-              1,
-              3
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Bottom Left",
-              "_glyph": 149,
-              "_showGlyph": false,
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/angle bottom left",
-                  "_title": "angle bottom left",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/O bottom left",
-                  "_title": "O bottom left",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/bottom left abs",
-                  "_title": "bottom left abs",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/bottom left o abs",
-                  "_title": "bottom left o abs",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/bottom leftoff",
-                  "_title": "bottom leftoff",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/velocity bottom left",
-                  "_title": "velocity bottom left",
                   "_glyph": 148,
                   "_showGlyph": false
                 }
@@ -185,7 +57,7 @@
           "3,0": {
             "size": [
               1,
-              3
+              2
             ],
             "content": {
               "_type": "List Layout",
@@ -212,20 +84,6 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/bottom right abs",
                   "_title": "bottom right abs",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/bottom right o abs",
-                  "_title": "bottom right o abs",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/bottom rightoff",
-                  "_title": "bottom rightoff",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
@@ -576,6 +434,160 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/povButton",
               "_title": "povButton",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/r speed",
+              "_title": "r speed",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "1,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/goal speed",
+              "_title": "goal speed",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "1,0": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "List Layout",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/angle top right",
+                  "_title": "angle top right",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/top right abs",
+                  "_title": "top right abs",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/velocity top right",
+                  "_title": "velocity top right",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/O top right",
+                  "_title": "O top right",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              ]
+            }
+          },
+          "2,0": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "List Layout",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/angle bottom left",
+                  "_title": "angle bottom left",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/velocity bottom left",
+                  "_title": "velocity bottom left",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/O bottom left",
+                  "_title": "O bottom left",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/bottom left abs",
+                  "_title": "bottom left abs",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              ]
+            }
+          },
+          "2,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "List Layout",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/l speed",
+                  "_title": "l speed",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/l output",
+                  "_title": "l output",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              ]
+            }
+          },
+          "3,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/l volt",
+              "_title": "l volt",
               "_glyph": 148,
               "_showGlyph": false
             }

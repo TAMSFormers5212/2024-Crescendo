@@ -248,24 +248,26 @@ namespace ShooterConstants{
     constexpr double ksA = 0.0;
     
     //idk abt these values so making new ones
-    constexpr double ksP = 0.1; // shooter uses a velocity PID
+    constexpr double ksP = 0.001; // shooter uses a velocity PID
     constexpr double ksI = 0.0; // since the shooter motors are completely separate, it may be useful to tune them separately
-    constexpr double ksD = 0.0;
+    constexpr double ksD = 0.0005;
     constexpr double ksFF = 0.0;
 
     constexpr units::revolutions_per_minute_t maxNeoRpm = 5700_rpm;
     constexpr units::revolutions_per_minute_t maxWheelRpm = 9000_rpm;//replace this value with whatever max andymark says
     constexpr units::feet_per_second_t maxExitVelocity = 90_fps;
 
-    constexpr units::volt_t KlsS{0.001}; // friction term`
-    constexpr units::volt_t vKlsV{0.01}; // velocity term
-    constexpr units::radians_per_second_t aKlsV{1};
-    constexpr auto KlsV = vKlsV / aKlsV;
+    constexpr units::volt_t KlsS{0.16}; // friction term`
+    constexpr units::volt_t vKlsV{0.019}; // velocity term
+    constexpr units::meter_t aKlsV{1};
+    constexpr units::second_t sKlsV{1}; 
+    constexpr auto KlsV = vKlsV *sKlsV / aKlsV;
+    
 
-    constexpr units::volt_t KrsS{0.001}; // friction term
-    constexpr units::volt_t vKrsV{0.01}; // velocity term
-    constexpr units::meters_per_second_t aKrsV{1};
-    constexpr auto KrsV = vKrsV / aKrsV;
+    constexpr units::volt_t KrsS{0.195}; // friction term
+    constexpr units::volt_t vKrsV{0.019}; // velocity term
+    constexpr units::meter_t aKrsV{1};
+    constexpr auto KrsV = vKrsV *sKlsV/ aKrsV;
 
 }
 

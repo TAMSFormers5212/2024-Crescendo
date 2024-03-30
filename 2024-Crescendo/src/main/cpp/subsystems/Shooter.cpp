@@ -25,7 +25,7 @@ void Shooter::resetMotors(){
     m_leftMotor.SetSmartCurrentLimit(20, 40);
 
     m_leftEncoder.SetPositionConversionFactor(((wheelDiameter*MathConstants::pi) / pulleyRatio).value());
-    m_leftEncoder.SetVelocityConversionFactor((pulleyRatio / 60_s).value());
+    m_leftEncoder.SetVelocityConversionFactor((pulleyRatio*wheelDiameter/ 60_s).value());
     // m_leftMotor.SetInverted
     m_rightMotor.RestoreFactoryDefaults();
 
@@ -35,7 +35,7 @@ void Shooter::resetMotors(){
     m_rightController.SetFF(ksFF);
 
     m_rightEncoder.SetPositionConversionFactor(((wheelDiameter * MathConstants::pi) * pulleyRatio).value());
-    m_rightEncoder.SetVelocityConversionFactor((pulleyRatio / 60_s).value());
+    m_rightEncoder.SetVelocityConversionFactor((pulleyRatio *wheelDiameter/ 60_s).value());
 
     m_rightMotor.SetIdleMode(CANSparkBase::IdleMode::kCoast);
     m_rightMotor.EnableVoltageCompensation(12.0);
@@ -54,7 +54,7 @@ void Shooter::setPercent(double percent){
 
 }
 void Shooter::setSpeed(double speed){ // velocity PID control
-    // m_goalSpeed = units::meters_per_second_t{speed};
+    m_goalSpeed = units::meters_per_second_t{speed*600};
 }
 
 double Shooter::getSpeed(){
@@ -73,4 +73,7 @@ void Shooter::Periodic(){
     m_rightController.SetReference(m_goalSpeed.value(), CANSparkLowLevel::ControlType::kVelocity, 0, m_rightFF.Calculate(m_goalSpeed).value());
     frc::SmartDashboard::PutNumber("l speed", getleftSpeed());
     frc::SmartDashboard::PutNumber("r speed", getrightSpeed());
+    frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
+    frc::SmartDashboard::PutNumber("l output", m_leftMotor.GetOutputCurrent());
+    frc::SmartDashboard::PutNumber("l volt", m_leftMotor.GetAppliedOutput());
 }

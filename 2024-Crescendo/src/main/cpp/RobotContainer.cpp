@@ -194,10 +194,10 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_shooter.SetDefaultCommand(RunCommand(    
         [this] {
             if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
-                m_superstructure.m_shooter.setPercent(m_operatorController.GetRawAxis(Controller::rightTrigger));
+                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger));
             }
             else{
-                m_superstructure.m_shooter.setPercent(0.001); //temp, just to figure out KsS
+                m_superstructure.m_shooter.setSpeed(0.000); //temp, just to figure out KsS
             }
             //  frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
             
