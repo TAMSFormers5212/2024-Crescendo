@@ -52,8 +52,8 @@ private:
     SparkPIDController m_leftController = m_leftMotor.GetPIDController();
     SparkPIDController m_rightController = m_rightMotor.GetPIDController();
 
-    SimpleMotorFeedforward<units::meter_t> m_leftFF;
-    SimpleMotorFeedforward<units::meter_t> m_rightFF;
+    SimpleMotorFeedforward<units::meters> m_leftFF;
+    SimpleMotorFeedforward<units::meters> m_rightFF;
 
     units::meters_per_second_t m_goalSpeed{0};
 };

@@ -259,18 +259,13 @@ namespace ShooterConstants{
 
     constexpr units::volt_t KlsS{0.001}; // friction term`
     constexpr units::volt_t vKlsV{0.01}; // velocity term
-    constexpr units::meters_per_second_t aKlsV{1};
+    constexpr units::radians_per_second_t aKlsV{1};
     constexpr auto KlsV = vKlsV / aKlsV;
 
     constexpr units::volt_t KrsS{0.001}; // friction term
     constexpr units::volt_t vKrsV{0.01}; // velocity term
     constexpr units::meters_per_second_t aKrsV{1};
     constexpr auto KrsV = vKrsV / aKrsV;
-
-
-    constexpr units::volt_t vKsA{0.01};
-    constexpr units::meters_per_second_squared_t aKsA{1};
-    constexpr auto KsA = vKsA / aKsA;
 
 }
 
