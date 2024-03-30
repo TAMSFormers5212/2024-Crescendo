@@ -241,7 +241,13 @@ namespace ShooterConstants{
     constexpr int rightMotor = 14;
     constexpr double pulleyRatio = 30.0/18.0;
     constexpr units::inch_t wheelDiameter = 4_in; // may change based on rpm
-
+    
+    //velocity pid
+    constexpr double ksS = 0.1;
+    constexpr double ksV = 0.1;
+    constexpr double ksA = 0.0;
+    
+    //idk abt these values so making new ones
     constexpr double ksP = 0.1; // shooter uses a velocity PID
     constexpr double ksI = 0.0; // since the shooter motors are completely separate, it may be useful to tune them separately
     constexpr double ksD = 0.0;

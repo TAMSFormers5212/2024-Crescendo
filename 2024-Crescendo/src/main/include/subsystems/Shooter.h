@@ -17,6 +17,7 @@
 // clean up include list once subclasses are finished
 
 #include <Constants.h>
+#include <frc/controller/SimpleMotorFeedforward.h>
 
 using namespace std;
 using namespace rev;
