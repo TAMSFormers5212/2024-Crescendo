@@ -34,7 +34,15 @@ void VisionSubsystem::Periodic() {
     // frc::PIDController pid(kvP, kvI, kvD); dont need to recreate pid every
     // periodic cycle
     double targetOffsetAngle_Vertical = table->GetNumber("ty", 0.0);
-    double id = table2.at(0);
+    if (targetOffsetAngle_Vertical ==0){
+        tagPresent=false;
+    }
+    else{
+      tagPresent=true;
+    }
+    // double id = table2.at(0);
+    double id = table->GetNumber("ta", 0.0);
+    
     double goalHeightInches = 12.0;
 
     if (id == 4.0 || id == 7.0){
@@ -56,11 +64,13 @@ void VisionSubsystem::Periodic() {
 
     // calculate distance
     double distanceFromLimelightToGoalInches = (VisionConstants::speakerTagHeight - VisionConstants::limelightHeight.value()) / tan(angleToGoalRadians);
+    distance = distanceFromLimelightToGoalInches;
     // double distanceFromCenterToGoalInches=sqrt(pow(distanceFromLimelightToGoalInches,2)-pow(VisionConstants::limelightHorizontalOffset.value(),2));
     float KpDistance = -0.1f;  // Proportional control constant for distance 
     float desired_distance = 50;
     float distance_error = abs(desired_distance-distanceFromLimelightToGoalInches) * KpDistance; 
     // reason the swerve drive doesn't stop moving when trying to align to a certain distance from tag. taking the absolute value of it ensures that it will always be positive meaning the robot wont ever think to change directions
+    
     if (targetOffsetAngle_Vertical == 0){
       setDistanceError(0);
     }
@@ -77,6 +87,7 @@ void VisionSubsystem::Periodic() {
     double heading_error = targetOffsetAngle_Horizontal;//+VisionConstants::subWooferAngleOffset;//asin(VisionConstants::limelightHorizontalOffset.value()/distanceFromLimelightToGoalInches);
     // pid.SetSetpoint(0);
     frc::SmartDashboard::PutNumber("heading", heading_error);
+    frc::SmartDashboard::PutNumber("tx", targetOffsetAngle_Horizontal);
     double output = pid.Calculate(heading_error, 0);
     frc::SmartDashboard::PutNumber("pid", output);
     if (targetOffsetAngle_Horizontal != 0){
@@ -94,13 +105,17 @@ double VisionSubsystem::getOutput() { return output; }
 void VisionSubsystem::setLedOn(int ledsOn) {ledOn = ledsOn;}
 int VisionSubsystem::getLedOn(){return ledOn;}
 
-
+bool VisionSubsystem::isTagPresent(){
+  return tagPresent;
+}
 void VisionSubsystem::setDistanceError(double dist_error) {
     distError = dist_error;
 }
 
 double VisionSubsystem::getDistanceError() { return distError; }
-
+double VisionSubsystem::getDistance(){
+  return distance;
+}
 void VisionSubsystem::SimulationPeriodic() {
     // Implementation of subsystem simulation periodic method goes here.
 }

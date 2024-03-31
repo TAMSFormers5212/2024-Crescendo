@@ -281,6 +281,13 @@
                   "_title": "heading",
                   "_glyph": 148,
                   "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/tx",
+                  "_title": "tx",
+                  "_glyph": 148,
+                  "_showGlyph": false
                 }
               ]
             }
@@ -575,6 +582,13 @@
                   "_title": "l output",
                   "_glyph": 148,
                   "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/l volt",
+                  "_title": "l volt",
+                  "_glyph": 148,
+                  "_showGlyph": false
                 }
               ]
             }
@@ -586,8 +600,8 @@
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/l volt",
-              "_title": "l volt",
+              "_source0": "network_table:///SmartDashboard/di",
+              "_title": "di",
               "_glyph": 148,
               "_showGlyph": false
             }

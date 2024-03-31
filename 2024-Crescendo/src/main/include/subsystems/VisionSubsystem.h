@@ -38,11 +38,12 @@ class VisionSubsystem : public frc2::SubsystemBase {
 
     void setDistanceError(double dist_error);
     double getDistanceError();
-
+    double getDistance();
     void setLedOn(int ledsOn);
     int getLedOn();
     void SimulationPeriodic() override;
-    
+    bool isTagPresent();
+
 
    private:
     cs::UsbCamera usbCam = frc::CameraServer::StartAutomaticCapture(); //usb back camera
@@ -54,5 +55,7 @@ class VisionSubsystem : public frc2::SubsystemBase {
     frc::PIDController pid; // alignment pid
     double output;
     double distError;
+    double distance;
     int ledOn;
+    bool tagPresent;
 };

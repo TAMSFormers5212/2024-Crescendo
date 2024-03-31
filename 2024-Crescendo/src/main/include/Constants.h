@@ -207,7 +207,7 @@ namespace ArmConstants{
     constexpr int planetaryRatio = 20;
     constexpr int armRatio = 110; // 20:1 maxplanetary * 66:12 sprocket
     
-    constexpr double kaP = 0.4;
+    constexpr double kaP = 0.5;
     constexpr double kaI = 0.00;
     constexpr double kaD = 0.05;
     constexpr double kaFF = 0.0;
@@ -330,8 +330,8 @@ namespace VisionConstants{
 
     constexpr units::inch_t limelightHeight = 16.5_in; // get a more precise number
 
-    constexpr double limelightAngleback = 54;//degrees tilted back
-    constexpr double limelightAngleAboveHorizontal= 36; // why this number?
+    constexpr double limelightAngleback = 60;//degrees tilted back
+    constexpr double limelightAngleAboveHorizontal= 30; // why this number?
     //constexpr double limelightToCenter = 9.75_in;
     constexpr units::inch_t limelightToFrame = 1.5_in;
     // constexpr double subWooferAngleOffset = 14.8;

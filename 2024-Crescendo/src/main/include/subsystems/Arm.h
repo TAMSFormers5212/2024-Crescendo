@@ -31,6 +31,7 @@ public:
     Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset);
 
     void setPosition(double armPose);
+    void setNeoPosition(double armPose);
     double getPosition();
     double getVelocity();
     void resetMotors();
@@ -72,6 +73,7 @@ private:
 
     DutyCycleEncoder m_absoluteEncoder{encoder};
 
-    double position = 0.0;
+    double position = 0.0;  
+    bool commandGiven = false;
 
 };

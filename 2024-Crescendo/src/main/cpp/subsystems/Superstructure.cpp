@@ -35,34 +35,34 @@ void Superstructure::indexNote(){ // indexes note
 }
 
 double Superstructure::calculateSpeed(double distance, double x, double y) {  // calculate the needed speed based on current speed
-    if(distance<distances.at(0).value()){
+    if(distance<distances.at(0)){
         return speeds.at(0);
     }
     for (int i = 1; i < distances.size();i++){
-        if(distance<distances.at(i).value()){
-            return speeds.at(i-1) + ((speeds.at(i)-speeds.at(i-1))/(distances.at(i)-distances.at(i-1)).value())*(distance-distances.at(i-1).value());
+        if(distance<distances.at(i)){
+            return speeds.at(i-1) + ((speeds.at(i)-speeds.at(i-1))/(distances.at(i)-distances.at(i-1)))*(distance-distances.at(i-1));
         }
     }
     return speeds.at(speeds.size()-1);
 }
 double Superstructure::calculateAngle(double distance, double x, double y) {  // angle to feed to arm
-    if (distance < distances.at(0).value()) {
+    if (distance < distances.at(0)) {
         return angles.at(0);
     }
     for (int i = 1; i < distances.size(); i++) {
-        if (distance < distances.at(i).value()) {
-            return angles.at(i - 1) + ((angles.at(i) - angles.at(i - 1)) / (distances.at(i) - distances.at(i - 1)).value()) * (distance - distances.at(i - 1).value());
+        if (distance < distances.at(i)) {
+            return angles.at(i - 1) + ((angles.at(i) - angles.at(i - 1)) / (distances.at(i) - distances.at(i - 1))) * (distance - distances.at(i - 1));
         }
     }
     return speeds.at(speeds.size() - 1);
 }
 
 void Superstructure::aim(double angle, double speed){ // simple aiming with preset angle and speed 
-    m_arm.setPosition(angle);
+    // m_arm.setNeoPosition(angle);
     m_shooter.setSpeed(speed);
 }
 void Superstructure::aim(double distance, double x, double y) { // raises arm and spins up shooter to calcuated values based on distance, x, y
-    m_arm.setPosition(calculateAngle(distance, x, y));
+    // m_arm.setNeoPosition(calculateAngle(distance, x, y));
     m_shooter.setSpeed(calculateSpeed(distance, x, y));
 }
 void Superstructure::speakerShot(){ // speaker shot based on limelight tag position
