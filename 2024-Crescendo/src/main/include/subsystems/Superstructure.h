@@ -92,8 +92,8 @@ public:
 
     // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
     //distances are in inches
-    vector<double> distances = { 36, 41, 48, 60, 72, 84, 96, 111};
-    vector<double> angles = { 0.218, 0.231, 0.268, 0.366, 0.433, 0.463, 0.522, 0.544};
-    vector<double> speeds = { 600, 600, 600, 600, 600, 600, 600, 600};
+    vector<double> distances = {24, 36, 41, 48, 60, 72, 84, 96, 111};
+    vector<double> angles = { 0.205,0.228, 0.241, 0.278, 0.376, 0.443, 0.473, 0.532, 0.557};
+    vector<double> speeds = { 500,540, 580, 600, 600, 600, 600, 600, 600};
 };
 

@@ -380,19 +380,6 @@
               "_showGlyph": false
             }
           },
-          "8,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/right output ",
-              "_title": "right output ",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
           "5,0": {
             "size": [
               1,
@@ -415,19 +402,6 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/rot",
               "_title": "rot",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "5,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/actualdistance",
-              "_title": "actualdistance",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -602,6 +576,19 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/di",
               "_title": "di",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "8,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/armAn",
+              "_title": "armAn",
               "_glyph": 148,
               "_showGlyph": false
             }

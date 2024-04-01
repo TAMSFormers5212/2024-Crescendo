@@ -50,20 +50,24 @@ double Superstructure::calculateAngle(double distance, double x, double y) {  //
         return angles.at(0);
     }
     for (int i = 1; i < distances.size(); i++) {
+        if (abs(distance-distances.at(i))<1){
+            return angles.at(i);
+        }
         if (distance < distances.at(i)) {
-            return angles.at(i - 1) + ((angles.at(i) - angles.at(i - 1)) / (distances.at(i) - distances.at(i - 1))) * (distance - distances.at(i - 1));
+            return angles.at(i - 1) + ((angles.at(i) - angles.at(i - 1)) * ((distance - distances.at(i - 1))/(distances.at(i) - distances.at(i - 1))));
         }
     }
-    return speeds.at(speeds.size() - 1);
+    return angles.at(angles.size() - 1);
 }
 
 void Superstructure::aim(double angle, double speed){ // simple aiming with preset angle and speed 
-    // m_arm.setNeoPosition(angle);
+    m_arm.setNeoPosition(angle);
     m_shooter.setSpeed(speed);
 }
 void Superstructure::aim(double distance, double x, double y) { // raises arm and spins up shooter to calcuated values based on distance, x, y
-    // m_arm.setNeoPosition(calculateAngle(distance, x, y));
+    m_arm.setNeoPosition(calculateAngle(distance, x, y));
     m_shooter.setSpeed(calculateSpeed(distance, x, y));
+    frc::SmartDashboard::PutNumber("armAn",calculateAngle(distance,x,y));
 }
 void Superstructure::speakerShot(){ // speaker shot based on limelight tag position
     double angle = 0;//calculateAngle(m_vision.getZ(), m_vision.getX(), m_vision.getY());

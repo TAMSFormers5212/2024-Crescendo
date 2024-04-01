@@ -110,7 +110,7 @@ RobotContainer::RobotContainer() {
             if (m_driverController.GetRawButton(7)) {
                m_drive.toggleOffset();
             }
-            if (m_driverController.GetRawButton(8)) {
+            if (m_driverController.GetRawButton(Joystick::Trigger)||m_driverController.GetRawButton(8)) {
                 if (m_superstructure.m_vision.isTagPresent()){
                 // if (m_vision.getDistanceError() > 0 &&
                 //     m_vision.getDistanceError() < 25) {
@@ -125,9 +125,9 @@ RobotContainer::RobotContainer() {
             // if (m_driverController.GetRawButton(1)){
             //     m_superstructure.aim(m_vision.getDistance(),0,0);
             // }
-            if (m_driverController.GetRawButton(2)){
-                m_superstructure.aim(0.231,600);
-            }
+            // if (m_driverController.GetRawButton(2)){
+            //     m_superstructure.aim(0.231,600);
+            // }
             m_drive.swerveDrive(XAxis, YAxis, RotAxis, true);
 
         },  
@@ -138,7 +138,7 @@ RobotContainer::RobotContainer() {
         [this] {
 
             // Led toggle
-            if (m_driverController.GetRawButtonPressed(9)) {
+            if (m_driverController.GetRawButtonPressed(2)) {
                 if (m_superstructure.m_vision.getLedOn() == 3) {
                     m_superstructure.m_vision.setLedOn(1);
                 } else if (m_vision.getLedOn() == 1) {
@@ -146,7 +146,7 @@ RobotContainer::RobotContainer() {
                 }
                 
             }
-            frc::SmartDashboard::PutNumber("di", m_superstructure.m_vision.getDistance());
+            // frc::SmartDashboard::PutNumber("di", m_superstructure.m_vision.getDistance());
             frc::SmartDashboard::PutNumber("leds", m_superstructure.m_vision.getLedOn());
             frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
         },
@@ -155,10 +155,15 @@ RobotContainer::RobotContainer() {
     m_superstructure.SetDefaultCommand(RunCommand(
         [this] {
             if (m_driverController.GetRawButton(Joystick::Trigger)){
+                m_superstructure.m_vision.setLedOn(3);
+                if (m_superstructure.m_vision.isTagPresent()){
+                // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
                 m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
+                }
             }
-            else if (!m_driverController.GetRawButton(Joystick::Trigger)&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05) {
+            else if (!m_driverController.GetRawButton(Joystick::Trigger)&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05/*&&!m_driverController.GetRawButtonPressed(9)*/) {
                 m_superstructure.m_shooter.setSpeed(0);
+                // m_superstructure.m_vision.setLedOn(1);
                 // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
             }
             // if(m_operatorController.getrawb)
@@ -220,7 +225,12 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_intake.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::rightBumper)){
-                m_superstructure.m_intake.setSpeed(0.5);
+                if (m_superstructure.m_shooter.getSpeed()>400){
+                    m_superstructure.m_intake.setSpeed(1.00);
+                }
+                else{
+                    m_superstructure.m_intake.setSpeed(0.5);
+                }
             } 
             if(m_operatorController.GetRawButton(Controller::leftBumper)){
                 m_superstructure.m_intake.setSpeed(-0.4);
@@ -287,7 +297,7 @@ void RobotContainer::ConfigureBindings() {
 
     // joystickTrigger.OnTrue((RunCommand([this]() {return m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0); })).ToPtr());
     joystickThree.OnTrue((InstantCommand([this]() { return m_drive.resetHeading(); })).ToPtr());
-    joystickFour.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry(m_drive.AveragePose()); })).ToPtr());
+    joystickFour.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry(m_drive.AveragePose(/*m_superstructure.m_vision.getBotPose()*/)); })).ToPtr());
     joystickSix.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry({{0_m, 0_m}, 0_deg}); })).ToPtr());
     joystickFive.OnTrue((InstantCommand([this] { return m_drive.resetAbsoluteEncoders(); })).ToPtr());
 
