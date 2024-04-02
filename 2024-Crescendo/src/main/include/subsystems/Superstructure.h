@@ -96,5 +96,7 @@ public:
     vector<double> distances = {24, 36, 41, 48, 60, 72, 84, 96, 111};
     vector<double> angles = { 0.255,0.278, 0.291, 0.328, 0.426, 0.493, 0.523, 0.582, 0.607};
     vector<double> speeds = { 500,540, 580, 600, 600, 600, 600, 600, 600};
-};
+    double slope = 0.00459423;
+    double intercept = 0.128344;
+};  
 

@@ -57,7 +57,7 @@ double Superstructure::calculateAngle(double distance, double x, double y) {  //
             return angles.at(i - 1) + ((angles.at(i) - angles.at(i - 1)) * ((distance - distances.at(i - 1))/(distances.at(i) - distances.at(i - 1))));
         }
     }
-    return angles.at(angles.size() - 1);
+    return slope*distance + intercept; //angles.at(angles.size() - 1);
 }
 
 void Superstructure::aim(double angle, double speed){ // simple aiming with preset angle and speed 
@@ -67,7 +67,7 @@ void Superstructure::aim(double angle, double speed){ // simple aiming with pres
 void Superstructure::aim(double distance, double x, double y) { // raises arm and spins up shooter to calcuated values based on distance, x, y
     m_arm.setNeoPosition(calculateAngle(distance, x, y));
     m_shooter.setSpeed(calculateSpeed(distance, x, y));
-    frc::SmartDashboard::PutNumber("armAn",calculateAngle(distance,x,y));
+    // frc::SmartDashboard::PutNumber("armAn",calculateAngle(distance,x,y));
 }
 void Superstructure::autonAim(double distance) { // raises arm and spins up shooter to calcuated values based on distance, x, y
     m_arm.setNeoPosition(calculateAngle(distance, 0, 0));

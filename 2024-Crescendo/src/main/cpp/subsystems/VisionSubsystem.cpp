@@ -42,7 +42,7 @@ void VisionSubsystem::Periodic() {
     }
     // double id = table2.at(0);
     double id = table->GetNumber("tid", 0.0);
-    
+    tagID = id;
     double goalHeightInches = 12.0;
 
     if (id == 4.0 || id == 7.0){
@@ -111,7 +111,9 @@ bool VisionSubsystem::isTagPresent(){
 void VisionSubsystem::setDistanceError(double dist_error) {
     distError = dist_error;
 }
-
+int VisionSubsystem::getID(){
+    return tagID;
+}
 double VisionSubsystem::getDistanceError() { return distError; }
 double VisionSubsystem::getDistance(){
   return distance;

@@ -160,8 +160,11 @@ RobotContainer::RobotContainer() {
             if (m_driverController.GetRawButton(Joystick::Trigger)){
                 m_superstructure.m_vision.setLedOn(3);
                 if (m_superstructure.m_vision.isTagPresent()){
+                    if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
+                        m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
+
+                    }
                 // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
-                m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
                 }
             }
             else if (!m_driverController.GetRawButton(Joystick::Trigger)&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2)) {
@@ -169,6 +172,8 @@ RobotContainer::RobotContainer() {
                 m_superstructure.m_vision.setLedOn(1);
                 // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
             }
+            frc::SmartDashboard::PutNumber("armAn",m_superstructure.calculateAngle(m_superstructure.m_vision.getDistance(),0,0));
+
             // if(m_operatorController.getrawb)
 
             //some prespin up code or something maybe

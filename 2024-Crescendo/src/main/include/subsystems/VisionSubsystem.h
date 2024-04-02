@@ -33,7 +33,7 @@ class VisionSubsystem : public frc2::SubsystemBase {
     double getZ(); // distance axis position
     
     //implement these eventually
-    // int getTagID();
+    int getID();
     // frc::Pose2d getVisionPose();
 
     void setDistanceError(double dist_error);
@@ -43,7 +43,7 @@ class VisionSubsystem : public frc2::SubsystemBase {
     int getLedOn();
     void SimulationPeriodic() override;
     bool isTagPresent();
-
+    
 
    private:
     cs::UsbCamera usbCam = frc::CameraServer::StartAutomaticCapture(); //usb back camera
@@ -57,5 +57,6 @@ class VisionSubsystem : public frc2::SubsystemBase {
     double distError;
     double distance;
     int ledOn;
+    int tagID;
     bool tagPresent;
 };

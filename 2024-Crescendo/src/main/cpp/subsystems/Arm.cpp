@@ -99,6 +99,7 @@ double Arm::getRawPosition() { // returns the absolute encoder position minus of
 }
 
 void Arm::setPosition(double pose) { // sets the goal pose to given parameter
+    commandGiven=true;
     position = pose;
     //smart motion implementation
     // m_rightController.SetReference(pose,
