@@ -42,6 +42,7 @@ public:
     double calculateAngle(double distance, double x, double y);  // angle to feed to arm
     void aim(double distance, double x, double y);
     void aim(double angle, double speed);
+    void autonAim(double distance);
     void speakerShot();
     void ampShot();
     void raiseToClimb();
@@ -93,7 +94,7 @@ public:
     // std::shared_ptr<nt::NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
     //distances are in inches
     vector<double> distances = {24, 36, 41, 48, 60, 72, 84, 96, 111};
-    vector<double> angles = { 0.205,0.228, 0.241, 0.278, 0.376, 0.443, 0.473, 0.532, 0.557};
+    vector<double> angles = { 0.255,0.278, 0.291, 0.328, 0.426, 0.493, 0.523, 0.582, 0.607};
     vector<double> speeds = { 500,540, 580, 600, 600, 600, 600, 600, 600};
 };
 

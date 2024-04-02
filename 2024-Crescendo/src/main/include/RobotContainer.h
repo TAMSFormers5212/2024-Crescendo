@@ -13,6 +13,7 @@
 #include "subsystems/VisionSubsystem.h"
 #include "subsystems/Superstructure.h"
 #include "subsystems/Winch.h"
+#include <frc/geometry/Rotation2d.h>
 
 using namespace OIConstants;
 
@@ -24,6 +25,7 @@ class RobotContainer {
     double XAxis;
     double YAxis;
   frc2::CommandPtr GetAutonomousCommand();
+  // frc2::Rotation2d getRotated();
   // frc2::CommandPtr getAutonomousCommand();
 
  private:

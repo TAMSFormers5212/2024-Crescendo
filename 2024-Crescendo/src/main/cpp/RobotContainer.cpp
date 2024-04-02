@@ -42,6 +42,8 @@
 #include <commands/ArmGround.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <commands/ReverseShooter.h>
+#include <commands/AutoAim.h>
+#include <frc/geometry/Rotation2d.h>
 using namespace pathplanner;
 
 using namespace std;
@@ -73,6 +75,7 @@ RobotContainer::RobotContainer() {
     NamedCommands::registerCommand("De Intake", DeIntake(&m_superstructure.m_intake).ToPtr());
     NamedCommands::registerCommand("Stop Drive", StopDrive(&m_drive).ToPtr());
     NamedCommands::registerCommand("Arm Ground", ArmGround(&m_superstructure.m_arm).ToPtr());
+     NamedCommands::registerCommand("Auto Aim", AutoAim(&m_superstructure.m_arm, &m_superstructure.m_vision, &m_superstructure).ToPtr());
     //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto
 
     ConfigureBindings();
@@ -161,9 +164,9 @@ RobotContainer::RobotContainer() {
                 m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
                 }
             }
-            else if (!m_driverController.GetRawButton(Joystick::Trigger)&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05/*&&!m_driverController.GetRawButtonPressed(9)*/) {
+            else if (!m_driverController.GetRawButton(Joystick::Trigger)&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2)) {
                 m_superstructure.m_shooter.setSpeed(0);
-                // m_superstructure.m_vision.setLedOn(1);
+                m_superstructure.m_vision.setLedOn(1);
                 // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
             }
             // if(m_operatorController.getrawb)
@@ -335,13 +338,23 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     //m_drive.resetOdometry({{2_m, 7_m}, 90_deg});
     // m_drive.resetOdometry({{1.37_m, 5.61_m}, 90_deg});
     // m_drive.resetOdometry({{0.75_m, 6.79_m}, 151.09_deg});
-    m_drive.resetOdometry({{15.75_m, 4.24_m}, -34.08_deg});
-
-    // auto path = PathPlannerPath::fromPathFile("Test Path");
+    string autoName = "testing auton";
+    //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().Degrees() + 180_deg});
+    // PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation() = Rotation2d(3.14)::minus(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
+    
+    m_drive.resetOdometry(PathPlannerAuto::getStartingPoseFromAutoFile(autoName));
+//    PathPlannerAuto::
+ 
+    //auto path = PathPlannerPath::fromPathFile("Test Path");
+    
     // auto twoNote = PathPlannerPath::fromPathFile("2 Note Auton");
     // auto pathGroup = PathPlannerAuto::getPathGroupFromAutoFile("Test Auto");
-
-    auto testAuto = PathPlannerAuto("Preload+Mobility Auton").ToPtr();
+    //auto pose = PathPlannerTrajectory::State::reverse();
+    auto testAuto = PathPlannerAuto(autoName).ToPtr();
+    
+    
+    //auto pose = PathPlannerAuto("Preload+Mobility Auton").getStartingPoseFromAutoFile();
+    
     return testAuto;
      
     // return frc2::SequentialCommandGroup {
@@ -361,7 +374,9 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // auto path = PathPlannerPath::fromPathFile("Stationary Shoot");
     // return AutoBuilder::followPath(path);
 }
-
+// frc2::Rotation2d RobotContainer::getRotated(Rotation2d rot) {
+//     return new Rotation2d(3.14159)::minus(rot);
+// }
 // frc2::CommandPtr RobotContainer::getAutonomousCommand(){
 //     auto path = PathPlannerPath::fromPathFile("Test Path");
 //     return AutoBuilder::followPath(path);//PathPlannerAuto("Top pos 3 note auto preload + a1+ m1").ToPtr();

@@ -41,7 +41,7 @@ void VisionSubsystem::Periodic() {
       tagPresent=true;
     }
     // double id = table2.at(0);
-    double id = table->GetNumber("ta", 0.0);
+    double id = table->GetNumber("tid", 0.0);
     
     double goalHeightInches = 12.0;
 

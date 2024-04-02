@@ -10,7 +10,7 @@ StopShooter::StopShooter(Shooter* grabber, Intake* intake)
 }
 
 void StopShooter::Initialize() {
-    m_shooter->setPercent(0);
+    m_shooter->setSpeed(0);
     m_intake->setSpeed(0);
 }
 

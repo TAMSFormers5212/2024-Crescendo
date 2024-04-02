@@ -207,8 +207,8 @@ namespace ArmConstants{
     constexpr int planetaryRatio = 20;
     constexpr int armRatio = 110; // 20:1 maxplanetary * 66:12 sprocket
     
-    constexpr double kaP = 0.4;
-    constexpr double kaI = 0.00;
+    constexpr double kaP = 0.40;
+    constexpr double kaI = 0.0000;
     constexpr double kaD = 0.05;
     constexpr double kaFF = 0.0;
     constexpr double kaIz = 0.0;
@@ -319,7 +319,7 @@ namespace PoseConstants{
 namespace VisionConstants{
 
     //vision pid constants for aiming
-    constexpr double kvP = 0.1;
+    constexpr double kvP = 0.05;
     constexpr double kvI = 0.00;
     constexpr double kvD = 0.01;
     constexpr double kvFF = 0.0;

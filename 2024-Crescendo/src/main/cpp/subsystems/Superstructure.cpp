@@ -69,6 +69,11 @@ void Superstructure::aim(double distance, double x, double y) { // raises arm an
     m_shooter.setSpeed(calculateSpeed(distance, x, y));
     frc::SmartDashboard::PutNumber("armAn",calculateAngle(distance,x,y));
 }
+void Superstructure::autonAim(double distance) { // raises arm and spins up shooter to calcuated values based on distance, x, y
+    m_arm.setNeoPosition(calculateAngle(distance, 0, 0));
+    
+    
+}
 void Superstructure::speakerShot(){ // speaker shot based on limelight tag position
     double angle = 0;//calculateAngle(m_vision.getZ(), m_vision.getX(), m_vision.getY());
     double speed = 0;//calculateSpeed(m_vision.getZ(), m_vision.getX(), m_vision.getY());
