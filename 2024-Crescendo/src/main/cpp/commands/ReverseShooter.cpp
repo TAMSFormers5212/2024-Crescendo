@@ -8,7 +8,7 @@ ReverseShooter::ReverseShooter(Shooter* grabber)
 }
 
 void ReverseShooter::Initialize() {
-    m_shooter->setPercent(-0.05);
+    m_shooter->setSpeed(-10);
     // frc2::WaitCommand(4_s);
 
 }

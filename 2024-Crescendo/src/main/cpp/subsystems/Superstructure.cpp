@@ -40,7 +40,7 @@ double Superstructure::calculateSpeed(double distance, double x, double y) {  //
     }
     for (int i = 1; i < distances.size();i++){
         if(distance<distances.at(i)){
-            return speeds.at(i-1) + ((speeds.at(i)-speeds.at(i-1))/(distances.at(i)-distances.at(i-1)))*(distance-distances.at(i-1));
+            return speeds.at(i-1) + ((speeds.at(i)-speeds.at(i-1))*(distance-distances.at(i-1)))/(distances.at(i)-distances.at(i-1));
         }
     }
     return speeds.at(speeds.size()-1);

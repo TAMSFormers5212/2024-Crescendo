@@ -132,12 +132,12 @@ double Arm::ampPreset(){
 }
 double Arm::speakerPreset(){
     commandGiven=true;
-    return getRelativePosition()-(-0.27+getRawPosition());
+    return getRelativePosition()+(0.27-getRawPosition());
 }
 double Arm::groundPreset(){
     //used to be a negative
     commandGiven=true;
-    return getRelativePosition()-(0.01+getRawPosition());
+    return getRelativePosition()+(0.03-getRawPosition());
 
 }
 void Arm::Periodic() {
@@ -155,10 +155,10 @@ void Arm::Periodic() {
 
     // m_rightController.SetReference(m_setpoint.position.value(), CANSparkLowLevel::ControlType::kPosition);
 
-    units::radian_t ffP{getPosition()};
+    units::radian_t ffP{position+getRawPosition()-getRelativePosition()};
     units::radians_per_second_t ffV{0};
     units::radians_per_second_squared_t ffA(0);
-    if(commandGiven){
+    if(commandGiven&&getRawPosition()<1.7){
         m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition, 0, m_armFF.Calculate(ffP, ffV, ffA).value());
     }
     else{
@@ -167,7 +167,8 @@ void Arm::Periodic() {
         
     // m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);
 
-    // frc::SmartDashboard::PutNumber("arm ", getPosition());
+    frc::SmartDashboard::PutNumber("arm p", position);
+    frc::SmartDashboard::PutNumber("arm", getRelativePosition());
      frc::SmartDashboard::PutNumber("armRaw ", getRawPosition());
     // frc::SmartDashboard::PutNumber("armPos", position);
     // frc::SmartDashboard::PutNumber("armNoRotation ", abs(m_absoluteEncoder.GetAbsolutePosition()-0.75)*pi2);
@@ -178,5 +179,5 @@ void Arm::Periodic() {
     // frc::SmartDashboard::PutBoolean("arm encoder", m_absoluteEncoder.IsConnected());
     // frc::SmartDashboard::PutNumber("inital position", initalPosition);
     // frc::SmartDashboard::PutNumber("autoArm", getRelativePosition()-(-0.73+getRawPosition()));
-     frc::SmartDashboard::PutNumber("feedforward",  m_armFF.Calculate(ffP, ffV, ffA).value());
+    //  frc::SmartDashboard::PutNumber("feedforward",  m_armFF.Calculate(ffP, ffV, ffA).value());
 }

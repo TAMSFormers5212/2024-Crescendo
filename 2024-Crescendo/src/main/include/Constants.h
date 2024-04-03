@@ -207,9 +207,9 @@ namespace ArmConstants{
     constexpr int planetaryRatio = 20;
     constexpr int armRatio = 110; // 20:1 maxplanetary * 66:12 sprocket
     
-    constexpr double kaP = 0.40;
+    constexpr double kaP = 0.50;
     constexpr double kaI = 0.0000;
-    constexpr double kaD = 0.05;
+    constexpr double kaD = 0.00;
     constexpr double kaFF = 0.0;
     constexpr double kaIz = 0.0;
     constexpr units::second_t kaT = 20_ms;
@@ -227,8 +227,8 @@ namespace ArmConstants{
     
     // currently just the estimates from recalc
     constexpr units::volt_t kaS{0.0};
-    constexpr units::volt_t kaG{0.45};
-    constexpr units::volt_t vkaV{0.214};
+    constexpr units::volt_t kaG{0.50};
+    constexpr units::volt_t vkaV{0.014};
     constexpr units::radians_per_second_t akaV{1};
     constexpr auto kaV = vkaV / akaV;
     constexpr units::volt_t vkaA{0.05};
@@ -330,8 +330,8 @@ namespace VisionConstants{
 
     constexpr units::inch_t limelightHeight = 16.5_in; // get a more precise number
 
-    constexpr double limelightAngleback = 60;//degrees tilted back
-    constexpr double limelightAngleAboveHorizontal= 30; // why this number?
+    constexpr double limelightAngleback = 54.0;//degrees tilted back
+    constexpr double limelightAngleAboveHorizontal= 36; // why this number?
     //constexpr double limelightToCenter = 9.75_in;
     constexpr units::inch_t limelightToFrame = 1.5_in;
     // constexpr double subWooferAngleOffset = 14.8;

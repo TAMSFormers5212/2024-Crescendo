@@ -23,6 +23,7 @@
 #include <pathplanner/lib/commands/PathPlannerAuto.h>
 #include <pathplanner/lib/auto/AutoBuilder.h>
 #include <pathplanner/lib/path/PathPlannerPath.h>
+
 #include <pathplanner/lib/auto/NamedCommands.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/Commands.h>
@@ -173,7 +174,7 @@ RobotContainer::RobotContainer() {
                 // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
             }
             frc::SmartDashboard::PutNumber("armAn",m_superstructure.calculateAngle(m_superstructure.m_vision.getDistance(),0,0));
-
+            //  frc::SmartDashboard::PutNumber("shooterAn",m_superstructure.calculateSpeed(m_superstructure.m_vision.getDistance(),0,0)/1000);
             // if(m_operatorController.getrawb)
 
             //some prespin up code or something maybe
@@ -220,7 +221,7 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_shooter.SetDefaultCommand(RunCommand(    
         [this] {
             if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
-                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger));
+                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*600);
             }
             else if (m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(Joystick::Trigger)){
                 m_superstructure.m_shooter.setSpeed(0.000); //temp, just to figure out KsS
@@ -265,7 +266,7 @@ RobotContainer::RobotContainer() {
             }
         //    cout << "left winch" << m_superstructure.m_rightWinch.getWinchPosition() << endl;
             // if(m_operatorController.getrawb)
-        frc::SmartDashboard::PutNumber("povButton", m_operatorController.GetPOV());
+        // frc::SmartDashboard::PutNumber("povButton", m_operatorController.GetPOV());
         },
         {&m_superstructure.m_rightWinch}
     ));
@@ -345,13 +346,25 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // m_drive.resetOdometry({{0.75_m, 6.79_m}, 151.09_deg});
     string autoName = "testing auton";
     //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().Degrees() + 180_deg});
-    // PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation() = Rotation2d(3.14)::minus(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
-    
-    m_drive.resetOdometry(PathPlannerAuto::getStartingPoseFromAutoFile(autoName));
+    auto alliance = frc::DriverStation::GetAlliance();
+    auto rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName);
+    m_drive.resetHeading();
+    if (alliance.value() == frc::DriverStation::Alliance::kRed){
+        //  rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
+        //rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().RotateBy(Rotation2d(90_deg));
+        // PathPlanner::GeometryUtil.flipFieldpose(rot);
+        // GeometryUtil.flipFieldpose(rot);
+        
+    }
+    frc::SmartDashboard::PutNumber("roat", rot.Rotation().Degrees().value());
+    // auto rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
+    //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, rot});
+    m_drive.resetOdometry(rot);
+    //m_drive.resetOdometry(PathPlannerAuto::getStartingPoseFromAutoFile(autoName));
 //    PathPlannerAuto::
- 
+    frc::SmartDashboard::PutNumber("odomX", m_drive.OdometryPose().X().value());
+    frc::SmartDashboard::PutNumber("odomY", m_drive.OdometryPose().Y().value());
     //auto path = PathPlannerPath::fromPathFile("Test Path");
-    
     // auto twoNote = PathPlannerPath::fromPathFile("2 Note Auton");
     // auto pathGroup = PathPlannerAuto::getPathGroupFromAutoFile("Test Auto");
     //auto pose = PathPlannerTrajectory::State::reverse();

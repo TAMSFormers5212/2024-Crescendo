@@ -54,7 +54,7 @@ void Shooter::setPercent(double percent){
 
 }
 void Shooter::setSpeed(double speed){ // velocity PID control
-    m_goalSpeed = units::meters_per_second_t{speed*600};
+    m_goalSpeed = units::meters_per_second_t{speed};
 }
 
 double Shooter::getSpeed(){
@@ -74,6 +74,6 @@ void Shooter::Periodic(){
     frc::SmartDashboard::PutNumber("l speed", getleftSpeed());
     frc::SmartDashboard::PutNumber("r speed", getrightSpeed());
     frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
-    frc::SmartDashboard::PutNumber("l output", m_leftMotor.GetOutputCurrent());
-    frc::SmartDashboard::PutNumber("l volt", m_leftMotor.GetAppliedOutput());
+    // frc::SmartDashboard::PutNumber("l output", m_leftMotor.GetOutputCurrent());
+    // frc::SmartDashboard::PutNumber("l volt", m_leftMotor.GetAppliedOutput());
 }
