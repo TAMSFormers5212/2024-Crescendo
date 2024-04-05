@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 2.578789979263267,
-        "y": 4.075371117931965
+        "x": 2.250886555981385,
+        "y": 4.087081954477746
       },
       "prevControl": {
-        "x": 2.626802629214024,
-        "y": 4.070249768603884
+        "x": 2.298899205932142,
+        "y": 4.081960605149665
       },
       "nextControl": {
-        "x": 1.7004772383296536,
-        "y": 4.1690578102982165
+        "x": 1.3725738150477715,
+        "y": 4.1807686468439975
       },
       "isLocked": false,
       "linkedName": null
@@ -159,6 +159,29 @@
               "type": "named",
               "data": {
                 "name": "Auto Intake"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "race",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Stop Shooter"
+              }
+            },
+            {
+              "type": "wait",
+              "data": {
+                "waitTime": 0.01
               }
             }
           ]

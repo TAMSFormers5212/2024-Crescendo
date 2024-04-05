@@ -5,10 +5,16 @@
 #include "Robot.h"
 
 #include <frc2/command/CommandScheduler.h>
+#include <RobotContainer.h>
+
+
 
 void Robot::RobotInit() {
     cs::UsbCamera usbCam = frc::CameraServer::StartAutomaticCapture(); //usb back camera
     
+    usbCam.SetResolution(320, 240);
+    usbCam.SetFPS(30);
+
 }
 
 void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
@@ -29,10 +35,13 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {}
 
-void Robot::AutonomousExit() {}
+void Robot::AutonomousExit() {
+     m_container.m_superstructure.m_shooter.exitAuto();
+}
 
 void Robot::TeleopInit() {
     if (m_autonomousCommand) {
+       
         m_autonomousCommand->Cancel();
     }
 }

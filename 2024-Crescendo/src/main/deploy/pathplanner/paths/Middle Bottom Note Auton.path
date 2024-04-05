@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.8410072768790318,
-        "y": 7.0733452736520315
+        "x": 1.4194171612308972,
+        "y": 5.597779868883561
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.7310308543584263,
-        "y": 7.014791090923124
+        "x": 2.60221165235483,
+        "y": 4.403274541213847
       },
       "prevControl": {
-        "x": 2.766329869713561,
-        "y": 7.047736838587916
+        "x": 2.632606158821292,
+        "y": 4.365756322294308
       },
       "nextControl": {
-        "x": 1.852718113424813,
-        "y": 6.195032532718418
+        "x": 1.8527181134248134,
+        "y": 5.328430628330586
       },
       "isLocked": false,
       "linkedName": null
@@ -46,14 +46,14 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.15,
       "rotationDegrees": 90.0,
       "rotateFast": false
     },
     {
       "waypointRelativePos": 1,
-      "rotationDegrees": 90.0,
-      "rotateFast": false
+      "rotationDegrees": 44.999999999999964,
+      "rotateFast": true
     }
   ],
   "constraintZones": [
@@ -77,25 +77,6 @@
         "type": "sequential",
         "data": {
           "commands": [
-            {
-              "type": "race",
-              "data": {
-                "commands": [
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "Reverse Shooter"
-                    }
-                  },
-                  {
-                    "type": "wait",
-                    "data": {
-                      "waitTime": 0.05
-                    }
-                  }
-                ]
-              }
-            },
             {
               "type": "race",
               "data": {
@@ -158,25 +139,6 @@
                   }
                 ]
               }
-            },
-            {
-              "type": "race",
-              "data": {
-                "commands": [
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "Stop Shooter"
-                    }
-                  },
-                  {
-                    "type": "wait",
-                    "data": {
-                      "waitTime": 0.1
-                    }
-                  }
-                ]
-              }
             }
           ]
         }
@@ -184,7 +146,7 @@
     },
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 1.25,
+      "waypointRelativePos": 1.1,
       "command": {
         "type": "parallel",
         "data": {
@@ -216,6 +178,29 @@
               "type": "named",
               "data": {
                 "name": "Auto Intake"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "race",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Stop Shooter"
+              }
+            },
+            {
+              "type": "wait",
+              "data": {
+                "waitTime": 0.01
               }
             }
           ]

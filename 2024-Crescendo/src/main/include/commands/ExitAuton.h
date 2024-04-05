@@ -10,9 +10,9 @@
 #include <subsystems/Intake.h>
 #include <subsystems/Arm.h>
 
-class ReadyShooter : public frc2::CommandHelper<frc2::Command, ReadyShooter> {
+class ExitAuton : public frc2::CommandHelper<frc2::Command, ExitAuton> {
 public:
-    explicit ReadyShooter(Shooter* grabber);
+    explicit ExitAuton(Shooter* grabber);
 
     void Initialize() override;
     // void Execute() override;

@@ -22,6 +22,12 @@
           "data": {
             "pathName": "Bottom Bottom Note Auton"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Exit Auton"
+          }
         }
       ]
     }

@@ -16,6 +16,7 @@
 // clean up include list once subclasses are finished
 
 #include <Constants.h>
+#include <frc/DigitalInput.h>
 
 using namespace std;
 using namespace rev;
@@ -51,10 +52,12 @@ private:
     SparkPIDController m_intakeController = m_intakeMotor.GetPIDController();
 
     //sensor
+    
     //beambreak? distance sensor? color sensor?
-
+    frc::DigitalInput m_beamBreak{4};
     int state = IntakeConstants::empty;
     bool holdingNote = false;
+    bool noteHeld = false;
 
 
 

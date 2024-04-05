@@ -1,4 +1,4 @@
-// Copyright (c) FIRST and other WPILib contributors.
+// Copyright (c) FIRST and other WPILib contributors.   
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
@@ -45,6 +45,7 @@
 #include <commands/ReverseShooter.h>
 #include <commands/AutoAim.h>
 #include <frc/geometry/Rotation2d.h>
+#include <commands/ExitAuton.h>
 using namespace pathplanner;
 
 using namespace std;
@@ -76,7 +77,8 @@ RobotContainer::RobotContainer() {
     NamedCommands::registerCommand("De Intake", DeIntake(&m_superstructure.m_intake).ToPtr());
     NamedCommands::registerCommand("Stop Drive", StopDrive(&m_drive).ToPtr());
     NamedCommands::registerCommand("Arm Ground", ArmGround(&m_superstructure.m_arm).ToPtr());
-     NamedCommands::registerCommand("Auto Aim", AutoAim(&m_superstructure.m_arm, &m_superstructure.m_vision, &m_superstructure).ToPtr());
+    NamedCommands::registerCommand("Auto Aim", AutoAim(&m_superstructure.m_arm, &m_superstructure.m_vision, &m_superstructure).ToPtr());
+    NamedCommands::registerCommand("Exit Auton", ExitAuton(&m_superstructure.m_shooter).ToPtr());
     //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto
 
     ConfigureBindings();
@@ -238,7 +240,7 @@ RobotContainer::RobotContainer() {
                     m_superstructure.m_intake.setSpeed(1.00);
                 }
                 else{
-                    m_superstructure.m_intake.setSpeed(0.5);
+                    m_superstructure.m_intake.setSpeed(0.6);    
                 }
             } 
             if(m_operatorController.GetRawButton(Controller::leftBumper)){
@@ -314,7 +316,7 @@ void RobotContainer::ConfigureBindings() {
     JoystickButton controllerRightTrigger(&m_operatorController, Controller::rightTrigger);
     JoystickButton controllerLeftBumper(&m_operatorController, Controller::leftBumper);
     JoystickButton controllerRightBumper(&m_operatorController, Controller::rightBumper);
-    JoystickButton controllerA(&m_operatorController, Controller::A);
+    JoystickButton controllerA(&m_operatorController, Controller::A);   
     JoystickButton controllerB(&m_operatorController, Controller::B);
     JoystickButton controllerX(&m_operatorController, Controller::X);
     JoystickButton controllerY(&m_operatorController, Controller::Y);
@@ -344,8 +346,8 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     //m_drive.resetOdometry({{2_m, 7_m}, 90_deg});
     // m_drive.resetOdometry({{1.37_m, 5.61_m}, 90_deg});
     // m_drive.resetOdometry({{0.75_m, 6.79_m}, 151.09_deg});
-    string autoName = "testing auton";
-    //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().Degrees() + 180_deg});
+    string autoName = "3 Note Auton";    
+    //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().Degrees() + 180_deg});                     
     auto alliance = frc::DriverStation::GetAlliance();
     auto rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName);
     m_drive.resetHeading();
@@ -353,7 +355,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
         //  rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
         //rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().RotateBy(Rotation2d(90_deg));
         // PathPlanner::GeometryUtil.flipFieldpose(rot);
-        // GeometryUtil.flipFieldpose(rot);
+        // GeometryUtil.flipFieldpose(rot);     
         
     }
     frc::SmartDashboard::PutNumber("roat", rot.Rotation().Degrees().value());
@@ -365,19 +367,19 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     frc::SmartDashboard::PutNumber("odomX", m_drive.OdometryPose().X().value());
     frc::SmartDashboard::PutNumber("odomY", m_drive.OdometryPose().Y().value());
     //auto path = PathPlannerPath::fromPathFile("Test Path");
-    // auto twoNote = PathPlannerPath::fromPathFile("2 Note Auton");
+    // auto twoNote = PathPlannerPath::fromPathFile("2x Note Auton");
     // auto pathGroup = PathPlannerAuto::getPathGroupFromAutoFile("Test Auto");
     //auto pose = PathPlannerTrajectory::State::reverse();
     auto testAuto = PathPlannerAuto(autoName).ToPtr();
     
     
-    //auto pose = PathPlannerAuto("Preload+Mobility Auton").getStartingPoseFromAutoFile();
+    //auto pose = PathPlanne    rAuto("Preload+Mobility Auton").getStartingPoseFromAutoFile();
     
-    return testAuto;
+    return testAuto;    
      
     // return frc2::SequentialCommandGroup {
     //     *AutoBuilder::followPath(pathGroup.at(0)).Unwrap()
-    // }.ToPtr();
+    // }.ToPtr();   
     //return AutoBuilder::followPath(pathGroup.at(0));
     
     //2 NOTE AUTONE
@@ -392,10 +394,11 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // auto path = PathPlannerPath::fromPathFile("Stationary Shoot");
     // return AutoBuilder::followPath(path);
 }
-// frc2::Rotation2d RobotContainer::getRotated(Rotation2d rot) {
+// frc2::Rotation2d RobotContainer::getRotated(Rotation2d rot) {    
 //     return new Rotation2d(3.14159)::minus(rot);
 // }
 // frc2::CommandPtr RobotContainer::getAutonomousCommand(){
 //     auto path = PathPlannerPath::fromPathFile("Test Path");
 //     return AutoBuilder::followPath(path);//PathPlannerAuto("Top pos 3 note auto preload + a1+ m1").ToPtr();
 // }
+//  

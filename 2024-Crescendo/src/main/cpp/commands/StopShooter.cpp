@@ -12,6 +12,7 @@ StopShooter::StopShooter(Shooter* grabber, Intake* intake)
 void StopShooter::Initialize() {
     m_shooter->setSpeed(0);
     m_intake->setSpeed(0);
+    m_shooter->exitAuto();
 }
 
 void StopShooter::End(bool interrupted) {}

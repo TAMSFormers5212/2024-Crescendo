@@ -9,7 +9,9 @@ ReadyShooter::ReadyShooter(Shooter* grabber)
 }
 
 void ReadyShooter::Initialize() {
+    m_shooter->setPercent(0.95);
     m_shooter->setSpeed(500);
+    m_shooter->enterAuto();
     // frc2::WaitCommand(4_s);
 
 }
@@ -21,8 +23,10 @@ void ReadyShooter::Initialize() {
 //   }
 
 
-// void ReadyShooter::Periodic(){
-//     m_shooter->setPercent(1);
-// }
+void ReadyShooter::Periodic(){
+    m_shooter->setPercent(0.95);
+    m_shooter->setSpeed(500);
+
+}
 
 void ReadyShooter::End(bool interrupted) {}

@@ -26,13 +26,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Middle Top Note Auton V2"
+            "pathName": "Middle Top Note Auton"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Middle Bottom Note Auton V2"
+            "pathName": "Middle Bottom Note Auton"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Exit Auton"
           }
         }
       ]

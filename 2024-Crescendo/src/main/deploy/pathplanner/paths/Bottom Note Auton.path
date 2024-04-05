@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.20862210340683,
-        "y": 3.7708893677416455
+        "x": 1.3959954881393342,
+        "y": 5.609490705429342
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.6841875081753006,
-        "y": 4.075371117931965
+        "x": 2.426549104168107,
+        "y": 4.567226252854788
       },
       "prevControl": {
-        "x": 2.7145820146417625,
-        "y": 4.037852899012426
+        "x": 2.456943610634569,
+        "y": 4.529708033935249
       },
       "nextControl": {
-        "x": 1.9346939692452838,
-        "y": 5.000527205048704
+        "x": 1.6770555652380903,
+        "y": 5.492382339971527
       },
       "isLocked": false,
       "linkedName": null
@@ -46,14 +46,14 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.15,
       "rotationDegrees": 90.0,
       "rotateFast": false
     },
     {
-      "waypointRelativePos": 1,
-      "rotationDegrees": 90.0,
-      "rotateFast": false
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": 43.49256424122501,
+      "rotateFast": true
     }
   ],
   "constraintZones": [
@@ -127,7 +127,7 @@
     },
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 1.25,
+      "waypointRelativePos": 1.2,
       "command": {
         "type": "parallel",
         "data": {
@@ -159,6 +159,29 @@
               "type": "named",
               "data": {
                 "name": "Auto Intake"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "race",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Stop Shooter"
+              }
+            },
+            {
+              "type": "wait",
+              "data": {
+                "waitTime": 0.01
               }
             }
           ]

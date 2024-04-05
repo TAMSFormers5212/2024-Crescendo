@@ -10,6 +10,7 @@ Shooter::Shooter(int leftMotor, int rightMotor)
     m_rightFF{ShooterConstants::KrsS, ShooterConstants::KrsV}
 {
     resetMotors();
+    inAuto = false;
 }
 
 void Shooter::resetMotors(){
@@ -53,10 +54,18 @@ void Shooter::setPercent(double percent){
     m_rightMotor.Set(percent);
 
 }
+void Shooter::exitAuto() {
+    inAuto = false;
+}
+void Shooter::enterAuto() {
+    inAuto = true;
+}
 void Shooter::setSpeed(double speed){ // velocity PID control
     m_goalSpeed = units::meters_per_second_t{speed};
 }
-
+// void Shooter::setAutoSpeed(double speed){
+//     m_leftController.SetReference
+// }
 double Shooter::getSpeed(){
     return (m_leftEncoder.GetVelocity()+m_rightEncoder.GetVelocity())/2.0;
 }
@@ -69,11 +78,14 @@ double Shooter::getleftSpeed(){
     return m_leftEncoder.GetVelocity();
 }
 void Shooter::Periodic(){
-    m_leftController.SetReference(m_goalSpeed.value(), CANSparkMaxLowLevel::ControlType::kVelocity, 0, m_leftFF.Calculate(m_goalSpeed).value());
-    m_rightController.SetReference(m_goalSpeed.value(), CANSparkLowLevel::ControlType::kVelocity, 0, m_rightFF.Calculate(m_goalSpeed).value());
+     if(!inAuto) {   
+        m_leftController.SetReference(m_goalSpeed.value(), CANSparkMaxLowLevel::ControlType::kVelocity, 0, m_leftFF.Calculate(m_goalSpeed).value());
+        m_rightController.SetReference(m_goalSpeed.value(), CANSparkLowLevel::ControlType::kVelocity, 0, m_rightFF.Calculate(m_goalSpeed).value());
+    }
     frc::SmartDashboard::PutNumber("l speed", getleftSpeed());
     frc::SmartDashboard::PutNumber("r speed", getrightSpeed());
     frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
+    frc::SmartDashboard::PutBoolean("inAuto", inAuto);
     // frc::SmartDashboard::PutNumber("l output", m_leftMotor.GetOutputCurrent());
     // frc::SmartDashboard::PutNumber("l volt", m_leftMotor.GetAppliedOutput());
 }

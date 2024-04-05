@@ -5,6 +5,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <frc/DigitalInput.h>
 
 using namespace IntakeConstants;
 using namespace rev;
@@ -14,6 +15,7 @@ using namespace MathConstants;
 Intake::Intake(int motor, int sensor)
     : m_intakeMotor(motor, CANSparkLowLevel::MotorType::kBrushless) {
     resetMotor();
+    
 }
 
 void Intake::resetMotor() {
@@ -103,6 +105,13 @@ void Intake::setState(int state) { this->state = state; }
 
 void Intake::Periodic() {
     //failed attempt to get holding note working:
-    // frc::SmartDashboard::PutBoolean("holding note", holdingNote);
+    
+    if (m_beamBreak.Get()==0){
+        noteHeld = true;
+    }
+    else{
+        noteHeld= false;
+    }
+    frc::SmartDashboard::PutBoolean("holding note", noteHeld);
     // frc::SmartDashboard::PutNumber("intakeCurrent", m_intakeMotor.GetOutputCurrent());
 }

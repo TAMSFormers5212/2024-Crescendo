@@ -27,7 +27,7 @@ class RobotContainer {
   frc2::CommandPtr GetAutonomousCommand();
   // frc2::Rotation2d getRotated();
   // frc2::CommandPtr getAutonomousCommand();
-
+Superstructure m_superstructure;
  private:
   frc::GenericHID m_driverController{kDriverControllerPort};
   frc::GenericHID m_operatorController{kOperatorControllerPort};
@@ -42,6 +42,6 @@ class RobotContainer {
 
 
   VisionSubsystem m_vision;
-  Superstructure m_superstructure;
+  //Superstructure m_superstructure;
   void ConfigureBindings();
 };

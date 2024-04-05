@@ -16,15 +16,15 @@
     },
     {
       "anchor": {
-        "x": 3.632765268383603,
+        "x": 2.3328624118018553,
         "y": 5.574358195791997
       },
       "prevControl": {
-        "x": 3.6796086145667286,
+        "x": 2.379705757984981,
         "y": 5.562647359246215
       },
       "nextControl": {
-        "x": 3.5645981869116947,
+        "x": 2.264695330329947,
         "y": 5.591399966159974
       },
       "isLocked": false,
@@ -67,6 +67,17 @@
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
       }
+    },
+    {
+      "name": "New Constraints Zone",
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.35,
+      "constraints": {
+        "maxVelocity": 0.5,
+        "maxAcceleration": 1.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
+      }
     }
   ],
   "eventMarkers": [
@@ -77,25 +88,6 @@
         "type": "sequential",
         "data": {
           "commands": [
-            {
-              "type": "race",
-              "data": {
-                "commands": [
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "Reverse Shooter"
-                    }
-                  },
-                  {
-                    "type": "wait",
-                    "data": {
-                      "waitTime": 0.05
-                    }
-                  }
-                ]
-              }
-            },
             {
               "type": "race",
               "data": {
@@ -158,25 +150,6 @@
                   }
                 ]
               }
-            },
-            {
-              "type": "race",
-              "data": {
-                "commands": [
-                  {
-                    "type": "named",
-                    "data": {
-                      "name": "Stop Shooter"
-                    }
-                  },
-                  {
-                    "type": "wait",
-                    "data": {
-                      "waitTime": 0.1
-                    }
-                  }
-                ]
-              }
             }
           ]
         }
@@ -184,7 +157,7 @@
     },
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 1.25,
+      "waypointRelativePos": 1.2,
       "command": {
         "type": "parallel",
         "data": {
@@ -221,11 +194,34 @@
           ]
         }
       }
+    },
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "race",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Stop Shooter"
+              }
+            },
+            {
+              "type": "wait",
+              "data": {
+                "waitTime": 0.01
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 2.0,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 1.0,
+    "maxAcceleration": 1.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },

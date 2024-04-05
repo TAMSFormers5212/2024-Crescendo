@@ -248,9 +248,9 @@ namespace ShooterConstants{
     constexpr double ksA = 0.0;
     
     //idk abt these values so making new ones
-    constexpr double ksP = 0.001; // shooter uses a velocity PID
+    constexpr double ksP = 0.001; // shooter uses a velocity PID 0.001
     constexpr double ksI = 0.0; // since the shooter motors are completely separate, it may be useful to tune them separately
-    constexpr double ksD = 0.0005;
+    constexpr double ksD = 0.0005; // 0.0005
     constexpr double ksFF = 0.0;
 
     constexpr units::revolutions_per_minute_t maxNeoRpm = 5700_rpm;

@@ -37,9 +37,13 @@ public:
     void setleftSpeed(double speed);
     double getleftSpeed();
     void setrightSpeed(double speed);
+    void exitAuto();
+    void enterAuto();
     double getrightSpeed();
 
     void Periodic() override;
+    // void TeleopPeriodic() override;
+    // void AutonomousPeriodic() override;
 
 private:
 
@@ -54,6 +58,8 @@ private:
 
     SimpleMotorFeedforward<units::meters> m_leftFF;
     SimpleMotorFeedforward<units::meters> m_rightFF;
+
+    bool inAuto;
 
     units::meters_per_second_t m_goalSpeed{0};
 };
