@@ -46,6 +46,7 @@
 #include <commands/AutoAim.h>
 #include <frc/geometry/Rotation2d.h>
 #include <commands/ExitAuton.h>
+#include <commands/StopIntake.h>
 using namespace pathplanner;
 
 using namespace std;
@@ -74,6 +75,7 @@ RobotContainer::RobotContainer() {
     NamedCommands::registerCommand("Ready Shooter", ReadyShooter(&m_superstructure.m_shooter).ToPtr());
     NamedCommands::registerCommand("Auto Intake", AutoIntake(&m_superstructure.m_intake).ToPtr());
     NamedCommands::registerCommand("Stop Shooter", StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake).ToPtr());
+    NamedCommands::registerCommand("Stop Intake", StopIntake(&m_superstructure.m_intake).ToPtr());
     NamedCommands::registerCommand("De Intake", DeIntake(&m_superstructure.m_intake).ToPtr());
     NamedCommands::registerCommand("Stop Drive", StopDrive(&m_drive).ToPtr());
     NamedCommands::registerCommand("Arm Ground", ArmGround(&m_superstructure.m_arm).ToPtr());
@@ -116,7 +118,7 @@ RobotContainer::RobotContainer() {
             if (m_driverController.GetRawButton(7)) {
                m_drive.toggleOffset();
             }
-            if (m_driverController.GetRawButton(Joystick::Trigger)||m_driverController.GetRawButton(8)) {
+            if (m_operatorController.GetRawAxis(Controller::leftTrigger)>0.05||m_driverController.GetRawButton(8)) {
                 if (m_superstructure.m_vision.isTagPresent()){
                 // if (m_vision.getDistanceError() > 0 &&
                 //     m_vision.getDistanceError() < 25) {
@@ -125,9 +127,14 @@ RobotContainer::RobotContainer() {
                     //  }
                 }
             }
-            if (m_driverController.GetRawButton(6)) {
-                m_drive.tankDrive(XAxis, YAxis);
+            if (m_driverController.GetRawButton(6)){
+                m_drive.resetAbsoluteEncoders();
             }
+            // if (m_driverController.GetRawButton(6)) {
+            //     m_drive.tankDrive(XAxis, YAxis);
+            // }
+
+
             // if (m_driverController.GetRawButton(1)){
             //     m_superstructure.aim(m_vision.getDistance(),0,0);
             // }
@@ -160,7 +167,7 @@ RobotContainer::RobotContainer() {
 
     m_superstructure.SetDefaultCommand(RunCommand(
         [this] {
-            if (m_driverController.GetRawButton(Joystick::Trigger)){
+            if (m_operatorController.GetRawAxis(Controller::leftTrigger)>0.05){
                 m_superstructure.m_vision.setLedOn(3);
                 if (m_superstructure.m_vision.isTagPresent()){
                     if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
@@ -170,7 +177,7 @@ RobotContainer::RobotContainer() {
                 // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
                 }
             }
-            else if (!m_driverController.GetRawButton(Joystick::Trigger)&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2)) {
+            else if (m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2)) {
                 m_superstructure.m_shooter.setSpeed(0);
                 m_superstructure.m_vision.setLedOn(1);
                 // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
@@ -225,7 +232,7 @@ RobotContainer::RobotContainer() {
             if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
                 m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*600);
             }
-            else if (m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(Joystick::Trigger)){
+            else if (m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05){
                 m_superstructure.m_shooter.setSpeed(0.000); //temp, just to figure out KsS
             }
             //  frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
@@ -307,9 +314,9 @@ void RobotContainer::ConfigureBindings() {
     // joystickTrigger.WhileTrue(RunCommand([this](){}).ToPtr());
 
     // joystickTrigger.OnTrue((RunCommand([this]() {return m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0); })).ToPtr());
-    joystickThree.OnTrue((InstantCommand([this]() { return m_drive.resetHeading(); })).ToPtr());
-    joystickFour.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry(m_drive.AveragePose(/*m_superstructure.m_vision.getBotPose()*/)); })).ToPtr());
-    joystickSix.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry({{0_m, 0_m}, 0_deg}); })).ToPtr());
+    joystickFour.OnTrue((InstantCommand([this]() { return m_drive.resetHeading(); })).ToPtr());
+    // joystickFour.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry(m_drive.AveragePose(/*m_superstructure.m_vision.getBotPose()*/)); })).ToPtr());
+    // joystickSix.OnTrue((InstantCommand([this]() { return m_drive.resetOdometry({{0_m, 0_m}, 0_deg}); })).ToPtr());
     joystickFive.OnTrue((InstantCommand([this] { return m_drive.resetAbsoluteEncoders(); })).ToPtr());
 
     JoystickButton controllerLeftTrigger(&m_operatorController, Controller::leftTrigger);
@@ -346,7 +353,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     //m_drive.resetOdometry({{2_m, 7_m}, 90_deg});
     // m_drive.resetOdometry({{1.37_m, 5.61_m}, 90_deg});
     // m_drive.resetOdometry({{0.75_m, 6.79_m}, 151.09_deg});
-    string autoName = "3 Note Auton";    
+    string autoName = "Top Two Note";  
     //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().Degrees() + 180_deg});                     
     auto alliance = frc::DriverStation::GetAlliance();
     auto rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName);
@@ -355,10 +362,10 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
         //  rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
         //rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().RotateBy(Rotation2d(90_deg));
         // PathPlanner::GeometryUtil.flipFieldpose(rot);
-        // GeometryUtil.flipFieldpose(rot);     
-        
+        // GeometryUtil.flipFieldpose(rot);    
+         
     }
-    frc::SmartDashboard::PutNumber("roat", rot.Rotation().Degrees().value());
+    frc::SmartDashboard::PutNumber("roa t", rot.Rotation().Degrees().value());
     // auto rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
     //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, rot});
     m_drive.resetOdometry(rot);

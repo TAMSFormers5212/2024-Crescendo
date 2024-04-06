@@ -84,7 +84,7 @@
                   {
                     "type": "wait",
                     "data": {
-                      "waitTime": 1.5
+                      "waitTime": 1.75
                     }
                   },
                   {
@@ -116,6 +116,25 @@
                     "type": "wait",
                     "data": {
                       "waitTime": 0.2
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "race",
+              "data": {
+                "commands": [
+                  {
+                    "type": "named",
+                    "data": {
+                      "name": "Stop Intake"
+                    }
+                  },
+                  {
+                    "type": "wait",
+                    "data": {
+                      "waitTime": 0.01
                     }
                   }
                 ]

@@ -412,32 +412,6 @@
               "_showGlyph": false
             }
           },
-          "8,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/odomX",
-              "_title": "odomX",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "8,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/odomY",
-              "_title": "odomY",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
           "0,2": {
             "size": [
               1,
@@ -481,7 +455,7 @@
               ]
             }
           },
-          "5,0": {
+          "7,0": {
             "size": [
               2,
               1
@@ -545,15 +519,79 @@
               "_showGlyph": false
             }
           },
-          "7,0": {
+          "7,1": {
             "size": [
               1,
               1
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/roat",
-              "_title": "roat",
+              "_source0": "network_table:///SmartDashboard/holding note",
+              "_title": "holding note",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "5,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "List Layout",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/odomX",
+                  "_title": "odomX",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/odomY",
+                  "_title": "odomY",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/roat",
+                  "_title": "roat",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              ]
+            }
+          },
+          "6,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/inAuto",
+              "_title": "inAuto",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "8,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/roa t",
+              "_title": "roa t",
               "_glyph": 148,
               "_showGlyph": false
             }

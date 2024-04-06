@@ -17,15 +17,15 @@
     {
       "anchor": {
         "x": 2.4851032868970147,
-        "y": 6.5463576290918635
+        "y": 6.722020177278586
       },
       "prevControl": {
         "x": 2.5204023022521493,
-        "y": 6.5793033767566556
+        "y": 6.754965924943378
       },
       "nextControl": {
         "x": 1.6067905459634013,
-        "y": 5.726599070887158
+        "y": 5.90226161907388
       },
       "isLocked": false,
       "linkedName": null
@@ -103,7 +103,7 @@
                   {
                     "type": "wait",
                     "data": {
-                      "waitTime": 1.5
+                      "waitTime": 2.0
                     }
                   },
                   {
@@ -146,7 +146,7 @@
     },
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 1.2,
+      "waypointRelativePos": 1.1,
       "command": {
         "type": "parallel",
         "data": {
