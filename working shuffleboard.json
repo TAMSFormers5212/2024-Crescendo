@@ -519,19 +519,6 @@
               "_showGlyph": false
             }
           },
-          "7,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/holding note",
-              "_title": "holding note",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
           "5,0": {
             "size": [
               1,
@@ -564,6 +551,13 @@
                   "_title": "roat",
                   "_glyph": 148,
                   "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/roa t",
+                  "_title": "roa t",
+                  "_glyph": 148,
+                  "_showGlyph": false
                 }
               ]
             }
@@ -583,17 +577,34 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
+          "7,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/ShooterReady",
+              "_title": "ShooterReady",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
           "8,1": {
             "size": [
               1,
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/roa t",
-              "_title": "roa t",
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/holding note",
+              "_title": "holding note",
               "_glyph": 148,
-              "_showGlyph": false
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
             }
           }
         }
@@ -614,8 +625,8 @@
     }
   ],
   "windowGeometry": {
-    "x": -7.199999809265137,
-    "y": -7.199999809265137,
+    "x": -9.0,
+    "y": -9.0,
     "width": 1550.4000244140625,
     "height": 878.4000244140625
   }

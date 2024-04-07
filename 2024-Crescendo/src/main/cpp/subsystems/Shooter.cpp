@@ -82,10 +82,18 @@ void Shooter::Periodic(){
         m_leftController.SetReference(m_goalSpeed.value(), CANSparkMaxLowLevel::ControlType::kVelocity, 0, m_leftFF.Calculate(m_goalSpeed).value());
         m_rightController.SetReference(m_goalSpeed.value(), CANSparkLowLevel::ControlType::kVelocity, 0, m_rightFF.Calculate(m_goalSpeed).value());
     }
+    avgSho=(getleftSpeed()+getrightSpeed())/2;
+    if(avgSho > 0.95*m_goalSpeed.value()){
+        shooterGood=true;
+    }
+    else{
+        shooterGood=false;
+    }
     frc::SmartDashboard::PutNumber("l speed", getleftSpeed());
     frc::SmartDashboard::PutNumber("r speed", getrightSpeed());
     frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
     frc::SmartDashboard::PutBoolean("inAuto", inAuto);
+    frc::SmartDashboard::PutBoolean("ShooterReady", shooterGood);
     // frc::SmartDashboard::PutNumber("l output", m_leftMotor.GetOutputCurrent());
     // frc::SmartDashboard::PutNumber("l volt", m_leftMotor.GetAppliedOutput());
 }

@@ -60,7 +60,8 @@ private:
     SimpleMotorFeedforward<units::meters> m_rightFF;
 
     bool inAuto;
-
+    bool shooterGood;
+    double avgSho;
     units::meters_per_second_t m_goalSpeed{0};
 };
 
