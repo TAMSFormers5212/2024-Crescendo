@@ -2,6 +2,7 @@
 
 #include <frc/smartdashboard/Mechanism2d.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include "subsystems/LEDController.h"
 
 #include <cmath>
 #include <iostream>
@@ -15,6 +16,7 @@ using namespace MathConstants;
 Intake::Intake(int motor, int sensor)
     : m_intakeMotor(motor, CANSparkLowLevel::MotorType::kBrushless) {
     resetMotor();
+
     
 }
 
@@ -108,9 +110,11 @@ void Intake::Periodic() {
     
     if (m_beamBreak.Get()==0){
         noteHeld = true;
+        //m_LEDs.setColor(0.65);
     }
     else{
         noteHeld= false;
+        //m_LEDs.setColor(0.77);
     }
     frc::SmartDashboard::PutBoolean("holding note", noteHeld);
     // frc::SmartDashboard::PutNumber("intakeCurrent", m_intakeMotor.GetOutputCurrent());

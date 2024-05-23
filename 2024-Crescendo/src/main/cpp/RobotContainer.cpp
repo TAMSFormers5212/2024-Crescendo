@@ -16,6 +16,7 @@
 #include <frc2/command/button/Trigger.h>
 #include <math.h>
 
+
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableInstance.h"
@@ -192,6 +193,30 @@ RobotContainer::RobotContainer() {
         },
         {&m_superstructure}
     )); 
+
+    m_LEDs.SetDefaultCommand(RunCommand(
+        [this] {
+            if(m_driverController.GetRawButton(Joystick::ButtonTwo)){ 
+                partyLights = !partyLights;
+                // down
+                    // m_superstructure.setArm(0.73);
+                    //m_LEDs.setColor(0.5);
+                    // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
+                    // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
+            }  
+            if(m_superstructure.m_intake.noteHeld) {
+                m_LEDs.setColor(0.61);
+            }
+            else if(partyLights) {
+                m_LEDs.setColor(-0.99);
+            }
+            else {
+                m_LEDs.setColor(0.77);
+            }
+
+        }, {&m_LEDs}
+
+    ));
     m_superstructure.m_arm.SetDefaultCommand(RunCommand(
         [this] {
             if(abs(m_operatorController.GetRawAxis(Controller::leftYAxis))>0.05){
@@ -201,7 +226,9 @@ RobotContainer::RobotContainer() {
             else{
                 if(m_operatorController.GetRawButton(Controller::B)){ // down
                     // m_superstructure.setArm(0.73);
+
                     m_superstructure.m_arm.setPosition(m_superstructure.m_arm.groundPreset());
+                    
                     // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
                     // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
                 }  
@@ -231,12 +258,14 @@ RobotContainer::RobotContainer() {
         [this] {
             if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
                 m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*600);
+                
             }
             else if (m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05){
                 m_superstructure.m_shooter.setSpeed(0.000); //temp, just to figure out KsS
             }
-            //  frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
-            
+            frc::SmartDashboard::PutNumber("rightShooterSpeed",m_superstructure.m_shooter.getrightSpeed());
+            frc::SmartDashboard::PutNumber("leftShooterSpeed",m_superstructure.m_shooter.getleftSpeed());
+            frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
         },
         {&m_superstructure.m_shooter}   
     ));

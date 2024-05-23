@@ -6,6 +6,7 @@
 
 #include <frc2/command/CommandScheduler.h>
 #include <RobotContainer.h>
+//#include <LEDController.h>
 
 
 
@@ -46,7 +47,9 @@ void Robot::TeleopInit() {
     }
 }
 
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+    //m_container.m_LEDs.setColor();
+}
 
 void Robot::TeleopExit() {}
 

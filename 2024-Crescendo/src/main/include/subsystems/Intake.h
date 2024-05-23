@@ -12,7 +12,7 @@
 #include <rev/SparkRelativeEncoder.h>
 #include <rev/SparkPIDController.h>
 // #include <rev/ThroughBoreEncoder.h>
-
+#include "LEDController.h"
 // clean up include list once subclasses are finished
 
 #include <Constants.h>
@@ -42,7 +42,7 @@ public:
     void setState(int state);
 
     void Periodic() override;
-
+    bool noteHeld = false;
 private:
 
     CANSparkMax m_intakeMotor; // may need to switch to 775 if neo550 is not fixed in time
@@ -57,7 +57,8 @@ private:
     frc::DigitalInput m_beamBreak{4};
     int state = IntakeConstants::empty;
     bool holdingNote = false;
-    bool noteHeld = false;
+    //LEDController m_LEDs;
+    
 
 
 

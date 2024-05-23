@@ -13,6 +13,8 @@
 #include "subsystems/VisionSubsystem.h"
 #include "subsystems/Superstructure.h"
 #include "subsystems/Winch.h"
+#include "subsystems/LEDController.h"
+
 #include <frc/geometry/Rotation2d.h>
 
 using namespace OIConstants;
@@ -28,6 +30,7 @@ class RobotContainer {
   // frc2::Rotation2d getRotated();
   // frc2::CommandPtr getAutonomousCommand();
 Superstructure m_superstructure;
+ LEDController m_LEDs;
  private:
   frc::GenericHID m_driverController{kDriverControllerPort};
   frc::GenericHID m_operatorController{kOperatorControllerPort};
@@ -39,6 +42,8 @@ Superstructure m_superstructure;
   // std::unique_ptr<frc2::Command> followOnTheFly;
 
   SwerveDrive m_drive;
+  bool partyLights = false;
+  //LEDController m_LEDs;
 
 
   VisionSubsystem m_vision;
