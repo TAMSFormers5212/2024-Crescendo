@@ -25,6 +25,7 @@ SwerveModule::SwerveModule(int driveMotor, int steerMotor, int absEncoder, doubl
 }
 
 frc::SwerveModuleState SwerveModule::getState() {  // return current module state
+    frc::SmartDashboard::PutNumber("steer num", units::radian_t{getSteerPosition()}.value());
     return {units::meters_per_second_t{m_driveEncoder.GetVelocity()}, units::radian_t{getSteerPosition()}};
 }
 

@@ -83,11 +83,23 @@ RobotContainer::RobotContainer() {
     NamedCommands::registerCommand("Auto Aim", AutoAim(&m_superstructure.m_arm, &m_superstructure.m_vision, &m_superstructure).ToPtr());
     NamedCommands::registerCommand("Exit Auton", ExitAuton(&m_superstructure.m_shooter).ToPtr());
     //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto
-
+    m_chooser.SetDefaultOption("Test Auto", m_simpleAuto.get());
+    m_chooser.AddOption("Mobility Auto", m_complexAuto.get());
+    m_chooser.AddOption("Two Note Auton", m_twonote.get());
+    m_chooser.AddOption("Bottom Preload", m_bottompreload.get());
+    frc::SmartDashboard::PutData(&m_chooser);
     ConfigureBindings();
 
     m_drive.SetDefaultCommand(RunCommand(
         [this] {
+            auto rot = m_drive.getGyroHeading2();
+    
+    if (frc::DriverStation::GetAlliance().value() == frc::DriverStation::Alliance::kRed){
+        
+        //rot = Rotation2d(180_deg).RotateBy(rot);
+    }
+    frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
+    frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
             speedMultiplier = (1 - m_driverController.GetRawAxis(Joystick::ThrottleSlider)) * 0.5;
             XAxis = -m_driverController.GetRawAxis(Joystick::XAxis) * speedMultiplier;
             YAxis = m_driverController.GetRawAxis(Joystick::YAxis) * speedMultiplier;
@@ -375,29 +387,51 @@ void RobotContainer::ConfigureBindings() {
 
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
+frc2::Command* RobotContainer::GetAutonomousCommand() {
     // return Auto(&m_drive).ToPtr();
     // return Auto((&m_drive), (&(m_superstructure.m_arm)), (&(m_superstructure.m_intake)), (&(m_superstructure.m_shooter))).ToPtr();
     // return frc2::cmd::Print("No autonomous command configured");
     //m_drive.resetOdometry({{2_m, 7_m}, 90_deg});
     // m_drive.resetOdometry({{1.37_m, 5.61_m}, 90_deg});
     // m_drive.resetOdometry({{0.75_m, 6.79_m}, 151.09_deg});
-    string autoName = "Top Two Note";  
+
+
+    string autoName = "Test Auto";  
     //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().Degrees() + 180_deg});                     
     auto alliance = frc::DriverStation::GetAlliance();
-    auto rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName);
-    m_drive.resetHeading();
+    //m_drive.resetHeading();
     if (alliance.value() == frc::DriverStation::Alliance::kRed){
-        //  rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
+        
         //rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation().RotateBy(Rotation2d(90_deg));
-        // PathPlanner::GeometryUtil.flipFieldpose(rot);
+         //PathPlanner::GeometryUtil.flipFieldpose(rot);
         // GeometryUtil.flipFieldpose(rot);    
-         
+        //m_drive.resetOdometry(Pose2d(-pos.X(), pos.Y(), rot));
+        //m_drive.angle180(90);
     }
-    frc::SmartDashboard::PutNumber("roa t", rot.Rotation().Degrees().value());
+    else {
+        //m_drive.resetOdometry(Pose2d(pos.X(), pos.Y(), rot));
+        //m_drive.angle180(0);
+    }
+    //m_drive.resetHeading();
+    //frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
+    //frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
+    
+    //auto rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation();
+    auto rot = m_drive.getGyroHeading2();
+    auto pos = PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Translation();
+    if (alliance.value() == frc::DriverStation::Alliance::kRed){
+        
+        //rot = Rotation2d(units::angle::degree_t(-90));
+    }
+    frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
+    frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
     // auto rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
     //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, rot});
-    m_drive.resetOdometry(rot);
+    
+
+    //m_drive.resetOdometry(Pose2d(pos.X(), pos.Y(), rot));
+    
+    auto testAuto = PathPlannerAuto(autoName).ToPtr();
     //m_drive.resetOdometry(PathPlannerAuto::getStartingPoseFromAutoFile(autoName));
 //    PathPlannerAuto::
     frc::SmartDashboard::PutNumber("odomX", m_drive.OdometryPose().X().value());
@@ -406,13 +440,13 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // auto twoNote = PathPlannerPath::fromPathFile("2x Note Auton");
     // auto pathGroup = PathPlannerAuto::getPathGroupFromAutoFile("Test Auto");
     //auto pose = PathPlannerTrajectory::State::reverse();
-    auto testAuto = PathPlannerAuto(autoName).ToPtr();
+    
     
     
     //auto pose = PathPlanne    rAuto("Preload+Mobility Auton").getStartingPoseFromAutoFile();
     
-    return testAuto;    
-     
+    //return testAuto;    
+    return (m_chooser.GetSelected());
     // return frc2::SequentialCommandGroup {
     //     *AutoBuilder::followPath(pathGroup.at(0)).Unwrap()
     // }.ToPtr();   
@@ -429,6 +463,15 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
     // }
     // auto path = PathPlannerPath::fromPathFile("Stationary Shoot");
     // return AutoBuilder::followPath(path);
+}
+void RobotContainer::Periodic() {
+    auto rot = m_drive.getGyroHeading2();
+    frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
+    if (frc::DriverStation::GetAlliance().value() == frc::DriverStation::Alliance::kRed){
+        
+        rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile("Test Auto").Rotation());
+    }
+    frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
 }
 // frc2::Rotation2d RobotContainer::getRotated(Rotation2d rot) {    
 //     return new Rotation2d(3.14159)::minus(rot);

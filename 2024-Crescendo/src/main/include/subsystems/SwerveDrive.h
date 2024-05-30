@@ -37,9 +37,11 @@ public:
     frc::Pose2d AveragePose(frc::Pose2d visionPose);
     frc::Pose2d OdometryPose();
     frc::Rotation2d getGyroHeading();
+    frc::Rotation2d getGyroHeading2();
     frc::ChassisSpeeds getRobotRelativeSpeeds();
     frc::ChassisSpeeds getFieldRelativeSpeeds();
     void resetHeading();
+    void angle180(int x);
     void resetOdometry(const frc::Pose2d pose);
     void swerveDrive(double x, double y, double theta, bool fieldCentric);
     void swerveDrive(frc::ChassisSpeeds speed);
@@ -52,7 +54,7 @@ public:
     void moveToAngle(double x, double y);
     void resetAbsoluteEncoders();
     void SyncAbsoluteEncoders();
-    void Periodic() override; //update pose using gyro, vision, and odometry
+     void Periodic() override;//update pose using gyro, vision, and odometry
 
 private:
 
