@@ -14,7 +14,7 @@ using namespace MathConstants;
 VisionSubsystem::VisionSubsystem() 
 : output(0), distError(0), pid(kvP, kvI, kvD), ledOn(1)
  {
-  usbCam.SetResolution(640, 480);
+  //usbCam.SetResolution(640, 480);
   
 }
 

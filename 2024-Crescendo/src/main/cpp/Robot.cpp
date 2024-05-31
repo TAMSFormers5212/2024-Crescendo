@@ -15,10 +15,14 @@
 
 
 void Robot::RobotInit() {
-
-    cs::UsbCamera usbCam = frc::CameraServer::StartAutomaticCapture(); //usb back camera
-    usbCam.SetResolution(640, 480);
+    frc::CameraServer::RemoveServer("USB Camera 0");
+    frc::CameraServer::RemoveServer("USB Camera 1");
+    frc::CameraServer::RemoveServer("front");
+    usbCam = frc::CameraServer::StartAutomaticCapture("jeff", 0); //usb back camera
+    usbCam.SetResolution(320, 240);
+    usbCam.SetFPS(30);
     
+   
     usbCam.SetExposureManual(10);
     usbCam.SetWhiteBalanceManual(50);
 
@@ -26,7 +30,15 @@ void Robot::RobotInit() {
 
 }
 
-void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
+void Robot::RobotPeriodic() { 
+    frc::CameraServer::RemoveServer("USB Camera 0");
+    frc::CameraServer::RemoveServer("USB Camera 1");
+    frc::CameraServer::RemoveServer("front");
+     frc::CameraServer::RemoveCamera("jeff");
+     frc::CameraServer::RemoveServer("jeff");
+    frc2::CommandScheduler::GetInstance().Run();
+    frc::SmartDashboard::PutString("cam name", usbCam.GetName());
+}
 
 void Robot::DisabledInit() {}
 

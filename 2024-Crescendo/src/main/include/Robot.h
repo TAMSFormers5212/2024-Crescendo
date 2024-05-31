@@ -30,7 +30,7 @@ class Robot : public frc::TimedRobot {
  RobotContainer m_container;
  private:
   std::optional<frc2::Command*> m_autonomousCommand;
-
+  cs::UsbCamera usbCam;
  
 
 };

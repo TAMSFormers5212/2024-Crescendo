@@ -144,9 +144,10 @@ void SwerveDrive::resetOdometry(const frc::Pose2d pose) {
     frc::SmartDashboard::PutNumber("gyro heading", getGyroHeading2().Degrees().value());
     frc::SmartDashboard::PutNumber("heading", heading.Degrees().value());
       // resets the odometry and pose estimator to given pose
+    resetHeading();
     m_odometry.ResetPosition(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
     m_poseEstimator.ResetPosition(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
-
+    
 }
 
 void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentric) {  // swerve drive
@@ -185,7 +186,8 @@ void SwerveDrive::swerveDrive(frc::ChassisSpeeds speeds) {  // swerve drive
     m_driveKinematics.DesaturateWheelSpeeds(&saturatedStates, maxSpeed);
     // 1. figure out the max speed modules can go
     // 2. figure out the max speed the modules are actually going
-    speeds = speeds.Discretize(speeds.vx , speeds.vy, units::radians_per_second_t{0}, units::second_t(0.02));
+    //speeds = speeds.Discretize(speeds.vx , speeds.vy, units::radians_per_second_t{0}, units::second_t(0.02));
+    speeds = speeds.Discretize(speeds.vx , speeds.vy, speeds.omega, units::second_t(0.02));
       // second order kinematics?!?!            
     frc::SmartDashboard::PutNumber("speeds omega", speeds.omega.value());
     auto states = m_driveKinematics.ToSwerveModuleStates(speeds);
