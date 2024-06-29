@@ -12,7 +12,7 @@ StopIntake::StopIntake(Intake* intake)
 void StopIntake::Initialize() {
     
     m_intake->setSpeed(0);
-  
+    
 }
 
 void StopIntake::End(bool interrupted) {}

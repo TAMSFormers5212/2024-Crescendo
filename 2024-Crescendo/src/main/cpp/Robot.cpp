@@ -7,37 +7,40 @@
 #include <frc2/command/CommandScheduler.h>
 #include <RobotContainer.h>
 #include <cameraserver/CameraServer.h>
+#include "frc/DataLogManager.h"
+#include "wpi/DataLog.h"
+#include "frc/DriverStation.h"
 #include <cscore_oo.h>
 #include <cscore_cpp.h>
 
 //#include <LEDController.h>
 
-
+wpi::log::StringLogEntry myStringLog; 
 
 void Robot::RobotInit() {
-    frc::CameraServer::RemoveServer("USB Camera 0");
-    frc::CameraServer::RemoveServer("USB Camera 1");
-    frc::CameraServer::RemoveServer("front");
-    usbCam = frc::CameraServer::StartAutomaticCapture("jeff", 0); //usb back camera
-    usbCam.SetResolution(320, 240);
-    usbCam.SetFPS(30);
+    frc::DataLogManager::Start();
+    DriverStation::StartDataLog(DataLogManager::GetLog());
+    wpi::log::DataLog& log = frc::DataLogManager::GetLog();
+    myStringLog = wpi::log::StringLogEntry(log, "/my/string");
+    usbCam = frc::CameraServer::StartAutomaticCapture("depth perceptionator 1", 1); //usb back camera
+    usbCam.SetResolution(160, 120);
+    usbCam.SetFPS(15);
     
+
+    usbCam2 = frc::CameraServer::StartAutomaticCapture("depth perceptionator 2", 0); //usb back camera
+    usbCam2.SetResolution(160, 120);
+    usbCam2.SetFPS(8);
    
-    usbCam.SetExposureManual(10);
-    usbCam.SetWhiteBalanceManual(50);
+   
 
     
 
 }
 
 void Robot::RobotPeriodic() { 
-    frc::CameraServer::RemoveServer("USB Camera 0");
-    frc::CameraServer::RemoveServer("USB Camera 1");
-    frc::CameraServer::RemoveServer("front");
-     frc::CameraServer::RemoveCamera("jeff");
-     frc::CameraServer::RemoveServer("jeff");
+    usbCam.SetFPS(15);
     frc2::CommandScheduler::GetInstance().Run();
-    frc::SmartDashboard::PutString("cam name", usbCam.GetName());
+    //frc::SmartDashboard::PutString("cam name", usbCam.GetName());
 }
 
 void Robot::DisabledInit() {}
@@ -75,6 +78,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
     //m_container.m_LEDs.setColor();
+    myStringLog.Append("i was testing");
 }
 
 void Robot::TeleopExit() {}

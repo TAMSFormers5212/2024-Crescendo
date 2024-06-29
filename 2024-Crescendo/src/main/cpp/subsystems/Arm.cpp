@@ -167,14 +167,19 @@ void Arm::Periodic() {
         
     // m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);
 
-    frc::SmartDashboard::PutNumber("arm p", position);
-    frc::SmartDashboard::PutNumber("arm", getRelativePosition());
-     frc::SmartDashboard::PutNumber("armRaw ", getRawPosition());
+    // frc::SmartDashboard::PutNumber("arm p", position);
+    // frc::SmartDashboard::PutNumber("arm", getRelativePosition());
+    //  frc::SmartDashboard::PutNumber("armRaw ", getRawPosition());
+
     // frc::SmartDashboard::PutNumber("armPos", position);
     // frc::SmartDashboard::PutNumber("armNoRotation ", abs(m_absoluteEncoder.GetAbsolutePosition()-0.75)*pi2);
-    frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
+ 
+    //frc::SmartDashboard::PutNumber("left output ", m_leftMotor.GetAppliedOutput());
+
     // frc::SmartDashboard::PutNumber("right output ", m_rightMotor.GetAppliedOutput());
-     frc::SmartDashboard::PutNumber("left position ", m_leftEncoder.GetPosition());
+
+     //frc::SmartDashboard::PutNumber("left position ", m_leftEncoder.GetPosition());
+
     // frc::SmartDashboard::PutNumber("right position ", m_rightEncoder.GetPosition());
     // frc::SmartDashboard::PutBoolean("arm encoder", m_absoluteEncoder.IsConnected());
     // frc::SmartDashboard::PutNumber("inital position", initalPosition);

@@ -49,7 +49,7 @@ Superstructure m_superstructure;
 
   
   bool partyLights = false;
-  frc2::CommandPtr m_simpleAuto = PathPlannerAuto("Test Auto").ToPtr();
+    frc2::CommandPtr m_simpleAuto = AutoBuilder::buildAuto("Test Auto");
   frc2::CommandPtr m_complexAuto = PathPlannerAuto("Mobility auto").ToPtr();
   frc2::CommandPtr m_twonote = PathPlannerAuto("2 Note Auton").ToPtr();
   frc2::CommandPtr m_bottompreload = PathPlannerAuto("Bottom Preload Auton").ToPtr();

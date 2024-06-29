@@ -27,7 +27,8 @@ Auto::Auto(SwerveDrive* drive, Arm* arm, Intake* intake, Shooter* shooter) {
       
         frc2::SequentialCommandGroup{
               frc2::ParallelRaceGroup{
-                ReadyShooter(shooter)
+                ReadyShooter(shooter),
+                frc2::WaitCommand(2_s)
               }
               
             

@@ -79,17 +79,17 @@ void VisionSubsystem::Periodic() {
     }
     
 
-    frc::SmartDashboard::PutNumber("up angle", targetOffsetAngle_Vertical);
+    //frc::SmartDashboard::PutNumber("up angle", targetOffsetAngle_Vertical);
     frc::SmartDashboard::PutNumber("distance", distanceFromLimelightToGoalInches);
     // frc::SmartDashboard::PutNumber("actualdistance", distanceFromCenterToGoalInches);
     frc::SmartDashboard::PutNumber("id", id);
     double targetOffsetAngle_Horizontal = table->GetNumber("tx", 0.0);
     double heading_error = targetOffsetAngle_Horizontal;//+VisionConstants::subWooferAngleOffset;//asin(VisionConstants::limelightHorizontalOffset.value()/distanceFromLimelightToGoalInches);
     // pid.SetSetpoint(0);
-    frc::SmartDashboard::PutNumber("heading", heading_error);
-    frc::SmartDashboard::PutNumber("tx", targetOffsetAngle_Horizontal);
+    //frc::SmartDashboard::PutNumber("heading", heading_error);
+    //frc::SmartDashboard::PutNumber("tx", targetOffsetAngle_Horizontal);
     double output = pid.Calculate(heading_error, 0);
-    frc::SmartDashboard::PutNumber("pid", output);
+    //frc::SmartDashboard::PutNumber("pid", output);
     if (targetOffsetAngle_Horizontal != 0){
       setOutput(output);
     }
