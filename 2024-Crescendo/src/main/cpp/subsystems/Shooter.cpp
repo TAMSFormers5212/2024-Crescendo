@@ -77,13 +77,13 @@ double Shooter::getrightSpeed(){
 double Shooter::getleftSpeed(){
     return m_leftEncoder.GetVelocity();
 }
-frc2::CommandPtr Shooter::SysIdQuasistatic(frc2::sysid::Direction direction) {
-  return m_sysIdRoutine.Quasistatic(direction);
-}
+// frc2::CommandPtr Shooter::SysIdQuasistatic(frc2::sysid::Direction direction) {
+//   return m_sysIdRoutine.Quasistatic(direction);
+// }
 
-frc2::CommandPtr Shooter::SysIdDynamic(frc2::sysid::Direction direction) {
-  return m_sysIdRoutine.Dynamic(direction);
-}
+// frc2::CommandPtr Shooter::SysIdDynamic(frc2::sysid::Direction direction) {
+//   return m_sysIdRoutine.Dynamic(direction);
+// }
 void Shooter::Periodic(){
      if(!inAuto) {   
         m_leftController.SetReference(m_goalSpeed.value(), CANSparkMaxLowLevel::ControlType::kVelocity, 0, m_leftFF.Calculate(m_goalSpeed).value());
