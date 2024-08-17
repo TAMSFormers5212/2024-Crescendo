@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
-
+#include "commands/ReadyShooter.h"
 #include <frc/controller/PIDController.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/Commands.h>
@@ -70,6 +70,7 @@ RobotContainer::RobotContainer() {
     //     subsystem true // Should the path be automatically mirrored depending
     //     on alliance color. Optional, defaults to true
     // }
+    frc::SmartDashboard::PutBoolean("autoIntaking",false);
     NamedCommands::registerCommand("Arm Lower", /*frc2::cmd::Print("Hello"));*//*frc2::ParallelRaceGroup{frc2::WaitCommand(4_s), */std::move(ArmLower(&m_superstructure.m_arm).ToPtr()));
     NamedCommands::registerCommand("Test Command", frc2::cmd::Print("passed marker 1"));
     NamedCommands::registerCommand("Reverse Shooter", ReverseShooter(&m_superstructure.m_shooter).ToPtr());
@@ -98,8 +99,8 @@ RobotContainer::RobotContainer() {
         
         //rot = Rotation2d(180_deg).RotateBy(rot);
     }
-    frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
-    frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
+    //frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
+    //frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
             speedMultiplier = (1 - m_driverController.GetRawAxis(Joystick::ThrottleSlider)) * 0.5;
             XAxis = -m_driverController.GetRawAxis(Joystick::XAxis) * speedMultiplier;
             YAxis = m_driverController.GetRawAxis(Joystick::YAxis) * speedMultiplier;
@@ -190,7 +191,7 @@ RobotContainer::RobotContainer() {
                 // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
                 }
             }
-            else if (m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2)) {
+            else if (m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2) && !m_operatorController.GetRawButton(Controller::X) && !(frc::SmartDashboard::GetBoolean("autoShooting",false))) {
                 m_superstructure.m_shooter.setSpeed(0);
                 m_superstructure.m_vision.setLedOn(1);
                 // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
@@ -208,7 +209,7 @@ RobotContainer::RobotContainer() {
 
     m_LEDs.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_driverController.GetRawButton(Joystick::ButtonTwo)){ 
+            if(m_driverController.GetRawButtonPressed(Joystick::ButtonTwo)){ 
                 partyLights = !partyLights;
                 // down
                     // m_superstructure.setArm(0.73);
@@ -251,11 +252,11 @@ RobotContainer::RobotContainer() {
                 else if(m_operatorController.GetRawButton(Controller::A)){
                     m_superstructure.m_arm.setPosition(m_superstructure.m_arm.speakerPreset());
                 }
-                else if(m_operatorController.GetRawButton(Controller::X)){
-                    // m_superstructure.m_arm. (0);
-                    m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
-                    // m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.02);
-                }
+                // else if(m_operatorController.GetRawButton(Controller::X)){
+                //     // m_superstructure.m_arm. (0);
+                //     m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
+                //     // m_superstructure.m_arm.set(sin((m_superstructure.m_arm.getPosition()-0.5)*MathConstants::pi2)*0.02);
+                // }
             }
             // if (m_operatorController.GetPOV()==180){
             //     m_superstructure.m_arm.resetEncoder();
@@ -268,16 +269,21 @@ RobotContainer::RobotContainer() {
     ));
     m_superstructure.m_shooter.SetDefaultCommand(RunCommand(    
         [this] {
-            if(m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
-                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*600);
-                
+            
+            
+            if (m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
+                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*1000);
+                frc::SmartDashboard::PutNumber("rightTriggerAxis",m_operatorController.GetRawAxis(Controller::rightTrigger));
             }
-            else if (m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05){
-                m_superstructure.m_shooter.setSpeed(0.000); //temp, just to figure out KsS
+            
+            
+            else if (m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05 && !(m_operatorController.GetRawButton(Controller::X))){
+                frc::SmartDashboard::PutBoolean("xPressed",false);
+                //m_superstructure.m_shooter.setSpeed(0.000); //temp, just to figure out KsS
             }
-            frc::SmartDashboard::PutNumber("rightShooterSpeed",m_superstructure.m_shooter.getrightSpeed());
-            frc::SmartDashboard::PutNumber("leftShooterSpeed",m_superstructure.m_shooter.getleftSpeed());
-            frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
+            //frc::SmartDashboard::PutNumber("rightShooterSpeed",m_superstructure.m_shooter.getrightSpeed());
+            //frc::SmartDashboard::PutNumber("leftShooterSpeed",m_superstructure.m_shooter.getleftSpeed());
+            //frc::SmartDashboard::PutNumber("rightTrigger",m_operatorController.GetRawAxis(Controller::rightTrigger));
         },
         {&m_superstructure.m_shooter}   
     ));
@@ -294,7 +300,7 @@ RobotContainer::RobotContainer() {
             if(m_operatorController.GetRawButton(Controller::leftBumper)){
                 m_superstructure.m_intake.setSpeed(-0.4);
             } 
-            if(!m_operatorController.GetRawButton(Controller::leftBumper)&&!m_operatorController.GetRawButton(Controller::rightBumper)){
+            if(!m_operatorController.GetRawButton(Controller::leftBumper)&&!m_operatorController.GetRawButton(Controller::rightBumper) && !(frc::SmartDashboard::GetBoolean("autoIntaking",false))){
                 m_superstructure.m_intake.stopIntake();
             }
             // if(m_operatorController.GetR)
@@ -367,6 +373,12 @@ void RobotContainer::ConfigureBindings() {
     JoystickButton controllerA(&m_operatorController, Controller::A);   
     JoystickButton controllerB(&m_operatorController, Controller::B);
     JoystickButton controllerX(&m_operatorController, Controller::X);
+    joystickEleven.OnTrue(frc2::ParallelRaceGroup{frc2::WaitCommand(0.01_s), AutoIntake(&m_superstructure.m_intake)}.ToPtr());
+    controllerX.OnTrue(frc2::SequentialCommandGroup{frc2::ParallelRaceGroup{
+                ReadyShooter(&m_superstructure.m_shooter),
+                frc2::SequentialCommandGroup{frc2::WaitCommand(1.1_s), AutoIntake(&m_superstructure.m_intake)},
+                frc2::WaitCommand(1.5_s)
+              }, frc2::ParallelRaceGroup{StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake), frc2::WaitCommand(0.1_s)}}.ToPtr());
     JoystickButton controllerY(&m_operatorController, Controller::Y);
     JoystickButton controllerMenu(&m_operatorController, Controller::Menu);
     // JoystickButton controllerLeft(&m_operatorController, Controller::);
@@ -423,8 +435,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
         
         //rot = Rotation2d(units::angle::degree_t(-90));
     }
-    frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
-    frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
+    //frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
+    //frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
+
     // auto rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation());
     //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, rot});
     
@@ -434,8 +447,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     auto testAuto = PathPlannerAuto(autoName).ToPtr();
     //m_drive.resetOdometry(PathPlannerAuto::getStartingPoseFromAutoFile(autoName));
 //    PathPlannerAuto::
-    frc::SmartDashboard::PutNumber("odomX", m_drive.OdometryPose().X().value());
-    frc::SmartDashboard::PutNumber("odomY", m_drive.OdometryPose().Y().value());
+
+    //frc::SmartDashboard::PutNumber("odomX", m_drive.OdometryPose().X().value());
+    //frc::SmartDashboard::PutNumber("odomY", m_drive.OdometryPose().Y().value());
+
     //auto path = PathPlannerPath::fromPathFile("Test Path");
     // auto twoNote = PathPlannerPath::fromPathFile("2x Note Auton");
     // auto pathGroup = PathPlannerAuto::getPathGroupFromAutoFile("Test Auto");
@@ -466,12 +481,12 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 }
 void RobotContainer::Periodic() {
     auto rot = m_drive.getGyroHeading2();
-    frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
+    //frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
     if (frc::DriverStation::GetAlliance().value() == frc::DriverStation::Alliance::kRed){
         
         rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile("Test Auto").Rotation());
     }
-    frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
+    //frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
 }
 // frc2::Rotation2d RobotContainer::getRotated(Rotation2d rot) {    
 //     return new Rotation2d(3.14159)::minus(rot);

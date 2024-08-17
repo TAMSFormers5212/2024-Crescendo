@@ -98,7 +98,7 @@ void Shooter::Periodic(){
     }
     frc::SmartDashboard::PutNumber("l speed", getleftSpeed());
     frc::SmartDashboard::PutNumber("r speed", getrightSpeed());
-    frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
+    //frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
     frc::SmartDashboard::PutBoolean("inAuto", inAuto);
     frc::SmartDashboard::PutBoolean("ShooterReady", shooterGood);
     // frc::SmartDashboard::PutNumber("l output", m_leftMotor.GetOutputCurrent());

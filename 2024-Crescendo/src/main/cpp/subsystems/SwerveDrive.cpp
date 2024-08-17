@@ -98,7 +98,7 @@ frc::Pose2d SwerveDrive::OdometryPose() {
     if (frc::DriverStation::GetAlliance().value() == frc::DriverStation::Alliance::kRed){ 
         //val = frc::Rotation2d(degree_t(90));
     }
-    frc::SmartDashboard::PutNumber("odometry pose", val.Degrees().value());
+    //frc::SmartDashboard::PutNumber("odometry pose", val.Degrees().value());
     
     return frc::Pose2d(m_odometry.GetPose().Translation(), frc::Rotation2d(0_deg).RotateBy(val));
     
@@ -115,7 +115,7 @@ frc::Rotation2d SwerveDrive::getGyroHeading() {  // i have no f*cking clue how t
 }
 frc::Rotation2d SwerveDrive::getGyroHeading2() {
     
-    return frc::Rotation2d(degree_t(-fmod(m_gyro.GetAngle(), 360)));
+    return frc::Rotation2d(degree_t(-fmod(m_gyro.GetAngle(), 360) + 180));
 }
 
 void SwerveDrive::resetHeading() {  // zeros the gyro to the current position
@@ -142,12 +142,12 @@ void SwerveDrive::resetOdometry(const frc::Pose2d pose) {
     
     frc::SmartDashboard::PutNumber("pos rot", newPose.Rotation().Degrees().value());
     frc::SmartDashboard::PutNumber("gyro heading", getGyroHeading2().Degrees().value());
-    frc::SmartDashboard::PutNumber("heading", heading.Degrees().value());
+    //frc::SmartDashboard::PutNumber("heading", heading.Degrees().value());
       // resets the odometry and pose estimator to given pose
-    resetHeading();
-    m_odometry.ResetPosition(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
-    m_poseEstimator.ResetPosition(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
     
+    m_odometry.ResetPosition(getGyroHeading(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
+    m_poseEstimator.ResetPosition(getGyroHeading2(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
+    resetHeading();
 }
 
 void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentric) {  // swerve drive
@@ -189,7 +189,7 @@ void SwerveDrive::swerveDrive(frc::ChassisSpeeds speeds) {  // swerve drive
     //speeds = speeds.Discretize(speeds.vx , speeds.vy, units::radians_per_second_t{0}, units::second_t(0.02));
     speeds = speeds.Discretize(speeds.vx , speeds.vy, speeds.omega, units::second_t(0.02));
       // second order kinematics?!?!            
-    frc::SmartDashboard::PutNumber("speeds omega", speeds.omega.value());
+    //frc::SmartDashboard::PutNumber("speeds omega", speeds.omega.value());
     auto states = m_driveKinematics.ToSwerveModuleStates(speeds);
     
     for (size_t i = 0; i < states.size(); ++i) {

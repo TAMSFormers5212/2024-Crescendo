@@ -13,6 +13,7 @@
 class ReadyShooter : public frc2::CommandHelper<frc2::Command, ReadyShooter> {
 public:
     explicit ReadyShooter(Shooter* grabber);
+    
 
     void Initialize() override;
     // void Execute() override;
