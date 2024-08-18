@@ -101,11 +101,11 @@ RobotContainer::RobotContainer() {
     }
     //frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
     //frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
-            speedMultiplier = (1 - m_driverController.GetRawAxis(Joystick::ThrottleSlider)) * 0.5;
+            speedMultiplier = 0.20;//(1 - m_driverController.GetRawAxis(Joystick::ThrottleSlider)) * 0.5;
             XAxis = -m_driverController.GetRawAxis(Joystick::XAxis) * speedMultiplier;
             YAxis = m_driverController.GetRawAxis(Joystick::YAxis) * speedMultiplier;
             RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis) * speedMultiplier*2;
-
+            frc::SmartDashboard::PutNumber("speedToggle", m_driverController.GetRawAxis(Joystick::ThrottleSlider));
             frc::SmartDashboard::PutNumber("speed", speedMultiplier * 100);
             double rotDeadband = Joystick::deadband*2;
             if (abs(XAxis) < (Joystick::deadband*speedMultiplier)) {
@@ -217,7 +217,7 @@ RobotContainer::RobotContainer() {
                     // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
                     // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
             }  
-            if(m_superstructure.m_intake.noteHeld) {
+            else if(m_superstructure.m_intake.noteHeld) {
                 m_LEDs.setColor(0.61);
             }
             else if(partyLights) {
