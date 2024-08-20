@@ -88,6 +88,7 @@ void Arm::resetEncoder() { // sets neo encoders to absolute encoder position
 
 double Arm::getPosition() { // returns the absolute encoder position with offset
     return abs(m_absoluteEncoder.GetAbsolutePosition()-0.75)*pi2;
+
 }
 
 double Arm::getVelocity(){ // returns left motor's velocity
@@ -158,7 +159,11 @@ void Arm::Periodic() {
     units::radian_t ffP{position+getRawPosition()-getRelativePosition()};
     units::radians_per_second_t ffV{0};
     units::radians_per_second_squared_t ffA(0);
-    if(commandGiven&&getRawPosition()<1.7){
+    // if(getRawPosition() >= 1.65) {
+    //     setPosition(position - 0.01);
+    // }
+
+    if(commandGiven){
         m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition, 0, m_armFF.Calculate(ffP, ffV, ffA).value());
     }
     else{
@@ -167,10 +172,11 @@ void Arm::Periodic() {
         
     // m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);
 
-    // frc::SmartDashboard::PutNumber("arm p", position);
-    // frc::SmartDashboard::PutNumber("arm", getRelativePosition());
-    //  frc::SmartDashboard::PutNumber("armRaw ", getRawPosition());
-
+    frc::SmartDashboard::PutNumber("arm p", getPosition());
+    frc::SmartDashboard::PutNumber("arm position", position);
+    frc::SmartDashboard::PutNumber("arm", getRelativePosition());
+    frc::SmartDashboard::PutNumber("armRaw ", getRawPosition());
+    frc::SmartDashboard::PutNumber("arm offset ", m_absoluteEncoder.GetPositionOffset());
     // frc::SmartDashboard::PutNumber("armPos", position);
     // frc::SmartDashboard::PutNumber("armNoRotation ", abs(m_absoluteEncoder.GetAbsolutePosition()-0.75)*pi2);
  

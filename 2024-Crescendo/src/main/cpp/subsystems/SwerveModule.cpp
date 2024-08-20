@@ -19,6 +19,7 @@ SwerveModule::SwerveModule(int driveMotor, int steerMotor, int absEncoder, doubl
       m_moduleName(getName(driveMotor)) {
     m_absoluteEncoder.SetPositionOffset(encoderOffset);
     resetModule();
+    
     // tony: im not quite sure of the behavior of this function, but it sounds
     // like it just offsets the value returned by get absolute position
     cout << "Swerve Module " << getName(driveMotor) << " initialized correctly" << endl;
@@ -68,11 +69,13 @@ void SwerveModule::resetSteerMotor() {  // sets pid, current limit, encoder posi
     m_steerController.SetPositionPIDWrappingEnabled(true);
     m_steerController.SetPositionPIDWrappingMaxInput(pi2);
     m_steerController.SetPositionPIDWrappingMinInput(0);
-
+    
     m_steerMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
     m_steerMotor.EnableVoltageCompensation(12.0);
     m_steerMotor.SetSmartCurrentLimit(20, 30);
 
+    //m_steerMotor.SetInverted(true);
+    m_steerEncoder.SetPosition(m_steerEncoder.GetPosition());
     m_steerEncoder.SetPositionConversionFactor(pi2 / SwerveModuleConstants::steerRatio);
 
     resetSteerEncoder();
@@ -83,6 +86,7 @@ void SwerveModule::resetDriveEncoder() {  // set drive encoder to 0.0
 }
 
 void SwerveModule::resetSteerEncoder() {  // sets relative steer encoder to absolute encoder position
+    
     m_steerEncoder.SetPosition(getAbsolutePosition());
     // m_steerController.
 }
@@ -96,7 +100,8 @@ double SwerveModule::getDrivePosition() {  // returns the drive encoder position
 }
 
 double SwerveModule::getSteerPosition() {  // returns the relative steer encoder position
-    return m_steerEncoder.GetPosition();
+    return m_steerEncoder.GetPosition() + 0.25;
+    
 }
 
 double SwerveModule::getDriveVelocity() {  // returns the drive encoder velocity
@@ -120,19 +125,21 @@ std::string SwerveModule::getName(
 }
 
 void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the module to given state
-    frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getSteerPosition()));
+    frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getSteerPosition() + 0.25));
 
     frc::Rotation2d curAngle = units::radian_t(getAbsolutePosition());
-
+   
     // idk i took this from 2363. heres what they said:
     //  Since we use relative encoder of steer motor, it is a field (doesn't
     //  wrap from 2pi to 0 for example). We need to calculate delta to avoid
     //  taking a longer route This is analagous to the EnableContinuousInput()
     //  function of WPILib's PIDController classes
-    double delta = std::fmod(std::fmod((optimizedState.angle.Radians().value() - curAngle.Radians().value() + pi), pi2) + pi2, pi2) - pi;  // NOLINT
+    curAngle = frc::Rotation2d(curAngle.Degrees() + units::angle::degree_t{90});
+    double delta = std::fmod(std::fmod((optimizedState.angle.Radians().value() - curAngle.Radians().value() + pi), pi2) + pi2, pi2) - (pi);  // NOLINT
 
     double adjustedAngle = delta + curAngle.Radians().value();
     //
+     frc::SmartDashboard::PutNumber("current " + getName(m_driveMotor.GetDeviceId()), curAngle.Degrees().value());
     // However, I used setPositionPIDWrappingEnabled(), so I don't think this is needed
 
     // double adjustedAngle = optimizedState.angle.Radians().value();
@@ -168,5 +175,6 @@ void SwerveModule::togglePositionOffset(bool toggleOffset) {  // turns on or off
         m_absoluteEncoder.SetPositionOffset(this->encoderOffset);
     } else {
         m_absoluteEncoder.SetPositionOffset(0);
+        
     }
 }

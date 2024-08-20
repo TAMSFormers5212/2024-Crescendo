@@ -159,36 +159,41 @@ namespace SwerveModuleConstants {//per swerve module
         // 27x27 inch chassis from 2023, will update once 2024 chassis is assembed, but its just +1 inch 
         // now updated to 28x28 2024 chassis
     }
-    
+    //2, 6, 3, 8
+    //3 0 2 1
     
     namespace topleft{
         constexpr int driveMotor = 9; //CAN ID
         constexpr int steerMotor = 2; //CAN ID
         constexpr int absencoder = 3; //analogin Port
 
-        constexpr double offset = 0.508-0.25;
+        constexpr double offset = 0.508-0.5; 
+        //0.508-0.25
 
     }
     namespace topright{
         constexpr int driveMotor = 5; //CAN ID
         constexpr int steerMotor = 6; //CAN ID
         constexpr int absencoder = 0; //analogin Port
-
-        constexpr double offset = 0.170-0.25+1;
+ 
+        constexpr double offset = 0.170+0.5;
+        //0.170-0.25+1
     }
     namespace bottomleft{
         constexpr int driveMotor = 4; //CAN ID
         constexpr int steerMotor = 3; //CAN ID
         constexpr int absencoder = 2; //analogin Port
 
-        constexpr double offset = 0.322-0.25;
+        constexpr double offset = 0.322 + 0.5;
+        //0.322 - 0.25
     }
     namespace bottomright{          
         constexpr int driveMotor = 7; //CAN ID
         constexpr int steerMotor = 8; //CAN ID
         constexpr int absencoder = 1; //analogin Port
 
-        constexpr double offset = 0.834+0.25-1;
+        constexpr double offset =0.834;
+        //0.834 + 0.25 - 1
     }
 
 }

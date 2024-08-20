@@ -32,6 +32,6 @@ class Robot : public frc::TimedRobot {
   std::optional<frc2::Command*> m_autonomousCommand;
   cs::UsbCamera usbCam;
   cs::UsbCamera usbCam2;
- 
+  
 
 };

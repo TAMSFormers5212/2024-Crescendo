@@ -15,6 +15,7 @@
 #include <frc2/command/button/POVButton.h>
 #include <frc2/command/button/Trigger.h>
 #include <math.h>
+#include <frc2/command/CommandPtr.h>
 
 
 #include "networktables/NetworkTable.h"
@@ -26,10 +27,11 @@
 #include <pathplanner/lib/path/PathPlannerPath.h>
 
 #include <pathplanner/lib/auto/NamedCommands.h>
+
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/Commands.h>
 #include "commands/Auto.h"
-
+#include <frc/smartdashboard/SendableChooser.h>
 #include <iostream>
 #include <frc2/command/Command.h>
 #include <frc2/command/ParallelRaceGroup.h>
@@ -42,19 +44,37 @@
 #include <commands/DeIntake.h>
 #include <commands/StopDrive.h>
 #include <commands/ArmGround.h>
-#include <frc/smartdashboard/SendableChooser.h>
+
 #include <commands/ReverseShooter.h>
 #include <commands/AutoAim.h>
 #include <frc/geometry/Rotation2d.h>
 #include <commands/ExitAuton.h>
 #include <commands/StopIntake.h>
+
+
+
+
 using namespace pathplanner;
 
 using namespace std;
 using namespace frc2;
 using namespace OIConstants;
 
-RobotContainer::RobotContainer() {
+RobotContainer::RobotContainer()  {
+    NamedCommands::registerCommand("Arm Lower", /*frc2::cmd::Print("Hello"));*//*frc2::ParallelRaceGroup{frc2::WaitCommand(4_s), */std::move(ArmLower(&m_superstructure.m_arm).ToPtr()));
+    NamedCommands::registerCommand("Test Command", frc2::cmd::Print("passed marker 1"));
+    NamedCommands::registerCommand("Reverse Shooter", ReverseShooter(&m_superstructure.m_shooter).ToPtr());
+    NamedCommands::registerCommand("Ready Shooter", ReadyShooter(&m_superstructure.m_shooter).ToPtr());
+    NamedCommands::registerCommand("Auto Intake", AutoIntake(&m_superstructure.m_intake).ToPtr());
+    NamedCommands::registerCommand("Stop Shooter", StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake).ToPtr());
+    NamedCommands::registerCommand("Stop Intake", StopIntake(&m_superstructure.m_intake).ToPtr());
+    NamedCommands::registerCommand("De Intake", DeIntake(&m_superstructure.m_intake).ToPtr());
+    NamedCommands::registerCommand("Stop Drive", StopDrive(&m_drive).ToPtr());
+    NamedCommands::registerCommand("Arm Ground", ArmGround(&m_superstructure.m_arm).ToPtr());
+    NamedCommands::registerCommand("Auto Aim", AutoAim(&m_superstructure.m_arm, &m_superstructure.m_vision, &m_superstructure).ToPtr());
+    NamedCommands::registerCommand("Exit Auton", ExitAuton(&m_superstructure.m_shooter).ToPtr());
+    
+    
     // m_autoBuilder{
     //     [this]() { return m_drive.OdometryPose(); }, // Function to supply
     //     current robot pose [this](frc::Pose2d initPose) {
@@ -71,23 +91,20 @@ RobotContainer::RobotContainer() {
     //     on alliance color. Optional, defaults to true
     // }
     frc::SmartDashboard::PutBoolean("autoIntaking",false);
-    NamedCommands::registerCommand("Arm Lower", /*frc2::cmd::Print("Hello"));*//*frc2::ParallelRaceGroup{frc2::WaitCommand(4_s), */std::move(ArmLower(&m_superstructure.m_arm).ToPtr()));
-    NamedCommands::registerCommand("Test Command", frc2::cmd::Print("passed marker 1"));
-    NamedCommands::registerCommand("Reverse Shooter", ReverseShooter(&m_superstructure.m_shooter).ToPtr());
-    NamedCommands::registerCommand("Ready Shooter", ReadyShooter(&m_superstructure.m_shooter).ToPtr());
-    NamedCommands::registerCommand("Auto Intake", AutoIntake(&m_superstructure.m_intake).ToPtr());
-    NamedCommands::registerCommand("Stop Shooter", StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake).ToPtr());
-    NamedCommands::registerCommand("Stop Intake", StopIntake(&m_superstructure.m_intake).ToPtr());
-    NamedCommands::registerCommand("De Intake", DeIntake(&m_superstructure.m_intake).ToPtr());
-    NamedCommands::registerCommand("Stop Drive", StopDrive(&m_drive).ToPtr());
-    NamedCommands::registerCommand("Arm Ground", ArmGround(&m_superstructure.m_arm).ToPtr());
-    NamedCommands::registerCommand("Auto Aim", AutoAim(&m_superstructure.m_arm, &m_superstructure.m_vision, &m_superstructure).ToPtr());
-    NamedCommands::registerCommand("Exit Auton", ExitAuton(&m_superstructure.m_shooter).ToPtr());
+    
     //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto
+    m_simpleAuto = PathPlannerAuto("Test Auto").ToPtr();
     m_chooser.SetDefaultOption("Test Auto", m_simpleAuto.get());
-    m_chooser.AddOption("Mobility Auto", m_complexAuto.get());
+    m_chooser.AddOption("Rotation Auto", m_RotationAuto.get());
     m_chooser.AddOption("Two Note Auton", m_twonote.get());
+    m_chooser.AddOption("Three Note Auton", m_threenote.get());
+    m_chooser.AddOption("Mobility Auton", m_mobilityAuto.get());
+    m_chooser.AddOption("Two Note Auton", m_twonote.get());
+    m_chooser.AddOption("Three Note Bottom Auton", m_threenotebottom.get());
+    m_chooser.AddOption("Four Note Auton", m_fournote.get());
     m_chooser.AddOption("Bottom Preload", m_bottompreload.get());
+    m_chooser.AddOption("Top Preload", m_toppreload.get());
+    
     frc::SmartDashboard::PutData(&m_chooser);
     ConfigureBindings();
 
@@ -233,7 +250,13 @@ RobotContainer::RobotContainer() {
     m_superstructure.m_arm.SetDefaultCommand(RunCommand(
         [this] {
             if(abs(m_operatorController.GetRawAxis(Controller::leftYAxis))>0.05){
-                m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition() + m_operatorController.GetRawAxis(Controller::leftYAxis));
+                if(m_superstructure.m_arm.getRawPosition() <= 1.65 || m_operatorController.GetRawAxis(Controller::leftYAxis) < -0.05) {
+                    m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition() + m_operatorController.GetRawAxis(Controller::leftYAxis));
+                }
+                else {
+                    m_superstructure.m_arm.setPosition(m_superstructure.m_arm.ampPreset()); 
+                }
+                
                 // m_superstructure.m_arm.set(m_operatorController.GetRawAxis(Controller::leftYAxis));
             }
             else{
@@ -458,10 +481,11 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     
     
     
-    //auto pose = PathPlanne    rAuto("Preload+Mobility Auton").getStartingPoseFromAutoFile();
+    //auto pose = PathPlannerAuto("Preload+Mobility Auton").getStartingPoseFromAutoFile();
     
     //return testAuto;    
     return (m_chooser.GetSelected());
+    
     // return frc2::SequentialCommandGroup {
     //     *AutoBuilder::followPath(pathGroup.at(0)).Unwrap()
     // }.ToPtr();   
