@@ -44,8 +44,8 @@ void Intake::resetMotor() {
 }
 
 void Intake::intakeNote() {  // intake until note collected
-    if (!holdingNote) {
-        m_intakeMotor.Set(0.4);
+    // if (!holdingNote) {
+    //     m_intakeMotor.Set(0.4);
         
         cout<<m_intakeMotor.GetOutputCurrent()<<endl;
         if (m_intakeMotor.GetOutputCurrent() > loadedCurrent) { // monitor current to find loaded current
@@ -53,9 +53,9 @@ void Intake::intakeNote() {  // intake until note collected
             holdingNote = true;
             state = held;
         }
-    } else if (holdingNote) {
-        indexNote();
-    }
+//     } else if (holdingNote) {
+//         indexNote();
+//     }
 }
 void Intake::indexNote() {  // move note to indexer spot (kinda useless without sensor)
     if (holdingNote||state==held) {
