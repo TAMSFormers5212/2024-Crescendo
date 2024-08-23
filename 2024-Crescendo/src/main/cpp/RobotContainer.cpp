@@ -183,13 +183,18 @@ RobotContainer::RobotContainer()  {
 
             // Led toggle
             if (m_driverController.GetRawButtonPressed(2)) {
+                frc::SmartDashboard::PutBoolean("led button pressed", m_driverController.GetRawButtonPressed(2));
                 if (m_superstructure.m_vision.getLedOn() == 3) {
                     m_superstructure.m_vision.setLedOn(1);
                 } else if (m_vision.getLedOn() == 1) {
                     m_superstructure.m_vision.setLedOn(3);
                 }
+                //m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
                 
             }
+            // if (m_driverController.GetRawButton(2)) {
+            //     m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
+            // }
             // frc::SmartDashboard::PutNumber("di", m_superstructure.m_vision.getDistance());
             frc::SmartDashboard::PutNumber("leds", m_superstructure.m_vision.getLedOn());
             frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
@@ -210,7 +215,7 @@ RobotContainer::RobotContainer()  {
             }
             else if (m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2) && !m_operatorController.GetRawButton(Controller::X) && !(frc::SmartDashboard::GetBoolean("autoShooting",false))) {
                 m_superstructure.m_shooter.setSpeed(0);
-                m_superstructure.m_vision.setLedOn(1);
+                
                 // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
             }
             frc::SmartDashboard::PutNumber("armAn",m_superstructure.calculateAngle(m_superstructure.m_vision.getDistance(),0,0));
