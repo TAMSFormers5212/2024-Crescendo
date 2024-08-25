@@ -119,14 +119,14 @@ RobotContainer::RobotContainer()  {
     }
     //frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
     //frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
-            speedMultiplier = 0.20;//(1 - m_driverController.GetRawAxis(Joystick::ThrottleSlider)) * 0.5;
+            speedMultiplier = (1 - m_driverController.GetRawAxis(Joystick::ThrottleSlider)) * 0.5;
             XAxis = -m_driverController.GetRawAxis(Joystick::XAxis) * speedMultiplier;
             YAxis = m_driverController.GetRawAxis(Joystick::YAxis) * speedMultiplier;
             RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis) * speedMultiplier*2;
             frc::SmartDashboard::PutNumber("speedToggle", m_driverController.GetRawAxis(Joystick::ThrottleSlider));
             frc::SmartDashboard::PutNumber("speed", speedMultiplier * 100);
             double rotDeadband = Joystick::deadband*2;
-            if (abs(XAxis) < (Joystick::deadband*speedMultiplier)) {
+            if (abs(XAxis) < (Joystick::deadband*speedMultiplier)) {    
                 XAxis = 0;
             }
             if (abs(YAxis) < (Joystick::deadband*speedMultiplier)) {
