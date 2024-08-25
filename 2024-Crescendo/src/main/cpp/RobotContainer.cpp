@@ -92,9 +92,10 @@ RobotContainer::RobotContainer()  {
     // }
     frc::SmartDashboard::PutBoolean("autoIntaking",false);
     
-    //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto
+    //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto 
     m_simpleAuto = PathPlannerAuto("Test Auto").ToPtr();
     m_chooser.SetDefaultOption("Test Auto", m_simpleAuto.get());
+    //AutoBuilder::buildAutoChooser();
     m_chooser.AddOption("Rotation Auto", m_RotationAuto.get());
     m_chooser.AddOption("Two Note Auton", m_twonote.get());
     m_chooser.AddOption("Three Note Auton", m_threenote.get());
@@ -106,7 +107,7 @@ RobotContainer::RobotContainer()  {
     m_chooser.AddOption("Top Preload", m_toppreload.get());
     
     frc::SmartDashboard::PutData(&m_chooser);
-    ConfigureBindings();
+    ConfigureBindings(); 
 
     m_drive.SetDefaultCommand(RunCommand(
         [this] {
@@ -490,7 +491,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     
     //return testAuto;    
     return (m_chooser.GetSelected());
-    
+    //return testAuto.get();
     // return frc2::SequentialCommandGroup {
     //     *AutoBuilder::followPath(pathGroup.at(0)).Unwrap()
     // }.ToPtr();   
