@@ -90,14 +90,23 @@ RobotContainer::RobotContainer()  {
     //     subsystem true // Should the path be automatically mirrored depending
     //     on alliance color. Optional, defaults to true
     // }
+     ConfigureBindings(); 
     frc::SmartDashboard::PutBoolean("autoIntaking",false);
     
-    //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto 
+    // SendableChooser<Command> autoChooser = AutoBuilder::buildAuto; 
     m_simpleAuto = PathPlannerAuto("Test Auto").ToPtr();
     m_chooser.SetDefaultOption("Test Auto", m_simpleAuto.get());
-    //AutoBuilder::buildAutoChooser();
+    // AutoBuilder::buildAutoChooser();
+    m_RotationAuto=PathPlannerAuto("Rotation Auto").ToPtr();
+    m_twonote=PathPlannerAuto("2 Note Auton Auto Aim").ToPtr();
+    m_threenote=PathPlannerAuto("3 Note Auton").ToPtr();
+    m_mobilityAuto=PathPlannerAuto("Mobility auto").ToPtr();
+    m_threenotebottom=PathPlannerAuto("3 Note Bottom Auton").ToPtr();
+    m_fournote=PathPlannerAuto("4 Note Auton").ToPtr();
+    m_bottompreload=PathPlannerAuto("Bottom Preload Auton").ToPtr();
+    m_toppreload=PathPlannerAuto("Top Preload Auton").ToPtr();
+ 
     m_chooser.AddOption("Rotation Auto", m_RotationAuto.get());
-    m_chooser.AddOption("Two Note Auton", m_twonote.get());
     m_chooser.AddOption("Three Note Auton", m_threenote.get());
     m_chooser.AddOption("Mobility Auton", m_mobilityAuto.get());
     m_chooser.AddOption("Two Note Auton", m_twonote.get());
@@ -107,8 +116,8 @@ RobotContainer::RobotContainer()  {
     m_chooser.AddOption("Top Preload", m_toppreload.get());
     
     frc::SmartDashboard::PutData(&m_chooser);
+   
     ConfigureBindings(); 
-
     m_drive.SetDefaultCommand(RunCommand(
         [this] {
             auto rot = m_drive.getGyroHeading2();
