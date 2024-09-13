@@ -328,12 +328,12 @@ RobotContainer::RobotContainer()  {
     m_superstructure.m_intake.SetDefaultCommand(RunCommand(
         [this] {
             if(m_operatorController.GetRawButton(Controller::rightBumper)){
-                if (m_superstructure.m_shooter.getSpeed()>400){
-                    m_superstructure.m_intake.setSpeed(1.00);
-                }
-                else{
+                // if (m_superstructure.m_shooter.getSpeed()>400){
+                    // m_superstructure.m_intake.setSpeed(1.00);
+                // }
+                // else{
                     m_superstructure.m_intake.setSpeed(0.6);    
-                }
+                // }
             } 
             if(m_operatorController.GetRawButton(Controller::leftBumper)){
                 m_superstructure.m_intake.setSpeed(-0.4);
