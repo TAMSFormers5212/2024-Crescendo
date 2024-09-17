@@ -19,6 +19,7 @@
 #include <Constants.h>
 #include <frc/controller/SimpleMotorFeedforward.h>
 
+
 using namespace std;
 using namespace rev;
 using namespace frc;
@@ -67,6 +68,11 @@ private:
     double avgSho;
     units::meters_per_second_t m_goalSpeed{0};
 
+    nt::GenericEntry* lSpeed = frc::Shuffleboard::GetTab("Main Tab").Add("l speed", getleftSpeed()).GetEntry("double");
+    nt::GenericEntry* rSpeed =frc::Shuffleboard::GetTab("Main Tab").Add("r speed", getrightSpeed()).GetEntry("double");
+    //frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
+    nt::GenericEntry* inAutoS = frc::Shuffleboard::GetTab("Main Tab").Add("inAuto", false).GetEntry("boolean");
+    nt::GenericEntry* shooterReady = frc::Shuffleboard::GetTab("Competition View").Add("ShooterReady", false).GetEntry("boolean");
     //  frc2::sysid::SysIdRoutine m_sysIdRoutine{
     //   frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt,
     //                       std::nullopt},

@@ -14,9 +14,10 @@ public:
 
     void Initialize() override;
 
+    nt::GenericEntry *getAutoI();
     void End(bool interrupted) override;
 
 private:
-    
+    nt::GenericEntry* autoIntaking = frc::Shuffleboard::GetTab("Main Tab").Add("autoIntaking",true).GetEntry("boolean");
     Intake* m_intake;
 };

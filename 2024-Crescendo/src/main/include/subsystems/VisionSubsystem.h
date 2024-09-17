@@ -59,4 +59,6 @@ class VisionSubsystem : public frc2::SubsystemBase {
     int ledOn;
     int tagID;
     bool tagPresent;
+    nt::GenericEntry* distanceS = frc::Shuffleboard::GetTab("Limelight").Add("distance", 0).GetEntry("double");
+    nt::GenericEntry* id = frc::Shuffleboard::GetTab("Limelight").Add("id", 0).GetEntry("double");
 };

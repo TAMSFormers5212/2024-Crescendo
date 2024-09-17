@@ -5,6 +5,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <frc/shuffleboard/Shuffleboard.h>
 
 using namespace SwerveModuleConstants;
 using namespace rev;
@@ -26,7 +27,8 @@ SwerveModule::SwerveModule(int driveMotor, int steerMotor, int absEncoder, doubl
 }
 
 frc::SwerveModuleState SwerveModule::getState() {  // return current module state
-    frc::SmartDashboard::PutNumber("steer num", units::radian_t{getSteerPosition()}.value());
+    steerNum->SetDouble(units::radian_t{getSteerPosition()}.value());
+    
     return {units::meters_per_second_t{m_driveEncoder.GetVelocity()}, units::radian_t{getSteerPosition()}};
 }
 
@@ -139,7 +141,8 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 
     double adjustedAngle = delta + curAngle.Radians().value();
     //
-     frc::SmartDashboard::PutNumber("current " + getName(m_driveMotor.GetDeviceId()), curAngle.Degrees().value());
+    current->SetDouble(curAngle.Degrees().value());
+    
     // However, I used setPositionPIDWrappingEnabled(), so I don't think this is needed
 
     // double adjustedAngle = optimizedState.angle.Radians().value();
@@ -147,7 +150,8 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
     // double adjustedPosition = optimizedState.angle.Degrees().value()/360; // turns it into a circle fraction
 
     // angle we want to go to
-    frc::SmartDashboard::PutNumber("O " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
+    O->SetDouble(adjustedAngle);
+
     m_steerController.SetReference((adjustedAngle), CANSparkBase::ControlType::kPosition);
 
     // m_driveController.SetReference(optimizedState.speed.value(),
@@ -160,11 +164,15 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 }
 
 void SwerveModule::Periodic() {
-    frc::SmartDashboard::PutNumber("velocity " + getName(m_driveMotor.GetDeviceId()), abs(getDriveVelocity() / 12));
+    double v=std::abs(getDriveVelocity() / 12);
+    velocity->SetDouble(v);
+    
     // current angle based on the neo encoder
-    frc::SmartDashboard::PutNumber("angle " + getName(m_driveMotor.GetDeviceId()), getSteerPosition());
+    angle->SetDouble(getSteerPosition());
+    
     // print the absolute encoder reading
-    frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition());
+    abs->SetDouble(m_absoluteEncoder.GetAbsolutePosition());
+    
     // this is the absolute encoder reading minus the position offset
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " o abs", getAbsolutePosition()/pi2);    
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + "off", m_absoluteEncoder.GetPositionOffset());

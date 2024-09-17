@@ -73,6 +73,15 @@ Superstructure m_superstructure;
 
 
   VisionSubsystem m_vision;
+
   //Superstructure m_superstructure;
   void ConfigureBindings();
+   nt::GenericEntry* speedToggle = frc::Shuffleboard::GetTab("Main Tab").Add("speedToggle", 0).GetEntry();
+  nt::GenericEntry* speed = frc::Shuffleboard::GetTab("Competition View").Add("speed", 0).GetEntry();
+  nt::GenericEntry* ledButtonPressed = frc::Shuffleboard::GetTab("Main Tab").Add("led button pressed", false).GetEntry();
+  nt::GenericEntry* leds = frc::Shuffleboard::GetTab("Limelight").Add("leds", 0).GetEntry();
+  nt::GenericEntry* toggleOffset =frc::Shuffleboard::GetTab("Swerve").Add("toggle offset", m_drive.getOffsetToggle()).GetEntry();
+  nt::GenericEntry* armAn =frc::Shuffleboard::GetTab("Arm").Add("armAn",0).GetEntry();
+  nt::GenericEntry* xPressed =frc::Shuffleboard::GetTab("Main Tab").Add("xPressed",false).GetEntry();
+  nt::GenericEntry* autoIntaking = frc::Shuffleboard::GetTab("Main Tab").Add("autoIntaking",false).GetEntry();
 };

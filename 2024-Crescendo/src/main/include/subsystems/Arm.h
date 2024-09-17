@@ -9,6 +9,7 @@
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <units/voltage.h>
 
+#include <networktables/GenericEntry.h>
 
 #include <rev/CANSparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
@@ -70,6 +71,11 @@ private:
     //someone else will have to tune this. i've never done it before
     ArmFeedforward m_armFF ; // initalized in constructor
 
+    nt::GenericEntry* armP = frc::Shuffleboard::GetTab("Arm").Add("arm p", getPosition()).GetEntry("double");
+    nt::GenericEntry* armPosition = frc::Shuffleboard::GetTab("Arm").Add("arm position", position).GetEntry("double");
+    nt::GenericEntry* arm = frc::Shuffleboard::GetTab("Arm").Add("arm", getRelativePosition()).GetEntry("double");
+    nt::GenericEntry* armRaw = frc::Shuffleboard::GetTab("Arm").Add("armRaw ", getRawPosition()).GetEntry("double");
+    nt::GenericEntry* armOffset = frc::Shuffleboard::GetTab("Arm").Add("arm offset ", m_absoluteEncoder.GetPositionOffset()).GetEntry("double");
 
     DutyCycleEncoder m_absoluteEncoder{encoder};
 

@@ -29,6 +29,7 @@
 #include <pathplanner/lib/auto/NamedCommands.h>
 
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/shuffleboard/Shuffleboard.h>
 #include <frc2/command/Commands.h>
 #include "commands/Auto.h"
 #include <frc/smartdashboard/SendableChooser.h>
@@ -50,6 +51,9 @@
 #include <frc/geometry/Rotation2d.h>
 #include <commands/ExitAuton.h>
 #include <commands/StopIntake.h>
+#include <networktables/GenericEntry.h>
+#include <networktables/GenericEntry.inc>
+#include <networktables/Topic.h>
 
 
 
@@ -61,6 +65,8 @@ using namespace frc2;
 using namespace OIConstants;
 
 RobotContainer::RobotContainer()  {
+    
+
     NamedCommands::registerCommand("Arm Lower", /*frc2::cmd::Print("Hello"));*//*frc2::ParallelRaceGroup{frc2::WaitCommand(4_s), */std::move(ArmLower(&m_superstructure.m_arm).ToPtr()));
     NamedCommands::registerCommand("Test Command", frc2::cmd::Print("passed marker 1"));
     NamedCommands::registerCommand("Reverse Shooter", ReverseShooter(&m_superstructure.m_shooter).ToPtr());
@@ -91,8 +97,8 @@ RobotContainer::RobotContainer()  {
     //     on alliance color. Optional, defaults to true
     // }
      ConfigureBindings(); 
-    frc::SmartDashboard::PutBoolean("autoIntaking",false);
     
+    autoIntaking->SetBoolean(false);
     // SendableChooser<Command> autoChooser = AutoBuilder::buildAuto; 
     m_simpleAuto = PathPlannerAuto("Test Auto").ToPtr();
     m_chooser.SetDefaultOption("Test Auto", m_simpleAuto.get());
@@ -115,8 +121,9 @@ RobotContainer::RobotContainer()  {
     m_chooser.AddOption("Bottom Preload", m_bottompreload.get());
     m_chooser.AddOption("Top Preload", m_toppreload.get());
     
-    frc::SmartDashboard::PutData(&m_chooser);
+    frc::Shuffleboard::GetTab("Competition View").Add("Auto Chooser", &m_chooser);
    
+    
     ConfigureBindings(); 
     m_drive.SetDefaultCommand(RunCommand(
         [this] {
@@ -132,8 +139,9 @@ RobotContainer::RobotContainer()  {
             XAxis = -m_driverController.GetRawAxis(Joystick::XAxis) * speedMultiplier;
             YAxis = m_driverController.GetRawAxis(Joystick::YAxis) * speedMultiplier;
             RotAxis = -m_driverController.GetRawAxis(Joystick::RotAxis) * speedMultiplier*2;
-            frc::SmartDashboard::PutNumber("speedToggle", m_driverController.GetRawAxis(Joystick::ThrottleSlider));
-            frc::SmartDashboard::PutNumber("speed", speedMultiplier * 100);
+            speedToggle->SetDouble(m_driverController.GetRawAxis(Joystick::ThrottleSlider));
+            speed->SetDouble(speedMultiplier * 100);
+            
             double rotDeadband = Joystick::deadband*2;
             if (abs(XAxis) < (Joystick::deadband*speedMultiplier)) {    
                 XAxis = 0;
@@ -193,7 +201,8 @@ RobotContainer::RobotContainer()  {
 
             // Led toggle
             if (m_driverController.GetRawButtonPressed(2)) {
-                frc::SmartDashboard::PutBoolean("led button pressed", m_driverController.GetRawButtonPressed(2));
+                ledButtonPressed->SetBoolean(m_driverController.GetRawButtonPressed(2));
+                
                 if (m_superstructure.m_vision.getLedOn() == 3) {
                     m_superstructure.m_vision.setLedOn(1);
                 } else if (m_vision.getLedOn() == 1) {
@@ -206,8 +215,9 @@ RobotContainer::RobotContainer()  {
             //     m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
             // }
             // frc::SmartDashboard::PutNumber("di", m_superstructure.m_vision.getDistance());
-            frc::SmartDashboard::PutNumber("leds", m_superstructure.m_vision.getLedOn());
-            frc::SmartDashboard::PutBoolean("toggle offset", m_drive.getOffsetToggle());
+            leds->SetBoolean( m_superstructure.m_vision.getLedOn());
+            toggleOffset->SetBoolean( m_drive.getOffsetToggle());
+            
         },
         {&m_superstructure.m_vision}));
 
@@ -216,10 +226,10 @@ RobotContainer::RobotContainer()  {
             if (m_operatorController.GetRawAxis(Controller::leftTrigger)>0.05){
                 m_superstructure.m_vision.setLedOn(3);
                 if (m_superstructure.m_vision.isTagPresent()){
-                    if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
+                    // if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
                         m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
 
-                    }
+                    // }
                 // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
                 }
             }
@@ -228,7 +238,8 @@ RobotContainer::RobotContainer()  {
                 
                 // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition());
             }
-            frc::SmartDashboard::PutNumber("armAn",m_superstructure.calculateAngle(m_superstructure.m_vision.getDistance(),0,0));
+            armAn->SetDouble(m_superstructure.calculateAngle(m_superstructure.m_vision.getDistance(),0,0));
+            
             //  frc::SmartDashboard::PutNumber("shooterAn",m_superstructure.calculateSpeed(m_superstructure.m_vision.getDistance(),0,0)/1000);
             // if(m_operatorController.getrawb)
 
@@ -311,12 +322,13 @@ RobotContainer::RobotContainer()  {
             
             if (m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
                 m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*1000);
-                frc::SmartDashboard::PutNumber("rightTriggerAxis",m_operatorController.GetRawAxis(Controller::rightTrigger));
+                // frc::SmartDashboard::PutNumber("rightTriggerAxis",m_operatorController.GetRawAxis(Controller::rightTrigger));
             }
             
             
             else if (m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05 && !(m_operatorController.GetRawButton(Controller::X))){
-                frc::SmartDashboard::PutBoolean("xPressed",false);
+                xPressed->SetBoolean(false);
+                
                 //m_superstructure.m_shooter.setSpeed(0.000); //temp, just to figure out KsS
             }
             //frc::SmartDashboard::PutNumber("rightShooterSpeed",m_superstructure.m_shooter.getrightSpeed());
@@ -338,7 +350,7 @@ RobotContainer::RobotContainer()  {
             if(m_operatorController.GetRawButton(Controller::leftBumper)){
                 m_superstructure.m_intake.setSpeed(-0.4);
             } 
-            if(!m_operatorController.GetRawButton(Controller::leftBumper)&&!m_operatorController.GetRawButton(Controller::rightBumper) && !(frc::SmartDashboard::GetBoolean("autoIntaking",false))){
+            if(!m_operatorController.GetRawButton(Controller::leftBumper)&&!m_operatorController.GetRawButton(Controller::rightBumper) && !(autoIntaking->GetBoolean(false))){
                 m_superstructure.m_intake.stopIntake();
             }
             // if(m_operatorController.GetR)

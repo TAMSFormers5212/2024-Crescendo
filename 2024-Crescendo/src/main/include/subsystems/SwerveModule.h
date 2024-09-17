@@ -54,4 +54,10 @@ private:
     frc::AnalogEncoder m_absoluteEncoder;
 
     std::string m_moduleName;
+    nt::GenericEntry* steerNum=frc::Shuffleboard::GetTab("Swerve").Add("steer num", units::radian_t{getSteerPosition()}.value()).GetEntry("double");
+    nt::GenericEntry* current=frc::Shuffleboard::GetTab("Swerve").Add("current " + getName(m_driveMotor.GetDeviceId()), 0).GetEntry("double");
+    nt::GenericEntry* O = frc::Shuffleboard::GetTab("Swerve").Add("O " + getName(m_driveMotor.GetDeviceId()), 0).GetEntry("double");
+    nt::GenericEntry* velocity = frc::Shuffleboard::GetTab("Swerve").Add("velocity " + getName(m_driveMotor.GetDeviceId()), 0).GetEntry("double");
+    nt::GenericEntry* angle =frc::Shuffleboard::GetTab("Swerve").Add("angle " + getName(m_driveMotor.GetDeviceId()), getSteerPosition()).GetEntry("double");
+    nt::GenericEntry* abs = frc::Shuffleboard::GetTab("Swerve").Add(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition()).GetEntry("double");
 };
