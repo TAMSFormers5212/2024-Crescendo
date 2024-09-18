@@ -3,7 +3,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-
+#include <frc/shuffleboard/Shuffleboard.h>
 #include "subsystems/SwerveDrive.h"
 #include <subsystems/Shooter.h>
 
@@ -28,5 +28,5 @@ private:
     Shooter* m_shooter;
     // frc::SimpleWidget* autoShoot = frc::Shuffleboard::GetTab("Main Tab").Add("autoShooting",true);
     // nt::GenericPublisher autoShootingPub = autoShooting.GenericPublish("boolean");
-    nt::GenericEntry* autoShooting = frc::Shuffleboard::GetTab("Main Tab").Add("autoShooting",true).GetEntry("boolean");
+    nt::GenericEntry* autoShooting = frc::Shuffleboard::GetTab("Main Tab").AddPersistent("autoShooting",true).GetEntry("boolean");
 };
