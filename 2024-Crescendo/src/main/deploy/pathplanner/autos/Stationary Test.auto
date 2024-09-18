@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.6770555652380903,
-      "y": 6.0
+      "x": 0.857297007033385,
+      "y": 4.262744502664469
     },
-    "rotation": 90.0
+    "rotation": -59.24000000000001
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": null
+            "pathName": "Stationary Test"
           }
         }
       ]

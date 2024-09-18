@@ -65,6 +65,7 @@ Superstructure m_superstructure;
     frc2::CommandPtr m_fournote = PathPlannerAuto("4 Note Auton").ToPtr();
     frc2::CommandPtr m_bottompreload = PathPlannerAuto("Bottom Preload Auton").ToPtr();
     frc2::CommandPtr m_toppreload = PathPlannerAuto("Top Preload Auton").ToPtr();
+    frc2::CommandPtr m_stationaryTest = PathPlannerAuto("Stationary Test").ToPtr();
     frc::SendableChooser<frc2::Command*> m_chooser;
     
   // The chooser for the autonomous routines

@@ -25,12 +25,13 @@ void Robot::RobotInit() {
     myStringLog = wpi::log::StringLogEntry(log, "/my/string");
     usbCam = frc::CameraServer::StartAutomaticCapture("depth perceptionator 1", 1); //usb back camera
     usbCam.SetResolution(160, 120);
-    usbCam.SetFPS(15);
+    usbCam.SetFPS(45);
+    
     
 
-    usbCam2 = frc::CameraServer::StartAutomaticCapture("depth perceptionator 2", 0); //usb back camera
-    usbCam2.SetResolution(160, 120);
-    usbCam2.SetFPS(8);
+    // usbCam2 = frc::CameraServer::StartAutomaticCapture("depth perceptionator 2", 0); //usb back camera
+    // usbCam2.SetResolution(160, 120);
+    // usbCam2.SetFPS(8);
    
    
 

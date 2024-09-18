@@ -153,7 +153,7 @@ void SwerveDrive::resetOdometry(const frc::Pose2d pose) {
     
     m_odometry.ResetPosition(getGyroHeading2(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
     m_poseEstimator.ResetPosition(getGyroHeading2(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
-    resetHeading();
+    //resetHeading();
 }
 
 void SwerveDrive::swerveDrive(double x, double y, double theta, bool fieldCentric) {  // swerve drive

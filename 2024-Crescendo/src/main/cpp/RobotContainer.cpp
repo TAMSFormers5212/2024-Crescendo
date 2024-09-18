@@ -93,7 +93,7 @@ RobotContainer::RobotContainer()  {
      ConfigureBindings(); 
     frc::SmartDashboard::PutBoolean("autoIntaking",false);
     
-    // SendableChooser<Command> autoChooser = AutoBuilder::buildAuto; 
+    //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto 
     m_simpleAuto = PathPlannerAuto("Test Auto").ToPtr();
     m_chooser.SetDefaultOption("Test Auto", m_simpleAuto.get());
     // AutoBuilder::buildAutoChooser();
@@ -105,7 +105,8 @@ RobotContainer::RobotContainer()  {
     m_fournote=PathPlannerAuto("4 Note Auton").ToPtr();
     m_bottompreload=PathPlannerAuto("Bottom Preload Auton").ToPtr();
     m_toppreload=PathPlannerAuto("Top Preload Auton").ToPtr();
- 
+    m_stationaryTest = PathPlannerAuto("Stationary Test").ToPtr();
+
     m_chooser.AddOption("Rotation Auto", m_RotationAuto.get());
     m_chooser.AddOption("Three Note Auton", m_threenote.get());
     m_chooser.AddOption("Mobility Auton", m_mobilityAuto.get());
@@ -114,6 +115,7 @@ RobotContainer::RobotContainer()  {
     m_chooser.AddOption("Four Note Auton", m_fournote.get());
     m_chooser.AddOption("Bottom Preload", m_bottompreload.get());
     m_chooser.AddOption("Top Preload", m_toppreload.get());
+    m_chooser.AddOption("Stationary Test", m_stationaryTest.get());
     
     frc::SmartDashboard::PutData(&m_chooser);
    
@@ -218,7 +220,6 @@ RobotContainer::RobotContainer()  {
                 if (m_superstructure.m_vision.isTagPresent()){
                     // if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
                         m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
-// 
                     // }
                 // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
                 }
@@ -241,18 +242,11 @@ RobotContainer::RobotContainer()  {
 
     m_LEDs.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_driverController.GetRawButtonPressed(Joystick::ButtonTwo)){ 
-                partyLights = !partyLights;
-                // down
-                    // m_superstructure.setArm(0.73);
-                    //m_LEDs.setColor(0.5);
-                    // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
-                    // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
-            }  
-            else if(m_superstructure.m_intake.noteHeld) {
+             
+            if(m_superstructure.m_intake.noteHeld) {
                 m_LEDs.setColor(0.61);
             }
-            else if(partyLights) {
+            else if(frc::SmartDashboard::GetBoolean("ShooterReady", false) == true) {
                 m_LEDs.setColor(-0.99);
             }
             else {
@@ -310,7 +304,7 @@ RobotContainer::RobotContainer()  {
             
             
             if (m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
-                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*1000);
+                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*500);
                 frc::SmartDashboard::PutNumber("rightTriggerAxis",m_operatorController.GetRawAxis(Controller::rightTrigger));
             }
             
