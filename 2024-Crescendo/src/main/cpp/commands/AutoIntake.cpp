@@ -11,10 +11,14 @@ AutoIntake::AutoIntake(Intake* intake)
 
 void AutoIntake::Initialize() {
     m_intake->setSpeed(0.4);
-    autoIntaking->SetBoolean(!(autoIntaking->GetBoolean(false)));
+// <<<<<<< cmfaw
+    frc::SmartDashboard::PutBoolean("SmartDashboard/Main Tab/autoIntaking", !(frc::SmartDashboard::GetBoolean("SmartDashboard/Main Tab/autoIntaking",false)));
+// =======
+//     autoIntaking->SetBoolean(!(autoIntaking->GetBoolean(false)));
     // frc::Shuffleboard::GetTab("Main Tab").Add("autoIntaking", !(frc::SmartDashboard::GetBoolean("autoIntaking",false)));
 }
-nt::GenericEntry *AutoIntake::getAutoI(){
-  return autoIntaking;
+// nt::GenericEntry *AutoIntake::getAutoI(){
+//   return autoIntaking;
+// >>>>>>> main
 }
 void AutoIntake::End(bool interrupted) {}

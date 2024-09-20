@@ -141,8 +141,12 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 
     double adjustedAngle = delta + curAngle.Radians().value();
     //
-    current->SetDouble(curAngle.Degrees().value());
+// <<<<<<< cmfaw
+     frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/current " + getName(m_driveMotor.GetDeviceId()), curAngle.Degrees().value());
+// =======
+//     current->SetDouble(curAngle.Degrees().value());
     
+// >>>>>>> main
     // However, I used setPositionPIDWrappingEnabled(), so I don't think this is needed
 
     // double adjustedAngle = optimizedState.angle.Radians().value();
@@ -150,8 +154,12 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
     // double adjustedPosition = optimizedState.angle.Degrees().value()/360; // turns it into a circle fraction
 
     // angle we want to go to
-    O->SetDouble(adjustedAngle);
+// <<<<<<< cmfaw
+    frc::SmartDashboard::PutNumber("SmartDashboard/Sweve/O " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
+// =======
+//     O->SetDouble(adjustedAngle);
 
+// >>>>>>> main
     m_steerController.SetReference((adjustedAngle), CANSparkBase::ControlType::kPosition);
 
     // m_driveController.SetReference(optimizedState.speed.value(),
@@ -164,15 +172,23 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 }
 
 void SwerveModule::Periodic() {
-    double v=std::abs(getDriveVelocity() / 12);
-    velocity->SetDouble(v);
-    
+// <<<<<<< cmfaw
+    frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/velocity " + getName(m_driveMotor.GetDeviceId()), abs(getDriveVelocity() / 12));
     // current angle based on the neo encoder
-    angle->SetDouble(getSteerPosition());
-    
+    frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/angle " + getName(m_driveMotor.GetDeviceId()), getSteerPosition());
     // print the absolute encoder reading
-    abs->SetDouble(m_absoluteEncoder.GetAbsolutePosition());
+    frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/" + getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition());
+// =======
+//     double v=std::abs(getDriveVelocity() / 12);
+//     velocity->SetDouble(v);
     
+//     // current angle based on the neo encoder
+//     angle->SetDouble(getSteerPosition());
+    
+//     // print the absolute encoder reading
+//     abs->SetDouble(m_absoluteEncoder.GetAbsolutePosition());
+    
+// >>>>>>> main
     // this is the absolute encoder reading minus the position offset
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " o abs", getAbsolutePosition()/pi2);    
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + "off", m_absoluteEncoder.GetPositionOffset());

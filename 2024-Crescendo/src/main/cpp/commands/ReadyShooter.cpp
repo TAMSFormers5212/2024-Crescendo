@@ -14,7 +14,11 @@ ReadyShooter::ReadyShooter(Shooter* grabber)
 void ReadyShooter::Initialize() {
     //m_shooter->setPercent(0.95);
     m_shooter->setSpeed(300);
+// <<<<<<< cmfaw
+    frc::SmartDashboard::PutBoolean("SmartDashboard/Main Tab/autoShooting",true);
+// =======
     
+// >>>>>>> main
     //m_shooter->enterAuto();
     // frc2::WaitCommand(4_s);
 
@@ -30,12 +34,16 @@ void ReadyShooter::Initialize() {
 void ReadyShooter::Periodic(){
     //m_shooter->setPercent(0.95);
     m_shooter->setSpeed(300);
-    autoShooting->SetBoolean(true);
+// <<<<<<< cmfaw
+    frc::SmartDashboard::PutBoolean("SmartDashboard/Main Tab/autoShooting",true);
+// =======
+//     autoShooting->SetBoolean(true);
     // frc::Shuffleboard::GetTab("Main Tab").Add("autoShooting",true);
 }
 
-nt::GenericEntry *ReadyShooter::getAutoS(){
-  return autoShooting;
-}
+// nt::GenericEntry *ReadyShooter::getAutoS(){
+//   return autoShooting;
+// >>>>>>> main
+// }
 
 void ReadyShooter::End(bool interrupted) {}

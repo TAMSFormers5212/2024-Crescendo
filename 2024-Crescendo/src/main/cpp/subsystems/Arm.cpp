@@ -173,12 +173,20 @@ void Arm::Periodic() {
         
     // m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);
 
-    armP->SetDouble(getPosition());
-    armPosition->SetDouble(position);
-    arm->SetDouble(getRelativePosition());
-    armRaw->SetDouble(getRelativePosition());
-    armOffset->SetDouble(m_absoluteEncoder.GetPositionOffset());
+// <<<<<<< cmfaw
+    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/arm p", getPosition());
+    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/arm position", position);
+    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/arm", getRelativePosition());
+    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/armRaw ", getRawPosition());
+    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/arm offset ", m_absoluteEncoder.GetPositionOffset());
+// =======
+//     armP->SetDouble(getPosition());
+//     armPosition->SetDouble(position);
+//     arm->SetDouble(getRelativePosition());
+//     armRaw->SetDouble(getRelativePosition());
+//     armOffset->SetDouble(m_absoluteEncoder.GetPositionOffset());
     
+// >>>>>>> main
     // frc::SmartDashboard::PutNumber("armPos", position);
     // frc::SmartDashboard::PutNumber("armNoRotation ", abs(m_absoluteEncoder.GetAbsolutePosition()-0.75)*pi2);
  
