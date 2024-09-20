@@ -9,7 +9,7 @@
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <units/voltage.h>
 
-
+#include <frc/shuffleboard/Shuffleboard.h>
 #include <rev/CANSparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <rev/SparkPIDController.h>

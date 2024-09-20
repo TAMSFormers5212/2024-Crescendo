@@ -1,5 +1,6 @@
 #include "subsystems/Shooter.h"
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/shuffleboard/Shuffleboard.h>
 using namespace ShooterConstants;
 using namespace PoseConstants;
 
@@ -96,11 +97,21 @@ void Shooter::Periodic(){
     else{
         shooterGood=false;
     }
+// <<<<<<< cmfaw
     frc::SmartDashboard::PutNumber("SmartDashboard/Shooter/l speed", getleftSpeed());
     frc::SmartDashboard::PutNumber("SmartDashboard/Shooter/r speed", getrightSpeed());
     //frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
     frc::SmartDashboard::PutBoolean("SmartDashboard/Shooter/inAuto", inAuto);
     frc::SmartDashboard::PutBoolean("SmartDashboard/Competition/ShooterReady", shooterGood);
+// =======
+//     lSpeed->SetDouble(getleftSpeed());
+//     rSpeed->SetDouble(getrightSpeed());
+    
+//     //frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
+//     inAutoS->SetBoolean(inAuto);
+//     shooterReady->SetBoolean(shooterGood);
+    
+// >>>>>>> main
     // frc::SmartDashboard::PutNumber("l output", m_leftMotor.GetOutputCurrent());
     // frc::SmartDashboard::PutNumber("l volt", m_leftMotor.GetAppliedOutput());
 }

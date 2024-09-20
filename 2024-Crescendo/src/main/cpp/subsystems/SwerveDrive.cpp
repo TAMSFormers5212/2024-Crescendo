@@ -12,6 +12,7 @@
 #include <frc/smartdashboard/Field2d.h>
 
 #include <iostream>
+#include <frc/shuffleboard/Shuffleboard.h>
 
 using namespace SwerveModuleConstants;
 using namespace MathConstants;
@@ -146,8 +147,13 @@ void SwerveDrive::resetOdometry(const frc::Pose2d pose) {
     }
     auto newPose = frc::Pose2d(pose.Translation(), temp);
     
+// <<<<<<< cmfaw
     frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/pos rot", newPose.Rotation().Degrees().value());
     frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/gyro heading", getGyroHeading2().Degrees().value());
+// =======
+//     frc::Shuffleboard::GetTab("Swerve").Add("pos rot", newPose.Rotation().Degrees().value());
+//     frc::Shuffleboard::GetTab("Swerve").Add("gyro heading", getGyroHeading2().Degrees().value());
+// >>>>>>> main
     //frc::SmartDashboard::PutNumber("heading", heading.Degrees().value());
       // resets the odometry and pose estimator to given pose
     
@@ -264,6 +270,7 @@ void SwerveDrive::Periodic() {
     // if(sqrt(getRobotRelativeSpeeds().vx.value()*getRobotRelativeSpeeds().vx.value()+getRobotRelativeSpeeds().vy.value()*getRobotRelativeSpeeds().vy.value())<=VisionConstants::stableSpeed){
     //     //if robot is moving slow enough, add vision pose to estimator
     // }
+// <<<<<<< cmfaw
     frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/gyro angle", fmod(m_gyro.GetAngle(), 360));
     frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/gyro angle2", -getGyroHeading2().Degrees().value());
     frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/x", AveragePose().X().value());
@@ -273,6 +280,17 @@ void SwerveDrive::Periodic() {
     frc::SmartDashboard::PutNumber("SmartDashboard/Swerve/Gyro", m_gyro.GetAngle());
     frc::Field2d m_field;
     frc::SmartDashboard::PutData("SmartDashboard/Swerve/robot pos", &m_field);
+// =======
+//     frc::Shuffleboard::GetTab("Swerve").Add("gyro angle", fmod(m_gyro.GetAngle(), 360));
+//     frc::Shuffleboard::GetTab("Swerve").Add("gyro angle2", -getGyroHeading2().Degrees().value());
+//     frc::Shuffleboard::GetTab("Swerve").Add("x", AveragePose().X().value());
+//     frc::Shuffleboard::GetTab("Swerve").Add("y", AveragePose().Y().value());
+    
+//     frc::Shuffleboard::GetTab("Swerve").Add("rot", AveragePose().Rotation().Degrees().value());
+//     // frc::SmartDashboard::PutNumber("Gyro", m_gyro.GetAngle());
+//     frc::Field2d m_field;
+//     frc::Shuffleboard::GetTab("Swerve").Add("robot pos", &m_field);
+// >>>>>>> main
     m_field.SetRobotPose(AveragePose());
     
 }   

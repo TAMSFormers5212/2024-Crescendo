@@ -5,7 +5,7 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "subsystems/SwerveDrive.h"
-
+#include <frc/shuffleboard/Shuffleboard.h>
 class StopDrive : public frc2::CommandHelper<frc2::Command, StopDrive> {
 public:
     explicit StopDrive(SwerveDrive* drive);

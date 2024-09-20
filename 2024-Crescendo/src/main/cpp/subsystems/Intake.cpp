@@ -7,6 +7,7 @@
 #include <cmath>
 #include <iostream>
 #include <frc/DigitalInput.h>
+#include <frc/shuffleboard/Shuffleboard.h>
 
 using namespace IntakeConstants;
 using namespace rev;
@@ -116,6 +117,10 @@ void Intake::Periodic() {
         noteHeld= false;
         //m_LEDs.setColor(0.77);
     }
+// <<<<<<< cmfaw
     frc::SmartDashboard::PutBoolean("SmartDashboard/Competition/holding note", noteHeld);
+// =======
+//     frc::Shuffleboard::GetTab("Competition View").Add("holding note", noteHeld);
+// >>>>>>> main
     // frc::SmartDashboard::PutNumber("intakeCurrent", m_intakeMotor.GetOutputCurrent());
 }

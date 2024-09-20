@@ -18,6 +18,7 @@
 #include <frc2/command/sysid/SysIdRoutine.h>
 #include <Constants.h>
 #include <frc/controller/SimpleMotorFeedforward.h>
+#include <frc/shuffleboard/Shuffleboard.h>
 
 using namespace std;
 using namespace rev;
@@ -67,6 +68,11 @@ private:
     double avgSho;
     units::meters_per_second_t m_goalSpeed{0};
 
+    nt::GenericEntry* lSpeed = frc::Shuffleboard::GetTab("Main Tab").AddPersistent("l speed", getleftSpeed()).GetEntry("double");
+    nt::GenericEntry* rSpeed =frc::Shuffleboard::GetTab("Main Tab").AddPersistent("r speed", getrightSpeed()).GetEntry("double");
+    //frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
+    nt::GenericEntry* inAutoS = frc::Shuffleboard::GetTab("Main Tab").AddPersistent("inAuto", false).GetEntry("boolean");
+    nt::GenericEntry* shooterReady = frc::Shuffleboard::GetTab("Competition View").AddPersistent("ShooterReady", false).GetEntry("boolean");
     //  frc2::sysid::SysIdRoutine m_sysIdRoutine{
     //   frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt,
     //                       std::nullopt},
