@@ -7,6 +7,7 @@
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableInstance.h"
 #include "networktables/NetworkTableValue.h"
+#include <frc/shuffleboard/Shuffleboard.h>
 
 using namespace VisionConstants;
 using namespace MathConstants;
@@ -80,9 +81,16 @@ void VisionSubsystem::Periodic() {
     
 
     //frc::SmartDashboard::PutNumber("up angle", targetOffsetAngle_Vertical);
-    frc::SmartDashboard::PutNumber("distance", distanceFromLimelightToGoalInches);
+// <<<<<<< cmfaw
+    frc::SmartDashboard::PutNumber("SmartDashboard/Limelight/distance", distanceFromLimelightToGoalInches);
     // frc::SmartDashboard::PutNumber("actualdistance", distanceFromCenterToGoalInches);
-    frc::SmartDashboard::PutNumber("id", id);
+    frc::SmartDashboard::PutNumber("SmartDashboard/Limelight/id", id);
+// =======
+//     distanceS->SetDouble(distanceFromLimelightToGoalInches);
+    
+//     // frc::SmartDashboard::PutNumber("actualdistance", distanceFromCenterToGoalInches);
+    
+// >>>>>>> main
     double targetOffsetAngle_Horizontal = table->GetNumber("tx", 0.0);
     double heading_error = targetOffsetAngle_Horizontal;//+VisionConstants::subWooferAngleOffset;//asin(VisionConstants::limelightHorizontalOffset.value()/distanceFromLimelightToGoalInches);
     // pid.SetSetpoint(0);
