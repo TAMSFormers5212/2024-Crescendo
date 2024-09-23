@@ -12,6 +12,7 @@
 #include <frc/smartdashboard/Field2d.h>
 
 #include <iostream>
+#include <frc/shuffleboard/Shuffleboard.h>
 
 using namespace SwerveModuleConstants;
 using namespace MathConstants;

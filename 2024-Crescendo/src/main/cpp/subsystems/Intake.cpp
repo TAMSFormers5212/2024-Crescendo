@@ -7,6 +7,7 @@
 #include <cmath>
 #include <iostream>
 #include <frc/DigitalInput.h>
+#include <frc/shuffleboard/Shuffleboard.h>
 
 using namespace IntakeConstants;
 using namespace rev;

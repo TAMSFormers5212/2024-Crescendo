@@ -1,6 +1,8 @@
 
 #include "commands/ReadyShooter.h"
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <networktables/GenericEntry.h>
 
 ReadyShooter::ReadyShooter(Shooter* grabber) 
     : m_shooter(grabber) {

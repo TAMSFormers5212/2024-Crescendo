@@ -1,5 +1,6 @@
 #include "subsystems/Shooter.h"
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/shuffleboard/Shuffleboard.h>
 using namespace ShooterConstants;
 using namespace PoseConstants;
 
