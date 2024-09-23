@@ -18,6 +18,7 @@ void StopShooter::Initialize() {
     //m_shooter->exitAuto();
     frc::SmartDashboard::PutBoolean("SmartDashboard/Main Tab/autoShooting",false);
     frc::SmartDashboard::PutBoolean("SmartDashboard/Main Tab/autoIntaking",false);
+
 }
 
 void StopShooter::End(bool interrupted) {}
