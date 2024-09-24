@@ -116,6 +116,6 @@ void Intake::Periodic() {
         noteHeld= false;
         //m_LEDs.setColor(0.77);
     }
-    frc::SmartDashboard::PutBoolean("SmartDashboard/Competition/holding note", noteHeld);
+    frc::SmartDashboard::PutBoolean("holding note", noteHeld);
     // frc::SmartDashboard::PutNumber("intakeCurrent", m_intakeMotor.GetOutputCurrent());
 }

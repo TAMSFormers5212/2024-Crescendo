@@ -172,11 +172,11 @@ void Arm::Periodic() {
         
     // m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);
 
-    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/arm p", getPosition());
-    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/arm position", position);
-    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/arm", getRelativePosition());
-    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/armRaw ", getRawPosition());
-    frc::SmartDashboard::PutNumber("SmartDashboard/Arm/arm offset ", m_absoluteEncoder.GetPositionOffset());
+    frc::SmartDashboard::PutNumber("arm p", getPosition());
+    frc::SmartDashboard::PutNumber("arm position", position);
+    frc::SmartDashboard::PutNumber("arm", getRelativePosition());
+    frc::SmartDashboard::PutNumber("armRaw ", getRawPosition());
+    frc::SmartDashboard::PutNumber("arm offset ", m_absoluteEncoder.GetPositionOffset());
     // frc::SmartDashboard::PutNumber("armPos", position);
     // frc::SmartDashboard::PutNumber("armNoRotation ", abs(m_absoluteEncoder.GetAbsolutePosition()-0.75)*pi2);
  

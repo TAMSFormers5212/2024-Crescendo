@@ -96,11 +96,11 @@ void Shooter::Periodic(){
     else{
         shooterGood=false;
     }
-    frc::SmartDashboard::PutNumber("SmartDashboard/Shooter/l speed", getleftSpeed());
-    frc::SmartDashboard::PutNumber("SmartDashboard/Shooter/r speed", getrightSpeed());
+    frc::SmartDashboard::PutNumber("l speed", getleftSpeed());
+    frc::SmartDashboard::PutNumber("r speed", getrightSpeed());
     //frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
-    frc::SmartDashboard::PutBoolean("SmartDashboard/Shooter/inAuto", inAuto);
-    frc::SmartDashboard::PutBoolean("SmartDashboard/Competition/ShooterReady", shooterGood);
+    frc::SmartDashboard::PutBoolean("inAuto", inAuto);
+    frc::SmartDashboard::PutBoolean("ShooterReady", shooterGood);
     // frc::SmartDashboard::PutNumber("l output", m_leftMotor.GetOutputCurrent());
     // frc::SmartDashboard::PutNumber("l volt", m_leftMotor.GetAppliedOutput());
 }

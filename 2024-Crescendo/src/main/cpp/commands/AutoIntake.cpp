@@ -10,6 +10,6 @@ AutoIntake::AutoIntake(Intake* intake)
 
 void AutoIntake::Initialize() {
     m_intake->setSpeed(0.4);
-    frc::SmartDashboard::PutBoolean("SmartDashboard/Main Tab/autoIntaking", !(frc::SmartDashboard::GetBoolean("SmartDashboard/Main Tab/autoIntaking",false)));
+    frc::SmartDashboard::PutBoolean("autoIntaking", !(frc::SmartDashboard::GetBoolean("autoIntaking",false)));
 }
 void AutoIntake::End(bool interrupted) {}
