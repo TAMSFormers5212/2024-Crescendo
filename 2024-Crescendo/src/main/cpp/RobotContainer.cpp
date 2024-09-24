@@ -216,10 +216,10 @@ RobotContainer::RobotContainer()  {
             if (m_operatorController.GetRawAxis(Controller::leftTrigger)>0.05){
                 m_superstructure.m_vision.setLedOn(3);
                 if (m_superstructure.m_vision.isTagPresent()){
-                    if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
+                    // if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
                         m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
-
-                    }
+// 
+                    // }
                 // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
                 }
             }

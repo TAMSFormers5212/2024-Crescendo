@@ -335,7 +335,7 @@ namespace VisionConstants{
 
     constexpr units::inch_t limelightHeight = 16.5_in; // get a more precise number
 
-    constexpr double limelightAngleback = 66.1;//degrees tilted back
+    constexpr double limelightAngleback = 65.7;//degrees tilted back
     constexpr double limelightAngleAboveHorizontal= 23.9; // why this number?
     //constexpr double limelightToCenter = 9.75_in;
     constexpr units::inch_t limelightToFrame = 1.5_in;
