@@ -1,7 +1,6 @@
 
 #include "commands/AutoIntake.h"
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <frc/shuffleboard/Shuffleboard.h>
 
 AutoIntake::AutoIntake(Intake* intake) 
     : m_intake(intake) {

@@ -18,7 +18,7 @@
 #include <frc/kinematics/ChassisSpeeds.h>
 #include <frc/DriverStation.h>
 #include <frc/controller/PIDController.h>
-#include <frc/shuffleboard/Shuffleboard.h>
+
 #include "SwerveModule.h"
 #include <AHRS.h>
 

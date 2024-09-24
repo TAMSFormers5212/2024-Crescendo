@@ -5,7 +5,7 @@
 
 #include "subsystems/SwerveDrive.h"
 #include <subsystems/Shooter.h>
-#include <frc/shuffleboard/Shuffleboard.h>
+
 #include <subsystems/Intake.h>
 #include <subsystems/Arm.h>
 class AutoIntake : public frc2::CommandHelper<frc2::Command, AutoIntake> {
@@ -14,10 +14,9 @@ public:
 
     void Initialize() override;
 
-    nt::GenericEntry *getAutoI();
     void End(bool interrupted) override;
 
 private:
-    nt::GenericEntry* autoIntaking = frc::Shuffleboard::GetTab("Main Tab").AddPersistent("autoIntaking",true).GetEntry("boolean");
+    
     Intake* m_intake;
 };

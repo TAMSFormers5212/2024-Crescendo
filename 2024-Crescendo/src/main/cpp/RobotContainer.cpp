@@ -29,7 +29,6 @@
 #include <pathplanner/lib/auto/NamedCommands.h>
 
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <frc/shuffleboard/Shuffleboard.h>
 #include <frc2/command/Commands.h>
 #include "commands/Auto.h"
 #include <frc/smartdashboard/SendableChooser.h>
@@ -51,9 +50,6 @@
 #include <frc/geometry/Rotation2d.h>
 #include <commands/ExitAuton.h>
 #include <commands/StopIntake.h>
-#include <networktables/GenericEntry.h>
-#include <networktables/GenericEntry.inc>
-#include <networktables/Topic.h>
 
 
 
@@ -65,8 +61,6 @@ using namespace frc2;
 using namespace OIConstants;
 
 RobotContainer::RobotContainer()  {
-    
-
     NamedCommands::registerCommand("Arm Lower", /*frc2::cmd::Print("Hello"));*//*frc2::ParallelRaceGroup{frc2::WaitCommand(4_s), */std::move(ArmLower(&m_superstructure.m_arm).ToPtr()));
     NamedCommands::registerCommand("Test Command", frc2::cmd::Print("passed marker 1"));
     NamedCommands::registerCommand("Reverse Shooter", ReverseShooter(&m_superstructure.m_shooter).ToPtr());
@@ -99,7 +93,6 @@ RobotContainer::RobotContainer()  {
      ConfigureBindings(); 
     frc::SmartDashboard::PutBoolean("SmartDasboard/Main Tab/autoIntaking",false);
     
-    autoIntaking->SetBoolean(false);
     // SendableChooser<Command> autoChooser = AutoBuilder::buildAuto; 
     m_simpleAuto = PathPlannerAuto("Test Auto").ToPtr();
     m_chooser.SetDefaultOption("Test Auto", m_simpleAuto.get());
@@ -122,9 +115,8 @@ RobotContainer::RobotContainer()  {
     m_chooser.AddOption("Bottom Preload", m_bottompreload.get());
     m_chooser.AddOption("Top Preload", m_toppreload.get());
     
-    frc::Shuffleboard::GetTab("Competition View").Add("Auto Chooser", &m_chooser);
+    frc::SmartDashboard::PutData(&m_chooser);
    
-    
     ConfigureBindings(); 
     m_drive.SetDefaultCommand(RunCommand(
         [this] {
@@ -224,10 +216,10 @@ RobotContainer::RobotContainer()  {
             if (m_operatorController.GetRawAxis(Controller::leftTrigger)>0.05){
                 m_superstructure.m_vision.setLedOn(3);
                 if (m_superstructure.m_vision.isTagPresent()){
-                    // if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
+                    if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
                         m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
 
-                    // }
+                    }
                 // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
                 }
             }

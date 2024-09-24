@@ -17,7 +17,7 @@
 
 #include <Constants.h>
 #include <frc/DigitalInput.h>
-#include <frc/shuffleboard/Shuffleboard.h>
+
 using namespace std;
 using namespace rev;
 

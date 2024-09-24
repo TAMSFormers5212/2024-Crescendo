@@ -1,9 +1,7 @@
 
 #include "commands/StopShooter.h"
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <frc/shuffleboard/Shuffleboard.h>
-#include "commands/ReadyShooter.h"
-#include "commands/AutoIntake.h"
+
 StopShooter::StopShooter(Shooter* grabber, Intake* intake) 
     : m_shooter(grabber), m_intake(intake) {
   

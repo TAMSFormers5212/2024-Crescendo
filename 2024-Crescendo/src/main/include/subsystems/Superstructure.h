@@ -22,7 +22,6 @@
 #include "Winch.h"
 #include "VisionSubsystem.h"
 
-#include <frc/shuffleboard/Shuffleboard.h>
 using namespace std;
 using namespace PoseConstants;
 

@@ -12,7 +12,7 @@
 #include <rev/SparkPIDController.h>
 
 #include <frc/AnalogEncoder.h>
-#include <frc/shuffleboard/Shuffleboard.h>
+
 #include <Constants.h>
 
 using namespace rev;

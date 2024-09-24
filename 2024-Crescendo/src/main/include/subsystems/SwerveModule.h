@@ -9,7 +9,7 @@
 #include <frc/kinematics/SwerveModuleState.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/AnalogEncoder.h>
-#include <frc/shuffleboard/Shuffleboard.h>
+
 
 #include <Constants.h>
 
@@ -54,10 +54,4 @@ private:
     frc::AnalogEncoder m_absoluteEncoder;
 
     std::string m_moduleName;
-    nt::GenericEntry* steerNum=frc::Shuffleboard::GetTab("Swerve").AddPersistent("steer num", units::radian_t{getSteerPosition()}.value()).GetEntry("double");
-    nt::GenericEntry* current=frc::Shuffleboard::GetTab("Swerve").AddPersistent("current " + getName(m_driveMotor.GetDeviceId()), 0).GetEntry("double");
-    nt::GenericEntry* O = frc::Shuffleboard::GetTab("Swerve").AddPersistent("O " + getName(m_driveMotor.GetDeviceId()), 0).GetEntry("double");
-    nt::GenericEntry* velocity = frc::Shuffleboard::GetTab("Swerve").AddPersistent("velocity " + getName(m_driveMotor.GetDeviceId()), 0).GetEntry("double");
-    nt::GenericEntry* angle =frc::Shuffleboard::GetTab("Swerve").AddPersistent("angle " + getName(m_driveMotor.GetDeviceId()), getSteerPosition()).GetEntry("double");
-    nt::GenericEntry* abs = frc::Shuffleboard::GetTab("Swerve").AddPersistent(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition()).GetEntry("double");
 };

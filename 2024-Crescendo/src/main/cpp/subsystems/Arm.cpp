@@ -5,7 +5,6 @@
 
 #include <cmath>
 #include <iostream>
-#include <frc/shuffleboard/Shuffleboard.h>
 
 using namespace ArmConstants;
 using namespace rev;

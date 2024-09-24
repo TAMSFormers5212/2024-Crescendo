@@ -13,7 +13,7 @@
 #include "networktables/NetworkTableInstance.h"
 #include "networktables/NetworkTableValue.h"
 #include <cameraserver/CameraServer.h>
-#include <frc/shuffleboard/Shuffleboard.h>
+
 using namespace SwerveModuleConstants;
 
 class VisionSubsystem : public frc2::SubsystemBase {
@@ -59,6 +59,4 @@ class VisionSubsystem : public frc2::SubsystemBase {
     int ledOn;
     int tagID;
     bool tagPresent;
-    nt::GenericEntry* distanceS = frc::Shuffleboard::GetTab("Limelight").AddPersistent("distance", 0).GetEntry("double");
-    nt::GenericEntry* id = frc::Shuffleboard::GetTab("Limelight").AddPersistent("id", 0).GetEntry("double");
 };

@@ -7,7 +7,6 @@
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableInstance.h"
 #include "networktables/NetworkTableValue.h"
-#include <frc/shuffleboard/Shuffleboard.h>
 
 using namespace VisionConstants;
 using namespace MathConstants;

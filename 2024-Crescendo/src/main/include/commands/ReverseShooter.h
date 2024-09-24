@@ -6,7 +6,7 @@
 
 #include "subsystems/SwerveDrive.h"
 #include <subsystems/Shooter.h>
-#include <frc/shuffleboard/Shuffleboard.h>
+
 #include <subsystems/Intake.h>
 #include <subsystems/Arm.h>
 
