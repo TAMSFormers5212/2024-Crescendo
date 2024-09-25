@@ -65,6 +65,7 @@ public:
     double getleftShooterSpeed();
     double getrightShooterSpeed();
     double getShooterSpeed();
+
     std::pair<double, double> linearRegression(const std::vector<double>& x, const std::vector<double>& y) {
         int n = x.size();
         double sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
@@ -81,6 +82,7 @@ public:
 
         return std::make_pair(slope, intercept);
     }
+    
     void Periodic() override;
 
     VisionSubsystem m_vision;    

@@ -11,6 +11,7 @@
 #include "wpi/DataLog.h"
 #include "frc/DriverStation.h"
 #include <cscore_oo.h>
+
 #include <cscore_cpp.h>
 
 //#include <LEDController.h>
@@ -74,6 +75,7 @@ void Robot::TeleopInit() {
        
        (*m_autonomousCommand)->Cancel();
     }
+    m_container.m_superstructure.m_shooter.exitAuto();
 }
 
 void Robot::TeleopPeriodic() {

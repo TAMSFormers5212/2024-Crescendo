@@ -56,6 +56,8 @@ void Shooter::setPercent(double percent){
 }
 void Shooter::exitAuto() {
     inAuto = false;
+    frc::SmartDashboard::PutBoolean("autoIntaking", false);
+    frc::SmartDashboard::PutBoolean("autoShooting", false);
 }
 void Shooter::enterAuto() {
     inAuto = true;
