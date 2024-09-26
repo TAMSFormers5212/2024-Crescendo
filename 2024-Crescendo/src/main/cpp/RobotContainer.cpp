@@ -215,12 +215,18 @@ RobotContainer::RobotContainer()  {
         [this] {
             if (m_operatorController.GetRawAxis(Controller::leftTrigger)>0.05){
                 m_superstructure.m_vision.setLedOn(3);
+                double speedMultiplierTemp=speedMultiplier;
                 if (m_superstructure.m_vision.isTagPresent()){
                     // if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
                         m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
+                    
+                        speedMultiplier = speedMultiplier/2;
 // 
                     // }
                 // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
+                }
+                else{
+                    speedMultiplier = speedMultiplierTemp;
                 }
             }
             else if (m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2) && !m_operatorController.GetRawButton(Controller::X) && !(frc::SmartDashboard::GetBoolean("autoShooting",false))) {
@@ -250,7 +256,13 @@ RobotContainer::RobotContainer()  {
                     // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
             }  
             else if(m_superstructure.m_intake.noteHeld) {
-                m_LEDs.setColor(0.61);
+               
+                if (m_superstructure.m_shooter.shooterGood){
+                    m_LEDs.setColor(0.88);
+                }
+                else {
+                    m_LEDs.setColor(0.61);
+                }
             }
             else if(partyLights) {
                 m_LEDs.setColor(-0.99);
@@ -310,7 +322,7 @@ RobotContainer::RobotContainer()  {
             
             
             if (m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
-                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*1000);
+                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*600);
                 frc::SmartDashboard::PutNumber("rightTriggerAxis",m_operatorController.GetRawAxis(Controller::rightTrigger));
             }
             
@@ -413,7 +425,7 @@ void RobotContainer::ConfigureBindings() {
     JoystickButton controllerX(&m_operatorController, Controller::X);
     joystickEleven.OnTrue(frc2::ParallelRaceGroup{frc2::WaitCommand(0.01_s), AutoIntake(&m_superstructure.m_intake)}.ToPtr());
     controllerX.OnTrue(frc2::SequentialCommandGroup{frc2::ParallelRaceGroup{
-                ReadyShooter(&m_superstructure.m_shooter),
+                ReadyShooter(&m_superstructure.m_shooter, 100),
                 frc2::SequentialCommandGroup{frc2::WaitCommand(1.1_s), AutoIntake(&m_superstructure.m_intake)},
                 frc2::WaitCommand(1.5_s)
               }, frc2::ParallelRaceGroup{StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake), frc2::WaitCommand(0.1_s)}}.ToPtr());

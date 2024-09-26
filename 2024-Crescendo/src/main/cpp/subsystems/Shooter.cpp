@@ -79,6 +79,9 @@ double Shooter::getrightSpeed(){
 double Shooter::getleftSpeed(){
     return m_leftEncoder.GetVelocity();
 }
+bool Shooter::isShooterGood(){
+    return shooterGood; 
+}
 // frc2::CommandPtr Shooter::SysIdQuasistatic(frc2::sysid::Direction direction) {
 //   return m_sysIdRoutine.Quasistatic(direction);
 // }
@@ -100,7 +103,7 @@ void Shooter::Periodic(){
     }
     frc::SmartDashboard::PutNumber("l speed", getleftSpeed());
     frc::SmartDashboard::PutNumber("r speed", getrightSpeed());
-    //frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
+    frc::SmartDashboard::PutNumber("goal speed", m_goalSpeed.value());
     frc::SmartDashboard::PutBoolean("inAuto", inAuto);
     frc::SmartDashboard::PutBoolean("ShooterReady", shooterGood);
     // frc::SmartDashboard::PutNumber("l output", m_leftMotor.GetOutputCurrent());

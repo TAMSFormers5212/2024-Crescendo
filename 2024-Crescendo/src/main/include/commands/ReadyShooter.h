@@ -12,7 +12,7 @@
 
 class ReadyShooter : public frc2::CommandHelper<frc2::Command, ReadyShooter> {
 public:
-    explicit ReadyShooter(Shooter* grabber);
+    explicit ReadyShooter(Shooter* grabber, double speedIn = 500);
     
 
     void Initialize() override;
@@ -22,5 +22,5 @@ public:
 
 private:
     Shooter* m_shooter;
-
+    double speed;
 };
