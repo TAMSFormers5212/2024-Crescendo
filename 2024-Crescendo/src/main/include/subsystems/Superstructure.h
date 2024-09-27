@@ -112,7 +112,7 @@ public:
     //distances are in inches
     vector<double> distances = {24, 36, 41, 48, 54, 60, 66, 72, 78, 84, 96, 111};
     vector<double> angles = { 0.225,0.258, 0.261, 0.308, 0.358, 0.416, 0.452, 0.493, 0.508,  0.526, 0.585, 0.610};
-    vector<double> speeds = { 400,440, 480, 520, 540, 560,561, 570, 575, 590, 600, 700};
+    vector<double> speeds = { 400,440, 480, 520, 540, 560,561, 570, 575, 590, 600, 600};
     pair<double,double> slopeIntercept = linearRegression(distances,angles);
 
     double slope = slopeIntercept.first; //0.00459423;

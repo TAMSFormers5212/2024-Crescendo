@@ -26,6 +26,9 @@ void Robot::RobotInit() {
     usbCam = frc::CameraServer::StartAutomaticCapture("depth perceptionator 1", 1); //usb back camera
     usbCam.SetResolution(160, 120);
     usbCam.SetFPS(45);
+    usbCam.SetPixelFormat(cs::VideoMode::kMJPEG);
+    usbCam.SetExposureManual(10);
+    usbCam.SetWhiteBalanceManual(50);
     
     
 

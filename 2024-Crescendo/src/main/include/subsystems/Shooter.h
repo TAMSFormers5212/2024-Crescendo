@@ -40,7 +40,8 @@ public:
     void exitAuto();
     void enterAuto();
     double getrightSpeed();
-
+    bool isShooterGood();
+    bool shooterGood;
     // frc2::CommandPtr SysIdQuasistatic(frc2::sysid::Direction direction);
     // frc2::CommandPtr SysIdDynamic(frc2::sysid::Direction direction);
 
@@ -63,7 +64,7 @@ private:
     SimpleMotorFeedforward<units::meters> m_rightFF;
 
     bool inAuto;
-    bool shooterGood;
+    
     double avgSho;
     units::meters_per_second_t m_goalSpeed{0};
 

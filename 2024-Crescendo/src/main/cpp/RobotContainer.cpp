@@ -98,7 +98,7 @@ RobotContainer::RobotContainer()  {
     m_chooser.SetDefaultOption("Test Auto", m_simpleAuto.get());
     // AutoBuilder::buildAutoChooser();
     m_RotationAuto=PathPlannerAuto("Rotation Auto").ToPtr();
-    m_twonote=PathPlannerAuto("2 Note Auton Auto Aim").ToPtr();
+    m_twonote=PathPlannerAuto("2 Note Auton").ToPtr();
     m_threenote=PathPlannerAuto("3 Note Auton").ToPtr();
     m_mobilityAuto=PathPlannerAuto("Mobility auto").ToPtr();
     m_threenotebottom=PathPlannerAuto("3 Note Bottom Auton").ToPtr();
@@ -217,11 +217,18 @@ RobotContainer::RobotContainer()  {
         [this] {
             if (m_operatorController.GetRawAxis(Controller::leftTrigger)>0.05){
                 m_superstructure.m_vision.setLedOn(3);
+                double speedMultiplierTemp=speedMultiplier;
                 if (m_superstructure.m_vision.isTagPresent()){
                     // if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
                         m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
+                    
+                        speedMultiplier = speedMultiplier/2;
+// 
                     // }
                 // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
+                }
+                else{
+                    speedMultiplier = speedMultiplierTemp;
                 }
             }
             else if (m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2) && !m_operatorController.GetRawButton(Controller::X) && !(frc::SmartDashboard::GetBoolean("autoShooting",false))) {
@@ -242,8 +249,15 @@ RobotContainer::RobotContainer()  {
 
     m_LEDs.SetDefaultCommand(RunCommand(
         [this] {
-             
-            if(m_superstructure.m_intake.noteHeld) {
+            if(m_driverController.GetRawButtonPressed(Joystick::ButtonTwo)){ 
+                partyLights = !partyLights;
+                // down
+                    // m_superstructure.setArm(0.73);
+                    //m_LEDs.setColor(0.5);
+                    // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
+                    // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
+            }  
+            else if(m_superstructure.m_intake.noteHeld) {
                 m_LEDs.setColor(0.61);
             }
             else if(frc::SmartDashboard::GetBoolean("ShooterReady", false) == true) {
@@ -252,6 +266,7 @@ RobotContainer::RobotContainer()  {
             else {
                 m_LEDs.setColor(0.77);
             }
+
 
         }, {&m_LEDs}
 
@@ -304,7 +319,7 @@ RobotContainer::RobotContainer()  {
             
             
             if (m_operatorController.GetRawAxis(Controller::rightTrigger)>0.05){
-                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*500);
+                m_superstructure.m_shooter.setSpeed(m_operatorController.GetRawAxis(Controller::rightTrigger)*600);
                 frc::SmartDashboard::PutNumber("rightTriggerAxis",m_operatorController.GetRawAxis(Controller::rightTrigger));
             }
             
@@ -407,7 +422,7 @@ void RobotContainer::ConfigureBindings() {
     JoystickButton controllerX(&m_operatorController, Controller::X);
     joystickEleven.OnTrue(frc2::ParallelRaceGroup{frc2::WaitCommand(0.01_s), AutoIntake(&m_superstructure.m_intake)}.ToPtr());
     controllerX.OnTrue(frc2::SequentialCommandGroup{frc2::ParallelRaceGroup{
-                ReadyShooter(&m_superstructure.m_shooter),
+                ReadyShooter(&m_superstructure.m_shooter, 400),
                 frc2::SequentialCommandGroup{frc2::WaitCommand(1.1_s), AutoIntake(&m_superstructure.m_intake)},
                 frc2::WaitCommand(1.5_s)
               }, frc2::ParallelRaceGroup{StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake), frc2::WaitCommand(0.1_s)}}.ToPtr());
