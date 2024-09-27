@@ -249,20 +249,21 @@ RobotContainer::RobotContainer()  {
 
     m_LEDs.SetDefaultCommand(RunCommand(
         [this] {
-            if(m_driverController.GetRawButtonPressed(Joystick::ButtonTwo)){ 
-                partyLights = !partyLights;
-                // down
-                    // m_superstructure.setArm(0.73);
-                    //m_LEDs.setColor(0.5);
-                    // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
-                    // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
-            }  
+            // if(m_driverController.GetRawButtonPressed(Joystick::ButtonTwo)){ 
+            //     partyLights = !partyLights;
+            //     // down
+            //         // m_superstructure.setArm(0.73);
+            //         //m_LEDs.setColor(0.5);
+            //         // m_superstructure.m_arm.setPosition(m_superstructure.m_arm.getRelativePosition()-(-0.03+m_superstructure.m_arm.getRawPosition()));
+            //         // frc::SmartDashboard::PutNumber("armVal", m_superstructure.m_arm.getRawPosition());
+            // }  
+            if(frc::SmartDashboard::GetBoolean("ShooterReady", false) == true) {
+                m_LEDs.setColor(-0.99);
+            }
             else if(m_superstructure.m_intake.noteHeld) {
                 m_LEDs.setColor(0.61);
             }
-            else if(frc::SmartDashboard::GetBoolean("ShooterReady", false) == true) {
-                m_LEDs.setColor(-0.99);
-            }
+           
             else {
                 m_LEDs.setColor(0.77);
             }
@@ -341,7 +342,7 @@ RobotContainer::RobotContainer()  {
                     // m_superstructure.m_intake.setSpeed(1.00);
                 // }
                 // else{
-                    m_superstructure.m_intake.setSpeed(0.6);    
+                    m_superstructure.m_intake.setSpeed(0.8);    
                 // }
             } 
             if(m_operatorController.GetRawButton(Controller::leftBumper)){
@@ -423,7 +424,7 @@ void RobotContainer::ConfigureBindings() {
     joystickEleven.OnTrue(frc2::ParallelRaceGroup{frc2::WaitCommand(0.01_s), AutoIntake(&m_superstructure.m_intake)}.ToPtr());
     controllerX.OnTrue(frc2::SequentialCommandGroup{frc2::ParallelRaceGroup{
                 ReadyShooter(&m_superstructure.m_shooter, 400),
-                frc2::SequentialCommandGroup{frc2::WaitCommand(1.1_s), AutoIntake(&m_superstructure.m_intake)},
+                AutoIntake(&m_superstructure.m_intake),
                 frc2::WaitCommand(1.5_s)
               }, frc2::ParallelRaceGroup{StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake), frc2::WaitCommand(0.1_s)}}.ToPtr());
     JoystickButton controllerY(&m_operatorController, Controller::Y);
