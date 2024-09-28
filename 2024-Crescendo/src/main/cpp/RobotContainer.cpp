@@ -95,7 +95,7 @@ RobotContainer::RobotContainer()  {
     
     //SendableChooser<Command> autoChooser = AutoBuilder::buildAuto 
     m_simpleAuto = PathPlannerAuto("Test Auto").ToPtr();
-    m_chooser.SetDefaultOption("Test Auto", m_simpleAuto.get());
+    m_chooser.SetDefaultOption("Top Preload", m_toppreload.get());
     // AutoBuilder::buildAutoChooser();
     m_RotationAuto=PathPlannerAuto("Rotation Auto").ToPtr();
     m_twonote=PathPlannerAuto("2 Note Auton").ToPtr();
@@ -217,19 +217,17 @@ RobotContainer::RobotContainer()  {
         [this] {
             if (m_operatorController.GetRawAxis(Controller::leftTrigger)>0.05){
                 m_superstructure.m_vision.setLedOn(3);
-                double speedMultiplierTemp=speedMultiplier;
                 if (m_superstructure.m_vision.isTagPresent()){
-                    // if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
+                    if (m_superstructure.m_vision.getID()==7 || m_superstructure.m_vision.getID()==4){
                         m_superstructure.aim(m_superstructure.m_vision.getDistance(),0,0);
                     
-                        speedMultiplier = speedMultiplier/2;
-// 
-                    // }
-                // RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
+                     
+                    }
+                RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
                 }
-                else{
-                    speedMultiplier = speedMultiplierTemp;
-                }
+                // else{
+                //     // speedMultiplier = speedMultiplierTemp;
+                // }
             }
             else if (m_operatorController.GetRawAxis(Controller::leftTrigger)<0.05&&m_operatorController.GetRawAxis(Controller::rightTrigger)<0.05&&!m_driverController.GetRawButton(2) && !m_operatorController.GetRawButton(Controller::X) && !(frc::SmartDashboard::GetBoolean("autoShooting",false))) {
                 m_superstructure.m_shooter.setSpeed(0);
@@ -424,8 +422,9 @@ void RobotContainer::ConfigureBindings() {
     joystickEleven.OnTrue(frc2::ParallelRaceGroup{frc2::WaitCommand(0.01_s), AutoIntake(&m_superstructure.m_intake)}.ToPtr());
     controllerX.OnTrue(frc2::SequentialCommandGroup{frc2::ParallelRaceGroup{
                 ReadyShooter(&m_superstructure.m_shooter, 400),
+                frc2::WaitCommand(2.0_s),
                 AutoIntake(&m_superstructure.m_intake),
-                frc2::WaitCommand(1.5_s)
+                frc2::WaitCommand(1.0_s)
               }, frc2::ParallelRaceGroup{StopShooter(&m_superstructure.m_shooter, &m_superstructure.m_intake), frc2::WaitCommand(0.1_s)}}.ToPtr());
     JoystickButton controllerY(&m_operatorController, Controller::Y);
     JoystickButton controllerMenu(&m_operatorController, Controller::Menu);
