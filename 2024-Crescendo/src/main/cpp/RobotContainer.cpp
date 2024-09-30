@@ -165,10 +165,11 @@ RobotContainer::RobotContainer()  {
                 if (m_superstructure.m_vision.isTagPresent()){
                 // if (m_vision.getDistanceError() > 0 &&
                 //     m_vision.getDistanceError() < 25) {
-                     RotAxis += m_superstructure.m_vision.getOutput()* speedMultiplier;
+                     RotAxis += m_superstructure.m_vision.getOutput()* 0.2;
                     //  YAxis += m_superstructure.m_vision.getDistanceError() * speedMultiplier;  
                     //  }
-                }
+                }\
+                
             }
             if (m_driverController.GetRawButton(6)){
                 m_drive.resetAbsoluteEncoders();
