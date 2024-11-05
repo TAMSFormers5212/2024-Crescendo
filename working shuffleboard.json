@@ -818,27 +818,6 @@
               "imageHeight": 0
             }
           },
-          "7,3": {
-            "size": [
-              3,
-              2
-            ],
-            "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://depth perceptionator 2",
-              "_title": "depth perceptionator 2",
-              "_glyph": 148,
-              "_showGlyph": false,
-              "Crosshair/Show crosshair": true,
-              "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": true,
-              "Controls/Rotation": "NONE",
-              "compression": -1.0,
-              "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
-            }
-          },
           "7,0": {
             "size": [
               3,
@@ -865,7 +844,7 @@
     }
   ],
   "windowGeometry": {
-    "x": -7.199999809265137,
+    "x": 1912.800048828125,
     "y": -7.199999809265137,
     "width": 1550.4000244140625,
     "height": 878.4000244140625

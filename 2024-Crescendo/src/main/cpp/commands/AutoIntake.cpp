@@ -9,7 +9,7 @@ AutoIntake::AutoIntake(Intake* intake)
 }
 
 void AutoIntake::Initialize() {
-    m_intake->setSpeed(0.4);
+    m_intake->setSpeed(0.8);
     frc::SmartDashboard::PutBoolean("autoIntaking", true);
 }
 void AutoIntake::End(bool interrupted) {}

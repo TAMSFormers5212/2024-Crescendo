@@ -95,7 +95,7 @@ void Shooter::Periodic(){
         m_rightController.SetReference(m_goalSpeed.value(), CANSparkLowLevel::ControlType::kVelocity, 0, m_rightFF.Calculate(m_goalSpeed).value());
     }
     avgSho=(getleftSpeed()+getrightSpeed())/2;
-    if(avgSho > 0.95*m_goalSpeed.value() && getrightSpeed()>10){
+    if(avgSho > 0.97*m_goalSpeed.value() && getrightSpeed()>10){
         shooterGood=true;
     }
     else{

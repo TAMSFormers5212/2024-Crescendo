@@ -27,8 +27,7 @@ void Robot::RobotInit() {
     usbCam.SetResolution(160, 120);
     usbCam.SetFPS(45);
     usbCam.SetPixelFormat(cs::VideoMode::kMJPEG);
-    usbCam.SetExposureManual(10);
-    usbCam.SetWhiteBalanceManual(50);
+    
     
     
 

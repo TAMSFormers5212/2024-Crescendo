@@ -11,8 +11,8 @@
 #include <subsystems/Arm.h>
 
 class ReadyShooter : public frc2::CommandHelper<frc2::Command, ReadyShooter> {
-public:
-    explicit ReadyShooter(Shooter* grabber, double speedIn = 500);
+public: 
+    explicit ReadyShooter(Shooter* grabber, double speedIn = 600);
     
 
     void Initialize() override;
