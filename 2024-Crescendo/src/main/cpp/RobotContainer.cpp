@@ -117,6 +117,10 @@ RobotContainer::RobotContainer()  {
     m_chooser.AddOption("Top Preload", m_toppreload.get());
     m_chooser.AddOption("Stationary Test", m_stationaryTest.get());
     
+   
+
+
+
     frc::SmartDashboard::PutData(&m_chooser);
    
     ConfigureBindings(); 
