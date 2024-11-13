@@ -59,7 +59,7 @@ SwerveDrive::SwerveDrive()
         [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
         [this](frc::ChassisSpeeds speeds){ swerveDrive(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
         HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-            PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
+            PIDConstants(0.1, 0.00, 0.00), // Translation PID constants
             PIDConstants(1.0, 0.0, 0.0), // Rotation PID constants
             SwerveModuleConstants::maxSpeed/4, // Max module speed, in m/s
             SwerveModuleConstants::drivebase::WheelBase, // Drive base radius in meters. Distance from robot center to furthest module.
@@ -151,8 +151,8 @@ void SwerveDrive::resetOdometry(const frc::Pose2d pose) {
     //frc::SmartDashboard::PutNumber("heading", heading.Degrees().value());
       // resets the odometry and pose estimator to given pose
     
-    m_odometry.ResetPosition(getGyroHeading2(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
-    m_poseEstimator.ResetPosition(getGyroHeading2(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, frc::Pose2d(newPose.Translation().X(), newPose.Translation().Y(), frc::Rotation2d(0_deg).RotateBy(newPose.Rotation())));
+    m_odometry.ResetPosition(getGyroHeading2(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, pose);
+    m_poseEstimator.ResetPosition(getGyroHeading2(), {m_modules[0].getPosition(), m_modules[1].getPosition(), m_modules[2].getPosition(), m_modules[3].getPosition()}, pose);
     //resetHeading();
 }
 
