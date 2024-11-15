@@ -497,7 +497,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, rot});
     
 
-    //m_drive.resetOdometry(Pose2d(pos.X(), pos.Y(), rot));
+    m_drive.resetOdometry(Pose2d(pos.X(), pos.Y(), rot));
     
     auto testAuto = PathPlannerAuto(autoName).ToPtr();
     //m_drive.resetOdometry(PathPlannerAuto::getStartingPoseFromAutoFile(autoName));

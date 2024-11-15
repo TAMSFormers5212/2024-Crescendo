@@ -37,12 +37,12 @@ SwerveDrive::SwerveDrive()
                          frc::Translation2d{-drivebase::WheelBase / 2,
                                             -drivebase::TrackWidth / 2}}},
       m_odometry{m_driveKinematics,
-                 frc::Rotation2d(getGyroHeading2()),
+                 frc::Rotation2d(getGyroHeading()),
                  {m_modules[0].getPosition(), m_modules[1].getPosition(),
                   m_modules[2].getPosition(), m_modules[3].getPosition()},
                  frc::Pose2d()},
       m_poseEstimator{m_driveKinematics,
-                      frc::Rotation2d(getGyroHeading2()),
+                      frc::Rotation2d(getGyroHeading()),
                       {m_modules[0].getPosition(), m_modules[1].getPosition(),
                        m_modules[2].getPosition(), m_modules[3].getPosition()},
                       frc::Pose2d()},
@@ -59,8 +59,8 @@ SwerveDrive::SwerveDrive()
         [this](){ return getRobotRelativeSpeeds(); }, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
         [this](frc::ChassisSpeeds speeds){ swerveDrive(speeds); }, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
         HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-            PIDConstants(0.1, 0.00, 0.00), // Translation PID constants
-            PIDConstants(1.0, 0.0, 0.0), // Rotation PID constants
+            PIDConstants(0.1, 0.00, 0.1), // Translation PID constants
+            PIDConstants(0.0, 0.0, 0.0), // Rotation PID constants
             SwerveModuleConstants::maxSpeed/4, // Max module speed, in m/s
             SwerveModuleConstants::drivebase::WheelBase, // Drive base radius in meters. Distance from robot center to furthest module.
             ReplanningConfig() // Default path replanning config. See the API for the options here
@@ -135,10 +135,10 @@ void SwerveDrive::angle180(int x) {  // zeros the gyro to the current position
 
 void SwerveDrive::resetOdometry(const frc::Pose2d pose) {
     frc::Rotation2d temp = pose.Rotation();
-    // SyncAbsoluteEncoders();
+    //resetAbsoluteEncoders();
     //resetHeading();
     // 
-    frc::Rotation2d gyro = getGyroHeading2();
+    frc::Rotation2d gyro = getGyroHeading();
     if (frc::DriverStation::GetAlliance().value() == frc::DriverStation::Alliance::kRed){
         //temp = frc::Rotation2d(180_deg).RotateBy(temp);
         temp = frc::Rotation2d(temp.Degrees() + degree_t(0));

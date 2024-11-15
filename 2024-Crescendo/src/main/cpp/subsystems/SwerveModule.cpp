@@ -149,7 +149,7 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
     // angle we want to go to
     frc::SmartDashboard::PutNumber("O " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
     m_steerController.SetReference((adjustedAngle), CANSparkBase::ControlType::kPosition);
-
+    frc::SmartDashboard::PutNumber("encoder " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
     // m_driveController.SetReference(optimizedState.speed.value(),
     // CANSparkMax::ControlType::kVelocity); // 2363 version
     // m_driveMotor.Set(optimizedState.speed / maxSpeed);
