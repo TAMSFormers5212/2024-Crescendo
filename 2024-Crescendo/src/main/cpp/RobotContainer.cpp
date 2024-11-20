@@ -107,6 +107,8 @@ RobotContainer::RobotContainer()  {
     m_toppreload=PathPlannerAuto("Top Preload Auton").ToPtr();
     m_stationaryTest = PathPlannerAuto("Stationary Test").ToPtr();
 
+    m_onemeterTest = PathPlannerAuto("One Meter Test").ToPtr();
+
     m_chooser.AddOption("Rotation Auto", m_RotationAuto.get());
     m_chooser.AddOption("Three Note Auton", m_threenote.get());
     m_chooser.AddOption("Mobility Auton", m_mobilityAuto.get());
@@ -116,7 +118,12 @@ RobotContainer::RobotContainer()  {
     m_chooser.AddOption("Bottom Preload", m_bottompreload.get());
     m_chooser.AddOption("Top Preload", m_toppreload.get());
     m_chooser.AddOption("Stationary Test", m_stationaryTest.get());
+    m_chooser.AddOption("One Meter Test", m_onemeterTest.get());
     
+   
+
+
+
     frc::SmartDashboard::PutData(&m_chooser);
    
     ConfigureBindings(); 
@@ -490,7 +497,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, rot});
     
 
-    //m_drive.resetOdometry(Pose2d(pos.X(), pos.Y(), rot));
+    m_drive.resetOdometry(Pose2d(pos.X(), pos.Y(), rot));
     
     auto testAuto = PathPlannerAuto(autoName).ToPtr();
     //m_drive.resetOdometry(PathPlannerAuto::getStartingPoseFromAutoFile(autoName));
