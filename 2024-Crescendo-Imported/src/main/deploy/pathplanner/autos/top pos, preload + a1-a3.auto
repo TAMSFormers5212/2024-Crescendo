@@ -1,0 +1,43 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.86,
+      "y": 6.97
+    },
+    "rotation": -134.01
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "preload+a1 score"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "a2 score"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "a3 score"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ReadyShooter"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

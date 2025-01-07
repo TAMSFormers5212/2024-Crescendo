@@ -1,0 +1,49 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.3725738150477713,
+      "y": 5.609490705429342
+    },
+    "rotation": 0.0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Stationary Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Auton Note 2 V2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Middle Top Note Auton"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Middle Bottom Note Auton"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Exit Auton"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

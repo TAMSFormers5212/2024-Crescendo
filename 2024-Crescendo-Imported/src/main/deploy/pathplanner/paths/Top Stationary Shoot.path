@@ -1,0 +1,137 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.7518994781213513,
+        "y": 6.792285196553275
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 0.7753211512129132,
+        "y": 6.792285196553275
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 0.7518994781213513,
+        "y": 6.792285196553275
+      },
+      "prevControl": {
+        "x": 0.7730114889435478,
+        "y": 6.792285196553275
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [
+    {
+      "name": "New Constraints Zone",
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.5,
+      "constraints": {
+        "maxVelocity": 0.05,
+        "maxAcceleration": 0.03,
+        "maxAngularVelocity": 0.01,
+        "maxAngularAcceleration": 0.01
+      }
+    }
+  ],
+  "eventMarkers": [
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "race",
+        "data": {
+          "commands": [
+            {
+              "type": "parallel",
+              "data": {
+                "commands": [
+                  {
+                    "type": "named",
+                    "data": {
+                      "name": "Arm Lower"
+                    }
+                  },
+                  {
+                    "type": "named",
+                    "data": {
+                      "name": "Ready Shooter"
+                    }
+                  },
+                  {
+                    "type": "sequential",
+                    "data": {
+                      "commands": [
+                        {
+                          "type": "wait",
+                          "data": {
+                            "waitTime": 2.5
+                          }
+                        },
+                        {
+                          "type": "named",
+                          "data": {
+                            "name": "Auto Intake"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "wait",
+              "data": {
+                "waitTime": 3.0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 1.0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Stop Shooter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 0.01,
+    "maxAcceleration": 0.01,
+    "maxAngularVelocity": 0.01,
+    "maxAngularAcceleration": 0.01
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 58.63,
+    "rotateFast": true
+  },
+  "reversed": false,
+  "folder": null,
+  "previewStartingState": {
+    "rotation": 58.629999999999995,
+    "velocity": 0
+  },
+  "useDefaultConstraints": false
+}

@@ -1,0 +1,37 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 15.683216073992776,
+      "y": 4.1690578102982165
+    },
+    "rotation": -34.11447294534134
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Red Bottom Stationary Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Yoinko Bongo"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Exit Auton"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

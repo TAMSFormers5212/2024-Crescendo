@@ -1,0 +1,31 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.7518994781213513,
+      "y": 4.239322829572906
+    },
+    "rotation": 32.2756443145776
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Bottom Stationary Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Yoink Mid Auton"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

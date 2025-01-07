@@ -108,6 +108,7 @@ RobotContainer::RobotContainer()  {
     m_stationaryTest = PathPlannerAuto("Stationary Test").ToPtr();
 
     m_onemeterTest = PathPlannerAuto("One Meter Test").ToPtr();
+    m_twometerTest = PathPlannerAuto("Two Meter Test").ToPtr();
 
     m_chooser.AddOption("Rotation Auto", m_RotationAuto.get());
     m_chooser.AddOption("Three Note Auton", m_threenote.get());
@@ -119,7 +120,7 @@ RobotContainer::RobotContainer()  {
     m_chooser.AddOption("Top Preload", m_toppreload.get());
     m_chooser.AddOption("Stationary Test", m_stationaryTest.get());
     m_chooser.AddOption("One Meter Test", m_onemeterTest.get());
-    
+    m_chooser.AddOption("Two Meter Test", m_twometerTest.get());
    
 
 

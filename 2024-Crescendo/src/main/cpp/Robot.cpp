@@ -23,9 +23,9 @@ void Robot::RobotInit() {
     DriverStation::StartDataLog(DataLogManager::GetLog());
     wpi::log::DataLog& log = frc::DataLogManager::GetLog();
     myStringLog = wpi::log::StringLogEntry(log, "/my/string");
-    usbCam = frc::CameraServer::StartAutomaticCapture("depth perceptionator 1", 1); //usb back camera
+    usbCam = frc::CameraServer::StartAutomaticCapture("depth perceptionator 1", 0); //usb back camera
     usbCam.SetResolution(160, 120);
-    usbCam.SetFPS(45);
+    usbCam.SetFPS(10);
     usbCam.SetPixelFormat(cs::VideoMode::kMJPEG);
     
     

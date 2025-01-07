@@ -1,0 +1,37 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.7518994781213513,
+      "y": 6.792285196553275
+    },
+    "rotation": 61.09
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Top Stationary Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Top Top Note Auton"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Exit Auton"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}
