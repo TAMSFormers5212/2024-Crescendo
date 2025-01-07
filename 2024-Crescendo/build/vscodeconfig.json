@@ -14,72 +14,72 @@
     "systemCMacros": [],
     "systemCArgs": [],
     "allLibFiles": [
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9e7f5ef50c53c7f8022d804a04881dba\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\670545eeb940e3d905296ebfd3d3ae7e\\transformed\\REVLib-cpp-2024.2.3-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9465551606571a9cec724e7dce4cf39e\\transformed\\REVLib-driver-2024.2.3-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\1f1eb49816db456c849037e3fcefe67e\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
-      "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d51df655d03163643780926efbb76273\\transformed\\wpilibNewCommands-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\28d6b05909d7cf62e945750ad8ba4d20\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\5898b6d6cb7ddbdfe8c4701eca9831a7\\transformed\\wpilibc-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\adc562fd08233b7d2e3d47a2de05b7d0\\transformed\\ntcore-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\bc0229bc3b3d91c79d0e24978ba4f18a\\transformed\\hal-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\a4a2588c527f7f986480f34447beadf3\\transformed\\wpimath-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\870842f97649ce535056f3057ac04dad\\transformed\\wpinet-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\e9aa0da5e391cd011ce14ef43b9e94df\\transformed\\wpiutil-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6789db163e19cdf4515a522762f31d70\\transformed\\cameraserver-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\367cc7303e7570d7b08f5fd43cb49993\\transformed\\cscore-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\025350d4265198e785406eb803326924\\transformed\\apriltag-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\abb26ec49adea2181f49e6906c7bb62f\\transformed\\opencv-cpp-4.8.0-2-sources\\"
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\53d9e4863f690dd409c740f32309920e\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\f355a6d582c79252d7ee6463abb7b432\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\083da74720c736f5b6f4f4273f4ac1f4\\transformed\\REVLib-driver-2024.2.3-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\52bb6fe8d6883d21154c2c7c8dff37c4\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+      "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d51df655d03163643780926efbb76273\\transformed\\wpilibNewCommands-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\19e3d67f082821a6138f0ff7bdf21eac\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\5898b6d6cb7ddbdfe8c4701eca9831a7\\transformed\\wpilibc-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\adc562fd08233b7d2e3d47a2de05b7d0\\transformed\\ntcore-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\bc0229bc3b3d91c79d0e24978ba4f18a\\transformed\\hal-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\a4a2588c527f7f986480f34447beadf3\\transformed\\wpimath-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\870842f97649ce535056f3057ac04dad\\transformed\\wpinet-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\e9aa0da5e391cd011ce14ef43b9e94df\\transformed\\wpiutil-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6789db163e19cdf4515a522762f31d70\\transformed\\cameraserver-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\367cc7303e7570d7b08f5fd43cb49993\\transformed\\cscore-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\025350d4265198e785406eb803326924\\transformed\\apriltag-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\abb26ec49adea2181f49e6906c7bb62f\\transformed\\opencv-cpp-4.8.0-2-sources\\"
     ],
     "allLibSources": [
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d51df655d03163643780926efbb76273\\transformed\\wpilibNewCommands-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\28d6b05909d7cf62e945750ad8ba4d20\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\5898b6d6cb7ddbdfe8c4701eca9831a7\\transformed\\wpilibc-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\adc562fd08233b7d2e3d47a2de05b7d0\\transformed\\ntcore-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\bc0229bc3b3d91c79d0e24978ba4f18a\\transformed\\hal-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\a4a2588c527f7f986480f34447beadf3\\transformed\\wpimath-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\870842f97649ce535056f3057ac04dad\\transformed\\wpinet-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\e9aa0da5e391cd011ce14ef43b9e94df\\transformed\\wpiutil-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6789db163e19cdf4515a522762f31d70\\transformed\\cameraserver-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\367cc7303e7570d7b08f5fd43cb49993\\transformed\\cscore-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\025350d4265198e785406eb803326924\\transformed\\apriltag-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\abb26ec49adea2181f49e6906c7bb62f\\transformed\\opencv-cpp-4.8.0-2-sources\\"
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d51df655d03163643780926efbb76273\\transformed\\wpilibNewCommands-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\19e3d67f082821a6138f0ff7bdf21eac\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\5898b6d6cb7ddbdfe8c4701eca9831a7\\transformed\\wpilibc-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\adc562fd08233b7d2e3d47a2de05b7d0\\transformed\\ntcore-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\bc0229bc3b3d91c79d0e24978ba4f18a\\transformed\\hal-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\a4a2588c527f7f986480f34447beadf3\\transformed\\wpimath-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\870842f97649ce535056f3057ac04dad\\transformed\\wpinet-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\e9aa0da5e391cd011ce14ef43b9e94df\\transformed\\wpiutil-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6789db163e19cdf4515a522762f31d70\\transformed\\cameraserver-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\367cc7303e7570d7b08f5fd43cb49993\\transformed\\cscore-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\025350d4265198e785406eb803326924\\transformed\\apriltag-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\abb26ec49adea2181f49e6906c7bb62f\\transformed\\opencv-cpp-4.8.0-2-sources\\"
     ],
     "allLibHeaders": [
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9e7f5ef50c53c7f8022d804a04881dba\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\670545eeb940e3d905296ebfd3d3ae7e\\transformed\\REVLib-cpp-2024.2.3-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9465551606571a9cec724e7dce4cf39e\\transformed\\REVLib-driver-2024.2.3-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\1f1eb49816db456c849037e3fcefe67e\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
-      "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\53d9e4863f690dd409c740f32309920e\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\f355a6d582c79252d7ee6463abb7b432\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\083da74720c736f5b6f4f4273f4ac1f4\\transformed\\REVLib-driver-2024.2.3-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\52bb6fe8d6883d21154c2c7c8dff37c4\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+      "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
     ],
     "binaries": [
       {
@@ -88,7 +88,7 @@
           {
             "source": {
               "srcDirs": [
-                "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
+                "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -98,7 +98,7 @@
             },
             "exportedHeaders": {
               "srcDirs": [
-                "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+                "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
               ],
               "includes": [],
               "excludes": []
@@ -122,25 +122,25 @@
           }
         ],
         "libHeaders": [
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9e7f5ef50c53c7f8022d804a04881dba\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\670545eeb940e3d905296ebfd3d3ae7e\\transformed\\REVLib-cpp-2024.2.3-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9465551606571a9cec724e7dce4cf39e\\transformed\\REVLib-driver-2024.2.3-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\1f1eb49816db456c849037e3fcefe67e\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
-          "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\53d9e4863f690dd409c740f32309920e\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\f355a6d582c79252d7ee6463abb7b432\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\083da74720c736f5b6f4f4273f4ac1f4\\transformed\\REVLib-driver-2024.2.3-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\52bb6fe8d6883d21154c2c7c8dff37c4\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+          "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
         ],
         "sharedLibrary": false,
         "executable": true
@@ -150,7 +150,7 @@
       {
         "source": {
           "srcDirs": [
-            "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
+            "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
           ],
           "includes": [
             "**/*.cpp",
@@ -181,7 +181,7 @@
       {
         "source": {
           "srcDirs": [
-            "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+            "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
           ],
           "includes": [],
           "excludes": []
@@ -226,72 +226,72 @@
     "systemCMacros": [],
     "systemCArgs": [],
     "allLibFiles": [
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9e7f5ef50c53c7f8022d804a04881dba\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\670545eeb940e3d905296ebfd3d3ae7e\\transformed\\REVLib-cpp-2024.2.3-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9465551606571a9cec724e7dce4cf39e\\transformed\\REVLib-driver-2024.2.3-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\1f1eb49816db456c849037e3fcefe67e\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
-      "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d51df655d03163643780926efbb76273\\transformed\\wpilibNewCommands-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\28d6b05909d7cf62e945750ad8ba4d20\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\5898b6d6cb7ddbdfe8c4701eca9831a7\\transformed\\wpilibc-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\adc562fd08233b7d2e3d47a2de05b7d0\\transformed\\ntcore-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\bc0229bc3b3d91c79d0e24978ba4f18a\\transformed\\hal-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\a4a2588c527f7f986480f34447beadf3\\transformed\\wpimath-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\870842f97649ce535056f3057ac04dad\\transformed\\wpinet-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\e9aa0da5e391cd011ce14ef43b9e94df\\transformed\\wpiutil-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6789db163e19cdf4515a522762f31d70\\transformed\\cameraserver-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\367cc7303e7570d7b08f5fd43cb49993\\transformed\\cscore-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\025350d4265198e785406eb803326924\\transformed\\apriltag-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\abb26ec49adea2181f49e6906c7bb62f\\transformed\\opencv-cpp-4.8.0-2-sources\\"
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\53d9e4863f690dd409c740f32309920e\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\f355a6d582c79252d7ee6463abb7b432\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\083da74720c736f5b6f4f4273f4ac1f4\\transformed\\REVLib-driver-2024.2.3-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\52bb6fe8d6883d21154c2c7c8dff37c4\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+      "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d51df655d03163643780926efbb76273\\transformed\\wpilibNewCommands-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\19e3d67f082821a6138f0ff7bdf21eac\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\5898b6d6cb7ddbdfe8c4701eca9831a7\\transformed\\wpilibc-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\adc562fd08233b7d2e3d47a2de05b7d0\\transformed\\ntcore-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\bc0229bc3b3d91c79d0e24978ba4f18a\\transformed\\hal-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\a4a2588c527f7f986480f34447beadf3\\transformed\\wpimath-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\870842f97649ce535056f3057ac04dad\\transformed\\wpinet-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\e9aa0da5e391cd011ce14ef43b9e94df\\transformed\\wpiutil-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6789db163e19cdf4515a522762f31d70\\transformed\\cameraserver-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\367cc7303e7570d7b08f5fd43cb49993\\transformed\\cscore-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\025350d4265198e785406eb803326924\\transformed\\apriltag-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\abb26ec49adea2181f49e6906c7bb62f\\transformed\\opencv-cpp-4.8.0-2-sources\\"
     ],
     "allLibSources": [
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d51df655d03163643780926efbb76273\\transformed\\wpilibNewCommands-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\28d6b05909d7cf62e945750ad8ba4d20\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\5898b6d6cb7ddbdfe8c4701eca9831a7\\transformed\\wpilibc-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\adc562fd08233b7d2e3d47a2de05b7d0\\transformed\\ntcore-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\bc0229bc3b3d91c79d0e24978ba4f18a\\transformed\\hal-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\a4a2588c527f7f986480f34447beadf3\\transformed\\wpimath-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\870842f97649ce535056f3057ac04dad\\transformed\\wpinet-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\e9aa0da5e391cd011ce14ef43b9e94df\\transformed\\wpiutil-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6789db163e19cdf4515a522762f31d70\\transformed\\cameraserver-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\367cc7303e7570d7b08f5fd43cb49993\\transformed\\cscore-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\025350d4265198e785406eb803326924\\transformed\\apriltag-cpp-2024.3.2-sources\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\abb26ec49adea2181f49e6906c7bb62f\\transformed\\opencv-cpp-4.8.0-2-sources\\"
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d51df655d03163643780926efbb76273\\transformed\\wpilibNewCommands-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\19e3d67f082821a6138f0ff7bdf21eac\\transformed\\navx-frc-cpp-2024.1.0-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\5898b6d6cb7ddbdfe8c4701eca9831a7\\transformed\\wpilibc-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\adc562fd08233b7d2e3d47a2de05b7d0\\transformed\\ntcore-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\bc0229bc3b3d91c79d0e24978ba4f18a\\transformed\\hal-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\a4a2588c527f7f986480f34447beadf3\\transformed\\wpimath-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\870842f97649ce535056f3057ac04dad\\transformed\\wpinet-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\e9aa0da5e391cd011ce14ef43b9e94df\\transformed\\wpiutil-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6789db163e19cdf4515a522762f31d70\\transformed\\cameraserver-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\367cc7303e7570d7b08f5fd43cb49993\\transformed\\cscore-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\025350d4265198e785406eb803326924\\transformed\\apriltag-cpp-2024.3.2-sources\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\abb26ec49adea2181f49e6906c7bb62f\\transformed\\opencv-cpp-4.8.0-2-sources\\"
     ],
     "allLibHeaders": [
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9e7f5ef50c53c7f8022d804a04881dba\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\670545eeb940e3d905296ebfd3d3ae7e\\transformed\\REVLib-cpp-2024.2.3-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9465551606571a9cec724e7dce4cf39e\\transformed\\REVLib-driver-2024.2.3-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\1f1eb49816db456c849037e3fcefe67e\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
-      "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
-      "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\53d9e4863f690dd409c740f32309920e\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\f355a6d582c79252d7ee6463abb7b432\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\083da74720c736f5b6f4f4273f4ac1f4\\transformed\\REVLib-driver-2024.2.3-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\52bb6fe8d6883d21154c2c7c8dff37c4\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
+      "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+      "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
     ],
     "binaries": [
       {
@@ -300,7 +300,7 @@
           {
             "source": {
               "srcDirs": [
-                "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
+                "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
               ],
               "includes": [
                 "**/*.cpp",
@@ -310,7 +310,7 @@
             },
             "exportedHeaders": {
               "srcDirs": [
-                "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+                "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
               ],
               "includes": [],
               "excludes": []
@@ -333,25 +333,25 @@
           }
         ],
         "libHeaders": [
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9e7f5ef50c53c7f8022d804a04881dba\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\670545eeb940e3d905296ebfd3d3ae7e\\transformed\\REVLib-cpp-2024.2.3-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9465551606571a9cec724e7dce4cf39e\\transformed\\REVLib-driver-2024.2.3-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\1f1eb49816db456c849037e3fcefe67e\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
-          "C:\\Users\\Kevin\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
-          "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\d5177b0393c93cd552134c658d17c701\\transformed\\wpilibNewCommands-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\53d9e4863f690dd409c740f32309920e\\transformed\\PathplannerLib-cpp-2024.2.8-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\f355a6d582c79252d7ee6463abb7b432\\transformed\\REVLib-cpp-2024.2.3-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\083da74720c736f5b6f4f4273f4ac1f4\\transformed\\REVLib-driver-2024.2.3-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\52bb6fe8d6883d21154c2c7c8dff37c4\\transformed\\navx-frc-cpp-2024.1.0-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\fd5a76b717a739efeecefa46c3e819e2\\transformed\\wpilibc-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9480fea93073f92d87cb7b839c819a5b\\transformed\\ntcore-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\288c69b8976e481b2504f08f12a1c8d6\\transformed\\hal-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\65e9c67d00517043685bd08f9e318114\\transformed\\wpimath-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\9ad12de6ec88aef99681320b6eaba646\\transformed\\wpinet-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\78d6de001cc6634d8785e9e596c86abe\\transformed\\wpiutil-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\2fc8fba9bcbc2e1e578e4c1e3958e983\\transformed\\netcomm-2024.2.1-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0a90bb9d9848a7ab72d3a9b0b24332a1\\transformed\\chipobject-2024.2.1-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\6fd5ca8ac13e09e217115c11a66d902d\\transformed\\visa-2024.2.1-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\600b0ac0c386a5f26362d6b1665b4c9e\\transformed\\cameraserver-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\4cd9fe28305b23fd292f98cd8cd188ec\\transformed\\cscore-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\0e44a254a1e57faef73118c9cfaeb7c4\\transformed\\apriltag-cpp-2024.3.2-headers\\",
+          "C:\\Users\\aiden\\.gradle\\caches\\transforms-3\\411a34f147b024fc996ab3c13aa3e5cd\\transformed\\opencv-cpp-4.8.0-2-headers\\",
+          "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
         ],
         "sharedLibrary": false,
         "executable": true
@@ -361,7 +361,7 @@
       {
         "source": {
           "srcDirs": [
-            "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
+            "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\cpp\\"
           ],
           "includes": [
             "**/*.cpp",
@@ -391,7 +391,7 @@
       {
         "source": {
           "srcDirs": [
-            "D:\\Kevin\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
+            "C:\\Users\\aiden\\Documents\\GitHub\\2024-Crescendo\\2024-Crescendo\\src\\main\\include\\"
           ],
           "includes": [],
           "excludes": []

@@ -212,9 +212,9 @@ namespace ArmConstants{
     constexpr int planetaryRatio = 20;
     constexpr int armRatio = 110; // 20:1 maxplanetary * 66:12 sprocket
     
-    constexpr double kaP = 0.50;
-    constexpr double kaI = 0.0000;
-    constexpr double kaD = 0.00;
+    constexpr double kaP = 2.50;//0.50;
+    constexpr double kaI = 0;//0.0000;
+    constexpr double kaD = 0.00001;//0.00;
     constexpr double kaFF = 0.0;
     constexpr double kaIz = 0.0;
     constexpr units::second_t kaT = 20_ms;

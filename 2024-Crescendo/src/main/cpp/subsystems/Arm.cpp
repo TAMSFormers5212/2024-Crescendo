@@ -163,12 +163,12 @@ void Arm::Periodic() {
     //     setPosition(position - 0.01);
     // }
 
-    if(commandGiven){
-        m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition, 0, m_armFF.Calculate(ffP, ffV, ffA).value());
-    }
-    else{
-        m_leftController.SetReference(m_armFF.Calculate(ffP, ffV, ffA).value(),CANSparkLowLevel::ControlType::kVoltage);
-    }
+    // if(commandGiven){
+         m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition, 0, m_armFF.Calculate(ffP, ffV, ffA).value());
+    // }
+    // else{
+    //     m_leftController.SetReference(m_armFF.Calculate(ffP, ffV, ffA).value(),CANSparkLowLevel::ControlType::kVoltage);
+    // }
         
     // m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);
 
