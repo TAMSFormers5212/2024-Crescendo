@@ -10,6 +10,7 @@
 #include <frc/AnalogEncoder.h>
 
 #include <rev/SparkMax.h>
+#include <rev/config/SparkMaxConfig.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <rev/SparkClosedLoopController.h>
 // #include <rev/ThroughBoreEncoder.h>
@@ -53,6 +54,9 @@ private:
 
     SparkMax m_leftMotor; 
     SparkMax m_rightMotor;
+
+    SparkMaxConfig m_leftConfig;
+    SparkMaxConfig m_rightConfig;
 
     SparkRelativeEncoder m_leftEncoder = m_leftMotor.GetEncoder();
     SparkRelativeEncoder m_rightEncoder = m_rightMotor.GetEncoder();

@@ -3,6 +3,7 @@
 #include <frc2/command/SubsystemBase.h>
 
 #include <rev/SparkMax.h>
+#include <rev/config/SparkMaxConfig.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <rev/SparkClosedLoopController.h>
 
@@ -44,6 +45,9 @@ private:
 
     SparkMax m_driveMotor;
     SparkMax m_steerMotor;
+
+    SparkMaxConfig m_driveConfig;
+    SparkMaxConfig m_steerConfig;
 
     SparkRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder();
     SparkRelativeEncoder m_steerEncoder = m_steerMotor.GetEncoder();

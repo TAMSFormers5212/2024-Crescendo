@@ -8,7 +8,7 @@
 #include <frc/motorcontrol/Spark.h>
 
 
-using namespace rev;
+// using namespace rev;
 using namespace std;
 
 LEDController::LEDController() : m_ledController(0) {

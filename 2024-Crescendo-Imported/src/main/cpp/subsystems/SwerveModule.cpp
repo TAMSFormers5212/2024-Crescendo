@@ -17,9 +17,12 @@ SwerveModule::SwerveModule(int driveMotor, int steerMotor, int absEncoder, doubl
       m_steerMotor(steerMotor, rev::spark::SparkLowLevel::MotorType::kBrushless),
       m_absoluteEncoder(absEncoder),
       m_moduleName(getName(driveMotor)) {
+
     m_absoluteEncoder.SetPositionOffset(encoderOffset);
     resetModule();
     
+    m_driveMotor.Configure(m_driveConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_steerMotor.Configure(m_steerConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
     // tony: im not quite sure of the behavior of this function, but it sounds
     // like it just offsets the value returned by get absolute position
     cout << "Swerve Module " << getName(driveMotor) << " initialized correctly" << endl;
@@ -40,45 +43,64 @@ void SwerveModule::resetModule() {  // resets the drive and steer motors
 }
 
 void SwerveModule::resetDriveMotor() {  // sets pid, current limit, and encoder
-                                        // conversion factor to set values
-    m_driveMotor.RestoreFactoryDefaults();
+            
+                                // conversion factor to set values
+    m_driveConfig.closedLoop
+        .Pidf(kdP, kdI, kdD, kdFF);
+    // m_driveMotor.RestoreFactoryDefaults();
 
-    m_driveController.SetP(kdP);
-    m_driveController.SetI(kdI);
-    m_driveController.SetD(kdD);
-    m_driveController.SetFF(kdFF);
+    // m_driveController.SetP(kdP);
+    // m_driveController.SetI(kdI);
+    // m_driveController.SetD(kdD);
+    // m_driveController.SetFF(kdFF);
+    m_driveConfig
+        .SetIdleMode(SparkBaseConfig::IdleMode::kBrake)
+        .VoltageCompensation(12.0)
+        .SmartCurrentLimit(40, 60);
 
-    m_driveMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
-    m_driveMotor.EnableVoltageCompensation(12.0);
-    m_driveMotor.SetSmartCurrentLimit(40, 60);
-
-    m_driveEncoder.SetPositionConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / 1.0376 / (SwerveModuleConstants::driveRatio)).value());
-    m_driveEncoder.SetVelocityConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / 1.0376 / SwerveModuleConstants::driveRatio / 60_s).value());
+    m_driveConfig.encoder
+        .PositionConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / 1.0376 / (SwerveModuleConstants::driveRatio)).value())
+        .VelocityConversionFactor((SwerveModuleConstants::wheelCircumfrenceMeters / 1.0376 / SwerveModuleConstants::driveRatio / 60_s).value());
     //currently in inches per second
     
+
     resetDriveEncoder();
+    m_driveMotor.Configure(m_driveConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_steerMotor.Configure(m_steerConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 void SwerveModule::resetSteerMotor() {  // sets pid, current limit, encoder position, and encoder conversion factor to set values
-    m_steerMotor.RestoreFactoryDefaults();
-
-    m_steerController.SetP(ktP);
-    m_steerController.SetI(ktI);
-    m_steerController.SetD(ktD);
-    m_steerController.SetFF(ktFF);
-    m_steerController.SetPositionPIDWrappingEnabled(true);
-    m_steerController.SetPositionPIDWrappingMaxInput(pi2);
-    m_steerController.SetPositionPIDWrappingMinInput(0);
-    
-    m_steerMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
-    m_steerMotor.EnableVoltageCompensation(12.0);
-    m_steerMotor.SetSmartCurrentLimit(20, 30);
+    // m_steerMotor.RestoreFactoryDefaults();
+    m_steerConfig.closedLoop
+        .Pidf(ktP, kdI, kdD, kdFF)
+        .PositionWrappingEnabled(true)
+        .PositionWrappingMaxInput(pi2)
+        .PositionWrappingMinInput(0);
+    // m_steerController.SetP(ktP);
+    // m_steerController.SetI(ktI);
+    // m_steerController.SetD(ktD);
+    // m_steerController.SetFF(ktFF);
+    // m_steerController.SetPositionPIDWrappingEnabled(true);
+    // m_steerController.SetPositionPIDWrappingMaxInput(pi2);
+    // m_steerController.SetPositionPIDWrappingMinInput(0);
+    m_steerConfig
+        .SetIdleMode(SparkBaseConfig::IdleMode::kBrake)
+        .VoltageCompensation(12.0)
+        .SmartCurrentLimit(20, 30);
+    // m_steerMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
+    // m_steerMotor.EnableVoltageCompensation(12.0);
+    // m_steerMotor.SetSmartCurrentLimit(20, 30);
 
     //m_steerMotor.SetInverted(true);
+    m_driveConfig.encoder
+        
+        .PositionConversionFactor(pi2 / SwerveModuleConstants::steerRatio);
     m_steerEncoder.SetPosition(m_steerEncoder.GetPosition());
-    m_steerEncoder.SetPositionConversionFactor(pi2 / SwerveModuleConstants::steerRatio);
+    // m_steerEncoder.SetPositionConversionFactor(pi2 / SwerveModuleConstants::steerRatio);
 
     resetSteerEncoder();
+    m_driveMotor.Configure(m_driveConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_steerMotor.Configure(m_steerConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 void SwerveModule::resetDriveEncoder() {  // set drive encoder to 0.0
@@ -148,12 +170,12 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 
     // angle we want to go to
     frc::SmartDashboard::PutNumber("O " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
-    m_steerController.SetReference((adjustedAngle), CANSparkBase::ControlType::kPosition);
+    m_steerController.SetReference((adjustedAngle), rev::spark::SparkBase::ControlType::kPosition);
     frc::SmartDashboard::PutNumber("encoder " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
     // m_driveController.SetReference(optimizedState.speed.value(),
     // CANSparkMax::ControlType::kVelocity); // 2363 version
     // m_driveMotor.Set(optimizedState.speed / maxSpeed);
-    m_driveController.SetReference(optimizedState.speed.value(), CANSparkMax::ControlType::kVelocity);
+    m_driveController.SetReference(optimizedState.speed.value(), rev::spark::SparkBase::ControlType::kVelocity);
     if (getName(m_driveMotor.GetDeviceId()) == "top left"){ // put the motor encoder velocity           
         //std::cout << getName(m_driveMotor.GetDeviceId()) << " " <<optimizedState.speed.value() << " " << m_driveMotor.GetAppliedOutput() << " " << m_driveMotor.GetOutputCurrent() << " " << m_driveEncoder.GetVelocity() << endl;
     }

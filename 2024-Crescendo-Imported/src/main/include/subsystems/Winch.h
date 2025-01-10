@@ -8,6 +8,7 @@
 #include <frc/trajectory/TrapezoidProfile.h>
 
 #include <rev/SparkMax.h>
+#include <rev/config/SparkMaxConfig.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <rev/SparkClosedLoopController.h>
 
@@ -44,6 +45,8 @@ public:
 
 private:
     SparkMax m_winchMotor; 
+
+    SparkMaxConfig m_winchConfig; 
 
     SparkRelativeEncoder m_encoder = m_winchMotor.GetEncoder();
 
