@@ -14,15 +14,22 @@ using namespace std;
 using namespace MathConstants;
 
 Intake::Intake(int motor, int sensor)
-    : m_intakeMotor(motor, CANSparkLowLevel::MotorType::kBrushless) {
+    : m_intakeMotor(motor, rev::spark::SparkLowLevel::MotorType::kBrushless) {
     resetMotor();
-
+    m_intakeMotor.Configure(m_intakeConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
     
 }
 
 void Intake::resetMotor() {
-    m_intakeMotor.RestoreFactoryDefaults();
 
+    m_intakeConfig
+       .SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kBrake)
+       .VoltageCompensation(12.0)
+       .SmartCurrentLimit(20, 25)
+       .Inverted(true);
+
+    m_intakeConfig.encoder
+        .PositionConversionFactor(1.0 / intakeRatio);
     // m_intakeController.SetP(kiP);
     // m_intakeController.SetI(kaI);
     // m_intakeController.SetD(kaD);
@@ -35,12 +42,13 @@ void Intake::resetMotor() {
     // m_leftController.SetSmartMotionMinOutputVelocity(0);
     // m_leftController.SetSmartMotionAllowedClosedLoopError(allowedError);
 
-    m_intakeMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
-    m_intakeMotor.EnableVoltageCompensation(12.0);
-    m_intakeMotor.SetSmartCurrentLimit(20, 25);
-    m_intakeMotor.SetInverted(true);
+    // m_intakeMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
+    // m_intakeMotor.EnableVoltageCompensation(12.0);
+    // m_intakeMotor.SetSmartCurrentLimit(20, 25);
+    // m_intakeMotor.SetInverted(true);
 
-    m_encoder.SetPositionConversionFactor(1.0 / intakeRatio);
+    m_intakeMotor.Configure(m_intakeConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    // m_encoder.SetPositionConversionFactor(1.0 / intakeRatio);
 }
 
 void Intake::intakeNote() {  // intake until note collected

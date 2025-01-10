@@ -12,8 +12,8 @@ using namespace std;
 using namespace MathConstants;
 
 Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
-    : m_leftMotor(leftMotor, CANSparkLowLevel::MotorType::kBrushless),
-      m_rightMotor(rightMotor, CANSparkLowLevel::MotorType::kBrushless),
+    : m_leftMotor(leftMotor, rev::spark::SparkLowLevel::MotorType::kBrushless),
+      m_rightMotor(rightMotor, rev::spark::SparkLowLevel::MotorType::kBrushless),
       m_armFF(ArmConstants::kaS, ArmConstants::kaG, ArmConstants::kaV)
       {
     resetMotors();
@@ -21,56 +21,73 @@ Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
     // m_absoluteEncoder.SetVelocityConversionFactor();
     initalPosition = getPosition();
     position = getRelativePosition();
+
+    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
     // cout<<"arm abs "<<getPosition()<<" right pos "<<m_rightEncoder.GetPosition()<<" inital pos "<<initalPosition<<endl;
 }
 
 void Arm::resetMotors() {
-    m_leftMotor.RestoreFactoryDefaults();
-
-    m_leftController.SetP(kaP);
-    m_leftController.SetI(kaI);
-    m_leftController.SetD(kaD);
-    m_leftController.SetFF(kaFF);
-    m_leftController.SetIZone(kaIz);
-    m_leftController.SetOutputRange(kMinOutput, kMaxOutput);
+    // m_leftMotor.RestoreFactoryDefaults();
+    m_leftConfig.closedLoop
+        .Pidf(kaP, kaI, kaD, kaFF)
+        .IZone(kaIz)
+        .OutputRange(kMinOutput, kMaxOutput);
+    // m_leftController.SetP(kaP);
+    // m_leftController.SetI(kaI);
+    // m_leftController.SetD(kaD);
+    // m_leftController.SetFF(kaFF);
+    // m_leftController.SetIZone(kaIz);
+    // m_leftController.SetOutputRange(kMinOutput, kMaxOutput);
 
     // m_leftController.SetSmartMotionMaxAccel(maxAccel.value());
     // m_leftController.SetSmartMotionMaxVelocity(maxVelo.value());
     // m_leftController.SetSmartMotionMinOutputVelocity(0);
     // m_leftController.SetSmartMotionAllowedClosedLoopError(allowedError);
     // m_leftController.
+    m_leftConfig
+        .SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kBrake)
+        .VoltageCompensation(12.0)
+        .SmartCurrentLimit(40);
 
-    m_leftMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
-    m_leftMotor.EnableVoltageCompensation(12.0);
-    m_leftMotor.SetSmartCurrentLimit( 40);
-
-    m_leftEncoder.SetPositionConversionFactor(pi2 / armRatio);
+    m_leftConfig.encoder
+        .PositionConversionFactor(pi2 / armRatio);
+    // m_leftEncoder.SetPositionConversionFactor(pi2 / armRatio);
     // m_leftEncoder.SetVelocityConversionFactor((1/armRatio)/60);
     // m_leftEncoder.SetInverted(true);
 
-    m_rightMotor.RestoreFactoryDefaults();
+    m_rightConfig.closedLoop
+        .Pidf(kaP, kaI, kaD, kaFF)
+        .IZone(kaIz)
+        .OutputRange(kMinOutput, kMaxOutput);
+    // m_rightMotor.RestoreFactoryDefaults();
 
-    m_rightController.SetP(kaP);
-    m_rightController.SetI(kaI);
-    m_rightController.SetD(kaD);
-    m_rightController.SetFF(kaFF);
-    m_rightController.SetIZone(kaIz);
-    m_rightController.SetOutputRange(kMinOutput, kMaxOutput);
+    // m_rightController.SetP(kaP);
+    // m_rightController.SetI(kaI);
+    // m_rightController.SetD(kaD);
+    // m_rightController.SetFF(kaFF);
+    // m_rightController.SetIZone(kaIz);
+    // m_rightController.SetOutputRange(kMinOutput, kMaxOutput);
 
     // m_rightController.SetSmartMotionMaxAccel(maxAccel.value());
     // m_rightController.SetSmartMotionMaxVelocity(maxVelo.value());
     // m_rightController.SetSmartMotionMinOutputVelocity(0);
     // m_rightController.SetSmartMotionAllowedClosedLoopError(allowedError);
-
-    m_rightMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
-    m_rightMotor.EnableVoltageCompensation(12.0);
-    m_rightMotor.SetSmartCurrentLimit( 40);
-    m_rightMotor.SetInverted(true);
-
-    m_rightEncoder.SetPositionConversionFactor(pi2 / armRatio);
+    m_rightConfig
+        .SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kBrake)
+        .VoltageCompensation(12.0)
+        .SmartCurrentLimit(40)
+        .Follow(m_leftMotor, true);
+    // m_rightMotor.SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kBrake);
+    // m_rightMotor.EnableVoltageCompensation(12.0);
+    // m_rightMotor.SetSmartCurrentLimit( 40);
+    // m_rightMotor.SetInverted(true);
+    m_rightConfig.encoder
+        .PositionConversionFactor(pi2 / armRatio);
+    // m_rightEncoder.SetPositionConversionFactor(pi2 / armRatio);
     // m_rightEncoder.SetInverted(true);
 
-    m_rightMotor.Follow(m_leftMotor, true);
+    // m_rightMotor.Follow(m_leftMotor, true);
     m_leftEncoder.SetPosition(getPosition());
     m_rightEncoder.SetPosition(getPosition());
     // m_leftMotor.EnableSoftLimit(CANSparkBase::SoftLimitDirection::kReverse, false);
@@ -78,6 +95,9 @@ void Arm::resetMotors() {
     // m_leftMotor.EnableSoftLimit(CANSparkBase::SoftLimitDirection::kForward, false);
     // m_rightMotor.EnableSoftLimit(CANSparkBase::SoftLimitDirection::kForward, false);
     resetEncoder();
+
+    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 void Arm::resetEncoder() { // sets neo encoders to absolute encoder position
@@ -164,10 +184,10 @@ void Arm::Periodic() {
     // }
 
     if(commandGiven){
-        m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition, 0, m_armFF.Calculate(ffP, ffV, ffA).value());
+        m_leftController.SetReference(position, rev::spark::SparkLowLevel::ControlType::kPosition, rev::spark::kSlot0, m_armFF.Calculate(ffP, ffV, ffA).value());
     }
     else{
-        m_leftController.SetReference(m_armFF.Calculate(ffP, ffV, ffA).value(),CANSparkLowLevel::ControlType::kVoltage);
+        m_leftController.SetReference(m_armFF.Calculate(ffP, ffV, ffA).value(),rev::spark::SparkLowLevel::ControlType::kVoltage);
     }
         
     // m_leftController.SetReference(position, CANSparkLowLevel::ControlType::kPosition);

@@ -9,6 +9,7 @@
 #include <frc/AnalogEncoder.h>
 
 #include <rev/SparkMax.h>
+#include <rev/config/SparkMaxConfig.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <rev/SparkClosedLoopController.h>
 // #include <rev/ThroughBoreEncoder.h>
@@ -46,6 +47,8 @@ public:
 private:
 
     SparkMax m_intakeMotor; // may need to switch to 775 if neo550 is not fixed in time
+
+    SparkMaxConfig m_intakeConfig;
 
     SparkRelativeEncoder m_encoder = m_intakeMotor.GetEncoder();
 

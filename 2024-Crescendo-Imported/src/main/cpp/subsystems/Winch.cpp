@@ -4,7 +4,7 @@ using namespace WinchConstants;
 using namespace MathConstants;
 
 Winch::Winch(int motor)
-    : m_winchMotor(motor, CANSparkLowLevel::MotorType::kBrushless) {
+    : m_winchMotor(motor, rev::spark::SparkLowLevel::MotorType::kBrushless) {
     resetMotor();
 }
 
@@ -31,12 +31,12 @@ void Winch::resetMotor() {
 }
 
 void Winch::climb(double speed) {  // spin winch based on speed
-    m_winchController.SetReference(speed, CANSparkLowLevel::ControlType::kVelocity);
+    m_winchController.SetReference(speed, rev::spark::SparkLowLevel::ControlType::kVelocity);
 }
 void Winch::spring() {  // act like a spring/slightly tension to prevent slack
                         // from bulding up
     if (m_encoder.GetPosition() < heightToTravel.value() / 2) {
-        m_winchController.SetReference(0.1, CANSparkMax::ControlType::kVelocity);
+        m_winchController.SetReference(0.1, rev::spark::SparkLowLevel::ControlType::kVelocity);
     } else {
         m_winchMotor.SetIdleMode(CANSparkBase::IdleMode::kCoast);
     }
@@ -48,7 +48,7 @@ void Winch::extend(double speed) {  // let go
 }
 void Winch::hold() {  // set speed to 0
     m_winchMotor.SetIdleMode(CANSparkBase::IdleMode::kBrake);
-    m_winchController.SetReference(0, CANSparkLowLevel::ControlType::kVelocity);
+    m_winchController.SetReference(0, rev::spark::SparkLowLevel::ControlType::kVelocity);
 }
 
 double Winch::getOutputCurrent() { return m_winchMotor.GetOutputCurrent(); }
