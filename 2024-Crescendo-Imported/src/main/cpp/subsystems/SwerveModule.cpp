@@ -18,7 +18,7 @@ SwerveModule::SwerveModule(int driveMotor, int steerMotor, int absEncoder, doubl
       m_absoluteEncoder(absEncoder),
       m_moduleName(getName(driveMotor)) {
 
-    m_absoluteEncoder.SetPositionOffset(encoderOffset);
+    // m_absoluteEncoder.SetPositionOffset(encoderOffset);
     resetModule();
     
     m_driveMotor.Configure(m_driveConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
@@ -114,7 +114,8 @@ void SwerveModule::resetSteerEncoder() {  // sets relative steer encoder to abso
 }
 
 double SwerveModule::getAbsolutePosition() {                                                                // returns the absolute encoder position
-    return (m_absoluteEncoder.GetAbsolutePosition() - m_absoluteEncoder.GetPositionOffset()) * pi2;  // shouldn't need to add an offset value because position offset was set in constructor
+    // return (m_absoluteEncoder.GetAbsolutePosition() - m_absoluteEncoder.GetPositionOffset()) * pi2;
+    return (m_absoluteEncoder.Get()) * pi2;  // shouldn't need to add an offset value because position offset was set in constructor
 }
 
 double SwerveModule::getDrivePosition() {  // returns the drive encoder position
@@ -186,7 +187,7 @@ void SwerveModule::Periodic() {
     // current angle based on the neo encoder
     frc::SmartDashboard::PutNumber("angle " + getName(m_driveMotor.GetDeviceId()), getSteerPosition());
     // print the absolute encoder reading
-    frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition());
+    // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition());
     // this is the absolute encoder reading minus the position offset
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " o abs", getAbsolutePosition()/pi2);    
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + "off", m_absoluteEncoder.GetPositionOffset());
@@ -194,9 +195,9 @@ void SwerveModule::Periodic() {
 
 void SwerveModule::togglePositionOffset(bool toggleOffset) {  // turns on or off the absolute encoder position offset (TESTING ONLY, DO NOT USE IN COMPETITION)
     if (toggleOffset) {
-        m_absoluteEncoder.SetPositionOffset(this->encoderOffset);
+        // m_absoluteEncoder.SetPositionOffset(this->encoderOffset);
     } else {
-        m_absoluteEncoder.SetPositionOffset(0);
+        // m_absoluteEncoder.SetPositionOffset(0);
         
     }
 }

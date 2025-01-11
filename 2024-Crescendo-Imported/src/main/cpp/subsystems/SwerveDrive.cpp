@@ -15,6 +15,7 @@
 #include <frc/smartdashboard/Field2d.h>
 
 #include <iostream>
+#include <frc/Timer.h>
 
 using namespace SwerveModuleConstants;
 using namespace MathConstants;
@@ -50,7 +51,7 @@ SwerveDrive::SwerveDrive()
                        m_modules[2].getPosition(), m_modules[3].getPosition()},
                       frc::Pose2d()},
       thetaController(0, 0, 0) {
-    m_gyro.Calibrate();
+    m_gyro.Reset();
     // m_gyro.ZeroYaw();
     heading = frc::Rotation2d(degree_t{-m_gyro.GetYaw()});
     lastAngle = -m_gyro.GetYaw();
@@ -67,6 +68,7 @@ SwerveDrive::SwerveDrive()
             PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
             PIDConstants(5.0, 0.0, 0.0) // Rotation PID constants
         ),
+        config,
         []() {
             // Boolean supplier that controls when the path will be mirrored for the red alliance
             // This will flip the path being followed to the red side of the field.

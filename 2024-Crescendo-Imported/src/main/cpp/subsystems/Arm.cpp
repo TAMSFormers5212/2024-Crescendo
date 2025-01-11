@@ -17,7 +17,7 @@ Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
       m_armFF(ArmConstants::kaS, ArmConstants::kaG, ArmConstants::kaV)
       {
     resetMotors();
-    m_absoluteEncoder.SetPositionOffset(encoderOffset);
+    // m_absoluteEncoder.SetPositionOffset(encoderOffset);
     // m_absoluteEncoder.SetVelocityConversionFactor();
     initalPosition = getPosition();
     position = getRelativePosition();
@@ -107,7 +107,8 @@ void Arm::resetEncoder() { // sets neo encoders to absolute encoder position
 }
 
 double Arm::getPosition() { // returns the absolute encoder position with offset
-    return abs(m_absoluteEncoder.GetAbsolutePosition()-0.75)*pi2;
+    // return abs(m_absoluteEncoder.GetAbsolutePosition()-0.75)*pi2;
+    return abs(m_absoluteEncoder.Get()-0.75)*pi2;
 
 }
 
@@ -116,7 +117,8 @@ double Arm::getVelocity(){ // returns left motor's velocity
 }
 
 double Arm::getRawPosition() { // returns the absolute encoder position minus offset
-    return (abs(m_absoluteEncoder.GetAbsolutePosition()-0.75) - m_absoluteEncoder.GetPositionOffset())*pi2; 
+    // return (abs(m_absoluteEncoder.GetAbsolutePosition()-0.75) - m_absoluteEncoder.GetPositionOffset())*pi2; 
+    return (abs(m_absoluteEncoder.Get()-0.75))*pi2; 
 }
 
 void Arm::setPosition(double pose) { // sets the goal pose to given parameter
@@ -196,7 +198,9 @@ void Arm::Periodic() {
     frc::SmartDashboard::PutNumber("arm position", position);
     frc::SmartDashboard::PutNumber("arm", getRelativePosition());
     frc::SmartDashboard::PutNumber("armRaw ", getRawPosition());
-    frc::SmartDashboard::PutNumber("arm offset ", m_absoluteEncoder.GetPositionOffset());
+
+    // frc::SmartDashboard::PutNumber("arm offset ", m_absoluteEncoder.GetPositionOffset());
+
     // frc::SmartDashboard::PutNumber("armPos", position);
     // frc::SmartDashboard::PutNumber("armNoRotation ", abs(m_absoluteEncoder.GetAbsolutePosition()-0.75)*pi2);
  

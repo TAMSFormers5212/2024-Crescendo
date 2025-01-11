@@ -486,7 +486,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     
     //auto rot = PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Rotation();
     auto rot = m_drive.getGyroHeading2();
-    auto pos = PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Translation();
+    // auto pos = PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Translation();
     if (alliance.value() == frc::DriverStation::Alliance::kRed){
         
         //rot = Rotation2d(units::angle::degree_t(-90));
@@ -498,7 +498,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     //m_drive.resetOdometry({{PathPlannerAuto::getStartingPoseFromAutoFile(autoName).X(), PathPlannerAuto::getStartingPoseFromAutoFile(autoName).Y()}, rot});
     
 
-    m_drive.resetOdometry(Pose2d(pos.X(), pos.Y(), rot));
+    // m_drive.resetOdometry(Pose2d(pos.X(), pos.Y(), rot));
     
     auto testAuto = PathPlannerAuto(autoName).ToPtr();
     //m_drive.resetOdometry(PathPlannerAuto::getStartingPoseFromAutoFile(autoName));
@@ -541,7 +541,7 @@ void RobotContainer::Periodic() {
     //frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
     if (frc::DriverStation::GetAlliance().value() == frc::DriverStation::Alliance::kRed){
         
-        rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile("Test Auto").Rotation());
+        // rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile("Test Auto").Rotation());
     }
     //frc::SmartDashboard::PutNumber("roa t", rot.Degrees().value());
 }

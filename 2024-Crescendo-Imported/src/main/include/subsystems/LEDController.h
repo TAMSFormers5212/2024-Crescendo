@@ -18,7 +18,7 @@
 #include <Constants.h>
 #include <frc/motorcontrol/Spark.h>
 
-using namespace rev;
+// using namespace rev;
 using namespace frc;
 using namespace ArmConstants;
 
