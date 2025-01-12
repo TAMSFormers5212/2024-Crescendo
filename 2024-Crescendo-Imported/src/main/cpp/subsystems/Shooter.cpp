@@ -4,16 +4,16 @@ using namespace ShooterConstants;
 using namespace PoseConstants;
 
 Shooter::Shooter(int leftMotor, int rightMotor)
-: m_leftMotor(leftMotor, rev::spark::SparkLowLevel::MotorType::kBrushless),
-    m_rightMotor(rightMotor, rev::spark::SparkLowLevel::MotorType::kBrushless),
+: m_leftMotor(leftMotor, rev::spark::SparkMax::MotorType::kBrushless),
+    m_rightMotor(rightMotor, rev::spark::SparkMax::MotorType::kBrushless),
     m_leftFF{ShooterConstants::KlsS, ShooterConstants::KlsV},
     m_rightFF{ShooterConstants::KrsS, ShooterConstants::KrsV}
 {
     resetMotors();
     inAuto = false;
-    
-    // m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
-    // m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+
+    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 void Shooter::resetMotors(){

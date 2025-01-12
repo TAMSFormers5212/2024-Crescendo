@@ -14,9 +14,9 @@ using namespace std;
 using namespace MathConstants;
 
 Intake::Intake(int motor, int sensor)
-    : m_intakeMotor(motor, rev::spark::SparkLowLevel::MotorType::kBrushless) {
+    : m_intakeMotor(motor, rev::spark::SparkMax::MotorType::kBrushless) {
     resetMotor();
-    // m_intakeMotor.Configure(m_intakeConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_intakeMotor.Configure(m_intakeConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
     
 }
 

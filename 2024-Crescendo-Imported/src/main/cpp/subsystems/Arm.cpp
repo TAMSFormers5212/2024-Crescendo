@@ -12,8 +12,8 @@ using namespace std;
 using namespace MathConstants;
 
 Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
-    : m_leftMotor(leftMotor, rev::spark::SparkLowLevel::MotorType::kBrushless),
-      m_rightMotor(rightMotor, rev::spark::SparkLowLevel::MotorType::kBrushless),
+    : m_leftMotor(leftMotor, rev::spark::SparkMax::MotorType::kBrushless),
+      m_rightMotor(rightMotor, rev::spark::SparkMax::MotorType::kBrushless),
       m_armFF(ArmConstants::kaS, ArmConstants::kaG, ArmConstants::kaV)
       {
     resetMotors();
@@ -96,8 +96,8 @@ void Arm::resetMotors() {
     // m_rightMotor.EnableSoftLimit(CANSparkBase::SoftLimitDirection::kForward, false);
     resetEncoder();
 
-    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
-    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    // m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    // m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 void Arm::resetEncoder() { // sets neo encoders to absolute encoder position
