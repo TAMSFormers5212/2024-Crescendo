@@ -11,8 +11,9 @@ Shooter::Shooter(int leftMotor, int rightMotor)
 {
     resetMotors();
     inAuto = false;
-    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
-    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    
+    // m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    // m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 void Shooter::resetMotors(){
@@ -62,8 +63,9 @@ void Shooter::resetMotors(){
 
     // m_rightMotor.Follow(m_leftMotor, false);
     // resetEncoder();
-    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
-    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+
+    // m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    // m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 

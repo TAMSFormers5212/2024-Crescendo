@@ -22,8 +22,8 @@ Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
     initalPosition = getPosition();
     position = getRelativePosition();
 
-    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
-    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_leftMotor.Configure(m_leftConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
+    m_rightMotor.Configure(m_rightConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
     // cout<<"arm abs "<<getPosition()<<" right pos "<<m_rightEncoder.GetPosition()<<" inital pos "<<initalPosition<<endl;
 }
 

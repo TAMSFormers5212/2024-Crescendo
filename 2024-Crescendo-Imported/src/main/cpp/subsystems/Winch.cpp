@@ -6,7 +6,7 @@ using namespace MathConstants;
 Winch::Winch(int motor)
     : m_winchMotor(motor, rev::spark::SparkLowLevel::MotorType::kBrushless) {
     resetMotor();
-    m_winchMotor.Configure(m_winchConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_winchMotor.Configure(m_winchConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
     
 }
 
@@ -38,7 +38,7 @@ void Winch::resetMotor() {
         .PositionConversionFactor((pi * winchDiameter.value()) / winchRatio);
     
     // m_encoder.SetPositionConversionFactor((pi * winchDiameter.value()) / winchRatio);
-    m_winchMotor.Configure(m_winchConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);  // turn it to linear distance
+    m_winchMotor.Configure(m_winchConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);  // turn it to linear distance
 }
 
 void Winch::climb(double speed) {  // spin winch based on speed
@@ -52,20 +52,20 @@ void Winch::spring() {  // act like a spring/slightly tension to prevent slack
         m_winchConfig
             .SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kCoast);
     }
-    m_winchMotor.Configure(m_winchConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_winchMotor.Configure(m_winchConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
 }
 void Winch::extend(double speed) {  // let go
     // m_winchController.SetReference(speed,
     // CANSparkLowLevel::ControlType::kVelocity);
     m_winchConfig
             .SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kCoast);
-    m_winchMotor.Configure(m_winchConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_winchMotor.Configure(m_winchConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
 }
 void Winch::hold() {  // set speed to 0
     m_winchConfig
             .SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kBrake);
     m_winchController.SetReference(0, rev::spark::SparkLowLevel::ControlType::kVelocity);
-    m_winchMotor.Configure(m_winchConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_winchMotor.Configure(m_winchConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
 }
 
 double Winch::getOutputCurrent() { return m_winchMotor.GetOutputCurrent(); }
