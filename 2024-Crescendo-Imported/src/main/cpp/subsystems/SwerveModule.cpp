@@ -15,6 +15,8 @@ SwerveModule::SwerveModule(int driveMotor, int steerMotor, int absEncoder, doubl
     : encoderOffset(offset),
       m_driveMotor(driveMotor, rev::spark::SparkMax::MotorType::kBrushless),
       m_steerMotor(steerMotor, rev::spark::SparkMax::MotorType::kBrushless),
+      m_driveConfig(),
+      m_steerConfig(),
       m_absoluteEncoder(absEncoder),
       m_moduleName(getName(driveMotor)) {
 
@@ -65,8 +67,8 @@ void SwerveModule::resetDriveMotor() {  // sets pid, current limit, and encoder
     
 
     resetDriveEncoder();
-//     m_driveMotor.Configure(m_driveConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
-//     m_steerMotor.Configure(m_steerConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
+    m_driveMotor.Configure(m_driveConfig, SparkBase::ResetMode::kResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
+    m_steerMotor.Configure(m_steerConfig, SparkBase::ResetMode::kResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
 }
 
 void SwerveModule::resetSteerMotor() {  // sets pid, current limit, encoder position, and encoder conversion factor to set values
@@ -99,8 +101,8 @@ void SwerveModule::resetSteerMotor() {  // sets pid, current limit, encoder posi
     // m_steerEncoder.SetPositionConversionFactor(pi2 / SwerveModuleConstants::steerRatio);
 
     resetSteerEncoder();
-    // m_driveMotor.Configure(m_driveConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
-    // m_steerMotor.Configure(m_steerConfig, SparkBase::ResetMode::kNoResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
+    m_driveMotor.Configure(m_driveConfig, SparkBase::ResetMode::kResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
+    m_steerMotor.Configure(m_steerConfig, SparkBase::ResetMode::kResetSafeParameters, SparkBase::PersistMode::kPersistParameters);
 }
 
 void SwerveModule::resetDriveEncoder() {  // set drive encoder to 0.0
