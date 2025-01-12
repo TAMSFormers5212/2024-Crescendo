@@ -16,7 +16,7 @@ using namespace MathConstants;
 Intake::Intake(int motor, int sensor)
     : m_intakeMotor(motor, rev::spark::SparkLowLevel::MotorType::kBrushless) {
     resetMotor();
-    m_intakeMotor.Configure(m_intakeConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_intakeMotor.Configure(m_intakeConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
     
 }
 
@@ -47,7 +47,7 @@ void Intake::resetMotor() {
     // m_intakeMotor.SetSmartCurrentLimit(20, 25);
     // m_intakeMotor.SetInverted(true);
 
-    m_intakeMotor.Configure(m_intakeConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_intakeMotor.Configure(m_intakeConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
     // m_encoder.SetPositionConversionFactor(1.0 / intakeRatio);
 }
 

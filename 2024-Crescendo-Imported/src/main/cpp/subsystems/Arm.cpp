@@ -22,8 +22,8 @@ Arm::Arm(int leftMotor, int rightMotor, int encoder, double encoderOffset)
     initalPosition = getPosition();
     position = getRelativePosition();
 
-    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
-    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
     // cout<<"arm abs "<<getPosition()<<" right pos "<<m_rightEncoder.GetPosition()<<" inital pos "<<initalPosition<<endl;
 }
 
@@ -96,8 +96,8 @@ void Arm::resetMotors() {
     // m_rightMotor.EnableSoftLimit(CANSparkBase::SoftLimitDirection::kForward, false);
     resetEncoder();
 
-    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
-    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_leftMotor.Configure(m_leftConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_rightMotor.Configure(m_rightConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 void Arm::resetEncoder() { // sets neo encoders to absolute encoder position

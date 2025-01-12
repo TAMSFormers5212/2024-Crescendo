@@ -65,8 +65,8 @@ void SwerveModule::resetDriveMotor() {  // sets pid, current limit, and encoder
     
 
     resetDriveEncoder();
-    m_driveMotor.Configure(m_driveConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
-    m_steerMotor.Configure(m_steerConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_driveMotor.Configure(m_driveConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_steerMotor.Configure(m_steerConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 void SwerveModule::resetSteerMotor() {  // sets pid, current limit, encoder position, and encoder conversion factor to set values
@@ -99,8 +99,8 @@ void SwerveModule::resetSteerMotor() {  // sets pid, current limit, encoder posi
     // m_steerEncoder.SetPositionConversionFactor(pi2 / SwerveModuleConstants::steerRatio);
 
     resetSteerEncoder();
-    m_driveMotor.Configure(m_driveConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
-    m_steerMotor.Configure(m_steerConfig, SparkMax::ResetMode::kResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_driveMotor.Configure(m_driveConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
+    m_steerMotor.Configure(m_steerConfig, SparkMax::ResetMode::kNoResetSafeParameters, SparkMax::PersistMode::kPersistParameters);
 }
 
 void SwerveModule::resetDriveEncoder() {  // set drive encoder to 0.0
