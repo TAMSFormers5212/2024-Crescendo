@@ -94,7 +94,7 @@ void SwerveModule::resetSteerMotor() {  // sets pid, current limit, encoder posi
     // m_steerMotor.SetSmartCurrentLimit(20, 30);
 
     //m_steerMotor.SetInverted(true);
-    m_driveConfig.encoder
+    m_steerConfig.encoder
         
         .PositionConversionFactor(pi2 / SwerveModuleConstants::steerRatio);
     m_steerEncoder.SetPosition(m_steerEncoder.GetPosition());
