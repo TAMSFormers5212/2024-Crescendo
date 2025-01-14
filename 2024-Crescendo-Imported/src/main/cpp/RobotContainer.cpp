@@ -533,7 +533,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     // if(shouldFlip()){
         
     // }
-    // auto path = PathPlannerPath::fromPathFile("Stationary Shoot");
+    auto path = PathPlannerPath::fromPathFile("Stationary Shoot");
     // return AutoBuilder::followPath(path);
 }
 void RobotContainer::Periodic() {

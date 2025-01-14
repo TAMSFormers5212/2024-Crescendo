@@ -117,7 +117,7 @@ void SwerveModule::resetSteerEncoder() {  // sets relative steer encoder to abso
 
 double SwerveModule::getAbsolutePosition() {                                                                // returns the absolute encoder position
     // return (m_absoluteEncoder.GetAbsolutePosition() - m_absoluteEncoder.GetPositionOffset()) * pi2;
-    return (m_absoluteEncoder.Get()) * pi2;  // shouldn't need to add an offset value because position offset was set in constructor
+    return (m_absoluteEncoder.Get() - encoderOffset) * pi2;  // shouldn't need to add an offset value because position offset was set in constructor
 }
 
 double SwerveModule::getDrivePosition() {  // returns the drive encoder position
@@ -173,6 +173,7 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 
     // angle we want to go to
     frc::SmartDashboard::PutNumber("O " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
+    frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " degrees", getAbsolutePosition() / 3.14 * 180);
     m_steerController.SetReference((adjustedAngle), rev::spark::SparkBase::ControlType::kPosition);
     frc::SmartDashboard::PutNumber("encoder " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
     // m_driveController.SetReference(optimizedState.speed.value(),
@@ -185,11 +186,11 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 }
 
 void SwerveModule::Periodic() {
-    frc::SmartDashboard::PutNumber("velocity " + getName(m_driveMotor.GetDeviceId()), abs(getDriveVelocity() / 12));
+    // frc::SmartDashboard::PutNumber("velocity " + getName(m_driveMotor.GetDeviceId()), abs(getDriveVelocity() / 12));
     // current angle based on the neo encoder
-    frc::SmartDashboard::PutNumber("angle " + getName(m_driveMotor.GetDeviceId()), getSteerPosition());
+    // frc::SmartDashboard::PutNumber("angle " + getName(m_driveMotor.GetDeviceId()), getSteerPosition());
     // print the absolute encoder reading
-    // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition());
+    frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " degrees", getAbsolutePosition() / 3.14 * 180);
     // this is the absolute encoder reading minus the position offset
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " o abs", getAbsolutePosition()/pi2);    
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + "off", m_absoluteEncoder.GetPositionOffset());
