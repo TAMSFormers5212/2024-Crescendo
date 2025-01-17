@@ -192,7 +192,7 @@ namespace SwerveModuleConstants {//per swerve module
         constexpr int steerMotor = 8; //CAN ID
         constexpr int absencoder = 1; //analogin Port
 
-        constexpr double offset =0.834;
+        constexpr double offset = 0.834;
         //0.834 + 0.25 - 1
     }
 
