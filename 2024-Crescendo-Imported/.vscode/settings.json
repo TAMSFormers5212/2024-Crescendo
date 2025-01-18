@@ -14,5 +14,28 @@
     "**/.factorypath": true,
     "**/*~": true
   },
-  "C_Cpp.default.configurationProvider": "vscode-wpilib"
+  "C_Cpp.default.configurationProvider": "vscode-wpilib",
+  "files.associations": {
+    "bit": "cpp",
+    "*.tcc": "cpp",
+    "bitset": "cpp",
+    "compare": "cpp",
+    "set": "cpp",
+    "random": "cpp",
+    "fstream": "cpp",
+    "functional": "cpp",
+    "future": "cpp",
+    "istream": "cpp",
+    "limits": "cpp",
+    "mutex": "cpp",
+    "ostream": "cpp",
+    "sstream": "cpp",
+    "stop_token": "cpp",
+    "streambuf": "cpp",
+    "regex": "cpp",
+    "tuple": "cpp",
+    "valarray": "cpp",
+    "variant": "cpp",
+    "*.inc": "cpp"
+  }
 }
