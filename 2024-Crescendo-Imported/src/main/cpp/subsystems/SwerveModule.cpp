@@ -216,12 +216,12 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 }
 
 void SwerveModule::Periodic() {
-    frc::SmartDashboard::PutNumber("velocity " + getName(m_driveMotor.GetDeviceId()), abs(getDriveVelocity() / 12));
+    // frc::SmartDashboard::PutNumber("velocity " + getName(m_driveMotor.GetDeviceId()), abs(getDriveVelocity() / 12));
     // current angle based on the neo encoder
     frc::SmartDashboard::PutNumber("steer num" + getName(m_driveMotor.GetDeviceId()), units::radian_t{getSteerPosition()}.value());
     frc::SmartDashboard::PutNumber("angle " + getName(m_driveMotor.GetDeviceId()), getSteerPosition());
     // print the absolute encoder reading
-    // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition());
+    frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " degrees", getAbsolutePosition() / 3.14 * 180);
     // this is the absolute encoder reading minus the position offset
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " o abs", getAbsolutePosition()/pi2);    
     frc::SmartDashboard::PutNumber("ABS ENCODER " + getName(m_driveMotor.GetDeviceId()), m_absoluteEncoder.Get() - encoderOffset);

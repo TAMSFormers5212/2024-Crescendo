@@ -32,6 +32,13 @@
     {
       "waypointRelativePos": 0.5,
       "rotationDegrees": 90.0
+<<<<<<< HEAD
+=======
+    },
+    {
+      "waypointRelativePos": 1,
+      "rotationDegrees": 180.0
+>>>>>>> 4811ccb1aeb0c72c819b8de526661fff08881a00
     }
   ],
   "constraintZones": [
@@ -40,10 +47,17 @@
       "minWaypointRelativePos": 0,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
+<<<<<<< HEAD
         "maxVelocity": 0.1,
         "maxAcceleration": 0.03,
         "maxAngularVelocity": 80.0,
         "maxAngularAcceleration": 80.0,
+=======
+        "maxVelocity": 0.05,
+        "maxAcceleration": 0.03,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+>>>>>>> 4811ccb1aeb0c72c819b8de526661fff08881a00
         "nominalVoltage": 12.0,
         "unlimited": false
       }
@@ -52,8 +66,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
+<<<<<<< HEAD
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
+=======
+    "maxVelocity": 1.0,
+    "maxAcceleration": 2.0,
+>>>>>>> 4811ccb1aeb0c72c819b8de526661fff08881a00
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -61,7 +80,11 @@
   },
   "goalEndState": {
     "velocity": 0,
+<<<<<<< HEAD
     "rotation": 90.0
+=======
+    "rotation": -178.18169703554813
+>>>>>>> 4811ccb1aeb0c72c819b8de526661fff08881a00
   },
   "reversed": false,
   "folder": null,
