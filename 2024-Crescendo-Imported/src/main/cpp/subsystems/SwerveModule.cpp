@@ -31,12 +31,12 @@ SwerveModule::SwerveModule(int driveMotor, int steerMotor, int absEncoder, doubl
 }
 
 frc::SwerveModuleState SwerveModule::getState() {  // return current module state
-    frc::SmartDashboard::PutNumber("steer num", units::radian_t{getSteerPosition()}.value());
-    return {units::meters_per_second_t{m_driveEncoder.GetVelocity()}, units::radian_t{getSteerPosition()}};
+    
+    return {units::meters_per_second_t{m_driveEncoder.GetVelocity()}, units::radian_t{getAbsolutePosition()}};
 }
 
 frc::SwerveModulePosition SwerveModule::getPosition() {  // get encoder positions
-    return {units::meter_t{m_driveEncoder.GetPosition()}, units::radian_t{getSteerPosition()}};
+    return {units::meter_t{m_driveEncoder.GetPosition()}, units::radian_t{getAbsolutePosition()}};
 }
 
 void SwerveModule::resetModule() {  // resets the drive and steer motors
@@ -161,41 +161,44 @@ std::string SwerveModule::getName(
 
 void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the module to given state
     // frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getSteerPosition() + 0.25));
-    frc::SwerveModuleState stateNew = state;
-    if(state.angle.Degrees().value() < 0) {
+    // frc::SwerveModuleState stateNew = state;
+    // if(state.angle.Degrees().value() < 0) {
         
-        // state.angle.Degrees() = state.angle.Degrees() + units::degree_t(180);
-         stateNew = frc::SwerveModuleState{units::velocity::meters_per_second_t{state.speed.value()}, frc::Rotation2d(state.angle.Degrees() + units::degree_t(360))};
-    }
-    else {
-        stateNew = frc::SwerveModuleState{units::velocity::meters_per_second_t{state.speed.value()}, frc::Rotation2d(state.angle.Degrees())};
-    }
-    frc::SmartDashboard::PutNumber("STATE ANGLE " + getName(m_driveMotor.GetDeviceId()), stateNew.angle.Degrees().value());
+    //     // state.angle.Degrees() = state.angle.Degrees() + units::degree_t(180);
+    //      stateNew = frc::SwerveModuleState{units::velocity::meters_per_second_t{state.speed.value()}, frc::Rotation2d(state.angle.Degrees() + units::degree_t(360))};
+    // }
+    // else {
+    //     stateNew = frc::SwerveModuleState{units::velocity::meters_per_second_t{state.speed.value()}, frc::Rotation2d(state.angle.Degrees())};
+    // }
     
-    
-    frc::SwerveModuleState optimizedState = frc::SwerveModuleState::Optimize(state, units::radian_t(getAbsolutePosition()));
-    optimizedState.CosineScale(frc::Rotation2d(state.angle.Degrees()));
+    frc::SwerveModuleState optimizedState = state;
+    optimizedState.Optimize(units::radian_t(getAbsolutePosition()));
+    optimizedState.CosineScale(units::radian_t(getAbsolutePosition()));
     frc::Rotation2d curAngle = units::radian_t(getAbsolutePosition());
-
-    frc::SmartDashboard::PutNumber("current " + getName(m_driveMotor.GetDeviceId()), curAngle.Degrees().value());
+    frc::SmartDashboard::PutNumber("STATE SPEED " + getName(m_driveMotor.GetDeviceId()), optimizedState.speed.value());
+    frc::SmartDashboard::PutNumber("current " + getName(m_driveMotor.GetDeviceId( )), curAngle.Degrees().value());
     frc::SmartDashboard::PutNumber("absolute " + getName(m_driveMotor.GetDeviceId()), getAbsolutePosition());
-   
+   frc::SmartDashboard::PutNumber("ABS ENCODER " + getName(m_driveMotor.GetDeviceId()), m_absoluteEncoder.Get() - encoderOffset);
+    // frc::SmartDashboard::PutNumber("STEER ENCODER " + getName(m_driveMotor.GetDeviceId()), getSteerPosition());
+    m_steerController.SetReference((optimizedState.angle.Radians().value() * 7/9), rev::spark::SparkBase::ControlType::kPosition);
+    // frc::SmartDashboard::PutNumber("encoder " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
+    m_driveController.SetReference(optimizedState.speed.value(), rev::spark::SparkBase::ControlType::kVelocity);
     // idk i took this from 2363. heres what they said:
     //  Since we use relative encoder of steer motor, it is a field (doesn't
     //  wrap from 2pi to 0 for example). We need to calculate delta to avoid
-    //  taking a longer route This is analagous to the EnableContinuousInput()
+    //  taking a longer route This is analagous to the EnableContinuousInput() 
     //  function of WPILib's PIDController classes
 
     // curAngle = frc::Rotation2d(curAngle.Degrees() + units::angle::degree_t{90});
 
     // frc::SmartDashboard::PutNumber("CUR ANGLE " + getName(m_driveMotor.GetDeviceId()), curAngle.Degrees().value());
-    double delta = std::fmod(std::fmod((optimizedState.angle.Radians().value() - curAngle.Radians().value() + pi), pi2) + pi2, pi2) - (pi);  // NOLINT
-    double temp = optimizedState.angle.Radians().value();
+    // double delta = std::fmod(std::fmod((optimizedState.angle.Radians().value() - curAngle.Radians().value() + pi), pi2) + pi2, pi2) - (pi);  // NOLINT
+    // double temp = optimizedState.angle.Radians().value();
     // if(temp < 0) {
     //     temp += pi;
     // }
     frc::SmartDashboard::PutNumber("OBS ANGLE " + getName(m_driveMotor.GetDeviceId()), optimizedState.angle.Degrees().value());
-    double adjustedAngle = temp + curAngle.Radians().value();
+    // double adjustedAngle = temp + curAngle.Radians().value();
     //
     
     // However, I used setPositionPIDWrappingEnabled(), so I don't think this is needed
@@ -206,14 +209,7 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 
     // angle we want to go to
     // frc::SmartDashboard::PutNumber("O " + getName(m_driveMotor.GetDeviceId()), delta);
-    frc::SmartDashboard::PutNumber("ABS ENCODER " + getName(m_driveMotor.GetDeviceId()), m_absoluteEncoder.Get() - encoderOffset);
-    // frc::SmartDashboard::PutNumber("STEER ENCODER " + getName(m_driveMotor.GetDeviceId()), getSteerPosition());
-    m_steerController.SetReference((optimizedState.angle.Radians().value()), rev::spark::SparkBase::ControlType::kPosition);
-    frc::SmartDashboard::PutNumber("encoder " + getName(m_driveMotor.GetDeviceId()), adjustedAngle);
-    // m_driveController.SetReference(optimizedState.speed.value(),
-    // CANSparkMax::ControlType::kVelocity); // 2363 version
-    // m_driveMotor.Set(optimizedState.speed / maxSpeed);
-    m_driveController.SetReference(optimizedState.speed.value(), rev::spark::SparkBase::ControlType::kVelocity);
+    
     if (getName(m_driveMotor.GetDeviceId()) == "top left"){ // put the motor encoder velocity           
         //std::cout << getName(m_driveMotor.GetDeviceId()) << " " <<optimizedState.speed.value() << " " << m_driveMotor.GetAppliedOutput() << " " << m_driveMotor.GetOutputCurrent() << " " << m_driveEncoder.GetVelocity() << endl;
     }
@@ -222,6 +218,7 @@ void SwerveModule::setState(const frc::SwerveModuleState state) {  // sets the m
 void SwerveModule::Periodic() {
     frc::SmartDashboard::PutNumber("velocity " + getName(m_driveMotor.GetDeviceId()), abs(getDriveVelocity() / 12));
     // current angle based on the neo encoder
+    frc::SmartDashboard::PutNumber("steer num" + getName(m_driveMotor.GetDeviceId()), units::radian_t{getSteerPosition()}.value());
     frc::SmartDashboard::PutNumber("angle " + getName(m_driveMotor.GetDeviceId()), getSteerPosition());
     // print the absolute encoder reading
     // frc::SmartDashboard::PutNumber(getName(m_driveMotor.GetDeviceId()) + " abs", m_absoluteEncoder.GetAbsolutePosition());

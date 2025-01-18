@@ -538,7 +538,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 }
 void RobotContainer::Periodic() {
     auto rot = m_drive.getGyroHeading2();
-    //frc::SmartDashboard::PutNumber("gyro offset", m_drive.getGyroHeading2().Degrees().value());
+    // frc::SmartDashboard::PutNumber("gyro", m_drive.getGyroHeading2().Degrees().value());
     if (frc::DriverStation::GetAlliance().value() == frc::DriverStation::Alliance::kRed){
         
         // rot = Rotation2d(180_deg).RotateBy(PathPlannerAuto::getStartingPoseFromAutoFile("Test Auto").Rotation());

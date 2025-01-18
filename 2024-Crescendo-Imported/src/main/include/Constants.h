@@ -123,7 +123,7 @@ namespace SwerveModuleConstants {//per swerve module
     constexpr double kdD = 0.0;
     constexpr double kdFF = 0.225;
 
-    constexpr auto maxSpeed = 1.00_mps; // max free speed of SDS mk4 L1 withs neos
+    constexpr auto maxSpeed = 3.81_mps; // max free speed of SDS mk4 L1 withs neos
     constexpr auto maxRotation = 2.0_rad_per_s; // figure this out later
     constexpr double driveRatio = 8.14; //SDS Mk4 L1
     constexpr double steerRatio = 12.8; //SDS Mk4 L1
